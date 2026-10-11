@@ -1,0 +1,49 @@
+{
+  "status": "complete",
+  "config_sha256": "722215e7c90dfce9521715fc3b64ebcea54e101691b4afbfba2750b67e3d3450",
+  "protocol_sha256": "f57018b06e92688ccc92905d84adfb9fedc07ee7a238e4df9622ccb21f3280d6",
+  "training_manifest_sha256": "bfc3c80c60d7ef3d7f48508c37615a1acf8531db94f85e1560664ef280d5ed05",
+  "sources": {
+    "stage3_response_probes.py": "13194430189c5ab27d569e2178c2d82cc778486a3e371dfb7ffd459d743f56d1",
+    "stage2_memory_diagnostics.py": "7a1f33b3320912ed4b3c4dca769e942f808a593d590ec7af6244e44938ce90a4",
+    "stage2_models.py": "c93e127dd43a3f9f70fed3fbd4c63bed8fa0c74b261c33dbd0a327889bd10f2e",
+    "evaluate_stage2.py": "4642c27329b6556ac1d3eac8cf1cbcc3d07ee0b1efe09e1d85295618ec052558",
+    "train_stage2.py": "d93d1ecbb6ce30ccba88c2566be2632d769db6c2968717c3f6c36f24fbc49850"
+  },
+  "code_commit_before_execution": "db437f9c3a1b1844ea20a318b71fa0b892e88814",
+  "replication_test_data_accessed": false,
+  "checkpoint_selection_or_updates": false,
+  "validation_panel_hashes": {
+    "1": {
+      "training_manifest": "2ca963b4935179e3daa4699303915d19b3f69a184aa5ddd8793a5b76f261c742",
+      "validation_observations": "9571bbd7d759f4a2b64236be7987b71fdf79393ae2c7b52da279adb7f9b8785f",
+      "pair_paths_first256": "63294148c90c1e02afdddb8c8cfec2f5342f22f3b44d99fa9703e3cab1293b8a",
+      "pair_targets_first256": "f6ee5a28de7ddae5a733e71485d527215f490e2fc3d50bb85007b1a9038162d6",
+      "pulse_control": "ae3436c167f72aec9f96d07ef64ad6611e2014c54a0c6bbab11addc1bccf9911",
+      "pulse_event": "c17faaff535a11874e29a901bc9fa260b3e9e29cc765732655a706e81f8d0829"
+    },
+    "2": {
+      "training_manifest": "db3083065f5c5e70d6048cd0c857e2f684cc819b1d7fe8a34610582fbe923eab",
+      "validation_observations": "427291ff6d3352bacd4fe3f6c8cbbd062143652ff7317e08390e595a506d01db",
+      "pair_paths_first256": "a525474987de060d38417747d227910267d9fbb43f5275666f9a08c42f59acc6",
+      "pair_targets_first256": "241e575a6094304166713fdf34133e1e4e525b27e19a1f26302fb6d871c1d057",
+      "pulse_control": "1db969bbf0459432ff54056cf57801044b58f9ed3ca358d0a96d2db411e4a31d",
+      "pulse_event": "7ce4ae5f66abd7ab5713ac2693f01d8cb3cdec8f4eadc71d9565097afa6fd536"
+    },
+    "3": {
+      "training_manifest": "d8ba502434935b6970d59954ec9aed7764c7b5a2d550706549ab92791b535d44",
+      "validation_observations": "da113976a33290dadbe0487cc7bca489c5b1325f179e10cbee8f540dc1ffa85e",
+      "pair_paths_first256": "7e47a0a6e9770b8afd7589a61a63607b25becbe684ba15d0809bb2af593d43fc",
+      "pair_targets_first256": "f811e249776dc4ccaf8b6665e9d5f74732d53602591838e5d9f23affeb8b9325",
+      "pulse_control": "5b3027ff4dacecfaeb174bbcabb0ee78ec29e94bca8deb636d76bbff2fd6bb54",
+      "pulse_event": "78471550ae80424009a5dc705098f51e633d9c675b93bb17e6f8c3e9a1e89e7d"
+    }
+  },
+  "interpretation": "The controlled pulse is a synthetic model-response probe. Event timing is used only to construct/score it and never enters the model. Gradients and old-block permutation are model-dependence diagnostics, not causal explanations or learned-memory guarantees. Feature-outcome associations remain exploratory and must retain all30 fits.",
+  "model_rows": 30,
+  "wall_seconds": 63.733365058898926,
+  "artifacts": {
+    "model_features.csv": "67943190a363ba39ad8221e28c20c37be22048fc88b3a8c2050cb5b43f9641b4",
+    "gradient_by_lag.csv": "6b337f43cc765907f4eb1d1badb222d4e62a32593f201fd40d62639eb5981d29"
+  }
+}
