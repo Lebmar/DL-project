@@ -30,11 +30,18 @@ def main():
     config = json.loads(CONFIG.read_text())
     protocol = json.loads(PROTOCOL.read_text())
     assert config["frozen"] and protocol["frozen"]
+    assert config["gradient_and_permutation"]["context"] == 64
+    assert config["gradient_and_permutation"]["recent_unchanged"] == 16
+    assert config["gradient_and_permutation"]["permutation_seed"] == 920110
+    assert config["paired_pulse"]["duration"] == 128
+    assert config["paired_pulse"]["phases"] == ["entry", "recovery64"]
     for path in (Path(__file__).resolve(), CONFIG):
         committed = subprocess.check_output(["git", "show", f"HEAD:{path.relative_to(ROOT)}"], cwd=ROOT)
         assert hashlib.sha256(committed).hexdigest() == sha(path)
     for name, digest in protocol["sources"].items():
         assert sha(ROOT / "scripts" / name) == digest
+    memory = json.loads((ROOT / "outputs/stage2_memory/manifest.json").read_text())
+    assert sha(ROOT / "scripts/stage2_memory_diagnostics.py") == memory["source_sha256"]
     training_path = ROOT / "outputs/stage3_training/manifest.json"
     training = json.loads(training_path.read_text())
     assert training["status"] == "complete" and training["completed_models"] == 30
@@ -67,7 +74,10 @@ def main():
         val_y = generate_paths(tc["validation_data"], tc["generator"])
         assert array_sha256(val_y) == fitted["data_sha256"]["validation"]
         with np.load(panel_path.parent / "validation_target_pairs.npz") as pairs:
-            paths, targets = pairs["paths"][:256].copy(), pairs["targets"][:256].copy()
+            all_paths, all_targets = pairs["paths"].copy(), pairs["targets"].copy()
+        assert array_sha256(all_paths) == fitted["data_sha256"]["validation_pair_paths"]
+        assert array_sha256(all_targets) == fitted["data_sha256"]["validation_pair_targets"]
+        paths, targets = all_paths[:256], all_targets[:256]
         contexts = {c: context_tensor(val_y, paths, targets, c, "cpu") for c in (16, 64)}
         permutation = np.random.default_rng(920110).permutation(256)
         rng = np.random.default_rng(2718000+1000*panel["panel"])
