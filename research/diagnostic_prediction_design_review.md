@@ -75,11 +75,13 @@ Bootstrap 必须重算 path-mean label之后再计算预测误差，并使用相
 
 若使用 shared two-seed design，建议另报 `panel × shared seed × common path` 三维配对 bootstrap，seed draw跨所有抽到的 panel共享；因为 seed只有两个，其区间只作敏感性检查。若改用推荐的 nested seeds，panel整组重抽、组内成对 seed重抽、共同 test path重抽，不能将architecture独立抽走。八个 panel仍少，percentile区间只是近似；分别展示仅固定fits/path、panel/path和nested seed/path的范围，并明确都条件于已经固定的meta training coefficients，不涵盖只有三组的元训练数据不确定性。不要从bootstrap重复次数4000推导独立training样本数量。
 
+具体建议把 **training panel 整组 + common path** 的两维配对 bootstrap作为主要区间，每个被抽的panel先完整保留其两个seed/两个architecture，候选与基线共用同一个panel/path draw。对共享two-seed设计，这个区间条件于那两个固定seed；对跨panel唯一nested seeds，panel包含其预先抽定的seed对。三维crossed/nested-seed resampling只作另一个敏感性范围，避免只有两seed却将其总体区间当作可靠主证据。Fixed-fit/path区间再单列，说明测试噪声贡献。所用主区间应在新协议中明确一次固定。
+
 建议在协议中选一个 primary comparison、95% paired interval、4000 resamples、固定 RNG seeds；MAE和分组读数均为描述性，无第二轮hyperparameter search。若要有实际改善标准，可预先固定 `relative MSE gain≥10%`；基线 MSE接近0时这个比例无定义，应报告原始Delta和失败，不更换分母。
 
 一个刻意保守的成功门槛可要求：总体Delta为正且主要预定区间不含0、改善达到预定实质门槛、两个架构各自point Delta都为正、至少六个八panel point gains为正、leave-one-panel-out的全部point Delta仍为正。这些分组/LOO是固定 robustness gates，不是六次独立显著性检验。仅fixed-fit path interval通过时，措辞限于这批保存的 fits，不得升级成初始化/训练总体结论。
 
-以下任一情况均应判为**没有验证增量预测信息**，保留完整失败结果并停止该candidate的当前轮：
+以下任一情况均应判为**该轮未通过预设成功门槛**，保留完整失败结果并停止该candidate的当前轮；未通过不等于证明不存在任何预测信息：
 
 - 增益为负、主要区间包含0或未达到预定实质门槛。
 - 增益主要来自一个 extreme fit/panel，删去该 panel就翻号；或仅一个 architecture获益、另一architecture退化。
