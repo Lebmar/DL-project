@@ -1,0 +1,52 @@
+{
+  "status": "complete",
+  "protocol_sha256": "f57018b06e92688ccc92905d84adfb9fedc07ee7a238e4df9622ccb21f3280d6",
+  "driver_sha256": "3898736b30610a49006f915c9e978e73db7dd9ae4f3de97162505eb28aadc34e",
+  "sources": {
+    "train_stage2.py": "d93d1ecbb6ce30ccba88c2566be2632d769db6c2968717c3f6c36f24fbc49850",
+    "stage2_models.py": "c93e127dd43a3f9f70fed3fbd4c63bed8fa0c74b261c33dbd0a327889bd10f2e",
+    "evaluate_stage2.py": "4642c27329b6556ac1d3eac8cf1cbcc3d07ee0b1efe09e1d85295618ec052558",
+    "stage2_baselines.py": "f82fbbe82e5b75e17514a47ebde0dc636332da365aae42c09d00901a90e29eb0"
+  },
+  "code_commit_before_training": "c91daf3af353cf93728ed8d080f641f4dfcfb9b8",
+  "panels": [
+    {
+      "panel": 1,
+      "manifest": "outputs/stage3_training/panel1/manifest.json",
+      "manifest_sha256": "2ca963b4935179e3daa4699303915d19b3f69a184aa5ddd8793a5b76f261c742",
+      "train_seed": 314259,
+      "validation_seed": 314260,
+      "models": 10,
+      "wall_seconds": 261.89891719818115
+    },
+    {
+      "panel": 2,
+      "manifest": "outputs/stage3_training/panel2/manifest.json",
+      "manifest_sha256": "db3083065f5c5e70d6048cd0c857e2f684cc819b1d7fe8a34610582fbe923eab",
+      "train_seed": 314359,
+      "validation_seed": 314360,
+      "models": 10,
+      "wall_seconds": 341.66596007347107
+    },
+    {
+      "panel": 3,
+      "manifest": "outputs/stage3_training/panel3/manifest.json",
+      "manifest_sha256": "d8ba502434935b6970d59954ec9aed7764c7b5a2d550706549ab92791b535d44",
+      "train_seed": 314459,
+      "validation_seed": 314460,
+      "models": 10,
+      "wall_seconds": 331.83419394493103
+    }
+  ],
+  "test_data_accessed": false,
+  "adapter": "unchanged trainer.main with trainer.OUT redirected to independent panel directory",
+  "limitations": [
+    "only3 independent training datasets and5 initialization/sampling seeds",
+    "same synthetic training distribution and early-stopping procedure",
+    "no financial deployment claim",
+    "same seed indexes share initialization and sampler across training panels",
+    "test is new replication conditional on Stage2-informed hypotheses; not evidence for a newly selected method"
+  ],
+  "wall_seconds_this_invocation": 935.8785998821259,
+  "completed_models": 30
+}

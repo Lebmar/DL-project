@@ -1,0 +1,448 @@
+{
+  "status": "complete",
+  "date": "2026-10-11",
+  "python": "3.12.14",
+  "numpy": "2.5.4",
+  "torch": "2.14.1",
+  "protocol_source": "/Users/lebmar/Documents/ChatGPT/DL-project/outputs/stage3_training/panel1/input_protocol.json",
+  "protocol_sha256": "128d4d39e16d6478e8caca8ce4bb100dce9330748f4ac7475a901f74dad60041",
+  "training_config": {
+    "architectures": [
+      "gru",
+      "tcn"
+    ],
+    "model_seeds": [
+      4101,
+      4102,
+      4103,
+      4104,
+      4105
+    ],
+    "contexts": [
+      16,
+      64
+    ],
+    "model": {
+      "gru_hidden": 24,
+      "tcn_channels": 12,
+      "tcn_kernels": [
+        4,
+        3,
+        3,
+        3,
+        3
+      ],
+      "tcn_dilations": [
+        1,
+        2,
+        4,
+        8,
+        16
+      ],
+      "tcn_activation": "relu",
+      "log_scale_bounds": [
+        -3.0,
+        3.0
+      ]
+    },
+    "training_data": {
+      "seed": 314259,
+      "paths": 256,
+      "length": 1024
+    },
+    "validation_data": {
+      "seed": 314260,
+      "paths": 64,
+      "length": 1024,
+      "target_pairs": 8192,
+      "pair_seed": 314261
+    },
+    "generator": {
+      "switch_probability": 0.018,
+      "temporary_probability": 0.015,
+      "persistent_scale_min": 0.5,
+      "persistent_scale_max": 3.0,
+      "temporary_multiplier": 3.0
+    },
+    "optimization": {
+      "batch_size": 128,
+      "batches_per_epoch": 32,
+      "max_epochs": 60,
+      "min_epochs": 20,
+      "patience": 8,
+      "min_delta": 0.0001,
+      "learning_rate": 0.002,
+      "gradient_clip_norm": 5.0,
+      "validation_batch_size": 512
+    },
+    "execution": {
+      "device": "cpu",
+      "torch_threads": 4
+    }
+  },
+  "source_sha256": {
+    "train_stage2.py": "d93d1ecbb6ce30ccba88c2566be2632d769db6c2968717c3f6c36f24fbc49850",
+    "stage2_models.py": "c93e127dd43a3f9f70fed3fbd4c63bed8fa0c74b261c33dbd0a327889bd10f2e"
+  },
+  "data_sha256": {
+    "train": "3f113df401bbe759884b60776afb4c6a35785813322860cdf08267b537e9d710",
+    "validation": "9571bbd7d759f4a2b64236be7987b71fdf79393ae2c7b52da279adb7f9b8785f",
+    "validation_pair_paths": "1c2a958af04102c8bd36f9d0dd07789f185c583d2edc90e927bc3450d6da1ba8",
+    "validation_pair_targets": "d0cc4b9d8fa41b4ed9c7b5ce26bc51c96d74812da3a7593da57667908593aae2"
+  },
+  "unit_scale_validation_nll_without_constant": 1.2471470832824707,
+  "selection": "minimum mean validation NLL across contexts16/64, no test data loaded",
+  "early_stop": "min_delta affects patience only; counter starts at epoch1, stopping enabled after min_epochs",
+  "matching": "independent NumPy sampler reset to model seed for each architecture; identical minibatch prefixes",
+  "models": [
+    {
+      "architecture": "gru",
+      "model_seed": 4101,
+      "epochs_executed": 34,
+      "selected_epoch": 26,
+      "best_validation_mean_nll": 0.8192717246711254,
+      "selected_validation_nll_by_context": {
+        "16": 0.8194295205175877,
+        "64": 0.8191139288246632
+      },
+      "checkpoint": "outputs/stage3_training/panel1/checkpoints/gru_seed_4101.pt",
+      "checkpoint_sha256": "9f21592577a5b442d88af278b59d0c7bd176bf2dc9a6c8be5e10153a7b33009b",
+      "parameters": 2041,
+      "causal_audit_before": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 1.4901161193847656e-08,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 2041,
+        "structural_receptive_field": null
+      },
+      "causal_audit_selected_checkpoint": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 2.9802322387695312e-08,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 2041,
+        "structural_receptive_field": null
+      },
+      "wall_seconds": 10.600311040878296,
+      "stop_reason": "validation_patience"
+    },
+    {
+      "architecture": "tcn",
+      "model_seed": 4101,
+      "epochs_executed": 22,
+      "selected_epoch": 14,
+      "best_validation_mean_nll": 0.8316735029220581,
+      "selected_validation_nll_by_context": {
+        "16": 0.8316306546330452,
+        "64": 0.831716351211071
+      },
+      "checkpoint": "outputs/stage3_training/panel1/checkpoints/tcn_seed_4101.pt",
+      "checkpoint_sha256": "9b43ac60074a256d301ab57db9b0e16023e4e3110ff8501fca289f94834f6f15",
+      "parameters": 1897,
+      "causal_audit_before": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 1.4901161193847656e-08,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 1897,
+        "structural_receptive_field": 64
+      },
+      "causal_audit_selected_checkpoint": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 5.960464477539063e-08,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 1897,
+        "structural_receptive_field": 64
+      },
+      "wall_seconds": 36.502312898635864,
+      "stop_reason": "validation_patience"
+    },
+    {
+      "architecture": "gru",
+      "model_seed": 4102,
+      "epochs_executed": 28,
+      "selected_epoch": 20,
+      "best_validation_mean_nll": 0.8211227227002382,
+      "selected_validation_nll_by_context": {
+        "16": 0.8217882812023163,
+        "64": 0.8204571641981602
+      },
+      "checkpoint": "outputs/stage3_training/panel1/checkpoints/gru_seed_4102.pt",
+      "checkpoint_sha256": "d9bf90594140ceb257c8450842ec8c97cf1e38942023696c1af697a7d00100df",
+      "parameters": 2041,
+      "causal_audit_before": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 5.587935447692871e-09,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 2041,
+        "structural_receptive_field": null
+      },
+      "causal_audit_selected_checkpoint": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 2.9802322387695312e-08,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 2041,
+        "structural_receptive_field": null
+      },
+      "wall_seconds": 8.613152980804443,
+      "stop_reason": "validation_patience"
+    },
+    {
+      "architecture": "tcn",
+      "model_seed": 4102,
+      "epochs_executed": 27,
+      "selected_epoch": 19,
+      "best_validation_mean_nll": 0.8236392624676228,
+      "selected_validation_nll_by_context": {
+        "16": 0.823826476931572,
+        "64": 0.8234520480036736
+      },
+      "checkpoint": "outputs/stage3_training/panel1/checkpoints/tcn_seed_4102.pt",
+      "checkpoint_sha256": "51305fcb4b6aaa6f9b3065637bfbc1e94ebb56de27e9d3d11c7c82c6c6b8a46e",
+      "parameters": 1897,
+      "causal_audit_before": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 7.450580596923828e-09,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 1897,
+        "structural_receptive_field": 64
+      },
+      "causal_audit_selected_checkpoint": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 2.9802322387695312e-08,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 1897,
+        "structural_receptive_field": 64
+      },
+      "wall_seconds": 44.8951141834259,
+      "stop_reason": "validation_patience"
+    },
+    {
+      "architecture": "gru",
+      "model_seed": 4103,
+      "epochs_executed": 21,
+      "selected_epoch": 13,
+      "best_validation_mean_nll": 0.8211457300931215,
+      "selected_validation_nll_by_context": {
+        "16": 0.8215532451868057,
+        "64": 0.8207382149994373
+      },
+      "checkpoint": "outputs/stage3_training/panel1/checkpoints/gru_seed_4103.pt",
+      "checkpoint_sha256": "58eb81875520dc8bb2fa0aed5dfbc518210caffde98e9dee06cdac0f2120133a",
+      "parameters": 2041,
+      "causal_audit_before": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 1.862645149230957e-08,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 2041,
+        "structural_receptive_field": null
+      },
+      "causal_audit_selected_checkpoint": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 2.9802322387695312e-08,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 2041,
+        "structural_receptive_field": null
+      },
+      "wall_seconds": 6.45622181892395,
+      "stop_reason": "validation_patience"
+    },
+    {
+      "architecture": "tcn",
+      "model_seed": 4103,
+      "epochs_executed": 21,
+      "selected_epoch": 13,
+      "best_validation_mean_nll": 0.8223712630569935,
+      "selected_validation_nll_by_context": {
+        "16": 0.8230100460350513,
+        "64": 0.8217324800789356
+      },
+      "checkpoint": "outputs/stage3_training/panel1/checkpoints/tcn_seed_4103.pt",
+      "checkpoint_sha256": "8a771028c393d491eaee6e150b77bf50f46a29d46d91fc8e6b1680af50d882c8",
+      "parameters": 1897,
+      "causal_audit_before": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 0.0,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 1897,
+        "structural_receptive_field": 64
+      },
+      "causal_audit_selected_checkpoint": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 8.940696716308594e-08,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 1897,
+        "structural_receptive_field": 64
+      },
+      "wall_seconds": 35.91799211502075,
+      "stop_reason": "validation_patience"
+    },
+    {
+      "architecture": "gru",
+      "model_seed": 4104,
+      "epochs_executed": 39,
+      "selected_epoch": 31,
+      "best_validation_mean_nll": 0.8194908630102873,
+      "selected_validation_nll_by_context": {
+        "16": 0.8199520334601402,
+        "64": 0.8190296925604343
+      },
+      "checkpoint": "outputs/stage3_training/panel1/checkpoints/gru_seed_4104.pt",
+      "checkpoint_sha256": "01bdde24460ad8d4b314b093d3d20a4c9442ba1a818aadbe8f09bb8035f170f2",
+      "parameters": 2041,
+      "causal_audit_before": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 0.0,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 2041,
+        "structural_receptive_field": null
+      },
+      "causal_audit_selected_checkpoint": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 0.0,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 2041,
+        "structural_receptive_field": null
+      },
+      "wall_seconds": 12.121999025344849,
+      "stop_reason": "validation_patience"
+    },
+    {
+      "architecture": "tcn",
+      "model_seed": 4104,
+      "epochs_executed": 26,
+      "selected_epoch": 18,
+      "best_validation_mean_nll": 0.820011455565691,
+      "selected_validation_nll_by_context": {
+        "16": 0.8198564872145653,
+        "64": 0.8201664239168167
+      },
+      "checkpoint": "outputs/stage3_training/panel1/checkpoints/tcn_seed_4104.pt",
+      "checkpoint_sha256": "c61b997cc2698660b6c2d3e64b8eeee851560b810c40c1ad93b257928ee1df3b",
+      "parameters": 1897,
+      "causal_audit_before": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 0.0,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 1897,
+        "structural_receptive_field": 64
+      },
+      "causal_audit_selected_checkpoint": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 5.960464477539063e-08,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 1897,
+        "structural_receptive_field": 64
+      },
+      "wall_seconds": 44.40261197090149,
+      "stop_reason": "validation_patience"
+    },
+    {
+      "architecture": "gru",
+      "model_seed": 4105,
+      "epochs_executed": 31,
+      "selected_epoch": 23,
+      "best_validation_mean_nll": 0.8218739572912455,
+      "selected_validation_nll_by_context": {
+        "16": 0.8227979652583599,
+        "64": 0.820949949324131
+      },
+      "checkpoint": "outputs/stage3_training/panel1/checkpoints/gru_seed_4105.pt",
+      "checkpoint_sha256": "e2bb919cc168f344977dbe10180ce80b1bac9fe6e37e0d6c20d85451327585e9",
+      "parameters": 2041,
+      "causal_audit_before": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 1.4901161193847656e-08,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 2041,
+        "structural_receptive_field": null
+      },
+      "causal_audit_selected_checkpoint": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 0.0,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 2041,
+        "structural_receptive_field": null
+      },
+      "wall_seconds": 10.140591144561768,
+      "stop_reason": "validation_patience"
+    },
+    {
+      "architecture": "tcn",
+      "model_seed": 4105,
+      "epochs_executed": 31,
+      "selected_epoch": 23,
+      "best_validation_mean_nll": 0.8205115646123886,
+      "selected_validation_nll_by_context": {
+        "16": 0.8218674287199974,
+        "64": 0.8191557005047798
+      },
+      "checkpoint": "outputs/stage3_training/panel1/checkpoints/tcn_seed_4105.pt",
+      "checkpoint_sha256": "c83d34f2f5f43dcbbb3368a806c53d389adead206e6f23cd27c6eca459b865da",
+      "parameters": 1897,
+      "causal_audit_before": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 0.0,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 1897,
+        "structural_receptive_field": 64
+      },
+      "causal_audit_selected_checkpoint": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 2.9802322387695312e-08,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 1897,
+        "structural_receptive_field": 64
+      },
+      "wall_seconds": 52.17281794548035,
+      "stop_reason": "validation_patience"
+    }
+  ],
+  "matching_minibatches_verified": true,
+  "limitations": [
+    "fixed zero mean and a simulation-trained Gaussian scale model",
+    "context length does not establish effective learned memory",
+    "GRU and TCN parameter counts are close, not equal",
+    "validation targets are shared draws within64 independent paths, not8192 independent series"
+  ],
+  "wall_seconds": 261.89891719818115,
+  "completed_models": 10
+}
