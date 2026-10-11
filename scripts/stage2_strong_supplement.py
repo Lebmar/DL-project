@@ -8,8 +8,10 @@ support claims about training-seed stability or select a new deployment method.
 from __future__ import annotations
 
 import argparse
+from concurrent.futures import ProcessPoolExecutor
 import hashlib
 import json
+import multiprocessing
 from pathlib import Path
 import subprocess
 import time
@@ -109,6 +111,62 @@ def predict_paths(model, y, context):
     targets = np.tile(np.arange(length), n)
     paths = np.repeat(np.arange(n), length)
     return predict_points(model, y, context, paths, targets).reshape(y.shape)
+
+
+def _author_chunk(payload):
+    """Each worker calls the unchanged author wrapper on independent paths."""
+    y, sigma, spec, method = payload
+    torch.set_num_threads(1)
+    return baselines.calibrate_paths(y, sigma, spec, method, window=128,
+                                     warmup_scores=spec["warmup_scores"])
+
+
+def parallel_author_paths(y, sigma, spec, method):
+    if method not in ("sfogd", "saocp"):
+        raise ValueError("Only independent-path author algorithms use this execution wrapper")
+    indices = [chunk for chunk in np.array_split(np.arange(len(y)), 4) if len(chunk)]
+    payloads = [(y[chunk], sigma[chunk], spec, method) for chunk in indices]
+    # Spawn avoids forking an already multithreaded Torch runtime. No worker
+    # shares an algorithm state; each path keeps exactly its own warmup/update.
+    with ProcessPoolExecutor(max_workers=4, mp_context=multiprocessing.get_context("spawn")) as pool:
+        chunks = list(pool.map(_author_chunk, payloads))
+    result = {key: np.concatenate([chunk[key] for chunk in chunks], axis=0)
+              for key in ("q", "half_width", "scores", "covered", "valid")}
+    metadata = chunks[0]["metadata"].copy()
+    for count in ("ACI_clipping_total_final", "target_score_exceedance_count",
+                  "warmup_score_exceedance_count"):
+        metadata[count] = sum(chunk["metadata"][count] for chunk in chunks)
+    for chunk in chunks[1:]:
+        for key, value in chunks[0]["metadata"].items():
+            if key not in ("ACI_clipping_total_final", "target_score_exceedance_count",
+                           "warmup_score_exceedance_count") and chunk["metadata"][key] != value:
+                raise RuntimeError(f"Worker algorithm provenance differs: {key}")
+    metadata["execution"] = "four spawned processes, independent path chunks; unchanged author mathematics"
+    metadata["worker_path_chunks"] = [len(chunk) for chunk in indices]
+    result["metadata"] = metadata
+    return result
+
+
+def parallel_self_check():
+    """Synthetic execution equivalence only; no course/test data loaded."""
+    y = np.linspace(-2, 2, 4 * 129).reshape(4, 129)
+    sigma = np.linspace(.6, 1.8, 4 * 129).reshape(4, 129)
+    spec = {"alpha": .1, "gamma": .02, "initial_window": 128,
+            "max_scale": 20., "warmup_scores": np.linspace(.05, 2., 128).tolist()}
+    rows = []
+    for method in ("sfogd", "saocp"):
+        serial = baselines.calibrate_paths(y, sigma, spec, method, window=128,
+                                           warmup_scores=spec["warmup_scores"])
+        parallel = parallel_author_paths(y, sigma, spec, method)
+        for key in ("q", "half_width", "scores", "covered", "valid"):
+            np.testing.assert_array_equal(serial[key], parallel[key])
+        for key, value in serial["metadata"].items():
+            if parallel["metadata"][key] != value:
+                raise AssertionError(f"Merged metadata differs from serial: {key}")
+        rows.append({"method": method, "arrays_exactly_equal": True,
+                     "merged_original_metadata_equal": True, "paths": 4,
+                     "observations_per_path": 129, "warmup_per_path": 128})
+    return {"passed": True, "checks": rows, "test_data_accessed": False}
 
 
 def source_hashes():
@@ -252,9 +310,11 @@ def evaluate(protocol_path, output, references):
                         algorithm, window = (("rolling", 32) if method == "rolling32" else
                                              ("rolling", 128) if method == "rolling128" else
                                              ("aci", 128) if method == "aci128" else (method, 128))
-                        result = baselines.calibrate_paths(
-                            y, sigma, spec, algorithm, window=window,
-                            warmup_scores=spec["warmup_scores"])
+                        result = (parallel_author_paths(y, sigma, spec, algorithm)
+                                  if algorithm in ("sfogd", "saocp") else
+                                  baselines.calibrate_paths(
+                                      y, sigma, spec, algorithm, window=window,
+                                      warmup_scores=spec["warmup_scores"]))
                         half_width, method_meta = result["half_width"], result["metadata"]
                     score = baselines.interval_score(y, half_width, alpha=.1)
                     coverage = (np.abs(y) <= half_width).astype(float)
@@ -313,6 +373,7 @@ def evaluate(protocol_path, output, references):
                 "reference_scenario": {"families": list(FAMILIES), "duration": 128,
                                        "amplitude": 3., "onset": 384, "exit": 512},
                 "methods": list(METHODS), "phases": PHASES, "path_rows": len(metrics),
+                "author_execution": "four independent path chunks in spawned processes; no shared states or parameter changes",
                 "paths_per_family": int(protocol["test"]["paths"]),
                 "online_order": "issued sigma/q before current observation, then feedback",
                 "warmup": "predictor-specific scores from common last128 observations of validation path0; sequential unscored test pre384",
@@ -337,7 +398,11 @@ def main():
     action = parser.add_mutually_exclusive_group(required=True)
     action.add_argument("--prepare-only", action="store_true", help="validation-only freeze; no test access")
     action.add_argument("--evaluate", action="store_true", help="requires prior preparation and committed source")
+    action.add_argument("--self-check", action="store_true", help="synthetic exact serial/parallel equivalence, no test access")
     args = parser.parse_args()
+    if args.self_check:
+        print(json.dumps(parallel_self_check(), indent=2))
+        return
     result = (prepare(args.protocol, args.output) if args.prepare_only else
               evaluate(args.protocol, args.output, args.references))
     print(json.dumps({"status": result.get("status", "validation_prepared"),

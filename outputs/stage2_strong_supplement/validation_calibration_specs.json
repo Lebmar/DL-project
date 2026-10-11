@@ -4,7 +4,7 @@
   "training_manifest_sha256": "514fc0c781c8c925c4de581df9f8a8c305358e1beee8d5e716d9a6a45975af95",
   "validation_array_sha256": "fa7bc688adadca0408c189236f6c32946c66a45c3b1b3db5483571b04ece6b6a",
   "source_sha256": {
-    "stage2_strong_supplement.py": "185501a503024c5950d0c2803438b7643df051d4027f84f379884eb81877234b",
+    "stage2_strong_supplement.py": "7e653d75b8bedee22bb8b0db37b0b122d2d70413ef93e51dc3834ada8d07e9cc",
     "train_stage2.py": "d93d1ecbb6ce30ccba88c2566be2632d769db6c2968717c3f6c36f24fbc49850",
     "stage2_models.py": "c93e127dd43a3f9f70fed3fbd4c63bed8fa0c74b261c33dbd0a327889bd10f2e",
     "stage2_baselines.py": "f82fbbe82e5b75e17514a47ebde0dc636332da365aae42c09d00901a90e29eb0"
@@ -660,6 +660,6 @@
     "NOTICE": "none in pinned original repository"
   },
   "test_data_accessed": false,
-  "prepared_wall_seconds": 9.54643702507019,
+  "prepared_wall_seconds": 15.401061296463013,
   "scope": "single model seed supplement; no test parameter selection"
 }

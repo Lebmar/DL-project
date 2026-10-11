@@ -1,0 +1,14 @@
+{
+  "reason": "pre-test execution-only optimization to four independent path processes, author mathematical implementation unchanged",
+  "archived_validation_preparation": "validation_calibration_specs_before_parallel.json",
+  "archived_sha256": "b13c7244add669adebe24aa65a686df29ac4772fd2a83f4047f6ca7030bd7623",
+  "active_validation_preparation": "validation_calibration_specs.json",
+  "active_sha256": "7c33839dcc83c114c8a0334f464dff19c477c517368a82f47dce8c6e538a7353",
+  "protocol_and_parameters_unchanged": true,
+  "all_validation_prediction_hashes_unchanged": true,
+  "all_four_calibration_specs_exactly_equal": true,
+  "test_data_read_before_source_and_validation_refreeze": false,
+  "parallel_toy_check": "serial and parallel q, halfwidth, scores, covered, valid exactly equal for SF-OGD and SAOCP, original merged metadata equal",
+  "first_serial_source_commit": "4fff13f",
+  "first_validation_freeze_commit": "f92033a"
+}
