@@ -1,0 +1,91 @@
+{
+  "status": "complete",
+  "design_status": "exploratory; specified after Stage 2 outcomes were viewed",
+  "original_protocol_unchanged": true,
+  "new_blind_test": false,
+  "model_selection_or_training": "none; all ten original checkpoints retained",
+  "code_commit_before_execution": "8eb70bbb0f174e1e57f70d4f7307c0708453f4b3",
+  "source_sha256": "1fede5998fca5078148875be1e2cfa400604d2c4ce13efcdde22fc8fc870551d",
+  "protocol_sha256": "aa2bda29ba79b13df1b4ccba614bea1994670adf09133e359471d9d8dc2b9ef6",
+  "training_manifest_sha256": "514fc0c781c8c925c4de581df9f8a8c305358e1beee8d5e716d9a6a45975af95",
+  "original_evaluation_manifest_sha256": "5a617b1418cfb26aa438d025d94532527c97dc6bab5cc85080a2db2e67de30a2",
+  "original_evaluator_and_dependencies_sha256": {
+    "evaluate_stage2.py": "4642c27329b6556ac1d3eac8cf1cbcc3d07ee0b1efe09e1d85295618ec052558",
+    "stage2_baselines.py": "f82fbbe82e5b75e17514a47ebde0dc636332da365aae42c09d00901a90e29eb0",
+    "stage2_models.py": "c93e127dd43a3f9f70fed3fbd4c63bed8fa0c74b261c33dbd0a327889bd10f2e",
+    "train_stage2.py": "d93d1ecbb6ce30ccba88c2566be2632d769db6c2968717c3f6c36f24fbc49850"
+  },
+  "checkpoint_sha256": {
+    "outputs/stage2_training/checkpoints/gru_seed_4101.pt": "3081fe070865a967ad267784f09c8e56f24fa4c90bfb16002bb69af465f4eddd",
+    "outputs/stage2_training/checkpoints/tcn_seed_4101.pt": "33ecc47c81450c3e278e1baf2a971d8791825b60599ad30f33971d6cb58c91c7",
+    "outputs/stage2_training/checkpoints/gru_seed_4102.pt": "f203e412ee643cd5a552e5a10c9c19f0170f7af6eafed533e9c0dc269eaef454",
+    "outputs/stage2_training/checkpoints/tcn_seed_4102.pt": "970e4ae0f660046767143cb09e66cb9651578577512c64514345b010c6ebdcee",
+    "outputs/stage2_training/checkpoints/gru_seed_4103.pt": "5c4a3bc2585dbecb3f9bb39c9801eb28023d1d38cfb75b8caf4755a4c8ca1e06",
+    "outputs/stage2_training/checkpoints/tcn_seed_4103.pt": "8692131642010630838ae402c897c3f0f1d2cae01e52b1456cf6c9b98716ab03",
+    "outputs/stage2_training/checkpoints/gru_seed_4104.pt": "c0156fc148bdcdf428c2b0e21a3dd0051aa145cc470c1c5ddac757680ceecfc7",
+    "outputs/stage2_training/checkpoints/tcn_seed_4104.pt": "2f84cec7f4da7606e7087d5f57cfbcdaa06ac966b91aa9e8905253f36f64eb10",
+    "outputs/stage2_training/checkpoints/gru_seed_4105.pt": "2bb191c2fa058d093b166af79427a972877bc80d181bcfdea3bb55fdd1c100c4",
+    "outputs/stage2_training/checkpoints/tcn_seed_4105.pt": "325448874afc9e9e6f637ac7ebfc57e09e73d57dd9e9ac4d3e2bab4d1351af2a"
+  },
+  "cells": "current context a16/64 x archive denominator context b16/64 x W32/128",
+  "families": [
+    "gaussian",
+    "student_t5"
+  ],
+  "duration": 128,
+  "amplitude": 3,
+  "bootstrap": {
+    "repetitions": 4000,
+    "path_seed": 610023,
+    "level": 0.95,
+    "scope": "unadjusted descriptive paired-path interval conditional on five fixed paired fits"
+  },
+  "self_check": {
+    "passed": true,
+    "cross_quantile_matches_scalar_past_score_definition": true,
+    "diagonal_matches_original_rolling_definition": true,
+    "current_and_future_outcomes_excluded_from_archive_quantile": true,
+    "both_decomposition_paths_are_algebraically_exact": true,
+    "fixed_archive_logwidth_current_by_window_zero_is_identity": true,
+    "maximum_scalar_quantile_error": 8.881784197001252e-16
+  },
+  "test_array_hashes": {
+    "gaussian": {
+      "observations": "624d00503ff9da8b58836056bacecff10a33b3915d3553cc22b271b4a765acd5",
+      "true_scale": "cf617e44550407c5d1ecf2d2d2a002aa690b11cfca1be7b0a570613dc240c074",
+      "event_observations": "d880729d49818c692923689a5f6afa76ec8356984e8efe4ac4b9be11399d9e33",
+      "event_true_scale": "14b37c5001fa311134bf80b21453890d770720690a7f47e111b369378361bc7a"
+    },
+    "student_t5": {
+      "observations": "bc252fb7d8df9db8d9bcf5e45d24dbe1d7b7e46ca09b8604f1660cfd0928cbb9",
+      "true_scale": "cf617e44550407c5d1ecf2d2d2a002aa690b11cfca1be7b0a570613dc240c074",
+      "event_observations": "f32efb698337a0a043c4f7985bd87907db557dfe8b73325d67ad5534dda43ce3",
+      "event_true_scale": "14b37c5001fa311134bf80b21453890d770720690a7f47e111b369378361bc7a"
+    }
+  },
+  "event_label_use": "path generation, phase evaluation and reuse of mathematically identical contexts only",
+  "fixed_archive_logwidth_current_window_identity": "zero by log h=log s_a+log Q_b,W; not empirical novelty",
+  "elapsed_seconds": 236.60568714141846,
+  "performance_rows": 1280,
+  "paired_component_rows": 51200,
+  "diagonal_check": {
+    "all_original_five_metrics": true,
+    "all_ten_fits": true,
+    "families": 2,
+    "phases": 4,
+    "performance_rows": 640,
+    "maximum_performance_absolute_error": 1.0658141036401503e-14,
+    "interaction_path_rows": 10240,
+    "maximum_path_interaction_absolute_error": 3.774758283725532e-15
+  },
+  "negative_control_checks": 160,
+  "maximum_half_width_error_after_each_crossed_bound": 0.0,
+  "maximum_fixed_archive_current_window_logwidth_interaction_absolute_error": 1.5543122344752192e-15,
+  "artifacts": {
+    "paired_component_effects.csv.gz": "1bad24a3a4412a4d8200afbd1d5847fbe2c86e3d09673bb80148b8bb1b0fdeec",
+    "mechanism_summary.csv": "35fa5135b0c2ece0cb9e777549d87bfa39b58b64d99c33178c2dbfc0d9237feb",
+    "negative_controls.csv": "7f2b79d3efc212977b1c368b5e44ba60a4ba9a848f1c813f2e3d009f696a013c",
+    "individual_seed_components.csv": "48f94330e3771faf20bb9c333e652c889d5d27f0875b12f74104d98461a79be2",
+    "crossed_performance_by_seed.csv": "41e5d2cd7f898b75d6a3af3f17309f85bb29458e96898a4ad9a0f2c13c7f549c"
+  }
+}
