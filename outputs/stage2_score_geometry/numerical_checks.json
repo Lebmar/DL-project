@@ -1,0 +1,402 @@
+{
+  "passed": true,
+  "alpha": 0.1,
+  "student_df": 5,
+  "quadrature_cases": [
+    {
+      "family": "gaussian",
+      "tau": 0.4,
+      "h_over_tau": 0.0,
+      "analytic_expected_score": 6.383076486422924,
+      "integrated_expected_score": 6.383076486422922,
+      "absolute_error": 1.7763568394002505e-15
+    },
+    {
+      "family": "gaussian",
+      "tau": 0.4,
+      "h_over_tau": 0.05,
+      "analytic_expected_score": 6.031053670186922,
+      "integrated_expected_score": 6.031053670186924,
+      "absolute_error": 1.7763568394002505e-15
+    },
+    {
+      "family": "gaussian",
+      "tau": 0.4,
+      "h_over_tau": 0.3,
+      "analytic_expected_score": 4.508179873875359,
+      "integrated_expected_score": 4.508179873875359,
+      "absolute_error": 0.0
+    },
+    {
+      "family": "gaussian",
+      "tau": 0.4,
+      "h_over_tau": 0.8,
+      "analytic_expected_score": 2.5633157423162456,
+      "integrated_expected_score": 2.5633157423162465,
+      "absolute_error": 8.881784197001252e-16
+    },
+    {
+      "family": "gaussian",
+      "tau": 0.4,
+      "h_over_tau": 1.64,
+      "analytic_expected_score": 1.6501897348997467,
+      "integrated_expected_score": 1.6501897348997456,
+      "absolute_error": 1.1102230246251565e-15
+    },
+    {
+      "family": "gaussian",
+      "tau": 0.4,
+      "h_over_tau": 3.0,
+      "analytic_expected_score": 2.406114469072764,
+      "integrated_expected_score": 2.406114469072764,
+      "absolute_error": 0.0
+    },
+    {
+      "family": "gaussian",
+      "tau": 0.4,
+      "h_over_tau": 6.0,
+      "analytic_expected_score": 4.800000002501712,
+      "integrated_expected_score": 4.800000002501712,
+      "absolute_error": 0.0
+    },
+    {
+      "family": "gaussian",
+      "tau": 1.0,
+      "h_over_tau": 0.0,
+      "analytic_expected_score": 15.957691216057308,
+      "integrated_expected_score": 15.957691216057306,
+      "absolute_error": 1.7763568394002505e-15
+    },
+    {
+      "family": "gaussian",
+      "tau": 1.0,
+      "h_over_tau": 0.05,
+      "analytic_expected_score": 15.077634175467306,
+      "integrated_expected_score": 15.077634175467306,
+      "absolute_error": 0.0
+    },
+    {
+      "family": "gaussian",
+      "tau": 1.0,
+      "h_over_tau": 0.3,
+      "analytic_expected_score": 11.270449684688396,
+      "integrated_expected_score": 11.270449684688396,
+      "absolute_error": 0.0
+    },
+    {
+      "family": "gaussian",
+      "tau": 1.0,
+      "h_over_tau": 0.8,
+      "analytic_expected_score": 6.408289355790615,
+      "integrated_expected_score": 6.408289355790616,
+      "absolute_error": 1.7763568394002505e-15
+    },
+    {
+      "family": "gaussian",
+      "tau": 1.0,
+      "h_over_tau": 1.64,
+      "analytic_expected_score": 4.125474337249367,
+      "integrated_expected_score": 4.125474337249364,
+      "absolute_error": 2.6645352591003757e-15
+    },
+    {
+      "family": "gaussian",
+      "tau": 1.0,
+      "h_over_tau": 3.0,
+      "analytic_expected_score": 6.015286172681909,
+      "integrated_expected_score": 6.015286172681909,
+      "absolute_error": 0.0
+    },
+    {
+      "family": "gaussian",
+      "tau": 1.0,
+      "h_over_tau": 6.0,
+      "analytic_expected_score": 12.000000006254279,
+      "integrated_expected_score": 12.00000000625428,
+      "absolute_error": 1.7763568394002505e-15
+    },
+    {
+      "family": "gaussian",
+      "tau": 3.0,
+      "h_over_tau": 0.0,
+      "analytic_expected_score": 47.873073648171925,
+      "integrated_expected_score": 47.87307364817194,
+      "absolute_error": 1.4210854715202004e-14
+    },
+    {
+      "family": "gaussian",
+      "tau": 3.0,
+      "h_over_tau": 0.05,
+      "analytic_expected_score": 45.23290252640192,
+      "integrated_expected_score": 45.232902526401915,
+      "absolute_error": 7.105427357601002e-15
+    },
+    {
+      "family": "gaussian",
+      "tau": 3.0,
+      "h_over_tau": 0.3,
+      "analytic_expected_score": 33.81134905406519,
+      "integrated_expected_score": 33.811349054065175,
+      "absolute_error": 1.4210854715202004e-14
+    },
+    {
+      "family": "gaussian",
+      "tau": 3.0,
+      "h_over_tau": 0.8,
+      "analytic_expected_score": 19.224868067371844,
+      "integrated_expected_score": 19.224868067371844,
+      "absolute_error": 0.0
+    },
+    {
+      "family": "gaussian",
+      "tau": 3.0,
+      "h_over_tau": 1.64,
+      "analytic_expected_score": 12.3764230117481,
+      "integrated_expected_score": 12.376423011748093,
+      "absolute_error": 7.105427357601002e-15
+    },
+    {
+      "family": "gaussian",
+      "tau": 3.0,
+      "h_over_tau": 3.0,
+      "analytic_expected_score": 18.045858518045726,
+      "integrated_expected_score": 18.045858518045726,
+      "absolute_error": 0.0
+    },
+    {
+      "family": "gaussian",
+      "tau": 3.0,
+      "h_over_tau": 6.0,
+      "analytic_expected_score": 36.00000001876284,
+      "integrated_expected_score": 36.00000001876284,
+      "absolute_error": 0.0
+    },
+    {
+      "family": "student_t5",
+      "tau": 0.4,
+      "h_over_tau": 0.0,
+      "analytic_expected_score": 5.880841551165783,
+      "integrated_expected_score": 5.880841551165783,
+      "absolute_error": 0.0
+    },
+    {
+      "family": "student_t5",
+      "tau": 0.4,
+      "h_over_tau": 0.05,
+      "analytic_expected_score": 5.530638872553903,
+      "integrated_expected_score": 5.530638872553903,
+      "absolute_error": 0.0
+    },
+    {
+      "family": "student_t5",
+      "tau": 0.4,
+      "h_over_tau": 0.3,
+      "analytic_expected_score": 4.068523003148645,
+      "integrated_expected_score": 4.068523003148644,
+      "absolute_error": 8.881784197001252e-16
+    },
+    {
+      "family": "student_t5",
+      "tau": 0.4,
+      "h_over_tau": 0.8,
+      "analytic_expected_score": 2.400774141072564,
+      "integrated_expected_score": 2.400774141072565,
+      "absolute_error": 8.881784197001252e-16
+    },
+    {
+      "family": "student_t5",
+      "tau": 0.4,
+      "h_over_tau": 1.64,
+      "analytic_expected_score": 1.7948936042464703,
+      "integrated_expected_score": 1.7948936042464703,
+      "absolute_error": 0.0
+    },
+    {
+      "family": "student_t5",
+      "tau": 0.4,
+      "h_over_tau": 3.0,
+      "analytic_expected_score": 2.4861571328529504,
+      "integrated_expected_score": 2.4861571328529504,
+      "absolute_error": 0.0
+    },
+    {
+      "family": "student_t5",
+      "tau": 0.4,
+      "h_over_tau": 6.0,
+      "analytic_expected_score": 4.807282112183089,
+      "integrated_expected_score": 4.807282112183089,
+      "absolute_error": 0.0
+    },
+    {
+      "family": "student_t5",
+      "tau": 1.0,
+      "h_over_tau": 0.0,
+      "analytic_expected_score": 14.702103877914453,
+      "integrated_expected_score": 14.702103877914453,
+      "absolute_error": 0.0
+    },
+    {
+      "family": "student_t5",
+      "tau": 1.0,
+      "h_over_tau": 0.05,
+      "analytic_expected_score": 13.826597181384752,
+      "integrated_expected_score": 13.826597181384752,
+      "absolute_error": 0.0
+    },
+    {
+      "family": "student_t5",
+      "tau": 1.0,
+      "h_over_tau": 0.3,
+      "analytic_expected_score": 10.171307507871605,
+      "integrated_expected_score": 10.171307507871607,
+      "absolute_error": 1.7763568394002505e-15
+    },
+    {
+      "family": "student_t5",
+      "tau": 1.0,
+      "h_over_tau": 0.8,
+      "analytic_expected_score": 6.001935352681407,
+      "integrated_expected_score": 6.001935352681409,
+      "absolute_error": 1.7763568394002505e-15
+    },
+    {
+      "family": "student_t5",
+      "tau": 1.0,
+      "h_over_tau": 1.64,
+      "analytic_expected_score": 4.4872340106161746,
+      "integrated_expected_score": 4.487234010616175,
+      "absolute_error": 8.881784197001252e-16
+    },
+    {
+      "family": "student_t5",
+      "tau": 1.0,
+      "h_over_tau": 3.0,
+      "analytic_expected_score": 6.215392832132375,
+      "integrated_expected_score": 6.215392832132375,
+      "absolute_error": 0.0
+    },
+    {
+      "family": "student_t5",
+      "tau": 1.0,
+      "h_over_tau": 6.0,
+      "analytic_expected_score": 12.018205280457721,
+      "integrated_expected_score": 12.018205280457721,
+      "absolute_error": 0.0
+    },
+    {
+      "family": "student_t5",
+      "tau": 3.0,
+      "h_over_tau": 0.0,
+      "analytic_expected_score": 44.10631163374337,
+      "integrated_expected_score": 44.10631163374336,
+      "absolute_error": 7.105427357601002e-15
+    },
+    {
+      "family": "student_t5",
+      "tau": 3.0,
+      "h_over_tau": 0.05,
+      "analytic_expected_score": 41.47979154415425,
+      "integrated_expected_score": 41.47979154415426,
+      "absolute_error": 7.105427357601002e-15
+    },
+    {
+      "family": "student_t5",
+      "tau": 3.0,
+      "h_over_tau": 0.3,
+      "analytic_expected_score": 30.513922523614816,
+      "integrated_expected_score": 30.513922523614816,
+      "absolute_error": 0.0
+    },
+    {
+      "family": "student_t5",
+      "tau": 3.0,
+      "h_over_tau": 0.8,
+      "analytic_expected_score": 18.00580605804422,
+      "integrated_expected_score": 18.00580605804423,
+      "absolute_error": 7.105427357601002e-15
+    },
+    {
+      "family": "student_t5",
+      "tau": 3.0,
+      "h_over_tau": 1.64,
+      "analytic_expected_score": 13.461702031848526,
+      "integrated_expected_score": 13.461702031848528,
+      "absolute_error": 1.7763568394002505e-15
+    },
+    {
+      "family": "student_t5",
+      "tau": 3.0,
+      "h_over_tau": 3.0,
+      "analytic_expected_score": 18.646178496397127,
+      "integrated_expected_score": 18.646178496397127,
+      "absolute_error": 0.0
+    },
+    {
+      "family": "student_t5",
+      "tau": 3.0,
+      "h_over_tau": 6.0,
+      "analytic_expected_score": 36.05461584137316,
+      "integrated_expected_score": 36.05461584137316,
+      "absolute_error": 0.0
+    }
+  ],
+  "maximum_errors": {
+    "quadrature_absolute_error": 1.4210854715202004e-14,
+    "first_derivative_absolute_error": 2.4154752864546936e-08,
+    "second_derivative_absolute_error": 2.4343419156025448e-06,
+    "mixed_derivative_absolute_error": 4.9980515335334985e-06,
+    "rectangle_integral_absolute_error": 1.021405182655144e-14
+  },
+  "sign_change_and_optimum": {
+    "gaussian": {
+      "mixed_derivative_zero_h_over_tau": 0.6459181235301471,
+      "optimal_h_over_tau": 1.644853626951472
+    },
+    "student_t5": {
+      "mixed_derivative_zero_h_over_tau": 0.5550123879163077,
+      "optimal_h_over_tau": 1.5608497583442287
+    }
+  },
+  "sign_reversal_examples": [
+    {
+      "family": "gaussian",
+      "region": "very narrow",
+      "s0": 0.15,
+      "s1": 0.35,
+      "q0": 0.2,
+      "q1": 0.5,
+      "tau": 1.0,
+      "current_by_window_expected_score": -0.9130295005442591
+    },
+    {
+      "family": "gaussian",
+      "region": "near nominal",
+      "s0": 0.9,
+      "s1": 1.1,
+      "q0": 1.4,
+      "q1": 1.8,
+      "tau": 1.0,
+      "current_by_window_expected_score": 0.5436847123246427
+    },
+    {
+      "family": "student_t5",
+      "region": "very narrow",
+      "s0": 0.15,
+      "s1": 0.35,
+      "q0": 0.2,
+      "q1": 0.5,
+      "tau": 1.0,
+      "current_by_window_expected_score": -0.8756007961517847
+    },
+    {
+      "family": "student_t5",
+      "region": "near nominal",
+      "s0": 0.9,
+      "s1": 1.1,
+      "q0": 1.4,
+      "q1": 1.8,
+      "tau": 1.0,
+      "current_by_window_expected_score": 0.4025430195904693
+    }
+  ]
+}

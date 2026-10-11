@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "warmup_hash_matches_completed_strong_manifest": true,
+  "strong_manifest_sha256": "68612081efd355225edbf45deee7d9972c189834813fa3192126fc9ddd21eda7",
+  "scalar_sort_past_only_quantile_selected_paths": [
+    0,
+    17,
+    63,
+    127
+  ],
+  "selected_path_phase_interactions": 64,
+  "maximum_scalar_loop_interaction_error": 8.760353553682876e-17,
+  "selected_reference_halfwidth_tail_integral_cases": 32,
+  "maximum_reference_tail_integral_error": 1.0658141036401503e-14,
+  "scope": "post-run independent scalar-loop and integration audit; no output metric or source changes"
+}
