@@ -1,0 +1,97 @@
+{
+  "status": "passed",
+  "synthetic_only": true,
+  "suffix_cutoff": 193,
+  "checked_model_method_windows": [
+    "constant/rolling/32",
+    "constant/rolling/128",
+    "constant/aci/32",
+    "constant/aci/128",
+    "constant/sfogd/128",
+    "constant/saocp/128",
+    "ewma16/rolling/32",
+    "ewma16/rolling/128",
+    "ewma16/aci/32",
+    "ewma16/aci/128",
+    "ewma16/sfogd/128",
+    "ewma16/saocp/128",
+    "ewma64/rolling/32",
+    "ewma64/rolling/128",
+    "ewma64/aci/32",
+    "ewma64/aci/128",
+    "ewma64/sfogd/128",
+    "ewma64/saocp/128",
+    "garch11/rolling/32",
+    "garch11/rolling/128",
+    "garch11/aci/32",
+    "garch11/aci/128",
+    "garch11/sfogd/128",
+    "garch11/saocp/128"
+  ],
+  "garch_fit": {
+    "objective": "segmented zero-mean Gaussian conditional NLL",
+    "selection": "minimum training NLL among converged feasible multistart fits",
+    "train_gaussian_nll": 1.3849460332614416,
+    "attempts": [
+      {
+        "start_alpha": 0.05,
+        "start_beta": 0.9,
+        "success": true,
+        "feasible": true,
+        "message": "Optimization terminated successfully",
+        "iterations": 27,
+        "train_gaussian_nll": 1.3849460332614416,
+        "omega_in_train_variance_units": 0.0177371303645948,
+        "alpha": 0.005948267343460443,
+        "beta": 0.976089200795127
+      },
+      {
+        "start_alpha": 0.15,
+        "start_beta": 0.7,
+        "success": true,
+        "feasible": true,
+        "message": "Optimization terminated successfully",
+        "iterations": 30,
+        "train_gaussian_nll": 1.384946033263485,
+        "omega_in_train_variance_units": 0.01773916264273885,
+        "alpha": 0.005948445226705651,
+        "beta": 0.9760870271566591
+      },
+      {
+        "start_alpha": 0.2,
+        "start_beta": 0.3,
+        "success": true,
+        "feasible": true,
+        "message": "Optimization terminated successfully",
+        "iterations": 6,
+        "train_gaussian_nll": 1.3857237323959932,
+        "omega_in_train_variance_units": 0.6232260313419818,
+        "alpha": 0.0005085577471209715,
+        "beta": 0.3767996323327686
+      },
+      {
+        "start_alpha": 0.001,
+        "start_beta": 0.95,
+        "success": true,
+        "feasible": true,
+        "message": "Optimization terminated successfully",
+        "iterations": 12,
+        "train_gaussian_nll": 1.384946033261747,
+        "omega_in_train_variance_units": 0.017738134702683123,
+        "alpha": 0.005948381860142753,
+        "beta": 0.9760880561011878
+      }
+    ],
+    "converged": true,
+    "alpha_plus_beta": 0.9820374681385874,
+    "stationary_variance_implied_by_parameters": 0.92398751567889,
+    "near_boundary": {
+      "omega_unit_at_floor": false,
+      "alpha_near_zero": false,
+      "beta_near_zero": false,
+      "persistence_near_cap": false
+    },
+    "training_path_count": 6,
+    "training_path_length": 192
+  }
+}

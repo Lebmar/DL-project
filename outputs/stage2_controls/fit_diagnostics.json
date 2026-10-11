@@ -1,0 +1,110 @@
+{
+  "provenance": {
+    "protocol_path": "/Users/lebmar/Documents/ChatGPT/DL-project/configs/stage2_protocol.json",
+    "protocol_sha256": "aa2bda29ba79b13df1b4ccba614bea1994670adf09133e359471d9d8dc2b9ef6",
+    "baseline_source_path": "/Users/lebmar/Documents/ChatGPT/DL-project/scripts/stage2_baselines.py",
+    "baseline_source_sha256": "f82fbbe82e5b75e17514a47ebde0dc636332da365aae42c09d00901a90e29eb0",
+    "generator_source_path": "/Users/lebmar/Documents/ChatGPT/DL-project/scripts/train_stage2.py",
+    "generator_source_sha256": "d93d1ecbb6ce30ccba88c2566be2632d769db6c2968717c3f6c36f24fbc49850",
+    "train_array_sha256": "0ad0d89fdbbe923755f49c6820734ea8bdff83b8aef205816bd202c72a6b4b98",
+    "validation_array_sha256": "fa7bc688adadca0408c189236f6c32946c66a45c3b1b3db5483571b04ece6b6a",
+    "training_data": {
+      "seed": 314159,
+      "paths": 256,
+      "length": 1024
+    },
+    "validation_data": {
+      "seed": 314160,
+      "paths": 64,
+      "length": 1024,
+      "target_pairs": 8192,
+      "pair_seed": 314161
+    },
+    "generator": {
+      "switch_probability": 0.018,
+      "temporary_probability": 0.015,
+      "persistent_scale_min": 0.5,
+      "persistent_scale_max": 3.0,
+      "temporary_multiplier": 3.0
+    },
+    "test_data_accessed": false,
+    "ACI_gamma_grid_run": false,
+    "ACI_gamma": 0.02
+  },
+  "fit_rule": "Gaussian GARCH multistart selection on training NLL only",
+  "variance_initialization": "common pooled training second moment, not latent generator sigma",
+  "garch_fit": {
+    "objective": "segmented zero-mean Gaussian conditional NLL",
+    "selection": "minimum training NLL among converged feasible multistart fits",
+    "train_gaussian_nll": 1.7293558148149304,
+    "attempts": [
+      {
+        "start_alpha": 0.05,
+        "start_beta": 0.9,
+        "success": true,
+        "feasible": true,
+        "message": "Optimization terminated successfully",
+        "iterations": 14,
+        "train_gaussian_nll": 1.7293558148149304,
+        "omega_in_train_variance_units": 0.011468824975517905,
+        "alpha": 0.1260178449893201,
+        "beta": 0.8729821450106799
+      },
+      {
+        "start_alpha": 0.15,
+        "start_beta": 0.7,
+        "success": true,
+        "feasible": true,
+        "message": "Optimization terminated successfully",
+        "iterations": 15,
+        "train_gaussian_nll": 1.7293558148451837,
+        "omega_in_train_variance_units": 0.011467940386567498,
+        "alpha": 0.12601380333768442,
+        "beta": 0.8729861866623155
+      },
+      {
+        "start_alpha": 0.2,
+        "start_beta": 0.3,
+        "success": true,
+        "feasible": true,
+        "message": "Optimization terminated successfully",
+        "iterations": 20,
+        "train_gaussian_nll": 1.729355814836261,
+        "omega_in_train_variance_units": 0.011469040633424023,
+        "alpha": 0.12602131895332677,
+        "beta": 0.8729786710466731
+      },
+      {
+        "start_alpha": 0.001,
+        "start_beta": 0.95,
+        "success": true,
+        "feasible": true,
+        "message": "Optimization terminated successfully",
+        "iterations": 15,
+        "train_gaussian_nll": 1.7293558148213164,
+        "omega_in_train_variance_units": 0.01146911940694347,
+        "alpha": 0.12602005680175524,
+        "beta": 0.8729799331982446
+      }
+    ],
+    "converged": true,
+    "alpha_plus_beta": 0.9989999900000001,
+    "stationary_variance_implied_by_parameters": 29.4627392182356,
+    "near_boundary": {
+      "omega_unit_at_floor": false,
+      "alpha_near_zero": false,
+      "beta_near_zero": false,
+      "persistence_near_cap": true
+    },
+    "training_path_count": 256,
+    "training_path_length": 1024
+  },
+  "validation_gaussian_nll": {
+    "constant": 1.9264698379025043,
+    "ewma16": 1.7778183616290428,
+    "ewma64": 1.8261177550072119,
+    "garch11": 1.7620694271031332
+  },
+  "tiny_self_check_status": "passed",
+  "elapsed_seconds": 2.9426140785217285
+}
