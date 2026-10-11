@@ -130,4 +130,3 @@ def causal_prefix_audit(model: nn.Module, seed=91826, length=96, cut=37, batch=4
             "passed": True, "cut": cut, "length": length,
             "parameters": sum(p.numel() for p in model.parameters()),
             "structural_receptive_field": getattr(model, "receptive_field", None)}
-
