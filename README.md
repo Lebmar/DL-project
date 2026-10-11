@@ -8,6 +8,7 @@ DSAA 2012 Deep Learning 课程项目。问题是：**神经预测器的尺度响
 
 - [一页 proposal 草稿](output/pdf/project_proposal.pdf) · [LaTeX 源码与官方模板](proposal/)
 - [第二阶段实际结论与完整网格](research/stage2_results.md)
+- [当前尺度与历史档案的交叉机制诊断](research/stage2_archive_mechanism.md)
 - [中文项目解释：如何讲清楚设计与统计量](research/project_explainer_zh.md)
 - [第二阶段冻结协议](research/stage2_protocol.md) · [训练核查](research/stage2_training_notes.md) · [验证记忆诊断](research/stage2_memory_notes.md) · [复现入口](research/stage2_runbook.md)
 - [第一阶段结论与 A+ 差距](research/feasibility_report.md)
@@ -33,8 +34,11 @@ DSAA 2012 Deep Learning 课程项目。问题是：**神经预测器的尺度响
 | `scripts/evaluate_stage2.py` | 冻结30情景，配对反事实与有限记忆检查 | `outputs/stage2_evaluation/` |
 | `scripts/analyze_stage2.py` | 两项主比较与全部描述性网格，不重训 | `outputs/stage2_analysis/` |
 | `scripts/stage2_strong_supplement.py` | 引用组单种子ACI/SF-OGD/SAOCP在线对照 | `outputs/stage2_strong_supplement/` |
+| `scripts/run_stage2_archive_diagnostic.py` | 全五种子current/archive交叉，明确探索范围 | `outputs/stage2_archive_mechanism/` |
 
 每个实验目录包含运行设置、source/checkpoint hash 与限制说明。大逐行 CSV 以 `.csv.gz` 保存到 Git，展开后与原始 CSV 字节一致。运行脚本会生成原 CSV；分析脚本支持两种格式。
+
+第三阶段已在训练前固定[独立训练数据重复协议](configs/stage3_replication_protocol.json)与[验证尺度响应探针](configs/stage3_response_probes.json)：3批新的训练/验证数据，每批5对GRU/TCN种子，共30个新拟合。新测试只做已明确假设的复制，不能把旧结果变成新方法的盲测证据。完成后另行发布结果。
 
 ![第二阶段预设比较](outputs/stage2_analysis/primary_architecture_contrast.png)
 

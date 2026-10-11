@@ -44,5 +44,6 @@
 | `stage2_analysis/primary_contrasts.csv` | 两个主端点，97.5%条件区间与种子敏感性 |
 | `stage2_analysis/secondary_interactions.csv` | 全30情景与全部指标，95%描述区间 |
 | `stage2_strong_supplement/phase_summary.csv` | 引用组的单种子在线控制器对照 |
+| `stage2_archive_mechanism/paired_component_effects.csv.gz` | 已见引用组上的探索性交叉两路线分量 |
 
 区间 score 的单位是模拟收益单位；coverage 为比例。绝对表现和交互量回答不同问题。不要对交互输出再减一次 control，也不要把多个拟合模型共享的路径当作独立样本。

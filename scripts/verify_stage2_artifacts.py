@@ -106,8 +106,31 @@ def main():
         check(f"supplement reference {family}", sha(evaluation_path.parent/f"reference_{family}.npz") == expected)
     paths = pd.read_csv(supplement_path.parent/"path_metrics.csv.gz")
     check("complete supplementary path rows", len(paths) == 49152 and supplement["path_rows"] == 49152)
+    archive_path = ROOT/"outputs/stage2_archive_mechanism/manifest.json"
+    archive = json.loads(archive_path.read_text())
+    check("archive exploratory complete", archive["status"] == "complete" and not archive["new_blind_test"])
+    check("archive source", archive["source_sha256"] == sha(ROOT/"scripts/run_stage2_archive_diagnostic.py"))
+    check("archive training provenance", archive["training_manifest_sha256"] == sha(training_path))
+    check("archive evaluation provenance", archive["original_evaluation_manifest_sha256"] == sha(evaluation_path))
+    for name, expected in archive["artifacts"].items():
+        check(f"archive artifact {name}", sha(archive_path.parent/name) == expected)
+    diagonal = archive["diagonal_check"]
+    check("archive diagonal performance replication", diagonal["performance_rows"] == 640
+          and diagonal["maximum_performance_absolute_error"] < 1e-10)
+    check("archive diagonal path replication", diagonal["interaction_path_rows"] == 10240
+          and diagonal["maximum_path_interaction_absolute_error"] < 1e-10)
+    check("crossed bounds", archive["negative_control_checks"] == 160
+          and archive["maximum_half_width_error_after_each_crossed_bound"] < 1e-10)
+    components = pd.read_csv(archive_path.parent/"paired_component_effects.csv.gz")
+    check("complete archive path rows", len(components) == 51200)
+    keys = ["family", "architecture", "seed", "phase", "path"]
+    values = list(components.columns[6:])
+    parts = {c: g.set_index(keys)[values].sort_index() for c, g in components.groupby("component")}
+    check("both decomposition paths reproduce total",
+          np.allclose(parts["total"], parts["current_at_archive64"]+parts["archive_at_current16"], atol=1e-10, rtol=0)
+          and np.allclose(parts["total"], parts["current_at_archive16"]+parts["archive_at_current64"], atol=1e-10, rtol=0))
     print(json.dumps({"status": "passed", "checks": len(checks),
-                      "scope": "saved training, controls, evaluation, memory, analysis and supplement",
+                      "scope": "saved training, controls, evaluation, memory, analysis, supplement and crossed archive diagnostic",
                       "checked": checks}, indent=2))
 
 
