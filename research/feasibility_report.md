@@ -69,4 +69,4 @@ SF-OGD/SAOCP 已用固定作者源码、同一 issued GRU 预测跑通。在本�
 
 先看一页 proposal，再看本备忘录与三张图：`outputs/pilot/memory_response.png`、`outputs/gru_simulation/gru_context_response.png`、`outputs/public_fx/public_fx_comparison.png`。重点理解为什么“上下文更长”与“有效记忆更慢”不是同一回事，以及为什么冻结预测存档能避免错误归因。
 
-Proposal 是研究草稿，不是已提交作业。课程 guideline 要求个人作者与独立完成；AI 工具是否获准没有在该文档中明确，不能由本仓库替课程解释。学生需理解代码、修改文字，并按实际课程工具政策使用成果。
+Proposal 是研究草稿，不是已提交作业。2026-10-11，学生确认课程已经允许使用 AI 工具。学生仍需理解代码、核验结果并承担个人作者责任。

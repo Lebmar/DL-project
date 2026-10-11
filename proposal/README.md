@@ -12,4 +12,4 @@ pdflatex -interaction=nonstopmode -halt-on-error -output-directory=../output/pdf
 pdflatex -interaction=nonstopmode -halt-on-error -output-directory=../output/pdf project_proposal.tex
 ```
 
-The two passes resolve citations. The PDF was rendered and visually checked on 2026-10-11; there are no undefined citations or overfull boxes in the final build. The course guideline requires a one-page PDF by October 16, 23:59; this draft still requires the student's understanding, revision and compliance with the course's individual-work/tool policy.
+The two passes resolve citations. The PDF was rendered and visually checked on 2026-10-11; there are no undefined citations or overfull boxes in the final build. The course guideline requires a one-page PDF by October 16, 23:59. The student confirmed on 2026-10-11 that AI tools are permitted; the student remains responsible for understanding and revising the work.

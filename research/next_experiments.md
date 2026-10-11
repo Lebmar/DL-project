@@ -31,7 +31,7 @@ If effective-memory changes have little effect, the interaction changes sign wit
 | Date | Concrete outcome |
 |---|---|
 | October 11–13 | Review proposal and primary papers; inspect pilot code/results; define precise hypotheses and independent test grid. |
-| October 14–16 | Student revises the one-page proposal, checks course policy and seeks teaching-staff feedback; submit by October 16, 23:59. |
+| October 14–16 | Student revises the one-page proposal and seeks teaching-staff feedback; AI-tool permission is already confirmed. Submit by October 16, 23:59. |
 | October 17–25 | Effective-memory diagnostics, a second architecture, sufficient validation-based training, strong-baseline validation. |
 | October 26–November 8 | Freeze contribution and experimental protocol; run independent robustness grid. |
 | November 9–22 | Ablations, public-data check, uncertainty and failure-case analysis. |

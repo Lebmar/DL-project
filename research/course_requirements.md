@@ -6,7 +6,7 @@ Source: the student's local `Project.pdf` (nine pages), read on 2026-10-11. This
 |---|---|
 | Deep learning theory or application, with insight beyond literature review or unchanged reproduction | Train GRU from scratch; test how neural scale response interacts with calibration. A generic comparison alone would be insufficient. |
 | Precise, supported claims | Pair trajectories; keep training/test seeds separate; distinguish deployed predictions from diagnostic interventions; record null results. |
-| Individual work, sole author; novel to this course | No reuse of microbank work/data/results. The student must understand and own the research. The guideline allows assistance from instructor/GTAs and excludes outside supervisors. It does not explicitly resolve AI-tool use; this draft cannot establish permission under that policy. |
+| Individual work, sole author; novel to this course | No reuse of microbank work/data/results. The student must understand and own the research. On 2026-10-11 the student confirmed that AI tools are permitted by the course. This permission is recorded separately from the guideline's restrictions on outside supervisors and prior-credit work. |
 | Proposal: one-page PDF, NeurIPS preprint | Draft compiled with official 2026 style, numbered sections, one page including references. Due October 16, 23:59. |
 | Report: at most four main pages including figures/tables; extra references/appendices allowed | Planned four-page narrative: question, controlled design, decisive results, limits. Due December 11, 23:59. |
 | Presentation: 8–10-minute MP4 and PDF slides | At least 720p, target 1080p; 16:9 preferred, face optional, around 15 slides recommended. Due December 11, 23:59. |
