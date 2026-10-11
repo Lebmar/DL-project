@@ -15,16 +15,16 @@
 Financial prediction intervals should adapt to rising volatility without staying wide after a temporary shock. Neural control, score--threshold adaptation, and retrospective updates already address adaptation \citep{ncc,adapt,retro}. I will test whether \textbf{a neural forecaster's scale response changes the effect of calibration memory at shock entry and exit}. The interaction may depend on architecture and event duration. Longer context does not necessarily imply longer effective memory.
 
 \section{Method and evaluation}
-A probabilistic GRU trained from scratch will produce a causal scale $s_t$. With a fixed zero center in controlled simulations, the interval half-width is
+Probabilistic GRU and causal TCN models trained from scratch will produce scales $s_t$. With a fixed zero center in controlled simulations, the interval half-width is
 \[
  h_t=s_t\,Q_{1-\alpha}\bigl(\{|y_i|/s_i\}_{i=t-W}^{t-1}\bigr),\qquad \alpha=0.1.
 \]
-I will cross short/long GRU contexts with short/long score windows, using shared weights, matched event prefixes, and paired trajectories. Independent simulations compare temporary shocks and persistent variance changes; true scales are diagnostic oracles only. Separately varying current and archived scales will distinguish forecaster and calibration effects. Controls include EWMA/GARCH and rolling, adaptive, and strongly adaptive calibration \citep{saocp}.
+Across five matched training seeds, I will cross short/long contexts with short/long score windows, using shared weights within each fit and paired event/no-event trajectories. A frozen grid varies pulse duration, magnitude, tails, and latent stochastic volatility; true scales are evaluation oracles only. Separately varying current and archived scales will distinguish their effects. Controls include EWMA/fitted GARCH and rolling, adaptive, and strongly adaptive calibration \citep{saocp}.
 
 Public ECB reference rates for four EUR-cross currencies provide an application check: training through 2018, validation in 2019--2020, and exploratory evaluation from 2021. Metrics include interval score, width, simulated conditional coverage, and entry/recovery contrasts. Training seeds and paired paths quantify simulation variation; date-block comparisons retain cross-asset dependence. Predictions remain immutable; tuning excludes test data and event labels.
 
 \section{Expected contribution and feasibility}
-The intended contribution is a falsifiable account of \emph{when forecaster response matters for calibration}. Pilots run locally; architecture-dependent and null outcomes remain possible. October will test effective-memory sensitivity, a second neural architecture, and strong baselines. Reproducible failures may motivate an adaptation module; null results will narrow the claim. November covers robustness and ablations, followed by the report and presentation before December 11.
+The intended contribution is a falsifiable account of \emph{when forecaster response matters for calibration}. Matched models run locally; architecture-dependent and null outcomes remain possible. Validation lag sensitivity and a finite-memory erasure check help distinguish learned response from implementation errors. Reproducible failures may motivate an adaptation module tested on a new holdout; null results will narrow the claim. November covers robustness and ablations, followed by the report and presentation before December 11.
 
 \begin{thebibliography}{4}
 \small
