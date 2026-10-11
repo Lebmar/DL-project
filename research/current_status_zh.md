@@ -2,7 +2,7 @@
 
 日期：2026-10-11。项目已经完成两轮统一神经训练、配对模拟测试和独立重训重复。现在最重要的进展是一个能够解释、复现并接受失败结果的研究问题；还没有证明新算法优于已有方法，也不能保证 A+。
 
-当前工作题目是 **Separating Neural Scale Response and Score Memory in Online Interval Calibration**，可以理解为“拆开神经波动预测与历史误差档案，研究它们怎样共同影响预测区间”。[工作报告 PDF](../output/pdf/working_report.pdf)正在按四页主体加参考文献的结构整理，是供你评议的**审核草稿**，不是已经完成的正式提交稿。[一页 proposal](../output/pdf/project_proposal.pdf)也已备好草稿，最终仍须你核对作者信息、理解内容并作决定。
+当前工作题目是 **Separating Neural Scale Response and Score Memory in Online Interval Calibration**，可以理解为“拆开神经波动预测与历史误差档案，研究它们怎样共同影响预测区间”。[工作报告 PDF](../output/pdf/working_report.pdf)已完成四页主体加一页参考文献，并逐页检查排版；它是供你评议的**审核草稿**，不是正式提交稿。[一页 proposal](../output/pdf/project_proposal.pdf)也已备好草稿，最终仍须你核对作者信息、理解内容并作决定。
 
 ## 这个 project 到底在研究什么
 

@@ -8,6 +8,8 @@ DSAA 2012 Deep Learning 课程项目。问题是：**神经预测器的尺度响
 
 ## 从这里开始
 
+- [回来后先读这里：最新结论、A+缺口与60分钟阅读安排](research/current_status_zh.md)
+
 - [一页 proposal 草稿](output/pdf/project_proposal.pdf) · [LaTeX 源码与官方模板](proposal/)
 - [四页报告工作稿 PDF（草稿）](output/pdf/working_report.pdf) · [工作稿 LaTeX 源码](report/working_report.tex)；供学生理解和修订，尚未提交。
 - [第三阶段新复制的实际结果](research/stage3_results.md) · [冻结协议](configs/stage3_replication_protocol.json) · [复现入口](research/stage3_runbook.md)
