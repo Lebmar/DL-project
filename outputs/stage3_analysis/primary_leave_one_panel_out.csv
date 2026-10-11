@@ -1,0 +1,7 @@
+family,duration,amplitude,phase,omitted_panel,estimate
+gaussian,128,3.0,entry,1,-0.14281753385366683
+gaussian,128,3.0,entry,2,-0.1704877724040787
+gaussian,128,3.0,entry,3,-0.2824137368146055
+gaussian,128,3.0,recovery64,1,0.015935695872472073
+gaussian,128,3.0,recovery64,2,0.015757233918273574
+gaussian,128,3.0,recovery64,3,-0.010850825849148213
