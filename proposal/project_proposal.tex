@@ -7,24 +7,24 @@
 \usepackage{hyperref}
 \hypersetup{hidelinks}
 \title{Neural Memory and Interval Calibration}
-\author{Chengxuan \quad DSAA 2012, HKUST(GZ)}
+\author{Chengxuan YUAN \quad Student ID: 50025581\\DSAA 2012, HKUST(GZ)}
 \begin{document}
 \maketitle
 
 \section{Motivation and research question}
-Financial prediction intervals should adapt to rising volatility without staying wide after a temporary shock. Neural control, score--threshold adaptation, and retrospective updates already address adaptation \citep{ncc,adapt,retro}. I will test whether \textbf{a neural forecaster's scale response changes the effect of calibration memory at shock entry and exit}. The interaction may depend on architecture and event duration. Longer context does not necessarily imply longer effective memory.
+Volatility shocks challenge calibrated financial intervals. Neural control, score--threshold adaptation, and retrospective updates already address adaptation \citep{ncc,adapt,retro}. I ask: \textbf{how do current neural scale response and historical score memory jointly affect calibration at shock entry and recovery?} I will investigate dependence on fitted model, training data, and shock duration.
 
 \section{Method and evaluation}
-Probabilistic GRU and causal TCN models trained from scratch will produce scales $s_t$. With a fixed zero center in controlled simulations, the interval half-width is
+GRU and causal TCN models learn Gaussian scales from raw past returns, with validation early stopping. At zero center, current context $a$ and archive context $b$ give half-width
 \[
- h_t=s_t\,Q_{1-\alpha}\bigl(\{|y_i|/s_i\}_{i=t-W}^{t-1}\bigr),\qquad \alpha=0.1.
+ h_t^{a,b,W}=s_t^a\,Q_{1-\alpha}\bigl(\{|y_i|/s_i^b\}_{i=t-W}^{t-1}\bigr),\qquad \alpha=0.1.
 \]
-Across five matched training seeds, I will cross short/long contexts with short/long score windows, using shared weights within each fit and paired event/no-event trajectories. A frozen grid varies pulse duration, magnitude, tails, and latent stochastic volatility; true scales are evaluation oracles only. Separately varying current and archived scales will distinguish their effects. Controls include EWMA/fitted GARCH and rolling, adaptive, and strongly adaptive calibration \citep{saocp}.
+Cross $a,b\in\{16,64\}$ and score windows $W\in\{32,128\}$, sharing weights within fits; $a=b$ is ordinary calibration. Paired shock/no-shock simulations vary duration, magnitude, tails, and stochastic volatility. Decompose event-minus-control context-by-window contrasts in both current/archive orders. Repeat across five paired seeds and independent training datasets. Controls include EWMA, fitted GARCH, and rolling/adaptive/strongly adaptive calibration \citep{saocp}.
 
-Public ECB reference rates for four EUR-cross currencies provide an application check: training through 2018, validation in 2019--2020, and exploratory evaluation from 2021. Metrics include interval score, width, simulated conditional coverage, and entry/recovery contrasts. Training seeds and paired paths quantify simulation variation; date-block comparisons retain cross-asset dependence. Predictions remain immutable; tuning excludes test data and event labels.
+Use generated data and daily log returns from public ECB EUR-cross rates only. The ECB pilot trains through 2018, validates in 2019--2020, and evaluates 2021 onward exploratorily. Report interval score, coverage, width, and simulated oracle deficits; date-block comparisons retain cross-asset dependence. Hyperparameters use validation data; confirmatory simulations use frozen rules and new paths.
 
 \section{Expected contribution and feasibility}
-The intended contribution is a falsifiable account of \emph{when forecaster response matters for calibration}. Matched models run locally; architecture-dependent and null outcomes remain possible. Validation lag sensitivity and a finite-memory erasure check help distinguish learned response from implementation errors. Reproducible failures may motivate an adaptation module tested on a new holdout; null results will narrow the claim. November covers robustness and ablations, followed by the report and presentation before December 11.
+Expected outcomes are a reproducible current/archive decomposition and a phase-specific explanation of \emph{neural fitting variability}. Exploration and a three-dataset replication demonstrate local feasibility and mixed results. Through November, I will consolidate lag/pulse diagnostics, literature positioning, robustness checks, and public financial analysis, then finalize the report and presentation before December 11.
 
 \begin{thebibliography}{4}
 \small

@@ -1,0 +1,43 @@
+{
+  "status": "reviewed; stated proposal requirements satisfied; not submitted",
+  "review_date": "2026-10-11",
+  "author": "Chengxuan YUAN",
+  "student_id": "50025581",
+  "pages_including_references": 1,
+  "numbered_sections": 3,
+  "references": 4,
+  "course_requirements_source_local_pdf_sha256": "761a1655e4e1f8f4ed4e02ff4db5c8b5117e642e33f03eb2caab9aede1a32b4c",
+  "course_pages_reviewed": [
+    1,
+    2,
+    5
+  ],
+  "deadline_local": "2026-10-16 23:59 Asia/Shanghai",
+  "official_style_url": "https://media.neurips.cc/Conferences/NeurIPS2026/Formatting_Instructions_For_NeurIPS_2026.zip",
+  "official_archive_sha256": "82473931e3ef710fcd3f4a8cd4119b9de32e56825f90f9e5a6d55f2d01b817d9",
+  "official_style_fresh_download_identical": true,
+  "style_sha256": "c3fc2894e83d2517ca18b66741d6c595986d97957dc08ec08bb2125a7ec4555a",
+  "preprint_option": true,
+  "main_fonts_and_margins_unmodified": true,
+  "compiled_with": "pdfLaTeX TeX Live 2026; two passes",
+  "layout_or_citation_warnings": [],
+  "latest_page_rendered_and_visually_reviewed": true,
+  "artifact_sha256": {
+    "proposal/project_proposal.tex": "6229a01c6526fa25984b38f1ca0dbbbc19e128e7cc8b8a5ce6da63131af00e44",
+    "output/pdf/project_proposal.pdf": "ef89d9ae7e7f1b2cb5eb4b4a36b645c9dcf0671894eee5855a3f12ef5de0bd27",
+    "proposal/compliance_review.md": "818384bbd4d38be6e7a3fcb77b3dce94ad2f454389ebcedd1875c6dd41c97827"
+  },
+  "previous_revision": "398364c4e08b773aac8a3d69e22b782d76617570",
+  "previous_pdf_sha256": "f05aa71ac6f12cbc58ba793f23b67a999c8f97f3d9840d9bb18c0bd7a14bfdf4",
+  "reference_metadata_sources": [
+    "https://ojs.aaai.org/index.php/AAAI/article/view/34029",
+    "https://arxiv.org/abs/2602.01629",
+    "https://arxiv.org/abs/2511.04275",
+    "https://proceedings.mlr.press/v202/bhatnagar23a.html"
+  ],
+  "limits": [
+    "No claim of guaranteed grade or certified novelty",
+    "Course submission not performed",
+    "No new training or statistical recalculation performed"
+  ]
+}
