@@ -1,40 +1,50 @@
-# Decision gates and next experiments
+# 下一步：把可靠实验变成明确贡献
 
-Status: exploratory design frozen on 2026-10-11. This is a plan, not evidence that a new algorithm exists.
+更新于2026-10-11。AI使用已获课程许可。本计划以实际结果为依据，不把实验数量或一个条件区间不含0当成A+原创贡献。
 
-## Gate 1: distinguish input context from effective scale response
+## 已完成的关卡
 
-Use the current GRU checkpoints and paired simulation paths to measure context truncation sensitivity, time-resolved scale response, and sensitivity to earlier observations. Compare a second neural architecture (small causal TCN or attention model) trained on the same independent generator. Train longer according to validation loss, since the GRU pilot's best validation epoch is the final eighth epoch. Do not tune to the known test pulses.
-
-Intervene on **current** scale context and **archived-score denominator** context separately, crossing both with calibration window. Off-diagonal combinations are diagnostic interventions; they are not a newly guaranteed conformal method. Verify the diagonal reproduces the original GRU experiment. This separates a current scale response from a change to archived normalized scores, which the original context intervention changed together.
-
-## Gate 2: survive controls and closest prior work
-
-On identical issued predictions, run tuned-on-validation rolling calibration, ACI/AgACI, SF-OGD/SAOCP and at least one neural/PID calibration baseline. Add a properly fitted GARCH baseline, retaining the current EWMA control. Source-code pins, initialization and scope of any theoretical assumptions must be explicit. The current strong-baseline defaults are feasibility checks, not an optimized leaderboard.
-
-Complete the full-text novelty check against the Cho–Matteson TSFM/GARCH workshop paper; current access yielded its original abstract and official acceptance, not the complete paper. Distinguish NCC, AdaptNC, RetroAdj and RareCP in the final literature discussion. Resetting, replay, gating, multiple windows and neural residual controllers already have direct precedents.
-
-## Gate 3: generalize a bounded claim
-
-Before new runs, freeze an independent generator grid over event duration, magnitude, persistence and tail family. Use new path seeds; keep exploratory results visible. Student-t innovations require the correct Student-t oracle, not the Gaussian oracle. Include a stochastic-volatility generator so conclusions are not limited to known piecewise-constant variance. Avoid labelling retrospectively chosen real-market dates as ground-truth regimes.
-
-The ECB 2021–2026 interval has already been inspected. Future changes evaluated on it remain exploratory. A confirmatory component can use a newly frozen independent simulation grid; any new real-data holdout should be chosen and sealed before inspecting outcomes. Four EUR crosses do not establish broad financial generalization.
-
-## Gate 4: decide whether a new module is justified
-
-Only if a neural-specific failure persists beyond controls, design a small causal module informed by that mechanism. Compare it with a simple rule/linear model using the same inputs. No event onset, true scale or future duration may enter a deployable module. Do not count a common-current-scale cancellation as a method: `s_t * Q(|e_i| / s_t) = Q(|e_i|)`.
-
-If effective-memory changes have little effect, the interaction changes sign without an explanation, or EWMA/GARCH already explains everything, narrow to a bounded empirical result or pivot the contribution. A null result by itself is not evidence of A+ quality.
-
-## Schedule
-
-| Date | Concrete outcome |
+| 关卡 | 结果与来源 |
 |---|---|
-| October 11–13 | Review proposal and primary papers; inspect pilot code/results; define precise hypotheses and independent test grid. |
-| October 14–16 | Student revises the one-page proposal and seeks teaching-staff feedback; AI-tool permission is already confirmed. Submit by October 16, 23:59. |
-| October 17–25 | Effective-memory diagnostics, a second architecture, sufficient validation-based training, strong-baseline validation. |
-| October 26–November 8 | Freeze contribution and experimental protocol; run independent robustness grid. |
-| November 9–22 | Ablations, public-data check, uncertainty and failure-case analysis. |
-| November 23–December 3 | Write four-page main report, prepare figures and reproducibility appendix. |
-| December 4–10 | Slides, record 8–10-minute video, verify submission artifacts. |
-| December 11 | Submit report, slides and video before 23:59. |
+| 统一神经比较 | GRU/TCN各5种子，同数据、特征、批次前缀和验证选择；10模型正常早停。[训练记录](stage2_training_notes.md) |
+| 诊断旧输入依赖 | 固定256个验证目标，梯度、旧块置换、context变化；TCN旧梯度占比更高，但不是恢复机制证明。[记忆诊断](stage2_memory_notes.md) |
+| 独立情景评估 | 3噪声家族×5冲击长度×2幅度，全30组；正确Student-t oracle与SV潜在状态说明。[实际结果](stage2_results.md) |
+| 强控制与统计 | 训练集拟合GARCH；固定参数ACI、作者SF-OGD/SAOCP仅作引用组单种子补充；覆盖提高也伴随宽度/IS代价。[补充范围](stage2_strong_supplement_results.md) |
+| 实现与输出核查 | 1800个有限记忆负控制全部重合；数据、源码、checkpoint、配对索引和输出核查通过。[复现入口](stage2_runbook.md) |
+
+主比较的固定拟合均值差异较小，跨种子敏感性区间都包含0；entry去掉一个种子后均值会反向。不能将架构标签、输入上下文长度或单一梯度指标直接当作校准效果的解释。GRU与GARCH的绝对区间表现也不能据描述性表就宣布稳定优劣。
+
+## 当前机制诊断
+
+使用全部已冻结模型，分别交叉当前尺度上下文与历史分数分母上下文，再与滚动窗口组合。两条分解路径都报告，验证对角线重现原实验和各交叉组合的遗忘界。固定引用组Gaussian/t5、A3、D128，全部五种子保留，不挑选某个异常种子。
+
+这是受到已看结果启发的探索性诊断。分解路径不同说明非线性交互，不能把某一路的分量叫作唯一因果中介效应；log h = log s + log q 的抵消也只是代数恒等式。结果入口为 [机制诊断](stage2_archive_mechanism.md)。
+
+## 下一项可支撑原创性的问题
+
+优先检验：常规验证损失相近的神经预测器，为何可能产生不同的冲击期校准行为，哪些尺度响应特征能够解释这种差异？必须先找到可重复的机制，再考虑方法。更长上下文、神经阈值控制、分数重算、reset、replay、gating和多窗口都有直接先例，不能将这些组件本身当成新贡献。
+
+下一轮需要在生成新测试前固定机制指标的定义、模型/训练数据的重复结构、两三项主要假设、对照与统计单位。模型种子只代表初始化/优化随机性；若结论要跨训练数据成立，应增加独立训练数据重复并分别记录两种不确定性。训练/验证用于选择方案，新的模拟路径用于最终留出；现有Stage1/Stage2结果继续保留为探索/已完成验证记录。
+
+若设计小型因果校准模块，需要与同输入的简单规则/线性模型、在线阈值控制和最接近论文方法比较。输入不能含事件开始、真实波动、未来持续时间或事后标签。模块必须同时看区间分数、覆盖率、宽度与运行成本，不能只优化展示的一个指标。共同当前尺度重算 s_t Q(|e_i|/s_t)=Q(|e_i|) 是抵消恒等式，不构成学习方法。
+
+若机制仍随训练程序变化而无法解释，就收窄为有边界的经验结论或调整贡献；不能把不稳定性包装成已证明的神经优势。阴性结果可提高研究可信度，但A+仍需要清楚的新知识及充分论证。
+
+## 文献与公开数据的剩余工作
+
+NCC、AdaptNC、RetroAdj、SAOCP/PID与RareCP等直接先例，需要在最终讨论中明确区分。Cho–Matteson的TSFM/GARCH workshop论文目前仅核实到原摘要和正式接受记录，完整正文访问受限；尚不能宣布其没有覆盖本项目问题。[文献边界](literature_gap.md)
+
+ECB的2021–2026期间已用于探索，未来改方法再测它仍是探索结果。新的真实数据留出须在查看结果前封存，四个EUR交叉汇率也不代表广泛金融泛化。只使用公开数据或自生成数据。
+
+## 近期安排
+
+| 时间 | 具体交付 |
+|---|---|
+| 10月11–13日 | 整理机制诊断，阅读主要论文；学生理解项目假设、公式与已有反例。[中文说明](project_explainer_zh.md) |
+| 10月14–16日 | 学生修订一页proposal、向教学团队获取选题反馈；10月16日23:59前提交。 |
+| 10月17–25日 | 固定可辨识的贡献问题，增加必要训练重复和机制干预，完成直接方法对照。 |
+| 10月26日–11月8日 | 冻结新方案与新留出协议，运行稳健性验证；保存所有失败条件。 |
+| 11月9–22日 | 公开金融应用、消融、不确定性与计算代价，确认结论适用范围。 |
+| 11月23日–12月3日 | 四页主体报告、图表与可复现附录。 |
+| 12月4–10日 | 幻灯片、8–10分钟视频、格式与提交文件检查。 |
+| 12月11日 | 23:59前提交报告、slides与视频。 |

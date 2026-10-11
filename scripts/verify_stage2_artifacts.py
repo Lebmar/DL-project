@@ -77,8 +77,37 @@ def main():
                     check(f"{family}/{arch}/{context} same-context scale equality",
                           np.array_equal(event[:, :385], control[:, :385])
                           and np.array_equal(event[:, 512+context:], control[:, 512+context:]))
+    memory_path = ROOT/"outputs/stage2_memory/manifest.json"
+    memory = json.loads(memory_path.read_text())
+    check("memory validation source", memory["source_sha256"] == sha(ROOT/"scripts/stage2_memory_diagnostics.py"))
+    check("memory training provenance", memory["training_manifest_sha256"] == sha(training_path))
+    for name, expected in memory["output_sha256"].items():
+        check(f"memory artifact {name}", sha(memory_path.parent/name) == expected)
+    analysis_path = ROOT/"outputs/stage2_analysis/manifest.json"
+    analysis = json.loads(analysis_path.read_text())
+    check("analysis complete", analysis["status"] == "complete")
+    check("analysis source", analysis["analysis_source_sha256"] == sha(ROOT/"scripts/analyze_stage2.py"))
+    check("analysis evaluation provenance", analysis["evaluation_manifest_sha256"] == sha(evaluation_path))
+    check("analysis report", analysis["report_sha256"] == sha(ROOT/"research/stage2_results.md"))
+    for name, expected in analysis["artifact_sha256"].items():
+        check(f"analysis artifact {name}", sha(analysis_path.parent/name) == expected)
+    for revision in analysis.get("rendering_revisions", []):
+        check("rendering preserves statistics", revision["statistical_csv_unchanged"])
+        check("rendering source", revision["source_sha256"] == sha(ROOT/revision["script"]))
+    supplement_path = ROOT/"outputs/stage2_strong_supplement/manifest.json"
+    supplement = json.loads(supplement_path.read_text())
+    check("supplement complete single-seed", supplement["status"] == "complete" and supplement["model_seed"] == 4101)
+    check("supplement training provenance", supplement["training_manifest_sha256"] == sha(training_path))
+    for name, expected in supplement["source_sha256"].items():
+        check(f"supplement source {name}", sha(ROOT/"scripts"/name) == expected)
+    for name, expected in supplement.get("artifact_sha256", {}).items():
+        check(f"supplement artifact {name}", sha(supplement_path.parent/name) == expected)
+    for family, expected in supplement["reference_sha256"].items():
+        check(f"supplement reference {family}", sha(evaluation_path.parent/f"reference_{family}.npz") == expected)
+    paths = pd.read_csv(supplement_path.parent/"path_metrics.csv.gz")
+    check("complete supplementary path rows", len(paths) == 49152 and supplement["path_rows"] == 49152)
     print(json.dumps({"status": "passed", "checks": len(checks),
-                      "scope": "saved training/controls/evaluation; analysis and supplements retain own manifests",
+                      "scope": "saved training, controls, evaluation, memory, analysis and supplement",
                       "checked": checks}, indent=2))
 
 

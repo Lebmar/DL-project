@@ -102,5 +102,16 @@
     "summary path SD is descriptive, not a confidence interval",
     "recovery64 is contained within recovery192; phases are dependent"
   ],
-  "wall_seconds": 443.8992350101471
+  "wall_seconds": 443.8992350101471,
+  "artifact_sha256": {
+    "calibrator_metadata.json": "c474f32d595778f104321846a9f001e6e22d21aa276ce106243657dbe8cf2a7e",
+    "independent_integrity_audit.json": "ec3db1deee0658bb11ad71bce2735eb34df542eaa9d35d6cc8d0df7d2c1a8981",
+    "paired_event_minus_control_summary.csv": "511d524212ee81ff1b70053009589b8e9a19e47a2f8243397bc4cb7ad66b4fa7",
+    "path_metrics.csv.gz": "02813503a0ee39afd285f94a0f4d6679481c4ca274ecdab3048357ecbe3f29d9",
+    "phase_summary.csv": "a9a88cb942810e7f8e3a2ae6e2f834feb1f82582cb45beab21d2a79fba2a0886",
+    "validation_calibration_specs.json": "7c33839dcc83c114c8a0334f464dff19c477c517368a82f47dce8c6e538a7353",
+    "validation_calibration_specs_before_parallel.json": "b13c7244add669adebe24aa65a686df29ac4772fd2a83f4047f6ca7030bd7623",
+    "validation_preparation_archive.json": "765db214ce928b12fa0660cfa1cafb05b1a2f064f6d73bf8af38f82916e930d0"
+  },
+  "artifact_hash_recording": "post-run publication audit; no metric, parameter or source changes"
 }

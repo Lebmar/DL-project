@@ -55,8 +55,8 @@ Gaussian 的每个 predictor/event/control 全131,072个 normalized scores 均�
 
 所有测试分数均未超过该次运行的 `sqrt(3)*validation_max_score` max_scale heuristic。这不能确立硬支持界：Gaussian/t5 分布都有无界支持，max_scale 只由独立 validation 数据估计，分数没有截断，未主张 bounded-score 理论保证。ACI 为 clipped practical variant；native Gaussian quantile 在 t5 上存在模型失配。SF-OGD/SAOCP 保留额外状态，因此 rolling 的 exit+192 erasure 边界不适用于这些作者算法或 ACI。
 
-- [逐 path 指标](/Users/lebmar/Documents/ChatGPT/DL-project/outputs/stage2_strong_supplement/path_metrics.csv.gz)
-- [每个配置与阶段的完整汇总](/Users/lebmar/Documents/ChatGPT/DL-project/outputs/stage2_strong_supplement/phase_summary.csv)
-- [配对 event-minus-control 汇总](/Users/lebmar/Documents/ChatGPT/DL-project/outputs/stage2_strong_supplement/paired_event_minus_control_summary.csv)
-- [算法 metadata 与超界次数](/Users/lebmar/Documents/ChatGPT/DL-project/outputs/stage2_strong_supplement/calibrator_metadata.json)
-- [provenance manifest](/Users/lebmar/Documents/ChatGPT/DL-project/outputs/stage2_strong_supplement/manifest.json)
+- [逐 path 指标](../outputs/stage2_strong_supplement/path_metrics.csv.gz)
+- [每个配置与阶段的完整汇总](../outputs/stage2_strong_supplement/phase_summary.csv)
+- [配对 event-minus-control 汇总](../outputs/stage2_strong_supplement/paired_event_minus_control_summary.csv)
+- [算法 metadata 与超界次数](../outputs/stage2_strong_supplement/calibrator_metadata.json)
+- [provenance manifest](../outputs/stage2_strong_supplement/manifest.json)

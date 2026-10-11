@@ -9,7 +9,7 @@
 .venv/bin/python scripts/verify_stage2_artifacts.py
 ```
 
-第二个命令核对10个模型、冻结源码、协议、完整30情景、逐路径配对输出和有限记忆负控制。分析、验证记忆诊断和强校准补充各有自己的 `manifest.json`。
+第二个命令核对10个模型、冻结源码、协议、完整30情景、逐路径配对输出、有限记忆负控制，以及分析、验证记忆诊断和强校准补充的来源记录。
 
 ## 从头运行
 
@@ -24,6 +24,7 @@
 .venv/bin/python scripts/stage2_strong_supplement.py --prepare-only
 .venv/bin/python scripts/evaluate_stage2.py
 .venv/bin/python scripts/analyze_stage2.py
+.venv/bin/python scripts/render_stage2_grid.py
 .venv/bin/python scripts/stage2_strong_supplement.py --evaluate
 .venv/bin/python scripts/verify_stage2_artifacts.py
 ```
