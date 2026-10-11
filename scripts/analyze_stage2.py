@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+from itertools import product
 import json
 from pathlib import Path
 
@@ -106,7 +107,8 @@ def analyze(frame, protocol):
     seed_indices = rng_cross.integers(len(seeds), size=(b, len(seeds)))
     keys = ["family", "duration", "amplitude", "architecture", "phase"]
     tensors, secondary_rows, individual_rows = {}, [], []
-    expected_groups = len(config["families"])*len(config["durations"])*len(config["amplitudes"])*3*len(PHASES)
+    expected_keys = set(product(config["families"], config["durations"], config["amplitudes"],
+                                ["gru", "tcn", "ewma"], PHASES))
     for key, group in frame.groupby(keys, sort=True):
         group_seeds = [0] if key[3] == "ewma" else seeds
         tensor = effect_tensor(group, group_seeds, n)
@@ -123,7 +125,7 @@ def analyze(frame, protocol):
             for j, seed in enumerate(group_seeds):
                 individual_rows.append({**dict(zip(keys, key)), "metric": metric,
                                         "seed": seed, "estimate": per_seed[j]})
-    assert len(tensors) == expected_groups
+    assert set(tensors) == expected_keys, "Missing or off-grid frozen case/architecture/phase"
     primary_rows, primary_seeds, leave_one_out, contrasts = [], [], [], []
     for family in config["families"]:
         for duration in config["durations"]:
