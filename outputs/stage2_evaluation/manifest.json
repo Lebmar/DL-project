@@ -1,0 +1,93 @@
+{
+  "status": "complete",
+  "protocol_sha256": "aa2bda29ba79b13df1b4ccba614bea1994670adf09133e359471d9d8dc2b9ef6",
+  "code_commit_before_test_access": "a0f7ab09e5900ca797f71808a1f4687ed4a28ce0",
+  "sources": {
+    "evaluate_stage2.py": "4642c27329b6556ac1d3eac8cf1cbcc3d07ee0b1efe09e1d85295618ec052558",
+    "stage2_baselines.py": "f82fbbe82e5b75e17514a47ebde0dc636332da365aae42c09d00901a90e29eb0",
+    "stage2_models.py": "c93e127dd43a3f9f70fed3fbd4c63bed8fa0c74b261c33dbd0a327889bd10f2e",
+    "train_stage2.py": "d93d1ecbb6ce30ccba88c2566be2632d769db6c2968717c3f6c36f24fbc49850"
+  },
+  "training_manifest_sha256": "514fc0c781c8c925c4de581df9f8a8c305358e1beee8d5e716d9a6a45975af95",
+  "controls_sha256": "8fe9a9d809327935885e30b020a2a7cabc0a15c8818301b8b82b3480e16f71d8",
+  "test": {
+    "path_seed": 902000,
+    "paths": 128,
+    "length": 1024,
+    "onset": 384,
+    "families": [
+      "gaussian",
+      "student_t5",
+      "sv_gaussian"
+    ],
+    "durations": [
+      1,
+      5,
+      32,
+      128,
+      256
+    ],
+    "amplitudes": [
+      1.5,
+      3.0
+    ],
+    "student_t_df": 5,
+    "sv_phi": 0.95,
+    "sv_eta": 0.12,
+    "contexts": [
+      16,
+      64
+    ],
+    "rolling_windows": [
+      32,
+      128
+    ],
+    "alpha": 0.1,
+    "entry_phase": "first min(duration,32) event observations",
+    "recovery_phases": [
+      64,
+      192
+    ],
+    "late_negative_control": "exit+192 through min(exit+256,length), matched observations after exit",
+    "event_labels_and_true_scale_are_evaluation_only": true,
+    "sv_log_variance_mean": "-0.5 * eta**2 / (1-phi**2)"
+  },
+  "family_seed_rule": "path_seed + 1000 * zero-based family index",
+  "test_selection": "none; all30 frozen cases retained",
+  "self_check": {
+    "passed": true,
+    "rolling_matches_scalar_previous_score_quantile": true,
+    "future_and_current_outcome_excluded_from_scale_and_q": true,
+    "chunked_contexts_match_full_prediction": true
+  },
+  "cache": "only identical model contexts reused; affected targets [onset+1,exit+L)",
+  "SV_metric_conditioning": "oracle latent state conditional, not observed-history conditional",
+  "cases": 30,
+  "test_arrays_sha256": {
+    "gaussian": {
+      "observations": "624d00503ff9da8b58836056bacecff10a33b3915d3553cc22b271b4a765acd5",
+      "true_scale": "cf617e44550407c5d1ecf2d2d2a002aa690b11cfca1be7b0a570613dc240c074"
+    },
+    "student_t5": {
+      "observations": "bc252fb7d8df9db8d9bcf5e45d24dbe1d7b7e46ca09b8604f1660cfd0928cbb9",
+      "true_scale": "cf617e44550407c5d1ecf2d2d2a002aa690b11cfca1be7b0a570613dc240c074"
+    },
+    "sv_gaussian": {
+      "observations": "a7f4ebbecdabc61da1533ac78f05ed852de1468f3719afea063c3c11316d6440",
+      "true_scale": "a94f859f7ddb2dbef5380f32a40c9b83a5c40fdaed683c7a10500b8178b51061"
+    }
+  },
+  "performance_rows": 17280,
+  "interaction_rows": 168960,
+  "negative_control_checks": 1800,
+  "maximum_negative_control_width_error": 0.0,
+  "elapsed_seconds": 1031.662755727768,
+  "artifacts": {
+    "reference_curves.csv.gz": "8bdf83433d7aec048a0a198871966afae69ee14533c99a0b64f00021f8171f70",
+    "reference_gaussian.npz": "6f8a9e9a163303b253d3e422124a4f72e0c48191b1832dfb3e49562dbd60cb49",
+    "performance_by_seed.csv": "2b2fcb5170df69a253600b61ae34c80a18d26ddb7e934c0afaeb04bb4fb76db9",
+    "negative_controls.csv": "69693f6a88da00988110d0b8ca9f2f0cc049c78a577eee7fd8c32e05173668f2",
+    "paired_interactions.csv.gz": "177264c0109f4c426f70216317a2cf923c23c6e0ea335e9f009e58daa406d1a4",
+    "reference_student_t5.npz": "fda317d57e0b1b28cb71b3315f7c5274c2bcf6dc359b19d8c93267bf3b9f9e2a"
+  }
+}
