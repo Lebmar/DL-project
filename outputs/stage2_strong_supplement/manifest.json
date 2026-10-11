@@ -1,0 +1,106 @@
+{
+  "schema": "stage2_strong_supplement_v1",
+  "status": "complete",
+  "model_seed": 4101,
+  "protocol_sha256": "aa2bda29ba79b13df1b4ccba614bea1994670adf09133e359471d9d8dc2b9ef6",
+  "training_manifest_sha256": "514fc0c781c8c925c4de581df9f8a8c305358e1beee8d5e716d9a6a45975af95",
+  "source_sha256": {
+    "stage2_strong_supplement.py": "7e653d75b8bedee22bb8b0db37b0b122d2d70413ef93e51dc3834ada8d07e9cc",
+    "train_stage2.py": "d93d1ecbb6ce30ccba88c2566be2632d769db6c2968717c3f6c36f24fbc49850",
+    "stage2_models.py": "c93e127dd43a3f9f70fed3fbd4c63bed8fa0c74b261c33dbd0a327889bd10f2e",
+    "stage2_baselines.py": "f82fbbe82e5b75e17514a47ebde0dc636332da365aae42c09d00901a90e29eb0"
+  },
+  "supplement_code_commit_before_test_read": "8c14e7950fea4541dbc47f8b094261d45a934bde",
+  "validation_preparation_sha256": "7c33839dcc83c114c8a0334f464dff19c477c517368a82f47dce8c6e538a7353",
+  "reference_sha256": {
+    "gaussian": "6f8a9e9a163303b253d3e422124a4f72e0c48191b1832dfb3e49562dbd60cb49",
+    "student_t5": "fda317d57e0b1b28cb71b3315f7c5274c2bcf6dc359b19d8c93267bf3b9f9e2a"
+  },
+  "checkpoint_metadata": {
+    "gru": {
+      "path": "outputs/stage2_training/checkpoints/gru_seed_4101.pt",
+      "sha256": "3081fe070865a967ad267784f09c8e56f24fa4c90bfb16002bb69af465f4eddd",
+      "selected_epoch": 28
+    },
+    "tcn": {
+      "path": "outputs/stage2_training/checkpoints/tcn_seed_4101.pt",
+      "sha256": "33ecc47c81450c3e278e1baf2a971d8791825b60599ad30f33971d6cb58c91c7",
+      "selected_epoch": 30
+    }
+  },
+  "reference_frozen_prediction_spotcheck_max_abs_error": {
+    "gaussian": {
+      "gru_c16_event": 5.677148440241808e-08,
+      "gru_c16_control": 6.09990702393759e-08,
+      "gru_c64_event": 7.179057881501194e-08,
+      "gru_c64_control": 7.039478511217112e-08,
+      "tcn_c16_event": 1.4664613123827053e-07,
+      "tcn_c16_control": 5.995699869920657e-08,
+      "tcn_c64_event": 1.0982527909320083e-07,
+      "tcn_c64_control": 6.799289131720343e-08
+    },
+    "student_t5": {
+      "gru_c16_event": 1.086466228095162e-07,
+      "gru_c16_control": 6.653816164714499e-08,
+      "gru_c64_event": 1.0540622907839747e-07,
+      "gru_c64_control": 6.734003932251653e-08,
+      "tcn_c16_event": 1.2100655100155677e-07,
+      "tcn_c16_control": 6.87640766550146e-08,
+      "tcn_c64_event": 1.8222811037915676e-07,
+      "tcn_c64_control": 6.036566069234084e-08
+    }
+  },
+  "reference_scenario": {
+    "families": [
+      "gaussian",
+      "student_t5"
+    ],
+    "duration": 128,
+    "amplitude": 3.0,
+    "onset": 384,
+    "exit": 512
+  },
+  "methods": [
+    "native",
+    "rolling32",
+    "rolling128",
+    "aci128",
+    "sfogd",
+    "saocp"
+  ],
+  "phases": {
+    "entry": [
+      384,
+      416
+    ],
+    "recovery64": [
+      512,
+      576
+    ],
+    "recovery192": [
+      512,
+      704
+    ],
+    "late": [
+      704,
+      768
+    ]
+  },
+  "path_rows": 49152,
+  "author_execution": "four independent path chunks in spawned processes; no shared states or parameter changes",
+  "paths_per_family": 128,
+  "online_order": "issued sigma/q before current observation, then feedback",
+  "warmup": "predictor-specific scores from common last128 observations of validation path0; sequential unscored test pre384",
+  "validation_max_scale_is_a_hard_bound": false,
+  "scores_truncated": false,
+  "oracle_scale_used_by_methods": false,
+  "scope": "descriptive single seed4101 supplement; no generalized seed-stability or superiority claim",
+  "limitations": [
+    "SF-OGD/SAOCP validation max_scale is a heuristic, no bounded-score theorem claimed",
+    "ACI is the clipped practical variant; gamma=.02 fixed before test",
+    "native Gaussian quantile is misspecified for t5",
+    "summary path SD is descriptive, not a confidence interval",
+    "recovery64 is contained within recovery192; phases are dependent"
+  ],
+  "wall_seconds": 443.8992350101471
+}

@@ -1,0 +1,25 @@
+{
+  "status": "passed",
+  "unique_path_rows": 49152,
+  "groups": 384,
+  "paths_per_group": 128,
+  "main_panel_reference_groups": 192,
+  "max_main_panel_error": {
+    "interval_score": 5.329070518200751e-15,
+    "coverage": 2.220446049250313e-16,
+    "width": 5.329070518200751e-15
+  },
+  "max_checkpoint_reference_forecast_error": 1.8222811037915676e-07,
+  "score_exceedance_counting": "one count per family/predictor/world, not six-method summation",
+  "scope": "post-run integrity only; no selection or additional performance hypothesis",
+  "artifact_sha256": {
+    "calibrator_metadata.json": "c474f32d595778f104321846a9f001e6e22d21aa276ce106243657dbe8cf2a7e",
+    "manifest.json": "b25cdb6a0b6ae68ef4fab653cbd3e9f58eb0ac76a4d802b739ff72febf64ba2e",
+    "paired_event_minus_control_summary.csv": "511d524212ee81ff1b70053009589b8e9a19e47a2f8243397bc4cb7ad66b4fa7",
+    "path_metrics.csv.gz": "02813503a0ee39afd285f94a0f4d6679481c4ca274ecdab3048357ecbe3f29d9",
+    "phase_summary.csv": "a9a88cb942810e7f8e3a2ae6e2f834feb1f82582cb45beab21d2a79fba2a0886",
+    "validation_calibration_specs.json": "7c33839dcc83c114c8a0334f464dff19c477c517368a82f47dce8c6e538a7353",
+    "validation_calibration_specs_before_parallel.json": "b13c7244add669adebe24aa65a686df29ac4772fd2a83f4047f6ca7030bd7623",
+    "validation_preparation_archive.json": "765db214ce928b12fa0660cfa1cafb05b1a2f064f6d73bf8af38f82916e930d0"
+  }
+}
