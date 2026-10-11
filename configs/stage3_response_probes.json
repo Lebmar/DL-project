@@ -1,0 +1,28 @@
+{
+  "version": "stage3-response-probes-v1",
+  "frozen": true,
+  "purpose": "Validation-only descriptive features defined before new replication test access; no fitting or checkpoint changes",
+  "gradient_and_permutation": {
+    "source": "first256 saved validation target pairs in each training panel",
+    "context": 64,
+    "recent_unchanged": 16,
+    "permutation_seed": 920110
+  },
+  "paired_pulse": {
+    "source": "additional Gaussian validation probe; not the replication test",
+    "seed_rule": "2718000 + 1000 * panel index",
+    "paths": 64,
+    "length": 768,
+    "onset": 256,
+    "duration": 128,
+    "amplitude": 3.0,
+    "contexts": [16, 64],
+    "phases": ["entry", "recovery64"],
+    "features": [
+      "mean log-scale response to pulse for each context",
+      "mean signed pulse-induced context64-minus16 log-scale contrast",
+      "mean absolute pulse-induced context64-minus16 log-scale contrast"
+    ]
+  },
+  "interpretation": "The controlled pulse is a synthetic model-response probe. Event timing is used only to construct/score it and never enters the model. Gradients and old-block permutation are model-dependence diagnostics, not causal explanations or learned-memory guarantees. Feature-outcome associations remain exploratory and must retain all30 fits."
+}
