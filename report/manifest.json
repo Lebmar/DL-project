@@ -1,0 +1,27 @@
+{
+  "status": "working draft; student review required",
+  "date": "2026-10-11",
+  "main_pages": 4,
+  "total_pages": 5,
+  "references_begin_on_page": 5,
+  "official_style_unchanged_from_proposal": true,
+  "compilation": "pdfLaTeX TeX Live 2026; two passes",
+  "layout_or_citation_warnings": [],
+  "all_pages_rendered_and_visually_reviewed": true,
+  "render_resolution_dpi": 125,
+  "analysis_manifest_sha256": "e0f1cc2a65c1df385070e7a79c46879543b074988e3479e30893c6c3d29b0221",
+  "artifact_sha256": {
+    "report/working_report.tex": "e636cb825a6bfa44effd78f6bc2038032cd86189940accfe6032f7bfc94ac206",
+    "report/neurips_2026.sty": "c3fc2894e83d2517ca18b66741d6c595986d97957dc08ec08bb2125a7ec4555a",
+    "report/readout.tex": "ab65ad9d0abd8da407f9b06490c7657283c750bc25417519ca09bc85d731fe8c",
+    "report/stage3_components.png": "e04abe1ef60909218e7e6382ae1c98e9003c310c39d45489ece62650396e2818",
+    "report/readout_manifest.json": "378ea96efaff41b1eeaa9726cb54818f36bd87e35912c6999f43cd32a3987a57",
+    "scripts/render_report_readout.py": "0a4045578cebeb6e6abe85749447b4718fd9896cadbc806fbd70d4ca076fe7cf",
+    "output/pdf/working_report.pdf": "b9293c47b33f1ae1ebff7e871fa10cecfe6639df7e162dfc3e659c4ea795885e"
+  },
+  "scope": "Presentation of completed frozen experiments only; no training or statistical recomputation; original seed indices shared across new training datasets",
+  "known_submission_edits": [
+    "Required official full author name",
+    "Student interpretation, contribution review and final revision before submission"
+  ]
+}

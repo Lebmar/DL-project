@@ -1,0 +1,46 @@
+% Presentation only; source CSV statistics are unchanged.
+\newcommand{\EntryContrast}{-0.1986}
+\newcommand{\EntryLow}{-0.2494}
+\newcommand{\EntryHigh}{-0.1485}
+\newcommand{\EntryCrossLow}{-0.4255}
+\newcommand{\EntryCrossHigh}{+0.0179}
+\newcommand{\RecoveryContrast}{+0.0069}
+\newcommand{\RecoveryLow}{-0.0052}
+\newcommand{\RecoveryHigh}{+0.0192}
+\newcommand{\RecoveryCrossLow}{-0.0589}
+\newcommand{\RecoveryCrossHigh}{+0.0673}
+\newcommand{\PanelReadout}{%
+\begin{tabular}{lrrr}
+\toprule
+Phase & Panel 1 & Panel 2 & Panel 3 \\
+\midrule
+Entry & -0.3101 & -0.2547 & -0.0309 \\
+Recovery64 & -0.0110 & -0.0107 & +0.0425 \\
+\bottomrule
+\end{tabular}}
+\newcommand{\ComponentReadout}{%
+\begin{tabular}{llrrr}
+\toprule
+Model & Phase & Total & Current & Archive \\
+\midrule
+GRU & Entry & -0.2071 & -0.1302 & -0.0769 \\
+GRU & Recovery64 & -0.0326 & +0.0504 & -0.0830 \\
+TCN & Entry & -0.0085 & +0.0611 & -0.0697 \\
+TCN & Recovery64 & -0.0396 & +0.0210 & -0.0606 \\
+\bottomrule
+\end{tabular}}
+\newcommand{\VariabilityCount}{4}
+\newcommand{\VariabilityComparisons}{6}
+\newcommand{\AbsoluteReadout}{%
+\begin{tabular}{llrrr}
+\toprule
+Model & Interval & Score & Coverage & Width \\
+\midrule
+GRU & Native & 4.986 & 94.42\% & 4.544 \\
+GRU & W32 & 5.245 & 91.48\% & 4.439 \\
+GRU & W128 & 5.299 & 95.09\% & 4.902 \\
+TCN & Native & 4.938 & 94.26\% & 4.470 \\
+TCN & W32 & 5.229 & 91.66\% & 4.452 \\
+TCN & W128 & 5.283 & 95.16\% & 4.887 \\
+\bottomrule
+\end{tabular}}

@@ -1,0 +1,18 @@
+{
+  "operation": "presentation only",
+  "source_sha256": "0a4045578cebeb6e6abe85749447b4718fd9896cadbc806fbd70d4ca076fe7cf",
+  "analysis_manifest_sha256": "e0f1cc2a65c1df385070e7a79c46879543b074988e3479e30893c6c3d29b0221",
+  "inputs": {
+    "primary_contrasts.csv": "686b788e7c055f350e9d367de84bade8f6e3ea828bf02a5aadccfcfa984dc00f",
+    "primary_panel_contrasts.csv": "0346458fa9b9b62af0df27703f79205da0fb4d1a1d3681cab45d48cf7e964cf4",
+    "individual_seed_components.csv": "f79c96e36aae8a40a461adeaef20844b50525d798154958c83efc5ec2a357b4b",
+    "component_summary.csv": "6b786ed142d8834db22b347301441fde5bc92563e51a15295c5fa611ca675157",
+    "component_variability.csv": "2cde3beef7248e8c97606f32d60df2ec387166f6a39ccc67962fc6e5a3bea5a5",
+    "performance_summary.csv": "5e18428367d5bb3150fca15ac22581c523f2c811bb1f47ec32baf8255df0c5a0"
+  },
+  "artifacts": {
+    "stage3_components.png": "e04abe1ef60909218e7e6382ae1c98e9003c310c39d45489ece62650396e2818",
+    "readout.tex": "ab65ad9d0abd8da407f9b06490c7657283c750bc25417519ca09bc85d731fe8c"
+  },
+  "scope": "Fixed Gaussian D128/A3 reference, all30 fits; two-route counts correlated and descriptive"
+}

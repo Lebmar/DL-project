@@ -36,6 +36,7 @@ def main():
     components = pd.read_csv(SOURCE / "individual_seed_components.csv")
     means = pd.read_csv(SOURCE / "component_summary.csv")
     variance = pd.read_csv(SOURCE / "component_variability.csv")
+    performance = pd.read_csv(SOURCE / "performance_summary.csv")
     chosen = components[(components.family == "gaussian") & (components.duration == 128)
                         & (components.amplitude == 3) & (components.metric == "interval_score")]
     plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 8,
@@ -96,12 +97,26 @@ def main():
     count = int((d.tcn_current_std_greater_than_archive & d.tcn_current_std_greater_than_gru).sum())
     lines.append("\\newcommand{\\VariabilityCount}{"+str(count)+"}")
     lines.append("\\newcommand{\\VariabilityComparisons}{"+str(len(d))+"}")
+    lines.extend([r"\newcommand{\AbsoluteReadout}{%", r"\begin{tabular}{llrrr}", r"\toprule",
+                  "Model & Interval & Score & Coverage & Width"+endrow, r"\midrule"])
+    d = performance[(performance.family == "gaussian") & (performance.duration == 128)
+                    & (performance.amplitude == 3) & (performance.context == 64)
+                    & (performance.phase == "recovery64") & (performance.world == "event")]
+    for arch in ("gru", "tcn"):
+        for calibrator, label in (("native_gaussian", "Native"), ("rolling32", "W32"), ("rolling128", "W128")):
+            rows = d[(d.architecture == arch) & (d.calibrator == calibrator)]
+            assert len(rows) == 1
+            row = rows.iloc[0]
+            lines.append(arch.upper()+" & "+label+" & "+f"{row.interval_score:.3f}"
+                         +" & "+f"{100*row.coverage:.2f}"+r"\% & "+f"{row.width:.3f}"+endrow)
+    lines.extend([r"\bottomrule", r"\end{tabular}}"])
     readout = OUT / "readout.tex"
     readout.write_text("\n".join(lines)+"\n")
     output = {"operation": "presentation only", "source_sha256": sha(__file__),
               "analysis_manifest_sha256": sha(SOURCE / "manifest.json"),
               "inputs": {name: sha(SOURCE / name) for name in ("primary_contrasts.csv", "primary_panel_contrasts.csv",
-                  "individual_seed_components.csv", "component_summary.csv", "component_variability.csv")},
+                  "individual_seed_components.csv", "component_summary.csv", "component_variability.csv",
+                  "performance_summary.csv")},
               "artifacts": {p.name: sha(p) for p in (figure, readout)},
               "scope": "Fixed Gaussian D128/A3 reference, all30 fits; two-route counts correlated and descriptive"}
     (OUT / "readout_manifest.json").write_text(json.dumps(output, indent=2)+"\n")

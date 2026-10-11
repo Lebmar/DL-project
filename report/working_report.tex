@@ -1,0 +1,285 @@
+\documentclass{article}
+\PassOptionsToPackage{numbers,sort&compress}{natbib}
+\usepackage[preprint]{neurips_2026}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,booktabs,graphicx}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+\input{readout}
+\title{Separating Neural Scale Response and Score Memory\\in Online Interval Calibration}
+\author{Chengxuan\\DSAA 2012, HKUST(GZ)\\Working draft for student review, 11 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Normalized-score calibration combines a neural forecaster's current scale with
+historical forecast errors divided by their originally issued scales. We study
+these two pathways separately in paired volatility-pulse simulations, keeping
+trained weights fixed and using the same observations across configurations.
+An initial five-seed GRU/TCN comparison is sensitive to training randomness.
+We replicate with three new training datasets and five paired seeds per dataset,
+retaining both current-scale and archived-score decomposition orders.
+The entry architecture contrast keeps its direction across new datasets, but
+training-randomness sensitivity still includes zero; the recovery contrast
+does not replicate reliably. In the reference Gaussian entry comparison,
+TCN has greater current-channel seed variability than GRU, while archive
+variability can dominate within a dataset.
+These phase-specific findings do not establish a general architecture ranking
+or coverage guarantee. Validation probes and independent audits accompany
+the complete results.
+\end{abstract}
+
+\section{Research question and contribution scope}
+Financial uncertainty intervals should expand when risk rises and contract
+when a temporary disturbance ends. A learned scale model and an online
+calibrator can each retain information about that disturbance. Their
+combination may behave differently from either component alone.
+We ask: \emph{where does variability across fitted neural models enter
+normalized-score calibration at shock entry and recovery?}
+
+This controlled deep-learning study learns scales from raw past returns;
+a zero center isolates uncertainty adaptation. It examines a computational
+pathway without establishing trading gains or deployable conditional coverage.
+
+Underspecification already explains why strong in-domain validation need not
+constrain deployment behavior \citep{damour}; HARNet studies initialization
+stability in neural volatility prediction \citep{harnet}. Neural conformal
+control \citep{ncc}, jointly adapting scores and thresholds \citep{adapt},
+retrospective residual updates \citep{retro}, strongly adaptive experts
+\citep{saocp}, and scorecasting with feedback \citep{pid} are established.
+We do not claim these ideas as new.
+AdaptNC updates score parameters with replay; RetroAdj recomputes
+leave-one-out residuals. Our experiment fixes neural weights and separately
+varies current and archive contexts.
+
+The intended increment is an explicit separation of \emph{current neural
+scale} and \emph{historically issued score denominators}, with paired
+observations, two decomposition orders, and independent training-data
+repeats. The initial crossed analysis was exploratory; its specific
+replication questions were fixed before new training and test generation.
+Evidence that fails to replicate must narrow the conclusion.
+
+\clearpage
+\section{Crossed pathways and evaluation}
+For a fixed trained model, let $s_t^a>0$ be the scale predicted from the last
+$a\in\{16,64\}$ observations, excluding $y_t$. Define
+\begin{equation}
+ q_t^{b,W}=\operatorname{OrderStat}_{k}
+ \left\{\frac{|y_i|}{s_i^b}:i=t-W,\ldots,t-1\right\},
+ \quad h_t^{a,b,W}=s_t^a q_t^{b,W},
+ \quad k=\lceil(W+1)(1-\alpha)\rceil.
+\end{equation}
+Here $b\in\{16,64\}$, $W\in\{32,128\}$ and $\alpha=.1$.
+The deployed diagonal has $a=b$; the full eight-cell factorial changes the
+current and archive contexts independently. Warmup uses the last 128 scores
+of a separate validation path, with predictor-specific issued denominators.
+
+For each cell and phase, $E(a,b,W)$ is its event-minus-matched-control
+mean interval score. Write $D(a,b)=E(a,b,128)-E(a,b,32)$. The diagonal
+context-by-window interaction is $J=D(64,64)-D(16,16)$, and
+\begin{align}
+ J&=\underbrace{D(64,64)-D(16,64)}_{C_{b64}}
+   +\underbrace{D(16,64)-D(16,16)}_{A_{a16}},\\
+  &=\underbrace{D(64,16)-D(16,16)}_{C_{b16}}
+   +\underbrace{D(64,64)-D(64,16)}_{A_{a64}}.
+\end{align}
+These are exact computational differences, not unique causal mediation
+fractions. Correlated component interval endpoints cannot be added.
+$C$ and $A$ are channel-by-window interaction components, not channel main effects.
+
+\paragraph{Training and tests.}
+The GRU has 2041 parameters; the causal dilated TCN has 1897 and receptive
+field 64. Both use features $(y/3,\log(1+|y|))$, Gaussian scale loss, two
+contexts, data and paired sampler prefixes. Each target resets state.
+Adam and validation early stopping are fixed; total optimization steps may
+differ between architectures. Context length is not effective learned memory.
+Training uses 256 paths of length 1024; validation uses 64 paths and 8192 shared
+sampled targets. Each of three new datasets trains five seed pairs.
+The original five seed indices are reused: independence refers to new
+training/validation and test data, not 15 independent initialization/sampling draws.
+
+The initial frozen grid has 30 cases: Gaussian, unit-variance t5 and stochastic
+volatility, five pulse durations and two amplitudes. The new replication
+fixes Gaussian/t5, amplitude 3 and durations 32/128, with 128 independent
+paired paths per family. Pulses begin at 384; recovery64 follows their exit.
+Families have separate noise streams; durations share their family stream,
+so both duration conditions have identical entry32 and are not independent
+replications. Event labels and true scales enter generation and evaluation
+only, never the model or quantile.
+
+\paragraph{Scores and uncertainty.}
+We report interval score $2h+(2/\alpha)(|y|-h)_+$ \citep{gneiting},
+coverage, width, oracle coverage deficit and excess width.
+The two reference contrasts are GRU $J$ minus TCN $J$ for Gaussian D128/A3,
+at entry and recovery64. The 4000-draw paired-path bootstrap averages all 15
+fixed fitted pairs before resampling; 97.5\% marginal intervals provide a
+two-phase Bonferroni approximation. Crossed dataset/seed/path resampling is
+sensitivity only: shared seed draws stay shared across datasets, with only
+three datasets and five seeds. Secondary intervals are descriptive.
+Finite quantile ranks also differ: ideal continuous exchangeable-score
+coverage is 30/33 for W32 and 117/129 for W128. The contrast therefore includes
+rank discretization as well as history length; this benchmark is not a
+coverage guarantee for our dependent scores.
+
+\clearpage
+\section{Results and interpretation}
+\paragraph{Initial study motivated replication.}
+In the initial five-seed Gaussian D128/A3 study, GRU-minus-TCN $J$ is
+$-0.05287$ at entry and $+0.03276$ at recovery64.
+Fixed-fit 97.5\% intervals exclude zero, but crossed seed/path intervals
+include zero. The entry seed range is $[-0.42866,+0.47620]$;
+omitting one seed can reverse the mean.
+
+\paragraph{Independent training-data replication.}
+With 15 new paired fits, the reference contrasts are
+$\EntryContrast$ at entry, fixed-fit 97.5\% interval
+$[\EntryLow,\EntryHigh]$, and $\RecoveryContrast$ at recovery64,
+interval $[\RecoveryLow,\RecoveryHigh]$.
+Crossed sensitivity ranges are
+$[\EntryCrossLow,\EntryCrossHigh]$ and
+$[\RecoveryCrossLow,\RecoveryCrossHigh]$.
+All initialization outcomes remain in the analysis; these are interactions,
+not absolute interval-score rankings.
+Entry has the same negative mean direction in all three datasets, but the
+crossed interval includes zero. Recovery changes direction across datasets;
+omitting panel 3 reverses its mean. The earlier positive recovery contrast
+therefore did not replicate reliably.
+
+\begin{center}
+\PanelReadout
+\end{center}
+\noindent Entries average five paired seeds per new training-data panel.
+Shared seeds and test paths preclude six independent significance tests.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{stage3_components.png}
+\caption{All five seeds per architecture and new dataset, Gaussian D128/A3.
+Current circles denote $C_{b64}$ and archive crosses $A_{a16}$.
+Point spread describes training variability, not causal variance attribution.}
+\end{figure}
+
+\begin{center}
+\ComponentReadout
+\end{center}
+\noindent The table uses $C_{b64}+A_{a16}$. TCN entry current seed standard
+deviation exceeds GRU's in all six panel-by-route comparisons, but exceeds
+its own archive spread in only $\VariabilityCount/\VariabilityComparisons$.
+Panel 1 has larger archive spread in both routes, limiting claims of
+current dominance. These comparisons are correlated and descriptive;
+all routes, conditions, individual effects and absolute metrics are saved.
+
+\clearpage
+\section{Diagnostics, limitations, and remaining work}
+\paragraph{Implementation checks are separate from discoveries.}
+The new evaluation verifies 480 diagonal cells and 960 crossed finite-memory
+controls. If event/control observations agree from exit $e$, a fixed
+current context $a$, archive context $b$ and window $W$ give identical
+half-widths from $e+\max(a,b+W)$. This follows directly from input dependency;
+it is an implementation check, not a new theorem or a claim that real
+markets recover within 192 days. Persistent online controller states need
+not obey this bound. Full-sequence TCN64 execution is checked against the
+original reset-window predictor on validation before test access;
+canonical pulse horizons preserve numerically identical entry prefixes.
+
+Independent audits reproduce all 30 selected validation losses, sampling
+digests, stopping decisions and response features. These checks establish
+implementation consistency, not scientific novelty.
+
+\paragraph{A score interaction is not a memory-quality label.}
+For Gaussian $Y\sim N(0,\tau^2)$, expected interval score is
+\[
+ R(h;\tau)=2h+\frac{4}{\alpha}
+ \{\tau\phi(h/\tau)-h\,\overline\Phi(h/\tau)\}.
+\]
+Its mixed derivative for $h=sq$ is
+$R_h+hR_{hh}=2-(4/\alpha)\{\overline\Phi(z)-z\phi(z)\}$,
+which changes sign. A fixed-archive scale-by-quantile contrast is its
+oriented rectangle integral. Consequently, signed $J$ combines response,
+archive quantiles and scoring nonlinearity; it cannot by itself diagnose
+harmful memory. These are standard calculus explanations, not a novel
+scoring rule. In the already-seen seed 4101 Gaussian/t5 reference,
+integrating current innovations preserves the main interaction directions,
+but does not resolve initialization variability.
+
+\paragraph{Absolute costs accompany interaction effects.}
+The saved Gaussian D128/A3 recovery64 means below use context 64 and all
+15 fits per architecture. W128 has higher coverage and width than W32,
+but also higher score; these descriptive means are not another primary test.
+\begin{center}
+\AbsoluteReadout
+\end{center}
+
+\paragraph{Validation-response probes are exploratory.}
+Each new training panel uses its first 256 saved validation targets for
+raw-input gradients and older-block permutation, plus 64 separate
+Gaussian validation pulses for log-scale response.
+All 30 fitted models are retained in NLL/gradient/pulse-response scatterplots.
+Validation distributions differ across panels, so plots separate panels.
+No equivalence test, regression, predictive meta-model or model selection
+has been performed. Gradients are local, permutation may create
+out-of-distribution contexts, and controlled pulses are stress probes,
+not online knowledge of a market event.
+
+\paragraph{Financial application and boundaries.}
+An earlier public ECB pilot uses USD/JPY/GBP/CHF reference rates per EUR:
+training through 2018, validation 2019--2020 and exploratory 2021--2026
+evaluation. It does not clearly establish GRU over EWMA, and the four
+currencies share a denominator and dates. This already-viewed period is
+not an untouched financial holdout. The main result remains a synthetic,
+zero-center scale study with small neural models, one training generator
+and one optimization procedure. No private competition data are used.
+
+The present probes do not yet justify a predictive response model:
+within-architecture patterns vary across datasets. A future prediction
+test would need a common diagnostic dataset, architecture-plus-NLL
+controls, and entirely new training datasets held out. We first consolidate
+the mechanism evidence and its failures. New adaptation methods would
+require validation selection, direct prior-method comparisons and another
+fresh test. This is a working draft for student review.
+
+\clearpage
+\begin{thebibliography}{9}
+\bibitem[D'Amour et~al.(2022)]{damour}
+A. D'Amour et al. Underspecification Presents Challenges for Credibility in
+Modern Machine Learning. \emph{JMLR}, 23(226):1--61, 2022.
+\url{https://jmlr.org/papers/v23/20-1335.html}
+\bibitem[Reisenhofer et~al.(2022)]{harnet}
+R. Reisenhofer, X. Bayer, and N. Hautsch. HARNet: A Convolutional Neural
+Network for Realized Volatility Forecasting. arXiv:2205.07719, 2022.
+\bibitem[Li and Rodr\'iguez(2025)]{ncc}
+R. Li and A. Rodr\'iguez. Neural Conformal Control for Time Series
+Forecasting. \emph{AAAI}, 39(17):18439--18447, 2025.
+\bibitem[Tumu et~al.(2026)]{adapt}
+R. Tumu, A. Singh, and R. Mangharam. AdaptNC: Adaptive Nonconformity Scores
+for Conformal Prediction under Distribution Shift. arXiv:2602.01629v2, 2026.
+\bibitem[Jun and Ohn(2026)]{retro}
+J. Jun and I. Ohn. Online conformal inference with retrospective adjustment
+for faster adaptation to distribution shift.
+\emph{Pattern Recognition}, 180:114406, 2026.
+\bibitem[Bhatnagar et~al.(2023)]{saocp}
+A. Bhatnagar, H. Wang, C. Xiong, and Y. Bai.
+Improved Online Conformal Prediction via Strongly Adaptive Online Learning.
+\emph{ICML}, PMLR 202:2337--2363, 2023.
+\bibitem[Angelopoulos et~al.(2023)]{pid}
+A. N. Angelopoulos, E. J. Cand\`es, and R. J. Tibshirani.
+Conformal PID Control for Time Series Prediction. \emph{NeurIPS}, 2023.
+\bibitem[Gneiting and Raftery(2007)]{gneiting}
+T. Gneiting and A. E. Raftery. Strictly Proper Scoring Rules, Prediction,
+and Estimation. \emph{JASA}, 102(477):359--378, 2007.
+\url{https://doi.org/10.1198/016214506000001437}
+\end{thebibliography}
+
+\section*{Reproducibility and draft status}
+Frozen protocols, complete metrics, checkpoints, source/input hashes,
+independent audits and all unsuccessful conditions are available at
+\url{https://github.com/Lebmar/DL-project/tree/codex/stage2-memory-study}.
+Detailed runbooks distinguish existing-output verification from a new run;
+writers refuse silent overwriting. The report's numbers and compact figure
+are rendered from the saved Stage3 analysis without re-fitting or
+re-bootstrap. Main text ends on page 4; references and this note are extra.
+AI tools assisted implementation, checking and draft preparation with
+course permission. The student must understand, revise and take
+responsibility for the work and replace the author line with the required
+official name before submission.
+\end{document}
