@@ -1,0 +1,166 @@
+{
+  "protocol_version": "stage2-v1.1",
+  "specified_date": "2026-10-11",
+  "status": "prospectively specified replication; questions informed by stage1 pilots",
+  "test": {
+    "path_seed": 902000,
+    "paths": 128,
+    "length": 1024,
+    "onset": 384,
+    "families": [
+      "gaussian",
+      "student_t5",
+      "sv_gaussian"
+    ],
+    "durations": [
+      1,
+      5,
+      32,
+      128,
+      256
+    ],
+    "amplitudes": [
+      1.5,
+      3.0
+    ],
+    "student_t_df": 5,
+    "sv_phi": 0.95,
+    "sv_eta": 0.12,
+    "contexts": [
+      16,
+      64
+    ],
+    "rolling_windows": [
+      32,
+      128
+    ],
+    "alpha": 0.1,
+    "entry_phase": "first min(duration,32) event observations",
+    "recovery_phases": [
+      64,
+      192
+    ],
+    "late_negative_control": "exit+192 through min(exit+256,length), matched observations after exit",
+    "event_labels_and_true_scale_are_evaluation_only": true,
+    "sv_log_variance_mean": "-0.5 * eta**2 / (1-phi**2)"
+  },
+  "primary": {
+    "family": "gaussian",
+    "duration": 128,
+    "amplitude": 3.0,
+    "metric": "interval_score",
+    "phases": [
+      "entry",
+      "recovery64"
+    ],
+    "contrast": "GRU event-minus-nochange context-by-window interaction minus matched TCN interaction",
+    "interval_level": 0.975,
+    "familywise_adjustment": "Bonferroni 97.5% marginal intervals for two prespecified phases; exploratory bootstrap approximation",
+    "bootstrap_replicates": 4000,
+    "bootstrap_seed": 610021,
+    "resampling": "primary: paired path bootstrap of mean across five fixed fitted seed pairs; crossed seed/path bootstrap is sensitivity only",
+    "training_seed_inference": "report all five effects, range and leave-one-seed-out; no general significance claim from five initializations"
+  },
+  "secondary": {
+    "metrics": [
+      "interval_score",
+      "coverage",
+      "width",
+      "coverage_deficit",
+      "excess_width_to_oracle"
+    ],
+    "claim_scope": "duration, tail-family and phase sensitivity; unadjusted descriptive intervals only",
+    "controls": [
+      "constant",
+      "ewma16",
+      "ewma64",
+      "fitted_gaussian_garch11"
+    ],
+    "additional_calibrators": [
+      "clipped_aci",
+      "author_sfogd",
+      "author_saocp"
+    ],
+    "strong_calibration_scope": "reference Gaussian/t5 duration128 amplitude3, model seed4101, each architecture and context; supplement only",
+    "warmup": "same validation path0 final128 observations, predictor-specific issued normalized scores; test pre384 observed sequentially",
+    "no_test_based_parameter_selection": true,
+    "aci_gamma": 0.02,
+    "calibration_parameter_selection": "ACI gamma0.02 fixed in advance; author score scale from validation only; no test selection"
+  },
+  "training_config": {
+    "architectures": [
+      "gru",
+      "tcn"
+    ],
+    "model_seeds": [
+      4101,
+      4102,
+      4103,
+      4104,
+      4105
+    ],
+    "contexts": [
+      16,
+      64
+    ],
+    "model": {
+      "gru_hidden": 24,
+      "tcn_channels": 12,
+      "tcn_kernels": [
+        4,
+        3,
+        3,
+        3,
+        3
+      ],
+      "tcn_dilations": [
+        1,
+        2,
+        4,
+        8,
+        16
+      ],
+      "tcn_activation": "relu",
+      "log_scale_bounds": [
+        -3.0,
+        3.0
+      ]
+    },
+    "training_data": {
+      "seed": 314159,
+      "paths": 256,
+      "length": 1024
+    },
+    "validation_data": {
+      "seed": 314160,
+      "paths": 64,
+      "length": 1024,
+      "target_pairs": 8192,
+      "pair_seed": 314161
+    },
+    "generator": {
+      "switch_probability": 0.018,
+      "temporary_probability": 0.015,
+      "persistent_scale_min": 0.5,
+      "persistent_scale_max": 3.0,
+      "temporary_multiplier": 3.0
+    },
+    "optimization": {
+      "batch_size": 128,
+      "batches_per_epoch": 32,
+      "max_epochs": 60,
+      "min_epochs": 20,
+      "patience": 8,
+      "min_delta": 0.0001,
+      "learning_rate": 0.002,
+      "gradient_clip_norm": 5.0,
+      "validation_batch_size": 512
+    },
+    "execution": {
+      "device": "cpu",
+      "torch_threads": 4
+    }
+  },
+  "frozen": true,
+  "audit_revision_before_training": "align complete training schema; condition primary intervals on five fixed fits; normalize SV unconditional variance"
+}
