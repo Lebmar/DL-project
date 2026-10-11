@@ -1,0 +1,337 @@
+{
+  "protocol_version": "stage3-replication-v1",
+  "specified_date": "2026-10-11",
+  "frozen": true,
+  "purpose": "Independent training-data repeats of Stage2 seed instability and current/archive decomposition; informed by already observed Stage2 results",
+  "panels": [
+    {
+      "panel": 1,
+      "training_config": {
+        "architectures": [
+          "gru",
+          "tcn"
+        ],
+        "model_seeds": [
+          4101,
+          4102,
+          4103,
+          4104,
+          4105
+        ],
+        "contexts": [
+          16,
+          64
+        ],
+        "model": {
+          "gru_hidden": 24,
+          "tcn_channels": 12,
+          "tcn_kernels": [
+            4,
+            3,
+            3,
+            3,
+            3
+          ],
+          "tcn_dilations": [
+            1,
+            2,
+            4,
+            8,
+            16
+          ],
+          "tcn_activation": "relu",
+          "log_scale_bounds": [
+            -3.0,
+            3.0
+          ]
+        },
+        "training_data": {
+          "seed": 314259,
+          "paths": 256,
+          "length": 1024
+        },
+        "validation_data": {
+          "seed": 314260,
+          "paths": 64,
+          "length": 1024,
+          "target_pairs": 8192,
+          "pair_seed": 314261
+        },
+        "generator": {
+          "switch_probability": 0.018,
+          "temporary_probability": 0.015,
+          "persistent_scale_min": 0.5,
+          "persistent_scale_max": 3.0,
+          "temporary_multiplier": 3.0
+        },
+        "optimization": {
+          "batch_size": 128,
+          "batches_per_epoch": 32,
+          "max_epochs": 60,
+          "min_epochs": 20,
+          "patience": 8,
+          "min_delta": 0.0001,
+          "learning_rate": 0.002,
+          "gradient_clip_norm": 5.0,
+          "validation_batch_size": 512
+        },
+        "execution": {
+          "device": "cpu",
+          "torch_threads": 4
+        }
+      }
+    },
+    {
+      "panel": 2,
+      "training_config": {
+        "architectures": [
+          "gru",
+          "tcn"
+        ],
+        "model_seeds": [
+          4101,
+          4102,
+          4103,
+          4104,
+          4105
+        ],
+        "contexts": [
+          16,
+          64
+        ],
+        "model": {
+          "gru_hidden": 24,
+          "tcn_channels": 12,
+          "tcn_kernels": [
+            4,
+            3,
+            3,
+            3,
+            3
+          ],
+          "tcn_dilations": [
+            1,
+            2,
+            4,
+            8,
+            16
+          ],
+          "tcn_activation": "relu",
+          "log_scale_bounds": [
+            -3.0,
+            3.0
+          ]
+        },
+        "training_data": {
+          "seed": 314359,
+          "paths": 256,
+          "length": 1024
+        },
+        "validation_data": {
+          "seed": 314360,
+          "paths": 64,
+          "length": 1024,
+          "target_pairs": 8192,
+          "pair_seed": 314361
+        },
+        "generator": {
+          "switch_probability": 0.018,
+          "temporary_probability": 0.015,
+          "persistent_scale_min": 0.5,
+          "persistent_scale_max": 3.0,
+          "temporary_multiplier": 3.0
+        },
+        "optimization": {
+          "batch_size": 128,
+          "batches_per_epoch": 32,
+          "max_epochs": 60,
+          "min_epochs": 20,
+          "patience": 8,
+          "min_delta": 0.0001,
+          "learning_rate": 0.002,
+          "gradient_clip_norm": 5.0,
+          "validation_batch_size": 512
+        },
+        "execution": {
+          "device": "cpu",
+          "torch_threads": 4
+        }
+      }
+    },
+    {
+      "panel": 3,
+      "training_config": {
+        "architectures": [
+          "gru",
+          "tcn"
+        ],
+        "model_seeds": [
+          4101,
+          4102,
+          4103,
+          4104,
+          4105
+        ],
+        "contexts": [
+          16,
+          64
+        ],
+        "model": {
+          "gru_hidden": 24,
+          "tcn_channels": 12,
+          "tcn_kernels": [
+            4,
+            3,
+            3,
+            3,
+            3
+          ],
+          "tcn_dilations": [
+            1,
+            2,
+            4,
+            8,
+            16
+          ],
+          "tcn_activation": "relu",
+          "log_scale_bounds": [
+            -3.0,
+            3.0
+          ]
+        },
+        "training_data": {
+          "seed": 314459,
+          "paths": 256,
+          "length": 1024
+        },
+        "validation_data": {
+          "seed": 314460,
+          "paths": 64,
+          "length": 1024,
+          "target_pairs": 8192,
+          "pair_seed": 314461
+        },
+        "generator": {
+          "switch_probability": 0.018,
+          "temporary_probability": 0.015,
+          "persistent_scale_min": 0.5,
+          "persistent_scale_max": 3.0,
+          "temporary_multiplier": 3.0
+        },
+        "optimization": {
+          "batch_size": 128,
+          "batches_per_epoch": 32,
+          "max_epochs": 60,
+          "min_epochs": 20,
+          "patience": 8,
+          "min_delta": 0.0001,
+          "learning_rate": 0.002,
+          "gradient_clip_norm": 5.0,
+          "validation_batch_size": 512
+        },
+        "execution": {
+          "device": "cpu",
+          "torch_threads": 4
+        }
+      }
+    }
+  ],
+  "sources": {
+    "train_stage2.py": "d93d1ecbb6ce30ccba88c2566be2632d769db6c2968717c3f6c36f24fbc49850",
+    "stage2_models.py": "c93e127dd43a3f9f70fed3fbd4c63bed8fa0c74b261c33dbd0a327889bd10f2e",
+    "evaluate_stage2.py": "4642c27329b6556ac1d3eac8cf1cbcc3d07ee0b1efe09e1d85295618ec052558",
+    "stage2_baselines.py": "f82fbbe82e5b75e17514a47ebde0dc636332da365aae42c09d00901a90e29eb0"
+  },
+  "test": {
+    "path_seed": 1902000,
+    "paths": 128,
+    "length": 1024,
+    "onset": 384,
+    "families": [
+      "gaussian",
+      "student_t5"
+    ],
+    "durations": [
+      32,
+      128
+    ],
+    "amplitudes": [
+      3.0
+    ],
+    "student_t_df": 5,
+    "contexts": [
+      16,
+      64
+    ],
+    "rolling_windows": [
+      32,
+      128
+    ],
+    "alpha": 0.1,
+    "event_labels_and_true_scale_are_evaluation_only": true,
+    "phases": [
+      "entry",
+      "recovery64",
+      "recovery192",
+      "late"
+    ],
+    "family_seed_rule": "path_seed + 1000 * zero-based family index; same base noise across durations"
+  },
+  "evaluation": {
+    "model_panel": "all30 new fits; no exclusion based on validation/test ranking",
+    "calibrators": [
+      "native_gaussian",
+      "rolling32",
+      "rolling128"
+    ],
+    "archive_factorial": "current context16/64 x archived-score denominator context16/64 x window32/128, predictor-specific validation path0 final128 issued scores",
+    "metrics": [
+      "interval_score",
+      "coverage",
+      "width",
+      "coverage_deficit",
+      "excess_width_to_oracle"
+    ],
+    "primary_reference": {
+      "family": "gaussian",
+      "duration": 128,
+      "amplitude": 3.0,
+      "metric": "interval_score",
+      "phases": [
+        "entry",
+        "recovery64"
+      ]
+    },
+    "decomposition": "both paths: current@archive64 + archive@current16, current@archive16 + archive@current64; no unique mediated causal fraction",
+    "negative_controls": "diagonal reproduction and crossed finite-memory equality after exit+max(L_current,L_archive+W)"
+  },
+  "analysis": {
+    "bootstrap_replicates": 4000,
+    "bootstrap_seed": 1610021,
+    "reference_interval_level": 0.975,
+    "reference_interval_scope": "paired path bootstrap conditional on all15 fixed model-seed pairs; two-phase Bonferroni marginal intervals are descriptive replication, not population-level architecture inference",
+    "sensitivity": "crossed training-panel/model-seed/path bootstrap only; panel resampling3, seed resampling5 preserving shared seed across panels and paired architectures; weak population evidence",
+    "reporting": [
+      "all15 seed effects per architecture",
+      "each training panel five-seed mean and sample standard deviation",
+      "leave-one-training-panel-out contrasts",
+      "paired GRU-minus-TCN contrasts",
+      "current/archive component variability by panel",
+      "validation NLL scatter; exploratory association, no selected subgroup"
+    ],
+    "hypotheses": [
+      "Does Stage2 architecture contrast maintain sign in all three new training panels?",
+      "Is larger TCN entry variability in fixed-archive current\u00d7window component reproduced across training panels?",
+      "Does recovery interaction change from duration32 to duration128 across new fits?"
+    ],
+    "multiplicity": "two primary reference phases; all other grid/component and variability readouts descriptive and unadjusted; no broad superiority claim",
+    "test_resampling_unit": "128 independent paths; models share paths; duration conditions share base noise"
+  },
+  "limitations": [
+    "only3 independent training datasets and5 initialization/sampling seeds",
+    "same synthetic training distribution and early-stopping procedure",
+    "no financial deployment claim",
+    "same seed indexes share initialization and sampler across training panels",
+    "test is new replication conditional on Stage2-informed hypotheses; not evidence for a newly selected method"
+  ]
+}
