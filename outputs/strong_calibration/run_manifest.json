@@ -1,0 +1,341 @@
+{
+  "date": "2026-10-11",
+  "author_repository": "https://github.com/salesforce/online_conformal",
+  "author_commit": "95790a9b9e4061166e6d7a8a13282e019b1a8663",
+  "license": "Apache-2.0; original LICENSE and copyright headers preserved; no NOTICE in pinned tree",
+  "source_adapter": "AST selects verbatim original classes/functions; Merlion bindings forbidden; model=None only",
+  "author_source_sha256": {
+    "online_conformal/base.py": "83999e0444ef8868edd5235a17e806e4cbbab0ae1f94f977e6fcf964c65bd2f2",
+    "online_conformal/ogd.py": "061604484f10f8a0465d45d69b80a441acfc41a46b1965378355110e27963b5d",
+    "online_conformal/saocp.py": "83f8845559786452aafabfafdf6c136ceaf9b9b3557fc5f8f9267fcec04d386f",
+    "online_conformal/utils.py": "88c8e7725f114ccd5c68ebd4adcd6804c523aa241fa62f2b29c2a95354d83fa1"
+  },
+  "methods": [
+    "sfogd",
+    "saocp"
+  ],
+  "coverage": 0.9,
+  "nonconformity": "abs(actual-issued_mu)/issued_sigma",
+  "score_clipping": false,
+  "initial_q": 0.0,
+  "scale_rule": "sqrt(3)*max(2019 normalized score), fixed before test",
+  "saocp_lifetime": 8,
+  "hyperparameter_selection": "none on test; default settings; 2020 diagnostics only",
+  "warmup": [
+    "2019-01-01",
+    "2020-12-31"
+  ],
+  "test_start": "2021-01-01",
+  "test_first_observed": "2021-01-04",
+  "test_last_observed": "2026-10-09",
+  "future_target_intervention": [
+    {
+      "method": "sfogd",
+      "changed_targets_from_index": 200,
+      "intervals_equal_through_first_changed_target": true,
+      "post_update_state_change_observed": true
+    },
+    {
+      "method": "saocp",
+      "changed_targets_from_index": 200,
+      "intervals_equal_through_first_changed_target": true,
+      "post_update_state_change_observed": true
+    }
+  ],
+  "test_reconstruction": [
+    {
+      "seed": 731,
+      "context": 16,
+      "asset": "CHF",
+      "max_abs_test_reconstruction_error": {
+        "actual": 4.440892098500626e-16,
+        "mu": 9.996344030316351e-17,
+        "sigma": 8.326672684688674e-17
+      },
+      "rows_checked": 1479
+    },
+    {
+      "seed": 731,
+      "context": 16,
+      "asset": "GBP",
+      "max_abs_test_reconstruction_error": {
+        "actual": 2.220446049250313e-16,
+        "mu": 9.990923019453923e-17,
+        "sigma": 5.551115123125783e-17
+      },
+      "rows_checked": 1479
+    },
+    {
+      "seed": 731,
+      "context": 16,
+      "asset": "JPY",
+      "max_abs_test_reconstruction_error": {
+        "actual": 4.440892098500626e-16,
+        "mu": 9.974659986866641e-17,
+        "sigma": 2.220446049250313e-16
+      },
+      "rows_checked": 1479
+    },
+    {
+      "seed": 731,
+      "context": 16,
+      "asset": "USD",
+      "max_abs_test_reconstruction_error": {
+        "actual": 4.440892098500626e-16,
+        "mu": 9.974659986866641e-17,
+        "sigma": 1.1102230246251565e-16
+      },
+      "rows_checked": 1479
+    },
+    {
+      "seed": 731,
+      "context": 64,
+      "asset": "CHF",
+      "max_abs_test_reconstruction_error": {
+        "actual": 4.440892098500626e-16,
+        "mu": 9.99227827216953e-17,
+        "sigma": 8.326672684688674e-17
+      },
+      "rows_checked": 1479
+    },
+    {
+      "seed": 731,
+      "context": 64,
+      "asset": "GBP",
+      "max_abs_test_reconstruction_error": {
+        "actual": 2.220446049250313e-16,
+        "mu": 9.974659986866641e-17,
+        "sigma": 1.1102230246251565e-16
+      },
+      "rows_checked": 1479
+    },
+    {
+      "seed": 731,
+      "context": 64,
+      "asset": "JPY",
+      "max_abs_test_reconstruction_error": {
+        "actual": 4.440892098500626e-16,
+        "mu": 9.990923019453923e-17,
+        "sigma": 2.220446049250313e-16
+      },
+      "rows_checked": 1479
+    },
+    {
+      "seed": 731,
+      "context": 64,
+      "asset": "USD",
+      "max_abs_test_reconstruction_error": {
+        "actual": 4.440892098500626e-16,
+        "mu": 9.93129189996722e-17,
+        "sigma": 1.1102230246251565e-16
+      },
+      "rows_checked": 1479
+    },
+    {
+      "seed": 1731,
+      "context": 16,
+      "asset": "CHF",
+      "max_abs_test_reconstruction_error": {
+        "actual": 4.440892098500626e-16,
+        "mu": 9.974659986866641e-17,
+        "sigma": 1.1102230246251565e-16
+      },
+      "rows_checked": 1479
+    },
+    {
+      "seed": 1731,
+      "context": 16,
+      "asset": "GBP",
+      "max_abs_test_reconstruction_error": {
+        "actual": 2.220446049250313e-16,
+        "mu": 9.974659986866641e-17,
+        "sigma": 5.551115123125783e-17
+      },
+      "rows_checked": 1479
+    },
+    {
+      "seed": 1731,
+      "context": 16,
+      "asset": "JPY",
+      "max_abs_test_reconstruction_error": {
+        "actual": 4.440892098500626e-16,
+        "mu": 9.93129189996722e-17,
+        "sigma": 2.220446049250313e-16
+      },
+      "rows_checked": 1479
+    },
+    {
+      "seed": 1731,
+      "context": 16,
+      "asset": "USD",
+      "max_abs_test_reconstruction_error": {
+        "actual": 4.440892098500626e-16,
+        "mu": 9.974659986866641e-17,
+        "sigma": 2.220446049250313e-16
+      },
+      "rows_checked": 1479
+    },
+    {
+      "seed": 1731,
+      "context": 64,
+      "asset": "CHF",
+      "max_abs_test_reconstruction_error": {
+        "actual": 4.440892098500626e-16,
+        "mu": 9.990923019453923e-17,
+        "sigma": 8.326672684688674e-17
+      },
+      "rows_checked": 1479
+    },
+    {
+      "seed": 1731,
+      "context": 64,
+      "asset": "GBP",
+      "max_abs_test_reconstruction_error": {
+        "actual": 2.220446049250313e-16,
+        "mu": 9.996344030316351e-17,
+        "sigma": 8.326672684688674e-17
+      },
+      "rows_checked": 1479
+    },
+    {
+      "seed": 1731,
+      "context": 64,
+      "asset": "JPY",
+      "max_abs_test_reconstruction_error": {
+        "actual": 4.440892098500626e-16,
+        "mu": 9.985502008591496e-17,
+        "sigma": 2.220446049250313e-16
+      },
+      "rows_checked": 1479
+    },
+    {
+      "seed": 1731,
+      "context": 64,
+      "asset": "USD",
+      "max_abs_test_reconstruction_error": {
+        "actual": 4.440892098500626e-16,
+        "mu": 9.974659986866641e-17,
+        "sigma": 2.220446049250313e-16
+      },
+      "rows_checked": 1479
+    },
+    {
+      "seed": 2731,
+      "context": 16,
+      "asset": "CHF",
+      "max_abs_test_reconstruction_error": {
+        "actual": 4.440892098500626e-16,
+        "mu": 9.952975943416931e-17,
+        "sigma": 8.326672684688674e-17
+      },
+      "rows_checked": 1479
+    },
+    {
+      "seed": 2731,
+      "context": 16,
+      "asset": "GBP",
+      "max_abs_test_reconstruction_error": {
+        "actual": 2.220446049250313e-16,
+        "mu": 9.974659986866641e-17,
+        "sigma": 5.551115123125783e-17
+      },
+      "rows_checked": 1479
+    },
+    {
+      "seed": 2731,
+      "context": 16,
+      "asset": "JPY",
+      "max_abs_test_reconstruction_error": {
+        "actual": 4.440892098500626e-16,
+        "mu": 9.974659986866641e-17,
+        "sigma": 2.220446049250313e-16
+      },
+      "rows_checked": 1479
+    },
+    {
+      "seed": 2731,
+      "context": 16,
+      "asset": "USD",
+      "max_abs_test_reconstruction_error": {
+        "actual": 4.440892098500626e-16,
+        "mu": 9.974659986866641e-17,
+        "sigma": 2.220446049250313e-16
+      },
+      "rows_checked": 1479
+    },
+    {
+      "seed": 2731,
+      "context": 64,
+      "asset": "CHF",
+      "max_abs_test_reconstruction_error": {
+        "actual": 4.440892098500626e-16,
+        "mu": 9.974659986866641e-17,
+        "sigma": 1.1102230246251565e-16
+      },
+      "rows_checked": 1479
+    },
+    {
+      "seed": 2731,
+      "context": 64,
+      "asset": "GBP",
+      "max_abs_test_reconstruction_error": {
+        "actual": 2.220446049250313e-16,
+        "mu": 9.985502008591496e-17,
+        "sigma": 8.326672684688674e-17
+      },
+      "rows_checked": 1479
+    },
+    {
+      "seed": 2731,
+      "context": 64,
+      "asset": "JPY",
+      "max_abs_test_reconstruction_error": {
+        "actual": 4.440892098500626e-16,
+        "mu": 9.974659986866641e-17,
+        "sigma": 2.220446049250313e-16
+      },
+      "rows_checked": 1479
+    },
+    {
+      "seed": 2731,
+      "context": 64,
+      "asset": "USD",
+      "max_abs_test_reconstruction_error": {
+        "actual": 4.440892098500626e-16,
+        "mu": 9.974659986866641e-17,
+        "sigma": 1.1102230246251565e-16
+      },
+      "rows_checked": 1479
+    }
+  ],
+  "checkpoints": [
+    {
+      "seed": 731,
+      "path": "outputs/public_fx/gru_seed_731.pt",
+      "sha256": "4fa134b0d5b3aaaf6d29d6ad96715edc5f53f6b7654aed5f5a5300b60036e78e"
+    },
+    {
+      "seed": 1731,
+      "path": "outputs/public_fx/gru_seed_1731.pt",
+      "sha256": "444a042c3c9c83ca8c2cb4b32d4cb5767da096bc11d9d50e818be6b2092756cf"
+    },
+    {
+      "seed": 2731,
+      "path": "outputs/public_fx/gru_seed_2731.pt",
+      "sha256": "f47379713044373ca18796bc0e5ea85d22bd613b4809d2063de612ad9741281b"
+    }
+  ],
+  "issued_forecasts_sha256": "a6c02c722930409883056b5698c997bd62a0b345d2b1eb4691ccb182b6249dba",
+  "parent_predictor_source_sha256": "cda96e75314b5c6ddb0154dcd9175524ab58971930c77f93116b54d7612a2aa6",
+  "script_sha256": "b999d21e36e8e6437f11a93b027b56b37f95ef5f4aea9b5eff5e0fa981b2c4a3",
+  "prediction_rows": 70992,
+  "wall_seconds": 19.598496913909912,
+  "limitations": [
+    "maximum expected score estimated from 2019 is not a hard future bound; no theoretical guarantee claimed",
+    "GRU checkpoint was selected using 2019-2020, so validation replay is retrospective initialization",
+    "existing 2021+ test has already been explored; not a fresh blind-test or test-selected method",
+    "Gaussian GRU scales may be misspecified; normalized-score weighting differs from absolute-return calibration",
+    "same EUR-denominated currencies and repeated seeds are dependent; no IID confidence interval",
+    "descriptive baseline pilot, not novelty or superiority evidence; 2020 diagnostics not used for tuning"
+  ]
+}

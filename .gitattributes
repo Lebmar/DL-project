@@ -1,0 +1,3 @@
+# Preserve original external sources byte-for-byte, including their whitespace.
+proposal/neurips_2026.sty -whitespace
+outputs/strong_calibration/vendor/** -whitespace

@@ -1,0 +1,119 @@
+[
+  {
+    "original": "outputs/pilot/trajectory_metrics.csv",
+    "distributed": "outputs/pilot/trajectory_metrics.csv.gz",
+    "uncompressed_sha256": "f3f6b803f040dcf60c245b1d4f1a5ebfe13fce2ad756bfcfb54a660c3d62f188",
+    "compressed_sha256": "b557797463936f0be532a574ed858d9726bdf8e670cd57785c5bd6466a155abb",
+    "uncompressed_bytes": 19665343,
+    "compressed_bytes": 6638502,
+    "roundtrip_identical": true
+  },
+  {
+    "original": "outputs/pilot/event_curves.csv",
+    "distributed": "outputs/pilot/event_curves.csv.gz",
+    "uncompressed_sha256": "b804b08a32135dd86ca632b7aaf62811bf5d03ecfd8ad630446b734945d4a9c7",
+    "compressed_sha256": "d421b16504ac4b37581346c4979ec08570213c0ffbbd4b298e41c4928ca1ebae",
+    "uncompressed_bytes": 6578224,
+    "compressed_bytes": 1843993,
+    "roundtrip_identical": true
+  },
+  {
+    "original": "outputs/gru_simulation/trajectory_metrics.csv",
+    "distributed": "outputs/gru_simulation/trajectory_metrics.csv.gz",
+    "uncompressed_sha256": "8598da6f61d674305d7216d73b30a38b71819ea195a8632cc642be86e73a3116",
+    "compressed_sha256": "908e3b26b0b0653527c2db512bdf09497e8ddcb120d1673521a984c4bad50a3d",
+    "uncompressed_bytes": 7202152,
+    "compressed_bytes": 2446936,
+    "roundtrip_identical": true
+  },
+  {
+    "original": "outputs/gru_simulation/event_curves.csv",
+    "distributed": "outputs/gru_simulation/event_curves.csv.gz",
+    "uncompressed_sha256": "1d6dc5876fc770cc5131c1600bba2cfc9bfd54ab62e409a4d0105aacc954e8d7",
+    "compressed_sha256": "a75e54e101a495c22acdaa2ae100fe017a8e829fa6814320c1d2dc42d41e031c",
+    "uncompressed_bytes": 1614434,
+    "compressed_bytes": 425337,
+    "roundtrip_identical": true
+  },
+  {
+    "original": "outputs/gru_simulation/raw_interactions_by_path.csv",
+    "distributed": "outputs/gru_simulation/raw_interactions_by_path.csv.gz",
+    "uncompressed_sha256": "8f9fb83327667720d63c4269da4c20fef26529dd9f87e3f911aebb1b5315e08e",
+    "compressed_sha256": "c8603ffc36f2a806c819e510e0699a636910b238eef132caae67c2504804bff7",
+    "uncompressed_bytes": 1697990,
+    "compressed_bytes": 281437,
+    "roundtrip_identical": true
+  },
+  {
+    "original": "outputs/gru_simulation/adjusted_interactions_by_path.csv",
+    "distributed": "outputs/gru_simulation/adjusted_interactions_by_path.csv.gz",
+    "uncompressed_sha256": "f677de1ae1f449f4b71840e3bd7cfaad24347d1bfcb0d0634bf37f5fc1f45c04",
+    "compressed_sha256": "da9e7178a15bb230b5e99a6ee0790c672ce4933055f4d43538683ebd4ed51543",
+    "uncompressed_bytes": 746891,
+    "compressed_bytes": 121291,
+    "roundtrip_identical": true
+  },
+  {
+    "original": "outputs/archive_intervention/factorial_metrics_by_path.csv",
+    "distributed": "outputs/archive_intervention/factorial_metrics_by_path.csv.gz",
+    "uncompressed_sha256": "be78c473b860e88318369af24ee2c762c11a592b16918c6fdff8e3672fbfcc00",
+    "compressed_sha256": "ad87f0b68907aa6f167402158896d2a751758a0e0804526e3052ab17fd357021",
+    "uncompressed_bytes": 8976366,
+    "compressed_bytes": 3506645,
+    "roundtrip_identical": true
+  },
+  {
+    "original": "outputs/archive_intervention/interaction_effects_by_path.csv",
+    "distributed": "outputs/archive_intervention/interaction_effects_by_path.csv.gz",
+    "uncompressed_sha256": "834f4a4e2c423eebce097e1b823634cafeeb643b343cc25834979c58981596db",
+    "compressed_sha256": "de3a65f115ab1a21c8181bc0391cbf69b2044ce13b9f174fdd4137c8b91a61c3",
+    "uncompressed_bytes": 16853647,
+    "compressed_bytes": 3535262,
+    "roundtrip_identical": true
+  },
+  {
+    "original": "outputs/archive_intervention/log_decomposition_by_path.csv",
+    "distributed": "outputs/archive_intervention/log_decomposition_by_path.csv.gz",
+    "uncompressed_sha256": "5c6710550956a2af57bd8a88894ee46028c4b2ddefb7134bfff23f9b7d2d278a",
+    "compressed_sha256": "63fa2550cdf7314261db40a70888cca68eeea634c17fc4f8c11eafc9b6619b86",
+    "uncompressed_bytes": 1275478,
+    "compressed_bytes": 410594,
+    "roundtrip_identical": true
+  },
+  {
+    "original": "outputs/public_fx/predictions.csv",
+    "distributed": "outputs/public_fx/predictions.csv.gz",
+    "uncompressed_sha256": "a6c02c722930409883056b5698c997bd62a0b345d2b1eb4691ccb182b6249dba",
+    "compressed_sha256": "b37b4842279319275c63a0152781971be629622eb4e0af2041c444c9c9013ba1",
+    "uncompressed_bytes": 26014030,
+    "compressed_bytes": 9239200,
+    "roundtrip_identical": true
+  },
+  {
+    "original": "outputs/strong_calibration/predictions.csv",
+    "distributed": "outputs/strong_calibration/predictions.csv.gz",
+    "uncompressed_sha256": "176098877d55bebbe6f2b239e8b5a2bb30ef1379e9528dfc8829116c20ab9fff",
+    "compressed_sha256": "d76f8b6a94e40e902206662ec6f4dc73df3e4982085b04de53ad09448d8161da",
+    "uncompressed_bytes": 14702270,
+    "compressed_bytes": 5139874,
+    "roundtrip_identical": true
+  },
+  {
+    "original": "outputs/strong_calibration/validation_diagnostics.csv",
+    "distributed": "outputs/strong_calibration/validation_diagnostics.csv.gz",
+    "uncompressed_sha256": "278e452f64ec9bee5296550fe7b7adffc226161804d52bfe7ef29030355898ab",
+    "compressed_sha256": "1c3c0acfa55217d0cccd4dae5ad68b6e94b3b9b78fed9807c04b6e96649abeec",
+    "uncompressed_bytes": 1306271,
+    "compressed_bytes": 391783,
+    "roundtrip_identical": true
+  },
+  {
+    "original": "outputs/strong_calibration/reconstructed_validation_forecasts.csv",
+    "distributed": "outputs/strong_calibration/reconstructed_validation_forecasts.csv.gz",
+    "uncompressed_sha256": "330eeb58d35a49e2efd8054ffb551372ddf8d4ad991a4a24c745acada333b8e8",
+    "compressed_sha256": "7a0d347addbd7cae83178182fc51bfcc576ded5f178b712e7049ef18f9075111",
+    "uncompressed_bytes": 1028527,
+    "compressed_bytes": 386804,
+    "roundtrip_identical": true
+  }
+]

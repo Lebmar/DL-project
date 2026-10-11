@@ -1,0 +1,22 @@
+{
+  "prediction_file_sha256": "a6c02c722930409883056b5698c997bd62a0b345d2b1eb4691ccb182b6249dba",
+  "prediction_file": "outputs/public_fx/predictions.csv",
+  "source_sha256": "3e8bc7cca6c66b3173aee04c51de1f17c241e1c13096f0b7ff1683b3b014c1c6",
+  "assets_equal_weight": true,
+  "seeds_average_not_independent": true,
+  "normalization": "divide per-row width/interval score by train-only asset std",
+  "resampling": "paired circular date blocks, all methods/assets/fits retained on a date",
+  "block_lengths": [
+    20,
+    60
+  ],
+  "replicates": 2000,
+  "dates": 1479,
+  "limitations": [
+    "conditional on the three fitted models; not full training uncertainty",
+    "only four related EUR crosses; no broad finance generalization",
+    "bootstrap is exploratory and does not ensure validity under arbitrary nonstationarity",
+    "multiple comparisons are unadjusted; no confirmatory significance claim"
+  ],
+  "strong_prediction_file_sha256": "176098877d55bebbe6f2b239e8b5a2bb30ef1379e9528dfc8829116c20ab9fff"
+}

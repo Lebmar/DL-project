@@ -1,0 +1,90 @@
+{
+  "date": "2026-10-11",
+  "python": "3.12.14",
+  "torch": "2.14.1",
+  "numpy": "2.5.4",
+  "source_sha256": "1796433e4122b6043d62defb707641569f50155b8ed9454400f61c0bcc08f8e1",
+  "training_generator_source_sha256": "c1762af9fe75e20cf51b554de48c0d67a00a637e784fdbfca94d2b946851be9e",
+  "architecture": "one-layer GRU hidden24 plus Gaussian log-scale head; fixed zero mean",
+  "training": [
+    {
+      "seed": 1701,
+      "epochs": 8,
+      "batches_per_epoch": 24,
+      "batch_size": 128,
+      "independent_training_paths": 128,
+      "independent_validation_paths": 40,
+      "best_mean_validation_nll": 0.7901457846164703,
+      "unit_scale_validation_nll": 1.205901861190796,
+      "parameters": 2041,
+      "seed_wall_seconds": 6.578727960586548
+    },
+    {
+      "seed": 1702,
+      "epochs": 8,
+      "batches_per_epoch": 24,
+      "batch_size": 128,
+      "independent_training_paths": 128,
+      "independent_validation_paths": 40,
+      "best_mean_validation_nll": 0.8480126261711121,
+      "unit_scale_validation_nll": 1.3766428232192993,
+      "parameters": 2041,
+      "seed_wall_seconds": 5.9296369552612305
+    },
+    {
+      "seed": 1703,
+      "epochs": 8,
+      "batches_per_epoch": 24,
+      "batch_size": 128,
+      "independent_training_paths": 128,
+      "independent_validation_paths": 40,
+      "best_mean_validation_nll": 0.7842737436294556,
+      "unit_scale_validation_nll": 1.1884196996688843,
+      "parameters": 2041,
+      "seed_wall_seconds": 5.918205976486206
+    }
+  ],
+  "contexts": [
+    16,
+    64
+  ],
+  "calibration_windows": [
+    32,
+    128
+  ],
+  "simulation": {
+    "test_paths": 128,
+    "steps": 768,
+    "onset": 256,
+    "durations": {
+      "no_change": 0,
+      "shock_1": 1,
+      "shock_5": 5,
+      "shift_32": 32,
+      "shift_128": 128,
+      "persistent": 512
+    },
+    "sigma_event": 3,
+    "innovations": "iid Gaussian, deterministic known scale",
+    "test_seeds": "50000+i",
+    "same_test_noise_across_models_and_scenarios": true
+  },
+  "checks": {
+    "causal_suffix_and_matching_event_prefix_checks": true,
+    "number_of_checks": 186,
+    "finite_intervals_after128": true
+  },
+  "interaction": "[(ctx64,cal128)-(ctx64,cal32)]-[(ctx16,cal128)-(ctx16,cal32)] minus no_change same onset32 window",
+  "uncertainty": "2000 paired test-path bootstrap reps per model; crossed model-seed/path bootstrap pooled, only 3 seeds",
+  "limitations": [
+    "exploratory fixed protocol, not confirmatory; no test-based hyperparameter tuning",
+    "context length is not necessarily effective learned memory",
+    "known sigma/CDF/oracle width used only for evaluation",
+    "fixed zero mean and Gaussian deterministic event scale",
+    "onset32 mixes event and recovery for short events",
+    "only three model seeds; crossed-bootstrap intervals approximate seed variation",
+    "no strong adaptive conformal/GARCH/NCC baselines or real data",
+    "Gaussian NLL predicts moments and need not yield calibrated mixture quantiles"
+  ],
+  "wall_seconds": 19.29709792137146
+}

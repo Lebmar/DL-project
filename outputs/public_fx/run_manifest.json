@@ -1,0 +1,73 @@
+{
+  "date": "2026-10-11",
+  "data": {
+    "provider": "European Central Bank",
+    "source_url": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.zip",
+    "copyright_url": "https://www.ecb.europa.eu/services/using-our-site/disclaimer/html/index.en.html",
+    "retrieved_date": "2026-10-11",
+    "first_date": "1999-01-04",
+    "last_date": "2026-10-09",
+    "rows_rates": 7111,
+    "transformation": "100 * log(rate_t / previous_available_rate); currency units per EUR",
+    "archive_sha256": "3d4f0b3877df2d995df6c6be36638b8923b283fac473e588df4d70798c32c501",
+    "notes": [
+      "ECB reference rates are for information, not trading execution",
+      "historical download is not a point-in-time revision-vintage dataset",
+      "all four series share EUR and are not independent assets"
+    ]
+  },
+  "train_end": "2018-12-31",
+  "validation": [
+    "2019-01-01",
+    "2020-12-31"
+  ],
+  "test_start": "2021-01-01",
+  "test_status": "exploratory after first evaluation; no subsequent blind-test claim",
+  "calibration_replay_start": "2019-01-01",
+  "calibration_initialization": "replay validation period after checkpoint selection, then evaluate 2021+; not contemporaneous validation deployment",
+  "aci": {
+    "gamma": 0.01,
+    "alpha_min": 0.007751937984496124,
+    "alpha_max": 0.5,
+    "initial_alpha": 0.1
+  },
+  "causal_calibration_future_suffix_check": true,
+  "training_scales": {
+    "USD": 0.6238986789068859,
+    "JPY": 0.7600783267921409,
+    "GBP": 0.5097080736785516,
+    "CHF": 0.42384641471548345
+  },
+  "parameters": 1266,
+  "neural_training_seeds": [
+    731,
+    1731,
+    2731
+  ],
+  "epochs_max": 12,
+  "checkpoint_sha256": {
+    "731": "4fa134b0d5b3aaaf6d29d6ad96715edc5f53f6b7654aed5f5a5300b60036e78e",
+    "1731": "444a042c3c9c83ca8c2cb4b32d4cb5767da096bc11d9d50e818be6b2092756cf",
+    "2731": "f47379713044373ca18796bc0e5ea85d22bd613b4809d2063de612ad9741281b"
+  },
+  "contexts": [
+    16,
+    64
+  ],
+  "nominal_coverage": 0.9,
+  "units": "percentage log-return",
+  "weight_sharing": "same fitted GRU used for both context lengths; training randomly mixes lengths",
+  "limitations": [
+    "pilot only; no GARCH/AgACI/SAOCP/NCC comparison yet",
+    "GRU frozen after training; calibrators update sequentially after outcomes arrive",
+    "ACI uses explicit clipping and is not exact theoretical ACI",
+    "no true market regime labels; no causal shock attribution",
+    "cross-asset dependence and temporal dependence prohibit IID confidence intervals",
+    "normal likelihood may be misspecified for heavy tails",
+    "raw ECB history is not point-in-time revision data"
+  ],
+  "wall_seconds": 20.402601957321167,
+  "python": "3.12.14",
+  "torch": "2.14.1",
+  "source_sha256": "cda96e75314b5c6ddb0154dcd9175524ab58971930c77f93116b54d7612a2aa6"
+}

@@ -1,0 +1,59 @@
+{
+  "date": "2026-10-11",
+  "python": "3.12.14",
+  "torch": "2.14.1",
+  "source_sha256": "0fe20fe79ec119850c1efec776f2c4587e728ba60ccc8aac8e5de0c6354d90a5",
+  "gru_source_sha256": "1796433e4122b6043d62defb707641569f50155b8ed9454400f61c0bcc08f8e1",
+  "checkpoint_sha256": {
+    "1701": "aafceb79dbf3f58970b52cef80049a3a970dcf2e3a35ef80abf2a5a293ce4f3c",
+    "1702": "06ebbb44d2e84ca6a8661bdba05de51037674ad9aef8fcf89d98f9e61981afb9",
+    "1703": "55f1f7957fd02802a3cb69f3371b627480273f679afb7f6d3ad01bf9a662a7ca"
+  },
+  "training_performed": false,
+  "protocol": "same three frozen GRUs, same 128 paired paths, no tuning or model selection",
+  "simulation": {
+    "test_paths": 128,
+    "steps": 768,
+    "onset": 256,
+    "durations": {
+      "no_change": 0,
+      "shock_1": 1,
+      "shock_5": 5,
+      "shift_32": 32,
+      "shift_128": 128,
+      "persistent": 512
+    },
+    "test_seed_rule": "50000+i",
+    "sigma_before": 1,
+    "sigma_event": 3
+  },
+  "current_contexts": [
+    16,
+    64
+  ],
+  "archive_contexts": [
+    16,
+    64
+  ],
+  "calibration_windows": [
+    32,
+    128
+  ],
+  "diagonal_reproduction_max_absolute_error": 2.842170943040401e-14,
+  "checks": {
+    "a_equals_b_reproduces_original": true,
+    "exact_two_path_score_decomposition": true,
+    "fixed_archive_logwidth_current_x_window_zero": true,
+    "loghalf_equals_logscale_plus_logq": true
+  },
+  "matched_control": "no_change at identical absolute target dates for each event and phase",
+  "uncertainty": "2000 paired path bootstrap per model; crossed seed/path bootstrap pooled; only three training seeds",
+  "limitations": [
+    "a != b is artificial causal diagnostic, not a new guaranteed-coverage method",
+    "known Gaussian CDF/sigma are evaluation only",
+    "exploratory effects and CIs without multiplicity adjustment",
+    "same prefixes for durations >=32 yield identical onset32 results",
+    "no claim of universal memory mechanism, novelty, or real-market effectiveness"
+  ],
+  "wall_seconds": 23.55571413040161
+}
