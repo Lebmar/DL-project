@@ -1,0 +1,74 @@
+{
+  "status": "complete",
+  "self_check": {
+    "passed": true,
+    "paired_architecture_direction_verified": true,
+    "conditional_resampling_keeps_fitted_seeds_fixed": true,
+    "weights_sum_to_one": true
+  },
+  "analysis_source_sha256": "284190fd9113f18d5d0d4fdac4a0f9b8e057e17cc2ee3da09a57070f303a924d",
+  "protocol_sha256": "aa2bda29ba79b13df1b4ccba614bea1994670adf09133e359471d9d8dc2b9ef6",
+  "training_manifest_sha256": "514fc0c781c8c925c4de581df9f8a8c305358e1beee8d5e716d9a6a45975af95",
+  "evaluation_manifest_sha256": "5a617b1418cfb26aa438d025d94532527c97dc6bab5cc85080a2db2e67de30a2",
+  "input_sha256": {
+    "paired_interactions.csv.gz": "177264c0109f4c426f70216317a2cf923c23c6e0ea335e9f009e58daa406d1a4",
+    "performance_by_seed.csv": "2b2fcb5170df69a253600b61ae34c80a18d26ddb7e934c0afaeb04bb4fb76db9",
+    "reference_curves.csv.gz": "8bdf83433d7aec048a0a198871966afae69ee14533c99a0b64f00021f8171f70"
+  },
+  "primary_bootstrap": {
+    "seed": 610021,
+    "replicates": 4000,
+    "level": 0.975,
+    "unit": "paired path; mean across five fixed seed pairs before resampling",
+    "adjustment": "two prespecified endpoint Bonferroni; percentile bootstrap approximation",
+    "same_path_draws_used_for_both_primary_phases": true
+  },
+  "crossed_sensitivity": {
+    "seed": 610022,
+    "unit": "seed-pair and common paired path resampled independently; sensitivity only"
+  },
+  "secondary_bootstrap": {
+    "seed": 610023,
+    "replicates": 4000,
+    "level": 0.95,
+    "scope": "unadjusted descriptive; no joint testing or initialization population claim"
+  },
+  "negative_control_maximum_width_error": 0.0,
+  "row_counts": {
+    "primary_contrasts": 2,
+    "primary_individual_seeds": 10,
+    "primary_leave_one_out": 10,
+    "secondary_interactions": 1800,
+    "secondary_architecture_contrasts": 600,
+    "individual_seed_effects": 6600,
+    "performance_summary": 5760
+  },
+  "artifact_sha256": {
+    "primary_contrasts.csv": "1250040e14080e73dbf7d7b991c029a3716954b25a257fa9a6dc891de5092c17",
+    "secondary_interactions.csv": "36fe01dbd97a904e478967ecf61eaa3e481ad0a97a7da8bd12eb5abca3e71218",
+    "secondary_architecture_contrasts.csv": "8beed8cbc04bcb072cca11c482ed319eb9766dd8e61ddb5543d6286765d71cd7",
+    "individual_seed_effects.csv": "01ac3dc7180161e11619b54ec2776e18046352402674e17a966ecb5a648da41a",
+    "full_grid_interactions.png": "104d50c435f17861cc7f84bc1dbd56a6f5d985a1f8f79df56a969d9c3448fad9",
+    "performance_summary.csv": "59867bbb7cf365ad559101a4e5e2f33777662fe2c24c85060a241c0a928b3621",
+    "primary_leave_one_out.csv": "b80500de2175c2279f8a48acecb57170bf8d3a8376374d70e59cb52b13c228a3",
+    "primary_individual_seeds.csv": "f928697c7f97eb9db37925a6e0912a4a60635911923cbb1453ef275d853152f1",
+    "primary_architecture_contrast.png": "6e07efaf8a61b81ac819b12b828e0a74a14bc20a926c4b5be59f1ab4af923f47",
+    "reference_gaussian_curves.png": "198ec1f4c5a8ca297f2169ab5d7966700f9b7bfa498c15b67e52794f1f8cfdc7"
+  },
+  "report_sha256": "8af384266a0fbaca539bf7af346ca8d89817772f0c5d0a8a6fcbb5a7254bdd25",
+  "rendering_revisions": [
+    {
+      "script": "scripts/render_stage2_grid.py",
+      "source_sha256": "529d085b03586a6105b71a420b61a691915b20b535dcc6b8895c06c49bff0b1c",
+      "code_commit": "662c672fe9c2c117a7ed83b2af91da827cfb2f9b",
+      "purpose": "layout-only repair; dedicated colorbar axis, coverage percent ticks and common width-ratio scale",
+      "original_figure_sha256": {
+        "full_grid_interactions.png": "fddd34256fb103b2789de264dd8fd800ed3fd33a0f86ccc1a7d73bc3e83687c5",
+        "reference_gaussian_curves.png": "8450ea65ec44511c9efd77b0cf27748c2f02ced189e0b5a2decc85b21175d8b2"
+      },
+      "statistical_csv_unchanged": true,
+      "original_report_sha256": "ab8554ca53a7eb6f2651e240462eacca58106289a0fe7db08d0d3a4bff6d3793",
+      "report_revision": "additive manual readout: initialization instability, shared-entry duration identity, absolute performance, supplement link; Markdown header repair"
+    }
+  ]
+}
