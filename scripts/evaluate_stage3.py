@@ -120,6 +120,21 @@ def past_quantiles(y, archive_scale, window, alpha, warmup):
     return np.partition(views, rank, axis=-1)[:, :, rank]
 
 
+def pulse_scales(model, y, control_scale, context, onset, duration, maximum_duration):
+    """Fixed execution shape across durations, then reuse identical contexts.
+
+    The canonical forward region is set by the frozen maximum duration. Only
+    targets whose past observations differ from the nochange world are copied;
+    unused endpoints affect neither a predictor feature nor a score archive.
+    """
+    affected_stop = onset+duration+context
+    canonical_stop = onset+maximum_duration+context
+    predicted = issued_scales(model, y, context, onset+1, canonical_stop)
+    result = control_scale.copy()
+    result[:, onset+1:affected_stop] = predicted[:, :affected_stop-onset-1]
+    return result
+
+
 def decomposition(effect):
     d = lambda a, b: effect[(a, b, 128)]-effect[(a, b, 32)]
     total = d(64, 64)-d(16, 16)
@@ -179,6 +194,18 @@ def tiny_self_check():
             fast_error = max(fast_error, float(np.max(np.abs(result-reference))))
             fast_error = max(fast_error, float(np.max(np.abs(pulse_result-pulse_reference))))
             causal_error = max(causal_error, float(np.max(np.abs(result[:, :171]-altered[:, :171]))))
+            duration_ys = {}
+            duration_scales = {}
+            for d in (32, 128):
+                event_y = y.copy()
+                event_y[:, 64:64+d] *= 3
+                duration_ys[d] = event_y
+                duration_scales[d] = pulse_scales(model, event_y, result, context, 64, d, 128)
+            np.testing.assert_array_equal(duration_scales[32][:, :97], duration_scales[128][:, :97])
+            for window in WINDOWS:
+                short_half = duration_scales[32]*past_quantiles(duration_ys[32], duration_scales[32], window, .1, warm)
+                long_half = duration_scales[128]*past_quantiles(duration_ys[128], duration_scales[128], window, .1, warm)
+                np.testing.assert_array_equal(short_half[:, :97], long_half[:, :97])
         if isinstance(model, GaussianTCN):
             model._stage3_fast_context64_verified = False
             np.testing.assert_array_equal(issued_scales(model, y, 64), predict_scales(model, y, 64))
@@ -189,6 +216,7 @@ def tiny_self_check():
             "TCN_receptive_field_full_pass_matches_reset_context64": True,
             "all_toy_endpoints_including_initial_and_pulse_boundaries_checked": True,
             "disabled_fast_path_bitwise_matches_original_fallback": True,
+            "canonical_execution_entry_prefix_bitwise_equal_across_duration32_128": True,
             "maximum_fast_inference_scale_error": fast_error,
             "maximum_causal_prefix_scale_error": causal_error}
 
@@ -225,7 +253,7 @@ def main():
                 "new_test_generated": False,
                 "self_check": tiny_self_check(), "validation_fast_inference_checks": [],
                 "test_array_sha256": {}, "event_array_sha256": {},
-                "cache": "one nochange forecast per family/fit/context; event targets [onset+1,exit+L) recomputed only",
+                "cache": "one nochange forecast per family/fit/context; fixed canonical event prediction [onset+1,onset+max_duration+L), copy affected targets [onset+1,exit+L) only",
                 "inference": "TCN RF64 full causal pass only for context64; all other contexts reset separately; validation equivalence checked",
                 "fast_inference_policy": {"relative_tolerance": FAST_RTOL, "absolute_tolerance": FAST_ATOL,
                     "validation_failure_action": "automatically use original reset-window predictor for that checkpoint before test access",
@@ -237,6 +265,7 @@ def main():
     assert config["contexts"] == list(CONTEXTS) and config["rolling_windows"] == list(WINDOWS)
     assert protocol["evaluation"]["metrics"] == METRICS
     onset, length, alpha = config["onset"], config["length"], config["alpha"]
+    maximum_duration = max(config["durations"])
     native_q = norm.ppf(1-alpha/2)
     models, warmups = {}, {}
     for panel, fitted in panels.items():
@@ -301,8 +330,8 @@ def main():
                     assert list(slices) == config["phases"]
                     sigma = {}
                     for context in CONTEXTS:
-                        sigma[context] = control_scales[context].copy()
-                        sigma[context][:, onset+1:exit_time+context] = issued_scales(model, y, context, onset+1, exit_time+context)
+                        sigma[context] = pulse_scales(model, y, control_scales[context], context, onset,
+                                                     duration, maximum_duration)
                         for target in (onset, exit_time+context):
                             independent = predict_scales(model, y[:2], context, target, target+1)
                             np.testing.assert_allclose(sigma[context][:2, target:target+1], independent, rtol=1e-6, atol=2e-6)
