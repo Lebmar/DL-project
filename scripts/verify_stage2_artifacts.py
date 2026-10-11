@@ -129,8 +129,21 @@ def main():
     check("both decomposition paths reproduce total",
           np.allclose(parts["total"], parts["current_at_archive64"]+parts["archive_at_current16"], atol=1e-10, rtol=0)
           and np.allclose(parts["total"], parts["current_at_archive16"]+parts["archive_at_current64"], atol=1e-10, rtol=0))
+    geometry_path = ROOT/"outputs/stage2_score_geometry/manifest.json"
+    geometry = json.loads(geometry_path.read_text())
+    check("score geometry complete exploratory", geometry["status"] == "complete"
+          and not geometry["new_blind_test"] and not geometry["primary_analysis_replaced"])
+    check("score geometry source", geometry["source_sha256"] == sha(ROOT/"scripts/stage2_score_geometry.py"))
+    check("score geometry input provenance", geometry["evaluation_manifest_sha256"] == sha(evaluation_path))
+    for name, expected in geometry["artifacts"].items():
+        check(f"score geometry artifact {name}", sha(geometry_path.parent/name) == expected)
+    check("score geometry realized diagonal replication", geometry["diagonal_realized_max_absolute_error"] < 1e-10)
+    errors = geometry["self_check"]["maximum_errors"]
+    check("expected score integrates Gaussian and t5 tails", errors["quadrature_absolute_error"] < 1e-10)
+    check("mixed derivative finite differences", errors["mixed_derivative_absolute_error"] < 1e-4)
+    check("oriented rectangle identity", errors["rectangle_integral_absolute_error"] < 1e-10)
     print(json.dumps({"status": "passed", "checks": len(checks),
-                      "scope": "saved training, controls, evaluation, memory, analysis, supplement and crossed archive diagnostic",
+                      "scope": "saved stage2 training, controls, evaluation, memory, analysis, supplements and score geometry",
                       "checked": checks}, indent=2))
 
 
