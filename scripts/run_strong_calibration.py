@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import ast
 import copy
+import gzip
 import hashlib
 import importlib.util
 import json
@@ -43,6 +44,13 @@ SOURCE_HASHES = {
 
 def sha(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+def csv_sha(path):
+    value = Path(path).read_bytes()
+    if Path(path).suffix == ".gz":
+        value = gzip.decompress(value)
+    return hashlib.sha256(value).hexdigest()
 
 
 class UnavailableMerlion:
@@ -274,7 +282,7 @@ def main():
         "warmup": ["2019-01-01", "2020-12-31"], "test_start": "2021-01-01",
         "test_first_observed": results.date.min(), "test_last_observed": results.date.max(),
         "future_target_intervention": causal_checks, "test_reconstruction": checks,
-        "checkpoints": checkpoints, "issued_forecasts_sha256": sha(issued_path),
+        "checkpoints": checkpoints, "issued_forecasts_sha256": csv_sha(issued_path),
         "parent_predictor_source_sha256": parent_hash, "script_sha256": sha(__file__),
         "prediction_rows": len(results), "wall_seconds": time.time()-start,
         "limitations": [

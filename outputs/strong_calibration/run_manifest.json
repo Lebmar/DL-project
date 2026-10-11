@@ -327,9 +327,9 @@
   ],
   "issued_forecasts_sha256": "a6c02c722930409883056b5698c997bd62a0b345d2b1eb4691ccb182b6249dba",
   "parent_predictor_source_sha256": "cda96e75314b5c6ddb0154dcd9175524ab58971930c77f93116b54d7612a2aa6",
-  "script_sha256": "b999d21e36e8e6437f11a93b027b56b37f95ef5f4aea9b5eff5e0fa981b2c4a3",
+  "script_sha256": "513741281190920210c838782b525f9cc12ae529f05ab13860cc6fa6de828d3b",
   "prediction_rows": 70992,
-  "wall_seconds": 19.598496913909912,
+  "wall_seconds": 19.77447199821472,
   "limitations": [
     "maximum expected score estimated from 2019 is not a hard future bound; no theoretical guarantee claimed",
     "GRU checkpoint was selected using 2019-2020, so validation replay is retrospective initialization",

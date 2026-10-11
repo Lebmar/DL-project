@@ -8,6 +8,7 @@ does not itself justify confidence intervals under arbitrary distribution shift.
 from __future__ import annotations
 
 import hashlib
+import gzip
 import json
 from pathlib import Path
 
@@ -19,6 +20,13 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "outputs" / "public_fx"
+
+
+def csv_sha(path):
+    value = path.read_bytes()
+    if path.suffix == ".gz":
+        value = gzip.decompress(value)
+    return hashlib.sha256(value).hexdigest()
 
 
 def method_name(row):
@@ -124,8 +132,9 @@ def main():
     fig.tight_layout(rect=[0, .07, 1, .93])
     fig.savefig(OUT / "public_fx_comparison.png", dpi=180)
     plt.close(fig)
-    manifest = {"prediction_file_sha256": hashlib.sha256(prediction_path.read_bytes()).hexdigest(),
-                "prediction_file": str(prediction_path.relative_to(ROOT)),
+    manifest = {"prediction_file_sha256": csv_sha(prediction_path),
+                "prediction_file": "outputs/public_fx/predictions.csv",
+                "csv_hash_convention": "SHA-256 of uncompressed CSV bytes, independent of storage format",
                 "source_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
                 "assets_equal_weight": True, "seeds_average_not_independent": True,
                 "normalization": "divide per-row width/interval score by train-only asset std",
@@ -137,7 +146,7 @@ def main():
                     "bootstrap is exploratory and does not ensure validity under arbitrary nonstationarity",
                     "multiple comparisons are unadjusted; no confirmatory significance claim"]}
     if strong_path.exists():
-        manifest["strong_prediction_file_sha256"] = hashlib.sha256(strong_path.read_bytes()).hexdigest()
+        manifest["strong_prediction_file_sha256"] = csv_sha(strong_path)
     (OUT / "analysis_manifest.json").write_text(json.dumps(manifest, indent=2))
     print(pd.DataFrame(contrasts).query("metric == 'normalized_interval_score'").to_string(index=False))
 

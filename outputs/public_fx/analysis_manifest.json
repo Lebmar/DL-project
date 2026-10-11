@@ -1,7 +1,8 @@
 {
   "prediction_file_sha256": "a6c02c722930409883056b5698c997bd62a0b345d2b1eb4691ccb182b6249dba",
   "prediction_file": "outputs/public_fx/predictions.csv",
-  "source_sha256": "3e8bc7cca6c66b3173aee04c51de1f17c241e1c13096f0b7ff1683b3b014c1c6",
+  "csv_hash_convention": "SHA-256 of uncompressed CSV bytes, independent of storage format",
+  "source_sha256": "54ffc7c1d01aace1058bdc285ed989db43cd4feee58ac799443d9e7f5b45f198",
   "assets_equal_weight": true,
   "seeds_average_not_independent": true,
   "normalization": "divide per-row width/interval score by train-only asset std",
