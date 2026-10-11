@@ -1,6 +1,6 @@
 # Stage 3 训练重复与 validation response probes 的独立实现审核
 
-本文件由不负责 Stage 3 训练/评分写出程序的审核 agent 撰写；只读代码与已经完成的训练文件，不修改 checkpoint、training manifest 或原源码，也不主动执行任何 writer。日期：2026-10-11。当前审核状态为 **代码审查与 panel1 的 10 个模型通过；其余训练完成后继续补齐**。本审核不读取新的 replication test paths 或结果。
+本文件由不负责 Stage 3 训练/评分写出程序的审核 agent 撰写；只读代码与已经完成的训练文件，不修改 checkpoint、training manifest 或原源码，也不主动执行任何 writer。日期：2026-10-11。最终审核状态为 **全部30个模型训练来源、sampler/early stopping、selected validation NLL 以及全部30个 response probes 复算通过**。另完成分析程序的无真实测试数据 toy 审核。本审核不读取新的 replication test paths 或结果。
 
 ## 训练输出与冻结协议
 
@@ -36,14 +36,14 @@ checkpoint 选择使用两种 context 的 validation NLL 的绝对最小值；`m
 
 初次审查提出两个来源 guard 补充：完整 saved pair arrays 应与 panel manifest 的 pair hashes 比对；旧 `stage2_memory_diagnostics.py` 应核对已有 Stage 2 memory source hash。根 agent 在首次 probes 执行前提交 `e197a66` 补齐这些核对，同时增加硬编码 config 对应的 assertions。再次只读代码已确认此修订只增加 guards，没有改变上述计算定义。修订后 probes source SHA256 为 `13194430189c5ab27d569e2178c2d82cc778486a3e371dfb7ffd459d743f56d1`。
 
-## 当前已完成的独立数值核查
+## 全部训练模型的独立数值核查
 
-Panel1 的完整10模型：
+对三个 panel 的全部30个模型逐一核查（panel1 先完成，panel2/3 后追加）：
 
-- 从冻结配置重生完整训练与验证数组及8192个 validation path/target pairs，各 array hash 与 manifest 一致；`input_protocol`/`frozen_protocol`/checkpoint 的协议引用一致，全部 checkpoint 位于独立 panel1 目录。
+- 从冻结配置重生完整训练与验证数组及8192个 validation path/target pairs，各 array hash 与 manifest 一致；`input_protocol`/`frozen_protocol`/checkpoint 的协议引用一致，全部 checkpoint 位于各自独立 panel 目录。三个 training arrays 与三个 validation arrays 分别有三个不同 SHA256。
 - 对每个 seed 独立重生所有执行 epoch 的 NumPy sampler、context schedule 和 byte-level digest，与两架构各自 history 的**全部** epoch digest 一致，超过共同前缀的单架构 epoch 也核查。
 - selected epoch 与全部保存的 history 中 validation 最小值一致；独立逐 epoch 重算 `min_delta` patience counter 和最早允许停止点，与实际停止一致。
-- 重新加载10个 selected checkpoint，重新计算两个 contexts 的8192个 validation target losses。10个模型重算的最大绝对误差均为 `0`，不是只核对 manifest 内自报结果。
+- 重新加载30个 selected checkpoint，重新计算两个 contexts 的8192个 validation target losses。30个模型重算的最大绝对误差均为 `0`，不是只核对 manifest 内自报结果。全部模型均按 validation patience 停止，没有触及 max60。
 - 对 panel1 GRU/TCN seed4101 额外用 controlled pulse 的前4条路径比对全长预测与 `[256:448]` chunk；t256 因果前缀、t448后的 finite-context equality、raw context 正确切片与复用的 gradient/permutation 计算全部通过。该小数组核查不读取 replication test。
 
 | panel | model | seed | 执行 epochs | selected epoch | selected NLL 重算误差 |
@@ -58,5 +58,49 @@ Panel1 的完整10模型：
 | 1 | TCN | 4104 | 26 | 18 | 0 |
 | 1 | GRU | 4105 | 31 | 23 | 0 |
 | 1 | TCN | 4105 | 31 | 23 | 0 |
+| 2 | GRU | 4101 | 30 | 27 | 0 |
+| 2 | TCN | 4101 | 36 | 28 | 0 |
+| 2 | GRU | 4102 | 40 | 32 | 0 |
+| 2 | TCN | 4102 | 31 | 23 | 0 |
+| 2 | GRU | 4103 | 29 | 21 | 0 |
+| 2 | TCN | 4103 | 42 | 34 | 0 |
+| 2 | GRU | 4104 | 20 | 8 | 0 |
+| 2 | TCN | 4104 | 37 | 29 | 0 |
+| 2 | GRU | 4105 | 29 | 21 | 0 |
+| 2 | TCN | 4105 | 29 | 21 | 0 |
+| 3 | GRU | 4101 | 52 | 44 | 0 |
+| 3 | TCN | 4101 | 39 | 31 | 0 |
+| 3 | GRU | 4102 | 40 | 32 | 0 |
+| 3 | TCN | 4102 | 41 | 33 | 0 |
+| 3 | GRU | 4103 | 36 | 28 | 0 |
+| 3 | TCN | 4103 | 36 | 28 | 0 |
+| 3 | GRU | 4104 | 35 | 27 | 0 |
+| 3 | TCN | 4104 | 24 | 16 | 0 |
+| 3 | GRU | 4105 | 24 | 16 | 0 |
+| 3 | TCN | 4105 | 24 | 16 | 0 |
 
-Panel2/3 尚在训练，本文件不提前称全部30模型通过。待 training master complete 和 probes complete 后，继续核查其来源、NLL、sampler/early-stop 与实际 probe features；已有训练写出程序由根 agent 控制，本审核不会另起一次 writer。
+完整 training master SHA256 为 `bfc3c80c60d7ef3d7f48508c37615a1acf8531db94f85e1560664ef280d5ed05`。独立审核重生的数据也确认没有读取 Stage 3 test 流。
+
+## 全部30个 probes 的独立复算
+
+在 probes writer 完成后，核对 complete/model_rows30、全部输入 config/source/training hashes、两个输出 CSV hashes、每个模型的 checkpoint 引用与 validation NLL。然后重新生成每 panel 的256个原目标 raw contexts 和64条完整 controlled-pulse 路径，核对 validation/pulse 数组来源。
+
+本审核没有调用 probes `main()` 或复用 `diagnose_model` 的 feature 聚合，而直接对 raw contexts 用 `torch.autograd.grad` 重算 lag profile，再按定义重算 old-block permutation、context16/64 log/scale 差异与全部 moments/quantiles/clamp fractions；全部30模型和64 lags均核查。Pulse 则用已经过因果/chunk 独立检查的 `predict_scales` 在全部64条路径重新预测，再直接重算 entry/recovery 两context的均值和 signed/absolute contrast，共八个 pulse features/model。
+
+| 复算范围 | 最大绝对误差 |
+| --- | ---: |
+| 30 models × 64 lags 的 gradient profile | 9.98e−17 |
+| 全部30模型的依赖/置换/context features | 2.22e−16 |
+| 全部30模型、64条 pulse path 的八个 response features | 9.71e−17 |
+
+用于完整复算的 Torch 线程数和参数冻结顺序与冻结程序一致。初次少线程小检查产生约 `9.31e−10` 的局部 floating-point 差，随后在原四线程设置下完成上述全量比较；没有把线程导致的数值舍入差判作模型或索引错误，也没有改动任何输出。Probes manifest SHA256 为 `3fcf61e721c4fc53f1c02f3a136af0b5d1ab7ceca9f1f5e906de97fe5e913dd6`。
+
+## 分析程序的无真实测试数据审核
+
+额外只读审核 [analyze_stage3.py](../scripts/analyze_stage3.py)，其源码 SHA256 为 `c755f579e9d49f671d51df0f346e43640f7c5b774998394b6d0a69ece9e64a11`。没有加载 Stage 3 evaluation manifest/CSV；仅运行 `--self-check` 与直接传入人为构造数据的 pure `analyze()` 函数，没有调用写出主程序。
+
+Grid 以显式 panel/seed/path Cartesian index 重建，拒绝重复、缺失与 off-grid identities。GRU−TCN 在相同 panel/seed/path 上先做差；primary bootstrap 先平均15个固定拟合，再共同重抽 path。Crossed sensitivity 的 panel、seed、path advanced indexing 分别 broadcast，**同一个 seed draw 用于每个抽到的 panel**，没有错误地为不同 panel 独立抽 seed。Component seed standard deviation 在先平均每条 path 的固定 fit 值后跨五个 seed 计算；不是把 path 当 seed。两种分解路线与 third-order identity 均逐 tensor 检查，entry D32/D128 相同由因果前缀核对。
+
+独立端到端 toy 使用 `3 panels × 5 seeds × 7 paths × 5 metrics`、全部四 case/four phase/six components，随机打乱行，再构造80次 resamples。用另一段标量循环重算 bootstrap，而非只运行 source 自带检查。两 primary phases 的 conditional 97.5% endpoints 最大误差 `1.67e−16`，crossed endpoints 最大误差 `2.22e−16`；primary mean方向、leave-one-panel-out 均值与每 panel 两架构 current/archive seed std 均一致。独立 toy 的 decomposition 最大误差 `8.88e−16`，diagonal和共享 entry error 均为0。
+
+这确认了抽样/配对/grid实现，不构成实际 Stage 3 科学结论。Actual evaluation/analysis 的来源与结果还应由其自身 provenance verifier 和单独 readout 核对。本审核没有读这些新测试结果，也不会据模型的 validation 排名修改分析或筛掉任何拟合。
