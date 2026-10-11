@@ -1,0 +1,118 @@
+{
+  "status": "complete",
+  "date": "2026-10-11",
+  "diagnostic_config": {
+    "source": "saved Stage 2 validation_target_pairs.npz, not a new sample",
+    "expected_validation_pairs": 8192,
+    "target_pair_start": 0,
+    "target_pair_count": 256,
+    "contexts": [
+      16,
+      64
+    ],
+    "gradient_context": 64,
+    "recent_observations_unchanged": 16,
+    "older_block_permutation_seed": 920110,
+    "permutation_unit": "entire older48 block between the 256 target samples",
+    "absolute_delta_quantile": 0.95,
+    "quantile_method": "linear",
+    "device": "cpu",
+    "torch_threads": 4
+  },
+  "diagnostic_code_commit": "0ac4f6687031d66b484e88f6cbcdf07f8be165c7",
+  "source_sha256": "7a1f33b3320912ed4b3c4dca769e942f808a593d590ec7af6244e44938ce90a4",
+  "python": "3.12.14",
+  "numpy": "2.5.4",
+  "torch": "2.14.1",
+  "training_manifest_sha256": "514fc0c781c8c925c4de581df9f8a8c305358e1beee8d5e716d9a6a45975af95",
+  "training_source_sha256": {
+    "train_stage2.py": "d93d1ecbb6ce30ccba88c2566be2632d769db6c2968717c3f6c36f24fbc49850",
+    "stage2_models.py": "c93e127dd43a3f9f70fed3fbd4c63bed8fa0c74b261c33dbd0a327889bd10f2e"
+  },
+  "protocol_sha256": "aa2bda29ba79b13df1b4ccba614bea1994670adf09133e359471d9d8dc2b9ef6",
+  "validation_sha256": "fa7bc688adadca0408c189236f6c32946c66a45c3b1b3db5483571b04ece6b6a",
+  "saved_pair_file_sha256": "afa39006e14c97963298bcb7804d650543c91656d0d12bd6f0b9e606f6e92ded",
+  "selected_pair_paths_sha256": "afb072e7025852a847ec3f0462dea3b84ac66bc51a897c3a3e715ea16b84b49a",
+  "selected_pair_targets_sha256": "88800a95f32f83c529fd7d93a3891c72a36b643b26e5e7694b5b128cf2b76b88",
+  "permutation_sha256": "ed39f47c0e4c76d9b47e871d3089d3d13cb46e06db21ca36efe6f182f8d96924",
+  "permutation_fixed_point_count": 1,
+  "models": [
+    {
+      "architecture": "gru",
+      "model_seed": 4101,
+      "checkpoint_sha256": "3081fe070865a967ad267784f09c8e56f24fa4c90bfb16002bb69af465f4eddd",
+      "selected_epoch": 28
+    },
+    {
+      "architecture": "tcn",
+      "model_seed": 4101,
+      "checkpoint_sha256": "33ecc47c81450c3e278e1baf2a971d8791825b60599ad30f33971d6cb58c91c7",
+      "selected_epoch": 30
+    },
+    {
+      "architecture": "gru",
+      "model_seed": 4102,
+      "checkpoint_sha256": "f203e412ee643cd5a552e5a10c9c19f0170f7af6eafed533e9c0dc269eaef454",
+      "selected_epoch": 17
+    },
+    {
+      "architecture": "tcn",
+      "model_seed": 4102,
+      "checkpoint_sha256": "970e4ae0f660046767143cb09e66cb9651578577512c64514345b010c6ebdcee",
+      "selected_epoch": 11
+    },
+    {
+      "architecture": "gru",
+      "model_seed": 4103,
+      "checkpoint_sha256": "5c4a3bc2585dbecb3f9bb39c9801eb28023d1d38cfb75b8caf4755a4c8ca1e06",
+      "selected_epoch": 29
+    },
+    {
+      "architecture": "tcn",
+      "model_seed": 4103,
+      "checkpoint_sha256": "8692131642010630838ae402c897c3f0f1d2cae01e52b1456cf6c9b98716ab03",
+      "selected_epoch": 18
+    },
+    {
+      "architecture": "gru",
+      "model_seed": 4104,
+      "checkpoint_sha256": "c0156fc148bdcdf428c2b0e21a3dd0051aa145cc470c1c5ddac757680ceecfc7",
+      "selected_epoch": 30
+    },
+    {
+      "architecture": "tcn",
+      "model_seed": 4104,
+      "checkpoint_sha256": "2f84cec7f4da7606e7087d5f57cfbcdaa06ac966b91aa9e8905253f36f64eb10",
+      "selected_epoch": 24
+    },
+    {
+      "architecture": "gru",
+      "model_seed": 4105,
+      "checkpoint_sha256": "2bb191c2fa058d093b166af79427a972877bc80d181bcfdea3bb55fdd1c100c4",
+      "selected_epoch": 23
+    },
+    {
+      "architecture": "tcn",
+      "model_seed": 4105,
+      "checkpoint_sha256": "325448874afc9e9e6f637ac7ebfc57e09e73d57dd9e9ac4d3e2bab4d1351af2a",
+      "selected_epoch": 20
+    }
+  ],
+  "interpretation": [
+    "no test data or test results read; no training, tuning or checkpoint selection",
+    "256 targets share validation paths and may overlap; no iid confidence intervals claimed",
+    "raw-input gradients measure local sensitivity and can vanish under saturation/clamping",
+    "older48 permutation breaks within-context dependence and may create out-of-distribution inputs",
+    "diagnostics do not identify real-world causal effects or validate a deployable method",
+    "older-gradient fraction is NaN when all gradient mass is zero, not evidence of recent-only memory"
+  ],
+  "completed_models": 10,
+  "wall_seconds": 1.0434322357177734,
+  "output_sha256": {
+    "gradient_by_lag.csv": "878ed567a978335525d5817ea9029c58fa2c937407470a3ad2c82667cca613a9",
+    "model_memory_summary.csv": "b5c5512c045b8e8607cc18ca0076b16f66157ad91f9360792748999d8a1b4e21",
+    "selected_validation_pairs.csv": "8f527ea160bd74c6d160ec146060da932df8afe0d6f7baa4ba4743f0691cc667",
+    "target_diagnostics.csv": "f0af686cd4f1a482ca8fdcaeda3da7607bf740601157722246e7a3529e415b3b",
+    "validation_memory_diagnostics.png": "da2f430b295c021200ede962cc5af38a9638aa02e7522d476438a8be83b9840b"
+  }
+}
