@@ -1,0 +1,30 @@
+{
+  "status": "prepared for Canvas upload; not submitted",
+  "date": "2026-10-16",
+  "author": "Chengxuan YUAN",
+  "student_id": "50025581",
+  "core_pages": 1,
+  "appendix_and_reference_pages": 1,
+  "total_pages": 2,
+  "references": 6,
+  "first_page_complete": true,
+  "metadata_author_verified": true,
+  "official_preprint_option": true,
+  "preprint_footer_retained_as_required_format": true,
+  "style_sha256": "c3fc2894e83d2517ca18b66741d6c595986d97957dc08ec08bb2125a7ec4555a",
+  "official_style_checked_against_fresh_download": true,
+  "official_template_url": "https://media.neurips.cc/Conferences/NeurIPS2026/Formatting_Instructions_For_NeurIPS_2026.zip",
+  "body_fonts_and_margins_unmodified": true,
+  "layout_or_citation_warnings": [],
+  "latest_two_pages_rendered_and_visually_checked": true,
+  "render_resolution_dpi": 130,
+  "artifacts": {
+    "proposal/submission_proposal.tex": "8ad7add359614f3a6887db125b6698aed01580da0fd33a85d24b9029aad3d71f",
+    "output/pdf/DSAA2012_Proposal_Chengxuan_YUAN_50025581.pdf": "20dcafbdd145700725e36ede403941e7e3b192f2621de70354ee660e0e874eaf"
+  },
+  "parent_source": "proposal/project_proposal_expanded.tex",
+  "parent_source_sha256": "fcffb06e002ff7d12a595b03535f180683e04e32bfa174a8611751f8ab11adac",
+  "earlier_proposal_files_unchanged": true,
+  "scope_review": "Core empirical study bounded; extensive diagnostics supporting; no new algorithm or coverage theorem promised; actual preliminary and failed replication statements preserved",
+  "verification_scope": "Document compilation, identity, page boundaries, references, metadata, style integrity, and visual inspection; no new experiment or statistical change"
+}
