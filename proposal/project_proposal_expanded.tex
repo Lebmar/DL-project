@@ -1,0 +1,146 @@
+\documentclass{article}
+\PassOptionsToPackage{numbers,sort&compress}{natbib}
+\usepackage[preprint]{neurips_2026}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,booktabs}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+\title{Neural Memory and Interval Calibration}
+\author{Chengxuan YUAN \quad Student ID: 50025581\\DSAA 2012, HKUST(GZ)}
+\begin{document}
+\maketitle
+
+\section{Motivation and research questions}
+Financial prediction intervals should expand when volatility rises and contract
+after a temporary shock. Overall coverage can conceal slow adaptation during
+these transitions. A neural forecaster estimates the current scale from past
+returns, while an online calibrator uses historical normalized errors to adjust
+interval width. These two uses of history may reinforce or offset each other.
+
+The distinction is concrete: an observed return of magnitude two leaves a score
+of two if its originally issued scale was one, but a score of one if that scale
+was two. Even when today's scales agree, different past denominators can
+produce different calibrated intervals. Input context length alone therefore
+does not identify the model's effective learned dependence.
+
+Neural conformal control, joint score--threshold adaptation, retrospective
+residual updates, and strongly adaptive calibration already address changing
+environments \citep{ncc,adapt,retro,saocp}. Training underspecification and
+initialization stability in neural volatility forecasting also have prior
+literature \citep{damour,harnet}. I will study the specific pathways through
+which a fixed neural scale model interacts with an issued-score archive:
+
+\textbf{RQ1:} How does the context-by-score-window interaction differ between
+shock entry and recovery, across fitted neural models and shock durations?
+
+\textbf{RQ2:} How do current-scale and historical score-denominator effects
+combine to produce the interaction, and how does their decomposition depend
+on the order of changes?
+
+\textbf{RQ3:} Which patterns persist across independent training datasets and
+initialization/sampling seeds, and what do validation response probes reveal
+about the limits of a simple memory-based explanation?
+
+\section{Approach and controlled design}
+I train a GRU and a causal dilated TCN from raw past-return features using
+Gaussian negative log-likelihood, Adam, and validation early stopping.
+A fixed zero center isolates scale adaptation. For current context $a$,
+archive context $b$, and score window $W$, the interval half-width is
+\[
+ h_t^{a,b,W}=s_t^a\,
+ Q_{1-\alpha}\!\left(\left\{|y_i|/s_i^b\right\}_{i=t-W}^{t-1}\right),
+ \qquad \alpha=0.1.
+\]
+Each scale uses only earlier observations; $Q$ selects past-score rank
+$k=\lceil(W+1)(1-\alpha)\rceil$. The full crossing uses
+$a,b\in\{16,64\}$ and $W\in\{32,128\}$: eight configurations per frozen fit.
+The ordinary configuration has $a=b$; crossed contexts are diagnostic
+interventions. Contexts share the same learned weights within each fit.
+An issued historical denominator remains tied to its own past prediction.
+
+Paired shock/no-shock trajectories share baseline innovations. I compare how
+the effect of changing context varies with score-window length, then subtract
+the same contrast on the matched no-shock path. Changing the current pathway
+first or the archive pathway first gives two exact decompositions of this
+interaction; I retain both. Their components are computational differences,
+not unique causal mediation percentages, and their sign is not an absolute
+model ranking.
+
+\clearpage
+\section{Evaluation, data, and validity}
+Controlled simulations vary pulse duration and magnitude, Gaussian versus
+heavy-tailed innovations, and latent stochastic volatility. True scales and
+event positions are used only to construct paths and evaluate phases; they are
+not forecasting inputs or tuning signals. Non-neural controls include EWMA and
+training-fitted GARCH. Calibration controls include rolling quantiles, adaptive
+feedback, and strongly adaptive online calibration \citep{saocp}.
+
+The main metric is interval score,
+$2h+(2/\alpha)(|y|-h)_+$; I also report coverage, width, and simulation-oracle
+diagnostics. Entry and recovery are evaluated separately so that wider
+intervals cannot count as improvement solely because coverage increases.
+Score-window changes also alter finite quantile ranks, so they are not a pure
+change in history length.
+
+The existing replication uses three independent training/validation datasets,
+five paired initialization/sampling seeds per dataset, and 128 paired test
+paths per noise family. Seed indices are shared across datasets, so this is a
+crossed design. Paired-path intervals conditional on saved models are reported
+separately from retraining sensitivity; neither model--path combinations nor
+shared duration prefixes are counted as independent replications.
+
+Only generated data and public ECB USD/JPY/GBP/CHF reference rates per EUR are
+used. The financial pilot uses daily log returns, trains through 2018,
+validates in 2019--2020, and treats the already-inspected period from 2021 as
+exploratory. Date-block comparisons retain cross-currency dependence.
+New methods require fresh, separately frozen evaluation. Restricted
+competition data are excluded.
+
+\section{Expected contribution, feasibility, and plan}
+The intended contribution is a reproducible mechanism study separating current
+neural scale response from archived score denominators, with phase-specific
+effects and explicit failure boundaries. Its value lies in explaining these
+pathways rather than simply applying two networks or selecting the best score.
+No new calibration algorithm or coverage theorem is assumed.
+
+Exploration and the three-dataset replication are already complete on local
+CPU. In the Gaussian reference case, the mean GRU-minus-TCN entry interaction
+contrast retains its sign in all three new training datasets, while recovery
+does not consistently replicate. The crossed entry sensitivity interval
+includes zero, limiting architecture claims. Validation lag gradients,
+older-history permutation, and pulse probes provide diagnostics; their
+predictive usefulness is not yet established.
+
+Following teaching-team feedback, I will consolidate the research question,
+literature positioning, and mechanism interpretation in October. November
+will focus on justified robustness checks and public financial analysis.
+December 1--10 will cover the four-page report, slides, and 8--10-minute video,
+ahead of the December 11 deadline. Deliverables include code, paired results,
+diagnostic figures, and a clear account of successful and failed replications.
+
+\begin{thebibliography}{6}
+\small
+\bibitem[Li and Rodr\'{i}guez(2025)]{ncc}
+R. Li and A. Rodr\'{i}guez. Neural Conformal Control for Time Series Forecasting.
+\emph{AAAI}, 39(17):18439--18447, 2025.
+\bibitem[Tumu et~al.(2026)]{adapt}
+R. Tumu, A. Singh, and R. Mangharam. AdaptNC: Adaptive Nonconformity Scores
+for Conformal Prediction under Distribution Shift. arXiv:2602.01629v2, 2026.
+\bibitem[Jun and Ohn(2026)]{retro}
+J. Jun and I. Ohn. Online conformal inference with retrospective adjustment
+for faster adaptation to distribution shift. \emph{Pattern Recognition},
+180:114406, 2026.
+\bibitem[Bhatnagar et~al.(2023)]{saocp}
+A. Bhatnagar, H. Wang, C. Xiong, and Y. Bai.
+Improved Online Conformal Prediction via Strongly Adaptive Online Learning.
+\emph{ICML}, PMLR 202:2337--2363, 2023.
+\bibitem[D'Amour et~al.(2022)]{damour}
+A. D'Amour et al. Underspecification Presents Challenges for Credibility in
+Modern Machine Learning. \emph{JMLR}, 23(226):1--61, 2022.
+\bibitem[Reisenhofer et~al.(2022)]{harnet}
+R. Reisenhofer, X. Bayer, and N. Hautsch.
+HARNet: A Convolutional Neural Network for Realized Volatility Forecasting.
+arXiv:2205.07719, 2022.
+\end{thebibliography}
+\end{document}

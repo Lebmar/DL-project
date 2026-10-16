@@ -1,0 +1,38 @@
+{
+  "status": "expanded proposal reviewed; not submitted",
+  "review_date": "2026-10-16",
+  "author": "Chengxuan YUAN",
+  "student_id": "50025581",
+  "pages_including_references": 2,
+  "numbered_sections": 4,
+  "research_questions": 3,
+  "references": 6,
+  "requirement_clarification": {
+    "source": "Instructor FAQ pasted by user on 2026-10-16; original email not separately fetched",
+    "proposal_minimum_meaningful_pages": 1,
+    "strict_one_page_maximum": false,
+    "extra_details_and_appendices_allowed": true,
+    "proposal_final_independently_graded": true,
+    "topic_or_method_may_evolve": true
+  },
+  "original_one_page_version_unchanged": true,
+  "preprint_style_unmodified": true,
+  "style_sha256": "c3fc2894e83d2517ca18b66741d6c595986d97957dc08ec08bb2125a7ec4555a",
+  "main_fonts_and_margins_unmodified": true,
+  "compilation": "pdfLaTeX TeX Live 2026; two passes",
+  "layout_or_citation_warnings": [],
+  "latest_two_pages_rendered_and_visually_reviewed": true,
+  "render_resolution_dpi": 130,
+  "artifacts": {
+    "proposal/project_proposal_expanded.tex": "e38e9c706447028f63bc32d5d97fd54452fe006c419d18f40079d541c15ef9ef",
+    "output/pdf/project_proposal_expanded.pdf": "345bf5e0acd94a7d124046e60c30fb4d7ca1906c33aef47a4a7993bd13f1ac36"
+  },
+  "research_evidence_sources": {
+    "outputs/stage3_analysis/manifest.json": "e0f1cc2a65c1df385070e7a79c46879543b074988e3479e30893c6c3d29b0221",
+    "research/stage3_results.md": "123b1611e0a1474057adfa48af5542f7cdd9371422a0ebcb9dab2c99ff694450",
+    "research/contribution_review.md": "e58344a8dc3feacf25a80ea2f7cba327cb64033f707fe1fdcc8e2c5dbe03cd78"
+  },
+  "scope": "Writing and review only; no new training or statistical analysis",
+  "preliminary_claims": "Reference Gaussian entry mean interaction direction consistent in three training panels; crossed sensitivity includes zero; recovery not consistently repeated",
+  "submission": "Student may submit this fuller version to Canvas; upload not performed"
+}

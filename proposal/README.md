@@ -1,5 +1,13 @@
 # Proposal draft
 
+## Updated submission option, 16 October 2026
+
+The instructor FAQ supplied by the student clarifies that one page is a minimum, not a maximum; meaningful extra content and appendices are permitted. The expanded two-page proposal, including references, is now available as [the recommended fuller version](../output/pdf/project_proposal_expanded.pdf), with [editable source](project_proposal_expanded.tex). It adds an intuitive explanation, three research questions, the crossed design, uncertainty scope, preliminary feasibility, and a completion plan. Both pages were rendered and visually checked. It is a proposal, not a claim that all research goals or novelty have already been established.
+
+The original one-page version below remains unchanged as an alternative. The 11 October compliance review and its manifest preserve the earlier review; their one-page-limit interpretation is superseded by the 16 October FAQ. The official preprint format remains in use. Neither version has been submitted to Canvas by the assistant.
+
+Build the expanded version from this directory with two pdfLaTeX passes, using project_proposal_expanded.tex and the same output directory as below. Provenance and checks are in expanded_review_manifest.json.
+
 The reviewed PDF is `../output/pdf/project_proposal.pdf`, one page including references. The student supplied the author name **Chengxuan YUAN** and student ID **50025581**, which now appear in the PDF. It has not been uploaded to a course submission system; compliance with the stated proposal requirements does not certify novelty or an A+ grade. The guideline does not explicitly require a full-name/ID field; these fields identify the student.
 
 The original `neurips_2026.sty` is unmodified. It was downloaded from the [official NeurIPS 2026 formatting archive](https://media.neurips.cc/Conferences/NeurIPS2026/Formatting_Instructions_For_NeurIPS_2026.zip), linked by the [official call for papers](https://neurips.cc/Conferences/2026/CallForPapers). We use the `preprint` option, numbered sections and standard margins/fonts. No layout squeezing is used.
