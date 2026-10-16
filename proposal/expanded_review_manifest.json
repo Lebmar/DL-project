@@ -1,10 +1,9 @@
 {
-  "status": "expanded proposal reviewed; not submitted",
+  "status": "one-page core proposal with supporting appendix reviewed; not submitted",
   "review_date": "2026-10-16",
   "author": "Chengxuan YUAN",
   "student_id": "50025581",
   "pages_including_references": 2,
-  "numbered_sections": 4,
   "research_questions": 3,
   "references": 6,
   "requirement_clarification": {
@@ -24,8 +23,8 @@
   "latest_two_pages_rendered_and_visually_reviewed": true,
   "render_resolution_dpi": 130,
   "artifacts": {
-    "proposal/project_proposal_expanded.tex": "e38e9c706447028f63bc32d5d97fd54452fe006c419d18f40079d541c15ef9ef",
-    "output/pdf/project_proposal_expanded.pdf": "345bf5e0acd94a7d124046e60c30fb4d7ca1906c33aef47a4a7993bd13f1ac36"
+    "proposal/project_proposal_expanded.tex": "fcffb06e002ff7d12a595b03535f180683e04e32bfa174a8611751f8ab11adac",
+    "output/pdf/project_proposal_expanded.pdf": "a44e5af49045eb1664184a55b0dabd38b0bf9ec706a572782059458aa27ab871"
   },
   "research_evidence_sources": {
     "outputs/stage3_analysis/manifest.json": "e0f1cc2a65c1df385070e7a79c46879543b074988e3479e30893c6c3d29b0221",
@@ -34,5 +33,29 @@
   },
   "scope": "Writing and review only; no new training or statistical analysis",
   "preliminary_claims": "Reference Gaussian entry mean interaction direction consistent in three training panels; crossed sensitivity includes zero; recovery not consistently repeated",
-  "submission": "Student may submit this fuller version to Canvas; upload not performed"
+  "submission": "Student may submit this fuller version to Canvas; upload not performed",
+  "core_proposal_pages": 1,
+  "appendix_and_reference_pages": [
+    2
+  ],
+  "main_numbered_sections": 3,
+  "appendix_sections": [
+    "A: Supporting experimental design",
+    "B: Preliminary feasibility and remaining analysis"
+  ],
+  "references_page": 2,
+  "first_page_independently_complete": true,
+  "structure_choice": "Student-selected one-page core plus appendix; not an asserted mandatory FAQ rule",
+  "editorial_revisions": [
+    {
+      "date": "2026-10-16",
+      "previous_commit": "991f9cb4c7d881652a9cefed1fc153bb0e62951a",
+      "previous_manifest_sha256": "b2ec9c02547ee156747ac976194d08e27d170239acdfc3167cd236cecb45b287",
+      "previous_artifacts": {
+        "proposal/project_proposal_expanded.tex": "e38e9c706447028f63bc32d5d97fd54452fe006c419d18f40079d541c15ef9ef",
+        "output/pdf/project_proposal_expanded.pdf": "345bf5e0acd94a7d124046e60c30fb4d7ca1906c33aef47a4a7993bd13f1ac36"
+      },
+      "reason": "User selected one-page core proposal plus supporting appendix; reorganized writing only, no experiment or statistical change"
+    }
+  ]
 }

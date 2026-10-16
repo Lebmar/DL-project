@@ -12,112 +12,104 @@
 \maketitle
 
 \section{Motivation and research questions}
-Financial prediction intervals should expand when volatility rises and contract
-after a temporary shock. Overall coverage can conceal slow adaptation during
-these transitions. A neural forecaster estimates the current scale from past
-returns, while an online calibrator uses historical normalized errors to adjust
-interval width. These two uses of history may reinforce or offset each other.
+Financial intervals should expand when volatility rises and contract after a
+temporary shock. A neural forecaster estimates today's scale from past returns;
+an online calibrator adjusts it using past errors divided by their originally
+issued scales. These two histories may reinforce or offset each other.
+Neural control, joint score--threshold adaptation, and retrospective updates
+already address adaptation \citep{ncc,adapt,retro}. I ask:
+\textbf{how do current neural scale response and historical score memory
+jointly affect calibration at shock entry and recovery?}
+The study examines (i) context-by-window interactions across phases and shock
+durations, (ii) their current/archive components under both decomposition
+orders, and (iii) persistence across training datasets and random seeds.
 
-The distinction is concrete: an observed return of magnitude two leaves a score
-of two if its originally issued scale was one, but a score of one if that scale
-was two. Even when today's scales agree, different past denominators can
-produce different calibrated intervals. Input context length alone therefore
-does not identify the model's effective learned dependence.
-
-Neural conformal control, joint score--threshold adaptation, retrospective
-residual updates, and strongly adaptive calibration already address changing
-environments \citep{ncc,adapt,retro,saocp}. Training underspecification and
-initialization stability in neural volatility forecasting also have prior
-literature \citep{damour,harnet}. I will study the specific pathways through
-which a fixed neural scale model interacts with an issued-score archive:
-
-\textbf{RQ1:} How does the context-by-score-window interaction differ between
-shock entry and recovery, across fitted neural models and shock durations?
-
-\textbf{RQ2:} How do current-scale and historical score-denominator effects
-combine to produce the interaction, and how does their decomposition depend
-on the order of changes?
-
-\textbf{RQ3:} Which patterns persist across independent training datasets and
-initialization/sampling seeds, and what do validation response probes reveal
-about the limits of a simple memory-based explanation?
-
-\section{Approach and controlled design}
-I train a GRU and a causal dilated TCN from raw past-return features using
-Gaussian negative log-likelihood, Adam, and validation early stopping.
-A fixed zero center isolates scale adaptation. For current context $a$,
-archive context $b$, and score window $W$, the interval half-width is
+\section{Approach, data, and evaluation}
+GRU and causal dilated TCN models learn scales from raw past returns via
+Gaussian negative log-likelihood and validation early stopping. A zero center
+isolates uncertainty adaptation. For current context $a$, archive context $b$,
+and score window $W$, the half-width is
 \[
  h_t^{a,b,W}=s_t^a\,
  Q_{1-\alpha}\!\left(\left\{|y_i|/s_i^b\right\}_{i=t-W}^{t-1}\right),
  \qquad \alpha=0.1.
 \]
-Each scale uses only earlier observations; $Q$ selects past-score rank
-$k=\lceil(W+1)(1-\alpha)\rceil$. The full crossing uses
-$a,b\in\{16,64\}$ and $W\in\{32,128\}$: eight configurations per frozen fit.
-The ordinary configuration has $a=b$; crossed contexts are diagnostic
-interventions. Contexts share the same learned weights within each fit.
-An issued historical denominator remains tied to its own past prediction.
+Cross $a,b\in\{16,64\}$ and $W\in\{32,128\}$: eight configurations sharing
+weights within each fit. The diagonal $a=b$ is ordinary calibration; crossed
+contexts diagnose pathways. All predictions use only past observations.
 
-Paired shock/no-shock trajectories share baseline innovations. I compare how
-the effect of changing context varies with score-window length, then subtract
-the same contrast on the matched no-shock path. Changing the current pathway
-first or the archive pathway first gives two exact decompositions of this
-interaction; I retain both. Their components are computational differences,
-not unique causal mediation percentages, and their sign is not an absolute
-model ranking.
+Paired shock/no-shock simulations share baseline innovations and vary duration,
+magnitude, tails, and stochastic volatility. I measure the context-by-window
+interaction after subtracting the matched no-shock contrast, retaining both
+current/archive decomposition orders. Controls include EWMA, fitted GARCH, and
+rolling/adaptive/strongly adaptive calibration \citep{saocp}. Entry and recovery
+are assessed separately using interval score, coverage, width, and simulated
+oracle diagnostics. Independent training datasets and paired seeds distinguish
+fixed-model path variation from retraining sensitivity.
 
-\clearpage
-\section{Evaluation, data, and validity}
-Controlled simulations vary pulse duration and magnitude, Gaussian versus
-heavy-tailed innovations, and latent stochastic volatility. True scales and
-event positions are used only to construct paths and evaluate phases; they are
-not forecasting inputs or tuning signals. Non-neural controls include EWMA and
-training-fitted GARCH. Calibration controls include rolling quantiles, adaptive
-feedback, and strongly adaptive online calibration \citep{saocp}.
-
-The main metric is interval score,
-$2h+(2/\alpha)(|y|-h)_+$; I also report coverage, width, and simulation-oracle
-diagnostics. Entry and recovery are evaluated separately so that wider
-intervals cannot count as improvement solely because coverage increases.
-Score-window changes also alter finite quantile ranks, so they are not a pure
-change in history length.
-
-The existing replication uses three independent training/validation datasets,
-five paired initialization/sampling seeds per dataset, and 128 paired test
-paths per noise family. Seed indices are shared across datasets, so this is a
-crossed design. Paired-path intervals conditional on saved models are reported
-separately from retraining sensitivity; neither model--path combinations nor
-shared duration prefixes are counted as independent replications.
-
-Only generated data and public ECB USD/JPY/GBP/CHF reference rates per EUR are
-used. The financial pilot uses daily log returns, trains through 2018,
-validates in 2019--2020, and treats the already-inspected period from 2021 as
-exploratory. Date-block comparisons retain cross-currency dependence.
-New methods require fresh, separately frozen evaluation. Restricted
-competition data are excluded.
+Only generated data and public ECB daily log returns are used. The financial
+pilot trains through 2018, validates in 2019--2020, and treats the
+already-inspected period from 2021 as exploratory. Hyperparameters use
+validation data; new methods require fresh, frozen evaluation.
 
 \section{Expected contribution, feasibility, and plan}
-The intended contribution is a reproducible mechanism study separating current
-neural scale response from archived score denominators, with phase-specific
-effects and explicit failure boundaries. Its value lies in explaining these
-pathways rather than simply applying two networks or selecting the best score.
-No new calibration algorithm or coverage theorem is assumed.
+The intended contribution is a phase-specific mechanism explanation separating
+current neural scale response from archived score denominators, with
+reproducible effects and explicit failure boundaries. Exploration and a
+three-dataset replication establish local computational feasibility with mixed
+results. Following teaching-team feedback, October will consolidate the
+question, diagnostics, and literature positioning; November will cover
+justified robustness and public financial analysis. I will finalize the report,
+slides, and video before December 11. Supporting design and preliminary
+observations follow in the appendix.
 
-Exploration and the three-dataset replication are already complete on local
-CPU. In the Gaussian reference case, the mean GRU-minus-TCN entry interaction
-contrast retains its sign in all three new training datasets, while recovery
-does not consistently replicate. The crossed entry sensitivity interval
-includes zero, limiting architecture claims. Validation lag gradients,
-older-history permutation, and pulse probes provide diagnostics; their
-predictive usefulness is not yet established.
+\clearpage
+\appendix
+\renewcommand{\thesection}{Appendix~\Alph{section}}
+\section{Supporting experimental design}
+An observed return of magnitude two leaves a score of two if its originally
+issued scale was one, but a score of one if that scale was two. Thus equal
+current scales need not give equal calibrated intervals. Input length is not
+effective learned memory. For each frozen fit, historical denominators remain
+tied to their own causal predictions; the quantile uses rank
+$k=\lceil(W+1)(1-\alpha)\rceil$. Window changes also alter finite ranks, so they
+are not a pure history-length intervention.
 
-Following teaching-team feedback, I will consolidate the research question,
-literature positioning, and mechanism interpretation in October. November
-will focus on justified robustness checks and public financial analysis.
-December 1--10 will cover the four-page report, slides, and 8--10-minute video,
-ahead of the December 11 deadline. Deliverables include code, paired results,
-diagnostic figures, and a clear account of successful and failed replications.
+For a phase, let $E(a,b,W)$ denote event-minus-control mean interval score and
+define $D(a,b)=E(a,b,128)-E(a,b,32)$. The diagonal interaction
+$J=D(64,64)-D(16,16)$ equals either
+\[
+\begin{aligned}
+ &[D(64,64)-D(16,64)]+[D(16,64)-D(16,16)],\\
+ \text{or }\
+ &[D(64,16)-D(16,16)]+[D(64,64)-D(64,16)].
+\end{aligned}
+\]
+These current/archive components are computational differences, not unique
+causal mediation percentages. Their sign is not an absolute model ranking.
+Interval score is $2h+(2/\alpha)(|y|-h)_+$; coverage and width accompany it.
+Simulated true scales and event positions enter construction/evaluation only.
+The ECB pilot uses USD/JPY/GBP/CHF reference rates per EUR; date-block
+comparisons retain cross-currency dependence. Restricted data are excluded.
+
+\section{Preliminary feasibility and remaining analysis}
+The completed replication uses three independent training/validation datasets,
+five paired initialization/sampling seeds per dataset, two architectures, and
+128 paired test paths per noise family. Seed indices are shared across datasets;
+this crossed structure is preserved. Fixed-model paired-path intervals are
+separate from retraining sensitivity. Model--path combinations and shared
+duration prefixes are not counted as independent replications.
+
+In the Gaussian reference case, the mean GRU-minus-TCN entry interaction
+contrast retains its sign in all three new datasets, but its crossed sensitivity
+interval includes zero. Recovery does not consistently replicate.
+Validation gradients, older-history permutation, and pulse probes provide
+diagnostics whose predictive usefulness remains unestablished.
+Training variability and neural volatility stability have prior literature
+\citep{damour,harnet}; the intended increment is this specific pathway study,
+not a new calibration algorithm or coverage theorem.
+Deliverables include code, paired results, diagnostic figures, and successful
+and failed replication conditions.
 
 \begin{thebibliography}{6}
 \small
