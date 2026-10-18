@@ -45,9 +45,10 @@
     }
   },
   "checks_passed": true,
-  "script_sha256": "a3e05906e18b375b96fd6a4cf7904608748bdf9a959b1ff3205bd22c11af5dc5",
+  "script_sha256": "1e0518e6e05655e6cc5c72eb358101e14059413fc0cb1cab8a8b211d988c6a59",
   "artifact_sha256": {
-    "summary.csv": "3d3cc1487830ce7119e6bd991084fe02fb4d6cefad7387b962112b6379e642de",
+    "summary.csv": "88c532faa187b70ac2af3880716b84d204a2504c42ad325d251d18e1d25082af",
     "trajectories.npz": "ea6918713f5cb8de82a53476fe65c6b2fa5fe9082ae4c5ea98803987a39ce44c"
-  }
+  },
+  "serialization_note": "CSV converted from CRLF to LF; fresh-directory replay verified identical numeric content and byte-identical trajectories. Prior CSV SHA256: 3d3cc1487830ce7119e6bd991084fe02fb4d6cefad7387b962112b6379e642de"
 }

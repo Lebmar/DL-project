@@ -143,7 +143,7 @@ def main():
     np.testing.assert_allclose(numerical_log_risk_coefficient, log_risk_coefficient, rtol=1e-6, atol=1e-6)
 
     with (out / "summary.csv").open("w", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=list(rows[0]))
+        writer = csv.DictWriter(handle, fieldnames=list(rows[0]), lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
     np.savez_compressed(out / "trajectories.npz", **arrays)
