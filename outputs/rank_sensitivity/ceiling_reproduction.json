@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "component_path_rows": 92160,
+  "cell_rows": 1920,
+  "component_path_max_abs_error": 4.440892098500626e-16,
+  "all_cell_metric_max_abs_error": 1.7763568394002505e-15,
+  "reference_hashes": {
+    "paired_component_effects.csv.gz": "f46eb20576216226cb6facbd7b599b12014c239a719dca8043aaf5fb25b7039d",
+    "crossed_performance_by_seed.csv": "4d817d468e7358523e4416d8d5b573b780e2be820c9d1dd6fcb99d1d90fbeee1"
+  },
+  "absolute_tolerance": 1e-10
+}

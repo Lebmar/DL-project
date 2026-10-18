@@ -1,0 +1,220 @@
+{
+  "status": "complete",
+  "design_status": "post-hoc sensitivity on already-viewed Stage3 paths",
+  "new_blind_test": false,
+  "fitting_or_selection": "none",
+  "primary_stage3_analysis_replaced": false,
+  "model_exclusions": "none",
+  "protocol_sha256": "18c108f62f23c266c03a5c325c1f79db6dad42466766a9ad3dbd0fd7ea5870bc",
+  "source_sha256": "7ac20014316c88b540ac707b64d8a6881b0b1aef394d0bb681d84973f5c73543",
+  "analysis_source_sha256": "c6c21adc4d4e2d64407d3dd2ade4deae1ced0ae2adf7845c66b98e94dd44f4ee",
+  "protocol_document_sha256": "2c2b4cebae645c68355b3efaacc04bc0ea5ce9c7b1c3c3efac8c3acf7d9b2993",
+  "code_commit_before_execution": "df8db3ea91eed4f1ca90c5cfadc2f68d45e923ac",
+  "stage3_evaluation_manifest_sha256": "a97a2ec80c232e3064b310dfef976d2e2a8b929156a81f75432344c9b8e9bfd2",
+  "training_manifest_sha256": "bfc3c80c60d7ef3d7f48508c37615a1acf8531db94f85e1560664ef280d5ed05",
+  "self_check": {
+    "passed": true,
+    "adjacent_ranks": {
+      "32": [
+        29,
+        30,
+        0.7
+      ],
+      "128": [
+        116,
+        117,
+        0.1
+      ]
+    },
+    "candidate_layout_and_scalar_component_max_error": 4.440892098500626e-16,
+    "scalar_quantile_max_error": 0.0,
+    "ceiling_matches_frozen_quantile_bitwise": true,
+    "current_and_future_score_exclusion": true,
+    "ideal_rank_coverage_exact_enumeration": true,
+    "metric_expectation_commutes_with_phase_mean": true,
+    "nonlinear_counterexample_expected_score": 6.1000000000000005,
+    "nonlinear_counterexample_score_at_expected_width": 3.0999999999999996,
+    "both_decomposition_routes": true
+  },
+  "rank_specs": {
+    "32": [
+      29,
+      30,
+      0.7
+    ],
+    "128": [
+      116,
+      117,
+      0.1
+    ]
+  },
+  "candidate_axes": [
+    "model",
+    "family",
+    "world",
+    "current_context",
+    "archive_context",
+    "window",
+    "rank_choice",
+    "phase",
+    "path",
+    "metric"
+  ],
+  "randomization": "exact expectation over adjacent-rank interval metrics; no rank Monte Carlo",
+  "coverage_deficit_definition": "expectation of per-candidate positive oracle deficit, not positive part after averaging probability",
+  "test_array_sha256": {
+    "gaussian": {
+      "observations": "4de7ccc8c2b28c1bfb391ebc8e2943634e224ec0725fc43791df9a0482ed7eda",
+      "true_scale": "cf617e44550407c5d1ecf2d2d2a002aa690b11cfca1be7b0a570613dc240c074"
+    },
+    "student_t5": {
+      "observations": "df283892dbc219d0cdef42c588f676201bd6992c0a38c7e79b3f72227f301c9d",
+      "true_scale": "cf617e44550407c5d1ecf2d2d2a002aa690b11cfca1be7b0a570613dc240c074"
+    }
+  },
+  "event_array_sha256": {
+    "gaussian": {
+      "observations": "4cf3e36570de4fd5e1590da8d1f89983c3e798d880cba3497ba9c912ea2a74dc",
+      "true_scale": "14b37c5001fa311134bf80b21453890d770720690a7f47e111b369378361bc7a"
+    },
+    "student_t5": {
+      "observations": "d8138b236653915d5ecac8a215558f0024429b9d6b070d20c1d1340ce7352894",
+      "true_scale": "14b37c5001fa311134bf80b21453890d770720690a7f47e111b369378361bc7a"
+    }
+  },
+  "validation_fast_inference_checks": [
+    {
+      "panel": 1,
+      "seed": 4101,
+      "maximum_absolute_error": 2.384185791015625e-06,
+      "used": true
+    },
+    {
+      "panel": 1,
+      "seed": 4102,
+      "maximum_absolute_error": 9.5367431640625e-07,
+      "used": true
+    },
+    {
+      "panel": 1,
+      "seed": 4103,
+      "maximum_absolute_error": 9.5367431640625e-07,
+      "used": true
+    },
+    {
+      "panel": 1,
+      "seed": 4104,
+      "maximum_absolute_error": 9.5367431640625e-07,
+      "used": true
+    },
+    {
+      "panel": 1,
+      "seed": 4105,
+      "maximum_absolute_error": 9.5367431640625e-07,
+      "used": true
+    },
+    {
+      "panel": 2,
+      "seed": 4101,
+      "maximum_absolute_error": 7.152557373046875e-07,
+      "used": true
+    },
+    {
+      "panel": 2,
+      "seed": 4102,
+      "maximum_absolute_error": 7.152557373046875e-07,
+      "used": true
+    },
+    {
+      "panel": 2,
+      "seed": 4103,
+      "maximum_absolute_error": 7.152557373046875e-07,
+      "used": true
+    },
+    {
+      "panel": 2,
+      "seed": 4104,
+      "maximum_absolute_error": 9.5367431640625e-07,
+      "used": true
+    },
+    {
+      "panel": 2,
+      "seed": 4105,
+      "maximum_absolute_error": 4.76837158203125e-07,
+      "used": true
+    },
+    {
+      "panel": 3,
+      "seed": 4101,
+      "maximum_absolute_error": 2.86102294921875e-06,
+      "used": true
+    },
+    {
+      "panel": 3,
+      "seed": 4102,
+      "maximum_absolute_error": 1.1920928955078125e-06,
+      "used": true
+    },
+    {
+      "panel": 3,
+      "seed": 4103,
+      "maximum_absolute_error": 7.152557373046875e-07,
+      "used": true
+    },
+    {
+      "panel": 3,
+      "seed": 4104,
+      "maximum_absolute_error": 7.152557373046875e-07,
+      "used": true
+    },
+    {
+      "panel": 3,
+      "seed": 4105,
+      "maximum_absolute_error": 4.76837158203125e-07,
+      "used": true
+    }
+  ],
+  "models_evaluated": 30,
+  "cases": 2,
+  "paths_per_family": 128,
+  "candidate_shape": [
+    30,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    128,
+    5
+  ],
+  "elapsed_seconds": 442.8730847835541,
+  "rows": {
+    "cell_performance_by_seed.csv": 3840,
+    "paired_component_effects.csv.gz": 184320,
+    "negative_controls.csv": 960
+  },
+  "ceiling_reproduction": {
+    "passed": true,
+    "component_path_rows": 92160,
+    "cell_rows": 1920,
+    "component_path_max_abs_error": 4.440892098500626e-16,
+    "all_cell_metric_max_abs_error": 1.7763568394002505e-15,
+    "reference_hashes": {
+      "paired_component_effects.csv.gz": "f46eb20576216226cb6facbd7b599b12014c239a719dca8043aaf5fb25b7039d",
+      "crossed_performance_by_seed.csv": "4d817d468e7358523e4416d8d5b573b780e2be820c9d1dd6fcb99d1d90fbeee1"
+    },
+    "absolute_tolerance": 1e-10
+  },
+  "negative_control_count": 960,
+  "maximum_prefix_error": 0.0,
+  "maximum_post_bound_error": 0.0,
+  "artifacts": {
+    "cell_performance_by_seed.csv": "3da73201aa291e378df26b1e4e6fd4819b55aee9f9a9f4eb21197a1b25914237",
+    "paired_component_effects.csv.gz": "96edeca6f17b5d30bbb9fef83ae9128bfd51ccb38e6ac54d08af7984ab81204c",
+    "negative_controls.csv": "5c11a198928087a7f729715e1e3a4d4705f73902d002e325da209cc601645b51",
+    "rank_candidate_phase_metrics.npz": "592ad94663515f65375585e257eacfad6a73cf54a2fa34b62523660c18ce6768",
+    "ceiling_reproduction.json": "2ac3f73bd5ecc67bc807727d58202f63cd4e40fdefdf2e957b63f351419f9c5d"
+  }
+}

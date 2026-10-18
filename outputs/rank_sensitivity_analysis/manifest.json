@@ -1,0 +1,64 @@
+{
+  "status": "complete",
+  "design_status": "post-hoc sensitivity on already-viewed Stage3 paths",
+  "new_blind_test": false,
+  "source_sha256": "c6c21adc4d4e2d64407d3dd2ade4deae1ced0ae2adf7845c66b98e94dd44f4ee",
+  "protocol_sha256": "18c108f62f23c266c03a5c325c1f79db6dad42466766a9ad3dbd0fd7ea5870bc",
+  "evaluation_manifest_sha256": "f508b7984a2b6ae08fc7803edda37d302378e0e6750a3c9482a86f5bb0d26b21",
+  "self_check": {
+    "passed": true,
+    "fixed_fit_bootstrap_scalar_loop_error": 2.7755575615628914e-16,
+    "crossed_shared_seed_bootstrap_scalar_loop_error": 8.881784197001252e-16,
+    "paired_rule_by_architecture_change_sign": -23,
+    "missing_duplicate_and_offgrid_rejected": true
+  },
+  "checks": {
+    "component_reconstruction_max_error": 4.440892098500626e-16,
+    "cell_reconstruction_max_error": 1.7763568394002505e-15,
+    "ceiling_reference_reproduction": {
+      "passed": true,
+      "component_path_rows": 92160,
+      "cell_rows": 1920,
+      "component_path_max_abs_error": 0.0,
+      "all_cell_metric_max_abs_error": 0.0,
+      "reference_hashes": {
+        "paired_component_effects.csv.gz": "f46eb20576216226cb6facbd7b599b12014c239a719dca8043aaf5fb25b7039d",
+        "crossed_performance_by_seed.csv": "4d817d468e7358523e4416d8d5b573b780e2be820c9d1dd6fcb99d1d90fbeee1"
+      },
+      "absolute_tolerance": 1e-10
+    }
+  },
+  "bootstrap": {
+    "bootstrap_replicates": 4000,
+    "bootstrap_seed": 2026101801,
+    "reference_interval_level": 0.975,
+    "descriptive_interval_level": 0.95,
+    "reference": "Gaussian D128 A3 interval-score totalJ GRU-minus-TCN at entry and recovery64; original rule, randomized rule, paired rule change",
+    "all_outputs": "both families, both phases, all five metrics, both architectures and paired architecture contrast, six components, both rules and paired rule change",
+    "fixed_fit_path": "Average all 3 panels x5 paired seeds before common path resampling",
+    "crossed_sensitivity": "Resample3 panels,5 shared seed indices,128 common paths; same seed draw broadcast to every sampled panel, all architectures/rules share draws",
+    "pairing": "Compute all architecture and rule changes within the same bootstrap replicate",
+    "multiplicity": "97.5% reference intervals are a two-phase approximation within each rule/change series, not joint protection across rank rules or all analyses; all nonreference95% descriptive intervals unadjusted; exercise entirely post-hoc",
+    "no_new_threshold": "No claim based on a selected sign, significance threshold, percentage attenuation, or winning configuration; report all changes and failures"
+  },
+  "rows": {
+    "summary": 1080,
+    "panel_summary": 3240,
+    "individual_fits": 16200,
+    "leave_one_panel_out": 3240,
+    "reference_architecture_contrasts": 6,
+    "cell_performance_summary": 256
+  },
+  "elapsed_seconds": 1.9059598445892334,
+  "artifacts": {
+    "cell_performance_summary.csv": "05457826222a1154549bf52a58116e4e6d7c4c97e40f40099ced0819314e57c4",
+    "individual_fits.csv": "7002462359398efa649e708f6b182fd3032034172a14501c35e3983fea26fc33",
+    "leave_one_panel_out.csv": "f77c255c8821308a5b6c070568308cd6c2e72b56ccf819737530d41f71c8d30e",
+    "panel_summary.csv": "b17096898a0b45cf0a3e9628fb28b0b941cb2c66c3bf250166d1c234279a1751",
+    "rank_rule_architecture_contrasts.png": "3cb0c6397ef950819339982a8b431f016e24f2f6e42055740f532ae2fbdd4fb5",
+    "rank_rule_component_contrasts.png": "547dafe7cd9bbfd162048bbe193755ba4d3ecc19537f38d46102ac1012fb8966",
+    "reference_architecture_contrasts.csv": "e2f135ab0cd306c3b89d9b9a02c2513b7e598fdbd46548954a04d0bb101d232d",
+    "summary.csv": "f83591f6b7369f7bff8ce498781e8fd2159fa9a788cdcb3638fd3582fd8433ae",
+    "summary.md": "00e0a1751dda189833537e78d49b82e81ec720278d9ce51083d134db36ea0667"
+  }
+}
