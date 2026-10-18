@@ -1,0 +1,241 @@
+{
+  "status": "complete",
+  "date": "2026-10-11",
+  "python": "3.12.14",
+  "numpy": "2.5.4",
+  "torch": "2.14.1",
+  "protocol_source": "/Users/lebmar/Documents/ChatGPT/DL-project/outputs/neural_compatibility_training/panel2/input_protocol.json",
+  "protocol_sha256": "096fcb195bac6d240c9da99deec4e9de39d15586cd57df323e0bacb504c5a3b3",
+  "training_config": {
+    "architectures": [
+      "gru",
+      "tcn"
+    ],
+    "model_seeds": [
+      5201,
+      5202
+    ],
+    "contexts": [
+      16,
+      64
+    ],
+    "model": {
+      "gru_hidden": 24,
+      "tcn_channels": 12,
+      "tcn_kernels": [
+        4,
+        3,
+        3,
+        3,
+        3
+      ],
+      "tcn_dilations": [
+        1,
+        2,
+        4,
+        8,
+        16
+      ],
+      "tcn_activation": "relu",
+      "log_scale_bounds": [
+        -3.0,
+        3.0
+      ]
+    },
+    "training_data": {
+      "seed": 715159,
+      "paths": 256,
+      "length": 1024
+    },
+    "validation_data": {
+      "seed": 715160,
+      "paths": 64,
+      "length": 1024,
+      "target_pairs": 8192,
+      "pair_seed": 715161
+    },
+    "generator": {
+      "switch_probability": 0.018,
+      "temporary_probability": 0.015,
+      "persistent_scale_min": 0.5,
+      "persistent_scale_max": 3.0,
+      "temporary_multiplier": 3.0
+    },
+    "optimization": {
+      "batch_size": 128,
+      "batches_per_epoch": 32,
+      "max_epochs": 60,
+      "min_epochs": 20,
+      "patience": 8,
+      "min_delta": 0.0001,
+      "learning_rate": 0.002,
+      "gradient_clip_norm": 5.0,
+      "validation_batch_size": 512
+    },
+    "execution": {
+      "device": "cpu",
+      "torch_threads": 4
+    }
+  },
+  "source_sha256": {
+    "train_stage2.py": "d93d1ecbb6ce30ccba88c2566be2632d769db6c2968717c3f6c36f24fbc49850",
+    "stage2_models.py": "c93e127dd43a3f9f70fed3fbd4c63bed8fa0c74b261c33dbd0a327889bd10f2e"
+  },
+  "data_sha256": {
+    "train": "bdb700f7f86ee66aadf0e0366a02475485bf7cb9ce09c16dabbe616de9c1afd3",
+    "validation": "10bcccc579becefce90545df83f47adf8939f973385424d12ba8d039f9e0832c",
+    "validation_pair_paths": "759c08f2b06f956fb1fc7879f845eba3fcfd3da98768684025b6acbaf3d0911d",
+    "validation_pair_targets": "1c94e39730eb9cbc8d9d15e11875d2009e71d0844b6758e97b9a1376781b32b6"
+  },
+  "unit_scale_validation_nll_without_constant": 1.3936254978179932,
+  "selection": "minimum mean validation NLL across contexts16/64, no test data loaded",
+  "early_stop": "min_delta affects patience only; counter starts at epoch1, stopping enabled after min_epochs",
+  "matching": "independent NumPy sampler reset to model seed for each architecture; identical minibatch prefixes",
+  "models": [
+    {
+      "architecture": "gru",
+      "model_seed": 5201,
+      "epochs_executed": 23,
+      "selected_epoch": 23,
+      "best_validation_mean_nll": 0.837051572278142,
+      "selected_validation_nll_by_context": {
+        "16": 0.8376311473548412,
+        "64": 0.8364719972014427
+      },
+      "checkpoint": "outputs/neural_compatibility_training/panel2/checkpoints/gru_seed_5201.pt",
+      "checkpoint_sha256": "6d9eaec1599abe00b9eb30add020b1a4e1d5f856f71df5985ce8f05efd15d3f6",
+      "parameters": 2041,
+      "causal_audit_before": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 1.4901161193847656e-08,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 2041,
+        "structural_receptive_field": null
+      },
+      "causal_audit_selected_checkpoint": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 0.0,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 2041,
+        "structural_receptive_field": null
+      },
+      "wall_seconds": 6.407693862915039,
+      "stop_reason": "validation_patience"
+    },
+    {
+      "architecture": "tcn",
+      "model_seed": 5201,
+      "epochs_executed": 28,
+      "selected_epoch": 20,
+      "best_validation_mean_nll": 0.8376070447266102,
+      "selected_validation_nll_by_context": {
+        "16": 0.839820422232151,
+        "64": 0.8353936672210693
+      },
+      "checkpoint": "outputs/neural_compatibility_training/panel2/checkpoints/tcn_seed_5201.pt",
+      "checkpoint_sha256": "b64612da69c474213f56156996f641bb6f8ed270db99388ededf1454e5f78d95",
+      "parameters": 1897,
+      "causal_audit_before": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 3.725290298461914e-09,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 1897,
+        "structural_receptive_field": 64
+      },
+      "causal_audit_selected_checkpoint": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 2.9802322387695312e-08,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 1897,
+        "structural_receptive_field": 64
+      },
+      "wall_seconds": 51.084343910217285,
+      "stop_reason": "validation_patience"
+    },
+    {
+      "architecture": "gru",
+      "model_seed": 5202,
+      "epochs_executed": 58,
+      "selected_epoch": 50,
+      "best_validation_mean_nll": 0.8322214260697365,
+      "selected_validation_nll_by_context": {
+        "16": 0.8330409601330757,
+        "64": 0.8314018920063972
+      },
+      "checkpoint": "outputs/neural_compatibility_training/panel2/checkpoints/gru_seed_5202.pt",
+      "checkpoint_sha256": "9387a46655e9c5a908fb84823fa05b71059c7d1dd48d47ec7cdc7ae48275be8b",
+      "parameters": 2041,
+      "causal_audit_before": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 1.4901161193847656e-08,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 2041,
+        "structural_receptive_field": null
+      },
+      "causal_audit_selected_checkpoint": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 1.4901161193847656e-08,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 2041,
+        "structural_receptive_field": null
+      },
+      "wall_seconds": 13.090171098709106,
+      "stop_reason": "validation_patience"
+    },
+    {
+      "architecture": "tcn",
+      "model_seed": 5202,
+      "epochs_executed": 35,
+      "selected_epoch": 27,
+      "best_validation_mean_nll": 0.8363513667136431,
+      "selected_validation_nll_by_context": {
+        "16": 0.8371633626520634,
+        "64": 0.8355393707752228
+      },
+      "checkpoint": "outputs/neural_compatibility_training/panel2/checkpoints/tcn_seed_5202.pt",
+      "checkpoint_sha256": "3a50e775f539014adb5a60981c32474f91c567822ada6f0db01680f29572603a",
+      "parameters": 1897,
+      "causal_audit_before": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 1.4901161193847656e-08,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 1897,
+        "structural_receptive_field": 64
+      },
+      "causal_audit_selected_checkpoint": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 5.960464477539063e-08,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 1897,
+        "structural_receptive_field": 64
+      },
+      "wall_seconds": 57.41567087173462,
+      "stop_reason": "validation_patience"
+    }
+  ],
+  "matching_minibatches_verified": true,
+  "limitations": [
+    "fixed zero mean and a simulation-trained Gaussian scale model",
+    "context length does not establish effective learned memory",
+    "GRU and TCN parameter counts are close, not equal",
+    "validation targets are shared draws within64 independent paths, not8192 independent series"
+  ],
+  "wall_seconds": 128.03437995910645,
+  "completed_models": 4
+}

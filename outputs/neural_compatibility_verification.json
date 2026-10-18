@@ -1,0 +1,71 @@
+{
+  "status": "complete",
+  "passed": true,
+  "verifier_source_sha256": "73e005de5119cc93717c477b6714b8e9a465b975377d2a5a5f5d4d96ec4f486b",
+  "protocol_sha256": "f75b73aaaf3d2f4cc4d684a1a15f807a042812c45c744c1a892b3f5d10f8feb1",
+  "evaluation_manifest_sha256": "8cafe1ee50435e5ccf27711388a2aea52d0b6cc2d05d074fe161454ab38bf446",
+  "analysis_manifest_sha256": "87f040a7fa60e29bd0605dc10b7a141c71e46436e10ab840179df23199b07d12",
+  "verified_hashes": 549,
+  "verified_groups": 192,
+  "actual_intervals_replayed": 196608,
+  "primary_cells": 48,
+  "path_bootstrap_replicates": 4000,
+  "replica_bootstrap_replicates": 4000,
+  "maximum_path_bootstrap_difference": 1.1796119636642288e-15,
+  "maximum_replica_bootstrap_difference": 1.0269562977782698e-15,
+  "maximum_errors": {
+    "actual_risk_replay": 1.7763568394002505e-14,
+    "population_risk_replay": 2.6645352591003757e-14,
+    "population_cdf": 1.1102230246251565e-15,
+    "log_moments": 2.6645352591003757e-15,
+    "decomposition": 8.743006318923108e-16,
+    "raw_units": 0.0,
+    "redraw_aggregation": 8.881784197001252e-15,
+    "first_order": 0.0,
+    "second_order": 4.440892098500626e-16
+  },
+  "independent_primary_summary": {
+    "population_mae": 0.1183761591142668,
+    "redraw_mae": 0.03413065244867419,
+    "gain": 0.0842455066655926,
+    "relative_mae_reduction": 0.7116762977946567,
+    "path95_gain": [
+      0.05455778848390681,
+      0.0929690055574346
+    ],
+    "redraw_mc_se_gain": 0.002207781777261135,
+    "redraw_mc95_gain": [
+      0.07968403545725254,
+      0.088296215775785
+    ],
+    "first32_gain": 0.08076334982157127,
+    "last32_gain": 0.08677252604478433,
+    "mc_se_fraction_of_gain": 0.02620652263419567,
+    "first_last_difference_fraction": 0.07132933803895468,
+    "gain_by_architecture": {
+      "gru": 0.08760266538835011,
+      "tcn": 0.0808883479428351
+    },
+    "gain_by_panel": {
+      "1": 0.08408704938922817,
+      "2": 0.08544448311940805,
+      "3": 0.08320498748814159
+    },
+    "refinement_gate": {
+      "gain_positive": true,
+      "path_interval_positive": true,
+      "relative_reduction_sufficient": true,
+      "both_architectures_positive": true,
+      "panels_positive": true,
+      "mc_se_small": true,
+      "half_split_stable": true,
+      "passed": true
+    }
+  },
+  "checks": {
+    "independent_multiplicity_bootstrap": true
+  },
+  "new_observations_generated": false,
+  "wall_seconds": 2.0520541667938232,
+  "limitations": "Saved D replicas audited through their means, splits, moments and phase aggregates; not redrawn or re-evaluated. No new training or test observations."
+}

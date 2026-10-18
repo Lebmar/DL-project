@@ -1,0 +1,39 @@
+{
+  "population_mae": 0.11837615911426701,
+  "redraw_mae": 0.0341306524486741,
+  "gain": 0.08424550666559291,
+  "relative_mae_reduction": 0.711676297794658,
+  "path95_gain": [
+    0.05455778848390685,
+    0.09296900555743469
+  ],
+  "redraw_mc_se_gain": 0.0022077817772611246,
+  "redraw_mc95_gain": [
+    0.07968403545725256,
+    0.088296215775785
+  ],
+  "first32_gain": 0.08076334982157163,
+  "last32_gain": 0.0867725260447849,
+  "mc_se_fraction_of_gain": 0.026206522634195453,
+  "first_last_difference_fraction": 0.07132933803895689,
+  "gain_by_architecture": {
+    "gru": 0.08760266538835042,
+    "tcn": 0.08088834794283539
+  },
+  "gain_by_panel": {
+    "1": 0.08408704938922812,
+    "2": 0.08544448311940794,
+    "3": 0.08320498748814265
+  },
+  "refinement_gate": {
+    "gain_positive": true,
+    "path_interval_positive": true,
+    "relative_reduction_sufficient": true,
+    "both_architectures_positive": true,
+    "panels_positive": true,
+    "mc_se_small": true,
+    "half_split_stable": true,
+    "passed": true
+  },
+  "inference": "Path interval conditional on12savedfits+64redraws; MC interval conditions on originalpaths/fits, notjoint training uncertainty"
+}

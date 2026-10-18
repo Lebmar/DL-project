@@ -6,7 +6,7 @@ DSAA 2012 Deep Learning 课程项目。问题是：**神经预测器的尺度响
 
 FX扩展保留全部五对GRU/TCN拟合、四币种、经典基线与六种区间规则：native神经模型的pooled mean IS低于GARCH，但五种在线校准器下的均值排序均反转，币种与区间读数也有差异。这个已看历史的探索不建立通用神经优势。新增过去固定倍率控制未消除池化点估计反转，但GRU优势依赖CHF，不能据此认定普遍动态机制。
 
-**当前优先级：研究本身，暂停报告和PPT制作。** 下一阶段检验尺度预测误差的时间结构能否提前预测校准后的风险，先完成理论与有限样本控制，再决定新神经拟合和新公开数据验证。争取形成可投稿贡献，尚无原创性或录用结论。[研究路线与Dec.11安排](research/research_direction_2026_10_18.md)
+**当前优先级：研究本身，暂停报告和PPT制作。** 有限样本验证的8个主要时间排列对照全部通过预设判断，随后完成12个新神经拟合和192组评估。主条件中，有限历史库近似对实际平均风险的误差由0.1184降到0.0341；但窗口128的上涨初期，全部12个拟合都变差。下一步解释这个共同边界中的分位数偏差与交叉项；71%的改善是解释误差降低，不是模型性能提升。争取形成可投稿贡献，尚无原创性或录用结论。[研究路线与Dec.11安排](research/research_direction_2026_10_18.md)
 
 学校HPC独立环境已完成A40上的GRU/TCN运算验证，并在Linux通过已有三个阶段的441项保存结果核查。全部HPC作业使用免费debug；新科学实验在本地CPU完成。学校现行政策由教师统一结算学生账户费用，课程具体额度仍未核实。[HPC入口、记录与费用依据](research/hpc_runbook.md)
 
@@ -14,6 +14,8 @@ FX扩展保留全部五对GRU/TCN拟合、四币种、经典基线与六种区�
 
 - [最新研究决定与关卡](research/research_direction_2026_10_18.md) · [直接近邻文献](research/compatibility_literature_review.md)
 - [固定过去倍率检查](research/fx_static_scale_results.md) · [尺度误差传递的数学可行性](research/compatibility_math_review.md)
+- [有限样本机制验证：8项主对照与失败边界](research/finite_mechanism_results.md) · [冻结设计](research/finite_mechanism_protocol.md)
+- [12个新拟合的神经机制结果](research/neural_compatibility_results.md) · [定义与复现](research/neural_compatibility_runbook.md)
 - [回来后先读这里：最新结论、A+缺口与60分钟阅读安排](research/current_status_zh.md)
 
 - [Proposal 提交版：一页正文＋附录](output/pdf/DSAA2012_Proposal_Chengxuan_YUAN_50025581.pdf) · [LaTeX 源码与官方模板](proposal/)
@@ -58,6 +60,9 @@ FX扩展保留全部五对GRU/TCN拟合、四币种、经典基线与六种区�
 | `scripts/run_fx_extension.py` / `analyze_fx_extension.py` | 10新拟合、四币种、完整经典/在线校准对照 | `outputs/fx_extension/`、`outputs/fx_extension_analysis/` |
 | `scripts/analyze_fx_static_scale.py` | 2019/2020固定过去倍率，排查FX排名变化的简单解释 | `outputs/fx_static_scale/` |
 | `scripts/check_compatibility_expansion.py` | 外生尺度误差的总体混合分位数展开；探索性数学检查 | `outputs/compatibility_math_probe/` |
+| `scripts/run_finite_mechanism.py` / `verify_finite_mechanism.py` | 分开历史跨度、score数量与秩规则，验证8个主要时间排列对照 | `outputs/finite_mechanism/` |
+| `scripts/train_neural_compatibility.py` / `evaluate_neural_compatibility.py` / `analyze_neural_compatibility.py` | 3批数据、12个新拟合，区分总体近似、实际历史与独立有限历史库 | `outputs/neural_compatibility_{training,evaluation,analysis}/` |
+| `scripts/verify_neural_compatibility.py` | 独立排序风险重建、来源核查及两层条件bootstrap复算 | `outputs/neural_compatibility_verification.json` |
 | `scripts/hpc_smoke.py` / `hpc/*.sbatch` | 免费调试环境检查及已有结果核验 | `outputs/hpc_readiness/` |
 
 各阶段用 metadata/manifest 记录运行设置、source/checkpoint hash 与限制。第一阶段的大逐行 CSV 以 `.csv.gz` 归档，其分析支持原始与压缩两种格式；第二、三阶段的逐 path 表直接写入 `.csv.gz`。

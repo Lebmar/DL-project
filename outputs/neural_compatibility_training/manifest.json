@@ -1,0 +1,155 @@
+{
+  "status": "complete",
+  "started_at_utc": "2026-10-18T05:01:18.864547+00:00",
+  "output": "outputs/neural_compatibility_training",
+  "protocol": "configs/neural_compatibility_protocol.json",
+  "protocol_sha256": "f75b73aaaf3d2f4cc4d684a1a15f807a042812c45c744c1a892b3f5d10f8feb1",
+  "driver_sha256": "74345040d9c8bb67f5654ad739eb03c1120a483f23055131f04df81bc2c285ef",
+  "sources": {
+    "train_stage2.py": "d93d1ecbb6ce30ccba88c2566be2632d769db6c2968717c3f6c36f24fbc49850",
+    "stage2_models.py": "c93e127dd43a3f9f70fed3fbd4c63bed8fa0c74b261c33dbd0a327889bd10f2e"
+  },
+  "finite_mechanism_gate": {
+    "manifest": "outputs/finite_mechanism/manifest.json",
+    "sha256": "b2e0a8856d719bb76f77cecfccf1f14a99acd33bd9cbf678da5aaf4c4fd0b3c9",
+    "freeze_commit": "fe846f0b01c43cdcd97fb80fe65b2a4caf875cbd",
+    "verdict": {
+      "correct_directions": 8,
+      "supported_directions": 8,
+      "supported_by_distribution": {
+        "gaussian": 4,
+        "t5": 4
+      },
+      "supported_by_span": {
+        "32": 4,
+        "128": 4
+      },
+      "median_relative_contrast_error_all8": 0.1632995696078004,
+      "passed": true
+    }
+  },
+  "code_commit_before_training": "ab01a1d5ff1869216e09757ee56ace68602490fb",
+  "panels": [
+    {
+      "panel": 1,
+      "manifest": "outputs/neural_compatibility_training/panel1/manifest.json",
+      "manifest_sha256": "f3788f7f8e506f5624af3c4aab80d907fb1a7c43ee1c3c30ca16238e48696c14",
+      "artifact_sha256": {
+        "outputs/neural_compatibility_training/panel1/checkpoints/gru_seed_5101.pt": "a69cc4a73a4cfd797f24bff16b311a27fd06abccd5b8208f31bd4a5932f2cdcc",
+        "outputs/neural_compatibility_training/panel1/checkpoints/gru_seed_5102.pt": "e76736f84602488068fe3a3a635f0a62f738814c258104713736ef9cb504f7c2",
+        "outputs/neural_compatibility_training/panel1/checkpoints/tcn_seed_5101.pt": "4ec176c66cd93777e3294b45c50b19e34e0eec9f201aff5f3dae366ffb7bea64",
+        "outputs/neural_compatibility_training/panel1/checkpoints/tcn_seed_5102.pt": "5eeb4e88baec6d773e3b4886112f80f2872b7be32604c10a7e339d7a4db1f0ce",
+        "outputs/neural_compatibility_training/panel1/frozen_protocol.json": "a29718b10464b06b5b2004612bc9bd32a5478268815bee10587bbbc272a28e19",
+        "outputs/neural_compatibility_training/panel1/history/gru_seed_5101.csv": "44d29b70651a3ae6e7e73c0a6d04ba677f1d9858671840ebd96c7637a8703a26",
+        "outputs/neural_compatibility_training/panel1/history/gru_seed_5102.csv": "fe867363efa2f97a208e007e0b1ee82db648421e62da76fad2bc54710513a8c7",
+        "outputs/neural_compatibility_training/panel1/history/tcn_seed_5101.csv": "41cda3d4ad3efc0ffa1b43af6ecff08fc30d5ad79d14b65059d1eca3debe21fa",
+        "outputs/neural_compatibility_training/panel1/history/tcn_seed_5102.csv": "94399f1c3be5ec9b8fa42f2c81caee114cfaf28335699c32e7473026067a1bdb",
+        "outputs/neural_compatibility_training/panel1/input_protocol.json": "a29718b10464b06b5b2004612bc9bd32a5478268815bee10587bbbc272a28e19",
+        "outputs/neural_compatibility_training/panel1/manifest.json": "f3788f7f8e506f5624af3c4aab80d907fb1a7c43ee1c3c30ca16238e48696c14",
+        "outputs/neural_compatibility_training/panel1/model_summary.csv": "fca8a04e406d857eff9a381c90d2f9974220ed2e34b8da6bd5ae6491c6f04d99",
+        "outputs/neural_compatibility_training/panel1/training_history.csv": "30f88c17ca381dbbd776230f8d9be5a331348326a5e49eb547dbfbd122772487",
+        "outputs/neural_compatibility_training/panel1/validation_target_pairs.npz": "23eb83d9a3fd39f291bd566b212a30b4e2e3e486f6f44c7555704e142525e6b3"
+      },
+      "started_at_utc": "2026-10-18T05:01:18.880719+00:00",
+      "completed_at_utc": "2026-10-18T05:04:09.771984+00:00",
+      "train_seed": 714159,
+      "validation_seed": 714160,
+      "validation_pair_seed": 714161,
+      "model_seeds": [
+        5101,
+        5102
+      ],
+      "models": 4,
+      "wall_seconds": 170.23134517669678
+    },
+    {
+      "panel": 2,
+      "manifest": "outputs/neural_compatibility_training/panel2/manifest.json",
+      "manifest_sha256": "257eb291977b4e06f11a14056e18c8b074430c1e178aa00f02f056d922c8aef7",
+      "artifact_sha256": {
+        "outputs/neural_compatibility_training/panel2/checkpoints/gru_seed_5201.pt": "6d9eaec1599abe00b9eb30add020b1a4e1d5f856f71df5985ce8f05efd15d3f6",
+        "outputs/neural_compatibility_training/panel2/checkpoints/gru_seed_5202.pt": "9387a46655e9c5a908fb84823fa05b71059c7d1dd48d47ec7cdc7ae48275be8b",
+        "outputs/neural_compatibility_training/panel2/checkpoints/tcn_seed_5201.pt": "b64612da69c474213f56156996f641bb6f8ed270db99388ededf1454e5f78d95",
+        "outputs/neural_compatibility_training/panel2/checkpoints/tcn_seed_5202.pt": "3a50e775f539014adb5a60981c32474f91c567822ada6f0db01680f29572603a",
+        "outputs/neural_compatibility_training/panel2/frozen_protocol.json": "096fcb195bac6d240c9da99deec4e9de39d15586cd57df323e0bacb504c5a3b3",
+        "outputs/neural_compatibility_training/panel2/history/gru_seed_5201.csv": "a4b3a743543bd4ec9d191b51218bb425bbe3ba9fc12c81995e0e8c580a3ad3d0",
+        "outputs/neural_compatibility_training/panel2/history/gru_seed_5202.csv": "e4bf48b5ddd08d43a53aa4825eb7e8f73bfb1c4328266bc8870955d0df9b5ffa",
+        "outputs/neural_compatibility_training/panel2/history/tcn_seed_5201.csv": "563cf2cf79ab2726758a690ba2f5a34edc70ff9f52e809f984a4c953f401ce2f",
+        "outputs/neural_compatibility_training/panel2/history/tcn_seed_5202.csv": "cb7ac423980dbc50376c040194490045ede35877e50d22dbc3078c092ace0780",
+        "outputs/neural_compatibility_training/panel2/input_protocol.json": "096fcb195bac6d240c9da99deec4e9de39d15586cd57df323e0bacb504c5a3b3",
+        "outputs/neural_compatibility_training/panel2/manifest.json": "257eb291977b4e06f11a14056e18c8b074430c1e178aa00f02f056d922c8aef7",
+        "outputs/neural_compatibility_training/panel2/model_summary.csv": "39de55d609e2cab22509a3ea6075be72bb4a5aba6aaf3b66d9c131325dec61ee",
+        "outputs/neural_compatibility_training/panel2/training_history.csv": "0b250d5830062031a73347b3e10ba28ffaa4faf3307d38e4ae70fc2dd6d77c40",
+        "outputs/neural_compatibility_training/panel2/validation_target_pairs.npz": "70ae9db29137787002a1839dc5264217674d8b32805839063b1d9bf453a7ed31"
+      },
+      "started_at_utc": "2026-10-18T05:04:09.772698+00:00",
+      "completed_at_utc": "2026-10-18T05:06:17.815319+00:00",
+      "train_seed": 715159,
+      "validation_seed": 715160,
+      "validation_pair_seed": 715161,
+      "model_seeds": [
+        5201,
+        5202
+      ],
+      "models": 4,
+      "wall_seconds": 128.03437995910645
+    },
+    {
+      "panel": 3,
+      "manifest": "outputs/neural_compatibility_training/panel3/manifest.json",
+      "manifest_sha256": "9bad2f9faffe24a9c27f59d6d5312af65b8d3c539b5362eb1eafe54112d26906",
+      "artifact_sha256": {
+        "outputs/neural_compatibility_training/panel3/checkpoints/gru_seed_5301.pt": "666f8c232f112679c243df5d98e0d3aa0941d685569a172571baf1a88fd822f4",
+        "outputs/neural_compatibility_training/panel3/checkpoints/gru_seed_5302.pt": "1be7057bc7d5ae320545007904d0a308627a5c46986bcca5587357c31817b09b",
+        "outputs/neural_compatibility_training/panel3/checkpoints/tcn_seed_5301.pt": "b506fe523233865f259c36f6f201a71330b649b6c2e2e519076461ad32673587",
+        "outputs/neural_compatibility_training/panel3/checkpoints/tcn_seed_5302.pt": "5308af3473e2aec026893ef5ece7f9aa58c02a1d23ea7f9cbd866197b3eb1279",
+        "outputs/neural_compatibility_training/panel3/frozen_protocol.json": "20473b4dc52c7c006c30c63f983cedfe0f2bf8ddb5777ab93c93965704bcd925",
+        "outputs/neural_compatibility_training/panel3/history/gru_seed_5301.csv": "e7754a6d7aa79dc5251fb31ae58444720c6d4d99ab4e430c4c5bcc84cebd0c1b",
+        "outputs/neural_compatibility_training/panel3/history/gru_seed_5302.csv": "b4edc936a19fc4e6edf7aa45d5a66915e2bccc1b9a48dbe67d310543d89e9592",
+        "outputs/neural_compatibility_training/panel3/history/tcn_seed_5301.csv": "db9afc8315e09fea5654ba0ad0c9576ec1b1446531d2127c49edbe925e59b38b",
+        "outputs/neural_compatibility_training/panel3/history/tcn_seed_5302.csv": "8145a2fc87bed38a8ea8d1213844f23fafc31069bc33c6bf8b3e5e91430f2bd7",
+        "outputs/neural_compatibility_training/panel3/input_protocol.json": "20473b4dc52c7c006c30c63f983cedfe0f2bf8ddb5777ab93c93965704bcd925",
+        "outputs/neural_compatibility_training/panel3/manifest.json": "9bad2f9faffe24a9c27f59d6d5312af65b8d3c539b5362eb1eafe54112d26906",
+        "outputs/neural_compatibility_training/panel3/model_summary.csv": "51e9691a750231125ee028b19435069d298050b13ed2e63c6e2a6d18c6c9675f",
+        "outputs/neural_compatibility_training/panel3/training_history.csv": "fda8b6b3ce217f0f94e9cda7ca3692ab9a03643e3353f465b4b1fc783b417bfc",
+        "outputs/neural_compatibility_training/panel3/validation_target_pairs.npz": "2d78a4c21321951c64c0ab028dd2b09cd8533a6ec595b216bbbdad425f7f7ca1"
+      },
+      "started_at_utc": "2026-10-18T05:06:17.815819+00:00",
+      "completed_at_utc": "2026-10-18T05:09:26.295585+00:00",
+      "train_seed": 716159,
+      "validation_seed": 716160,
+      "validation_pair_seed": 716161,
+      "model_seeds": [
+        5301,
+        5302
+      ],
+      "models": 4,
+      "wall_seconds": 188.471684217453
+    }
+  ],
+  "invocations": [
+    {
+      "started_at_utc": "2026-10-18T05:01:18.879996+00:00",
+      "resume": false,
+      "status": "complete",
+      "completed_at_utc": "2026-10-18T05:09:26.295988+00:00",
+      "wall_seconds": 487.41896820799957
+    }
+  ],
+  "test_data_accessed": false,
+  "adapter": "unchanged trainer.main; only trainer.OUT and full input-protocol path redirected",
+  "legacy_date_note": "Frozen trainer panel manifests retain historical date 2026-10-11; actual execution timestamps are recorded in this outer manifest.",
+  "seed_design": "three independent data panels, two unique nested paired model/sampler seeds per panel",
+  "limitations": [
+    "Only3newtrainingpanels and2nestedseedpairs perpanel;12fits not12independenttrainingdatasets.",
+    "Evaluationuses16preselectedendpoints,notentirephase means.",
+    "Knownsigma and trueinnovationlawonlyforofflinemechanismdiagnostics.",
+    "Populationmixturegivenwholelearneddelta is notactualneural conditional residualdistribution.",
+    "Dredrawcounterfactual fixesissuedscales; notonline deployable and notzero covariance by construction.",
+    "Path andreplicabootstraps are separateconditional sensitivity summaries,notjointfulltraining uncertainty.",
+    "Oldtrainerinternal historicaldate remainscompatibilitymetadata; wrapperactualtimestamp controlsnewrun.",
+    "Allfailures retained; noreport/PPT changes, nochargeableHPC orprivateWeBankdata."
+  ],
+  "completed_models": 12,
+  "completed_at_utc": "2026-10-18T05:09:26.295983+00:00"
+}
