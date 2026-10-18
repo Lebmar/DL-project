@@ -1,0 +1,25 @@
+{
+  "version": "long-window-diagnostic-v1",
+  "date": "2026-10-18",
+  "frozen": true,
+  "scope": "Exploratory analysis on already-viewed trajectories; not an independent replication or deployment claim",
+  "inputs": {
+    "outputs/neural_compatibility_evaluation/manifest.json": "8cafe1ee50435e5ccf27711388a2aea52d0b6cc2d05d074fe161454ab38bf446",
+    "outputs/neural_compatibility_analysis/manifest.json": "87f040a7fa60e29bd0605dc10b7a141c71e46436e10ab840179df23199b07d12",
+    "outputs/neural_compatibility_verification.json": "c197c31676bea74dbcb34caa0966b8a6cffbb27e0a757b5200308d54284729d7",
+    "configs/neural_compatibility_protocol.json": "f75b73aaaf3d2f4cc4d684a1a15f807a042812c45c744c1a892b3f5d10f8feb1",
+    "scripts/finite_mechanism_math.py": "7fb31f6e24c87511122e7e90056e629a670f0a7bd8a094550276766b59948ce8"
+  },
+  "grid": "All192savedgroups,4phases,16fixedendpoints,all12fits; no exclusion",
+  "X": "For each anchor scale path use each of63other observed innovation paths as donor, at the same historical times; no new innovations. Keep anchor current and historical deltas fixed. Score candidates before averaging.",
+  "geometry": "Exact expectedIS tangent at population halfwidth plus nonnegative convex remainder. Keep first-order product-of-means and covariance separate. Log-width second-order Taylor is descriptive only.",
+  "diagnostics": [
+    "A/D/P/X expectedrisk,halfwidth,coverage,logquantilemoments",
+    "A-D and A-X exact tangent+convex-remainder differences",
+    "Perendpoint CDF deficits and local inverse-CDF approximation; recent-context and event historical contributions",
+    "P/A/D/X approximation errors after withinfit path/endpoints means; allcells retained"
+  ],
+  "uncertainty": "Delete one original independent path jointly in both anchor and donor axes, and across all12fits. Normal jackknife ranges are descriptive, conditional on fixedfits; no new confirmation/multiple-testing claim. D precision remains as previousstudy; X adds no MonteCarlo donor noise.",
+  "next_step": "Use results to specify a separate frozen fresh-path validation with fixedmodels; do not claim currentcrosspath analysis as independentnewdata",
+  "execution": "LocalCPU, no HPC or training; existing artifacts read-only"
+}
