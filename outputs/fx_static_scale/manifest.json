@@ -1,0 +1,35 @@
+{
+  "status": "complete",
+  "design_status": "exploratory diagnostic specified after viewing the original FX comparisons; freeze before computing these new controls",
+  "freeze_commit": "e6dabfb540f51ecbb3f3cf936f821edaa574354b",
+  "protocol_sha256": "c159beec31fbd52d409424cb67ef5c32f71cf4150b6bd9b11245956e3149e28a",
+  "script_sha256": "719bd0c755db1f752673a361129f4ddcafaa3ba51c80899aa43ba34158f08503",
+  "inputs": {
+    "outputs/fx_extension/issued_forecasts.npz": "6ee358c8b133b0bf398ac40d27b38d308d32b17a01e7287ffd5ebe1b071ee981",
+    "outputs/fx_extension/forecast_index.csv": "47597d922250529cfd2123f3756786bd21e5694dea970683ee3ee3ec771805ea",
+    "outputs/fx_extension/calibration_streams.npz": "19851b46dabf67d46fd4c78fd372d0aabeaa77a506d2b67303ce11206537e9fa",
+    "outputs/fx_extension/interval_index.csv": "02ca53ef2bd6c4e5e802425b69b07082a34ccada2538c0aa9c10d654703c2e77",
+    "outputs/fx_extension/manifest.json": "878dcc60c18137bef25eb3e648432356859363babf2e91b1d962cfef65b9ed66",
+    "outputs/fx_extension_analysis/method_summary.csv": "6c95c178fb79ccbc871987b383a6b81884469d525bf11c789ee8d9090e46f98e"
+  },
+  "checks": {
+    "weighted_quantile_minimizer": true,
+    "scale_equivariance": true,
+    "ties_and_zero_residuals": true,
+    "exhaustive_is_minima": 192,
+    "original_summaries_reproduced": 24,
+    "maximum_scale_invariance_error": 0.0,
+    "all_inputs_finite": true,
+    "fit_years_strictly_precede_evaluation": true,
+    "evaluation_days": 1479
+  },
+  "wall_seconds": 0.5850179195404053,
+  "outputs": {
+    "factors.csv": "e2cbc88feae5f50154277dce9f9d7ed49bf25e34238a170a8ec4dff34bb81973",
+    "paired_comparisons.csv": "d33547ac629e3694239de636a770d06fde55f62a271b6bea113c0dcb2ce6c48e",
+    "per_asset.csv": "615287922419516055c473b2f0c7e72dd4d47b1ce639d3b23c3c412aa1be29f2",
+    "per_fit_asset.csv": "4a6c2994a0b90d179cafcb07b611fed0358dedbb8e01d97ef5a078a78273d531",
+    "per_year.csv": "85281a67588a9087e578559a6dad1b80862f052db3d227311037a16ea095922a",
+    "summary.csv": "c95817536a7dcc8697c980e2b62b3605a9e5eae1d684721462707baf0def8669"
+  }
+}

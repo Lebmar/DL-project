@@ -1,0 +1,53 @@
+{
+  "description": "Deterministic analytic feasibility; no learned model or new empirical confirmation.",
+  "study_status": "Exploratory algebra demonstration; frequencies and amplitudes were not preregistered and novelty is not established.",
+  "alpha": 0.1,
+  "z": 1.644853626951472,
+  "abs_innovation_density_at_z": 0.2062712807507429,
+  "coefficient_1_plus_z_fprime_over_f": -1.705543454095412,
+  "second_order_variance_correction_coefficient": 0.852771727047706,
+  "log_halfwidth_quadratic_risk_coefficient": 5.580759134030494,
+  "numerical_log_risk_coefficient": 5.580759143697378,
+  "amplitudes": [
+    0.2,
+    0.1,
+    0.05,
+    0.025,
+    0.0125
+  ],
+  "frequencies_cycles_per_256": [
+    1,
+    17
+  ],
+  "phases": 256,
+  "window": 32,
+  "periodic_past": true,
+  "arrays_column_order": [
+    "delta_current",
+    "delta_archive_mean",
+    "delta_archive_variance",
+    "q_population",
+    "log_relative_halfwidth_exact",
+    "first_order",
+    "second_order"
+  ],
+  "native_risk_coverage_width_nll_tie_max_error": 8.881784197001252e-16,
+  "constant_rescaling_max_error": 2.220446049250313e-16,
+  "population_root_max_cdf_residual": 6.994405055138486e-15,
+  "observed_asymptotic_orders_final_two_amplitudes": {
+    "1": {
+      "first_approximation_error_order": 2.000038299046777,
+      "second_approximation_error_order": 3.03317439505292
+    },
+    "17": {
+      "first_approximation_error_order": 2.000988517097324,
+      "second_approximation_error_order": 3.206929198139928
+    }
+  },
+  "checks_passed": true,
+  "script_sha256": "a3e05906e18b375b96fd6a4cf7904608748bdf9a959b1ff3205bd22c11af5dc5",
+  "artifact_sha256": {
+    "summary.csv": "3d3cc1487830ce7119e6bd991084fe02fb4d6cefad7387b962112b6379e642de",
+    "trajectories.npz": "ea6918713f5cb8de82a53476fe65c6b2fa5fe9082ae4c5ea98803987a39ce44c"
+  }
+}

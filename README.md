@@ -4,12 +4,16 @@ DSAA 2012 Deep Learning 课程项目。问题是：**神经预测器的尺度响
 
 更新于2026-10-18。已完成三份独立训练数据的神经重复、全部30个冻结模型的分位数秩敏感性，以及10个新拟合的公开FX扩展。Gaussian entry交互在三份训练数据中保持负的均值方向，但重训敏感性仍跨0；recovery的旧正向差异没有稳定重复。共同理想秩水平的检查保留主要Gaussian方向，也显示部分小效应对规则敏感。
 
-FX扩展保留全部五对GRU/TCN拟合、四币种、经典基线与六种区间规则：native神经模型的pooled mean IS低于GARCH，但五种在线校准器下的均值排序均反转，币种与区间读数也有差异。这个已看历史的探索不建立通用神经优势。当前研究重点是预测尺度与历史score档案如何组合，以及结论在哪些条件下失效。
+FX扩展保留全部五对GRU/TCN拟合、四币种、经典基线与六种区间规则：native神经模型的pooled mean IS低于GARCH，但五种在线校准器下的均值排序均反转，币种与区间读数也有差异。这个已看历史的探索不建立通用神经优势。新增过去固定倍率控制未消除池化点估计反转，但GRU优势依赖CHF，不能据此认定普遍动态机制。
+
+**当前优先级：研究本身，暂停报告和PPT制作。** 下一阶段检验尺度预测误差的时间结构能否提前预测校准后的风险，先完成理论与有限样本控制，再决定新神经拟合和新公开数据验证。争取形成可投稿贡献，尚无原创性或录用结论。[研究路线与Dec.11安排](research/research_direction_2026_10_18.md)
 
 学校HPC独立环境已完成A40上的GRU/TCN运算验证，并在Linux通过已有三个阶段的441项保存结果核查。全部HPC作业使用免费debug；新科学实验在本地CPU完成。学校现行政策由教师统一结算学生账户费用，课程具体额度仍未核实。[HPC入口、记录与费用依据](research/hpc_runbook.md)
 
 ## 从这里开始
 
+- [最新研究决定与关卡](research/research_direction_2026_10_18.md) · [直接近邻文献](research/compatibility_literature_review.md)
+- [固定过去倍率检查](research/fx_static_scale_results.md) · [尺度误差传递的数学可行性](research/compatibility_math_review.md)
 - [回来后先读这里：最新结论、A+缺口与60分钟阅读安排](research/current_status_zh.md)
 
 - [Proposal 提交版：一页正文＋附录](output/pdf/DSAA2012_Proposal_Chengxuan_YUAN_50025581.pdf) · [LaTeX 源码与官方模板](proposal/)
@@ -52,6 +56,8 @@ FX扩展保留全部五对GRU/TCN拟合、四币种、经典基线与六种区�
 | `scripts/analyze_stage3.py` | 固定15对拟合的路径统计及面板/种子敏感性 | `outputs/stage3_analysis/` |
 | `scripts/run_rank_sensitivity.py` / `analyze_rank_sensitivity.py` | 全30模型共同理想秩水平的事后敏感性 | `outputs/rank_sensitivity/`、`outputs/rank_sensitivity_analysis/` |
 | `scripts/run_fx_extension.py` / `analyze_fx_extension.py` | 10新拟合、四币种、完整经典/在线校准对照 | `outputs/fx_extension/`、`outputs/fx_extension_analysis/` |
+| `scripts/analyze_fx_static_scale.py` | 2019/2020固定过去倍率，排查FX排名变化的简单解释 | `outputs/fx_static_scale/` |
+| `scripts/check_compatibility_expansion.py` | 外生尺度误差的总体混合分位数展开；探索性数学检查 | `outputs/compatibility_math_probe/` |
 | `scripts/hpc_smoke.py` / `hpc/*.sbatch` | 免费调试环境检查及已有结果核验 | `outputs/hpc_readiness/` |
 
 各阶段用 metadata/manifest 记录运行设置、source/checkpoint hash 与限制。第一阶段的大逐行 CSV 以 `.csv.gz` 归档，其分析支持原始与压缩两种格式；第二、三阶段的逐 path 表直接写入 `.csv.gz`。
@@ -88,4 +94,4 @@ uv pip install --python .venv/bin/python -r requirements-lock.txt
 
 区间目标是 90% 覆盖，指标同时报告宽度和区间分数。模拟真尺度只用于评估/诊断，算法输入不含未来持续时间或事件标签。真实数据的 2021–2026 段已经用于探索，不能再称盲测。日期块区间条件于已拟合模型，不能自动证明任意漂移下有效。
 
-本项目不读取、复制或使用微众比赛数据、派生特征、样本、结果，也不保存 HPC 凭据。ECB 数据来源、单位与许可说明见 [data/public/README.md](data/public/README.md)。学生于 2026-10-11 确认课程允许 AI 工具；学生仍承担个人作者责任，并须理解全部假设、代码与结果。助手没有代为提交Canvas；用户是否已自行提交proposal未知。具名proposal提交版已备好，一页正文加一页附录；教师FAQ明确一页是最低要求。Proposal截止10月16日23:59，报告、PDF slides与8–10分钟视频截止12月11日23:59；具体格式见[课程要求](research/course_requirements.md)。下一步围绕教学团队反馈、已完成证据与失败边界修订最终报告，并准备展示。
+本项目不读取、复制或使用微众比赛数据、派生特征、样本、结果，也不保存 HPC 凭据。ECB 数据来源、单位与许可说明见 [data/public/README.md](data/public/README.md)。学生于 2026-10-11 确认课程允许 AI 工具；学生仍承担个人作者责任，并须理解全部假设、代码与结果。助手没有代为提交Canvas；用户是否已自行提交proposal未知。具名proposal提交版已备好，一页正文加一页附录；教师FAQ明确一页是最低要求。Proposal截止10月16日23:59，报告、PDF slides与8–10分钟视频截止12月11日23:59；具体格式见[课程要求](research/course_requirements.md)。当前先推进实质研究，11月下旬再收束课程报告，12月准备展示。
