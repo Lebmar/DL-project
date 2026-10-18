@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "script_sha256": "0db84eb01514fe885d505a3bba0231e8b6f81bb523b841ff1a3c2662f8039fa6",
+  "manifest_sha256": "b51ac07ddd978e7914d306bdadc2fd3ac3a392ce3ac3f59948856386fb1a4177",
+  "bootstrap_replicates": 8000,
+  "maximum_count_matrix_difference": 1.4779844015322396e-15,
+  "cell_cancellation_identities": 2304,
+  "scope": "Independent arithmetic replay of exploratory aggregation statistics; does not provide fresh-data confirmation"
+}

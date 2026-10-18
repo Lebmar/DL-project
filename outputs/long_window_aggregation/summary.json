@@ -1,0 +1,31 @@
+{
+  "phase_gain": {
+    "mean": -0.019766735681960298,
+    "posthoc_conditional_path95": [
+      -0.024825799406094837,
+      0.009477693475481304
+    ]
+  },
+  "endpoint_gain": {
+    "mean": 0.004681237798914606,
+    "posthoc_conditional_path95": [
+      -0.014608513529822422,
+      0.018946926959302807
+    ]
+  },
+  "P_cancellation": {
+    "mean": 0.025257935271836725,
+    "posthoc_conditional_path95": [
+      0.004852252054535159,
+      0.047095578322084525
+    ]
+  },
+  "D_cancellation": {
+    "mean": 0.0008099617909618217,
+    "posthoc_conditional_path95": [
+      0.0,
+      0.01940436474546715
+    ]
+  },
+  "interpretation": "Exploratory comparison on previously viewed data; fixed12fits and64redraws; no training-population claim or original-estimand replacement. Bootstrap percentile approximation may be nonregular near zero absolute errors."
+}

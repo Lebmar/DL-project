@@ -1,0 +1,41 @@
+{
+  "status": "complete",
+  "scope": "exploratory on previously viewed paths; no fresh innovations or training",
+  "completed_at": "2026-10-18T08:34:09.427909+00:00",
+  "protocol_sha256": "1334db5df69721e675c9d3e76892385a0e6066a6bb12c035b7f04ff83d5d178b",
+  "source_sha256": "ff46abbacdb604cc31304a43efebdb285c7ffd24955fc926356a650d5ce020e3",
+  "freeze_commit": "3f1fcfcbec56ff0640ded0b57ae62cdde6deb60c",
+  "inputs": {
+    "outputs/neural_compatibility_evaluation/manifest.json": "8cafe1ee50435e5ccf27711388a2aea52d0b6cc2d05d074fe161454ab38bf446",
+    "outputs/neural_compatibility_analysis/manifest.json": "87f040a7fa60e29bd0605dc10b7a141c71e46436e10ab840179df23199b07d12",
+    "outputs/neural_compatibility_verification.json": "c197c31676bea74dbcb34caa0966b8a6cffbb27e0a757b5200308d54284729d7",
+    "configs/neural_compatibility_protocol.json": "f75b73aaaf3d2f4cc4d684a1a15f807a042812c45c744c1a892b3f5d10f8feb1",
+    "scripts/finite_mechanism_math.py": "7fb31f6e24c87511122e7e90056e629a670f0a7bd8a094550276766b59948ce8"
+  },
+  "checks": {
+    "maximum_derivative_error": 2.4502710971319175e-10,
+    "maximum_exact_convex_integral_error": 7.105427357601002e-15,
+    "jackknife_both_axes": true,
+    "common_deterministic_scale_zero_pairing_gap": true,
+    "independent_scalar_pair_sort": true,
+    "maximum_diagonal_replay_error": 4.440892098500626e-16,
+    "maximum_exact_decomposition_error": 8.881784197001252e-16,
+    "minimum_convex_remainder": 0.0,
+    "groups": 192,
+    "saved_pair_risk_shape": [
+      192,
+      4,
+      64,
+      64
+    ]
+  },
+  "wall_seconds": 19.269975185394287,
+  "outputs": {
+    "cells.csv": "5d2049f6c0ce68e798290da7d2a858d6eee73c9861d959463d8f9304cd5bdd8c",
+    "endpoints.csv": "11cda8753c7489041b858d5524d09d90bb634e0e85c6c22ebde3a23905efa0e8",
+    "groups.csv": "0cfa1fc611be08ef0e875fbee8b956d89dd8db62f88b9810b6c582b0907e6d74",
+    "pair_risk_by_phase.npz": "e838810b27ba829a0e3fe8a8f5882bce741ac2fcddd97479f7525d1581aae94d",
+    "pairing_sensitivity.csv": "1e7573bd71184a868c6b94dd744e6ec1553f32bf9dbec5f5910f74157497bc52",
+    "risk_decomposition.csv": "0c8e3435aa27ec532542f7c776a0fe36bc521178d03c02be01dd0897918c9470"
+  }
+}
