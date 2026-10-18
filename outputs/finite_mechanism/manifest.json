@@ -1,0 +1,227 @@
+{
+  "status": "complete",
+  "freeze_commit": "fe846f0b01c43cdcd97fb80fe65b2a4caf875cbd",
+  "sources": {
+    "configs/finite_mechanism_protocol.json": "68a621a56a4349ddee7b0fb35104b3d430a4783fd9ea7874b177d2e75455b73b",
+    "scripts/run_finite_mechanism.py": "d5a0879e3bb9fd224c512e0e45f9f4445c573d376bba6f3fd1dd9deec939e562",
+    "scripts/finite_mechanism_math.py": "7fb31f6e24c87511122e7e90056e629a670f0a7bd8a094550276766b59948ce8"
+  },
+  "checks": {
+    "independent_sort": true,
+    "strict_past_timing": true,
+    "actual_phase_native_multiset": true,
+    "numerical_engine": {
+      "gaussian_abs_density_and_risk": true,
+      "gaussian_n32_ceiling_coverage_error": 1.1102230246251565e-16,
+      "gaussian_n32_ceiling_independent_integral_error": 1.7651275996399818e-09,
+      "gaussian_homogeneous_quadrature_errors_32_64_128": [
+        1.9252561385130207e-06,
+        6.887547154832419e-08,
+        1.7651275996399818e-09
+      ],
+      "gaussian_n32_randomized_coverage_error": 1.1102230246251565e-16,
+      "gaussian_n32_randomized_independent_integral_error": 1.2376748514952851e-09,
+      "gaussian_n128_ceiling_coverage_error": 1.1102230246251565e-16,
+      "gaussian_n128_ceiling_independent_integral_error": 0.0,
+      "gaussian_n128_randomized_coverage_error": 1.1102230246251565e-16,
+      "gaussian_n128_randomized_independent_integral_error": 1.7763568394002505e-15,
+      "gaussian_mixture_root_residual": 2.220446049250313e-16,
+      "t5_abs_density_and_risk": true,
+      "t5_n32_ceiling_coverage_error": 1.1102230246251565e-16,
+      "t5_n32_ceiling_independent_integral_error": 1.656602233168769e-08,
+      "t5_homogeneous_quadrature_errors_32_64_128": [
+        1.0188136968736217e-05,
+        4.802020505678684e-07,
+        1.656602233168769e-08
+      ],
+      "t5_n32_randomized_coverage_error": 0.0,
+      "t5_n32_randomized_independent_integral_error": 1.1614836203932555e-08,
+      "t5_n128_ceiling_coverage_error": 2.220446049250313e-16,
+      "t5_n128_ceiling_independent_integral_error": 0.0,
+      "t5_n128_randomized_coverage_error": 1.1102230246251565e-16,
+      "t5_n128_randomized_independent_integral_error": 8.881784197001252e-16,
+      "t5_mixture_root_residual": 2.220446049250313e-16,
+      "beta_polynomial_moments_and_paired_covariance": true,
+      "passed": true
+    }
+  },
+  "protocol": {
+    "version": "finite-mechanism-v1",
+    "specified_date": "2026-10-18",
+    "status": "prospective finite-sample mechanism study motivated by prior exploratory algebra; no publication novelty claim",
+    "alpha": 0.1,
+    "distributions": [
+      "gaussian",
+      "t5"
+    ],
+    "templates": [
+      "sine",
+      "square"
+    ],
+    "period": 256,
+    "frequencies": [
+      1,
+      17
+    ],
+    "amplitudes": [
+      0.05,
+      0.2,
+      0.5
+    ],
+    "history_spans": [
+      32,
+      128
+    ],
+    "iid_bank_counts": [
+      32,
+      128
+    ],
+    "rules": [
+      "ceiling",
+      "randomized"
+    ],
+    "evaluation_times": {
+      "start": 128,
+      "stop_exclusive": 384,
+      "stride": 4
+    },
+    "paths": 2048,
+    "seeds": {
+      "innovations": 2026101804,
+      "independent_redraw": 2026101805,
+      "bootstrap": 2026101806
+    },
+    "definitions": {
+      "true_scale": "one at every time; targets are independent standardized innovations",
+      "sine": "delta[t]=amplitude*sin(2*pi*((frequency*t) mod256)/256)",
+      "square": "delta[t]=amplitude*(-1 if ((frequency*t) mod256)<128 else +1)",
+      "native": "s[t]=exp(delta[t]); halfwidth=s[t]*F_abs_inverse(.9), using correct family quantile to isolate scale error",
+      "population": "q solves mean_j F_abs(q*exp(delta[t-j]))=.9 for j=1..L; no finite-sample randomness",
+      "iid_bank": "n independent draws from the uniform mixture of L historical score distributions; exact order-statistic expectation via Beta quadrature; not a deployable sample bank",
+      "contiguous": "q is the specified order statistic of abs(innovation[t-L:t])*exp(-delta[t-L:t]); n=L; paths share innovations across templates/amplitudes/frequencies/windows/rules",
+      "ceiling": "rank ceil(.9*(n+1))",
+      "randomized": "adjacent ranks with expected rank .9*(n+1); compute each interval's metrics first, then average; no random coin simulation",
+      "evaluation": "integrate current innovation analytically to obtain conditional expected coverage,width,interval score; average 64 times within each independent path",
+      "oracle_noise_baseline": "exact finite-order-statistic interval risk at delta=0, separately by distribution,n,rank rule",
+      "first_order_predictor": "oracle_noise_baseline + C*mean_t(delta[t]-mean_past_L(delta))^2, C=z^2*f_abs(z)/alpha; its fast-minus-slow contrast is fixed before new outcomes",
+      "second_order": "also retain exact risk of z*exp(delta[t]-mean(delta)-.5*(1+z*fprime(z)/f(z))*var(delta)); descriptive population approximation",
+      "phase_dependence": "64 phases are dependent within path, not 64 independent replications; period/frequencies deliberately preserve identical native marginal metrics"
+    },
+    "numerics": {
+      "quadrature_initial_nodes": 32,
+      "quadrature_check_nodes": 64,
+      "quadrature_refinement_nodes": [
+        128,
+        256
+      ],
+      "maximum_phase_metric_difference": 5e-05,
+      "refinement": "compare coverage,width,IS at all phases; increase nodes in fixed order if tolerance fails; abort at256 if unconverged, do not silently accept",
+      "root_tolerance": 1e-10
+    },
+    "primary": {
+      "amplitude": 0.2,
+      "rule": "randomized",
+      "bank": "actual contiguous window, n=L",
+      "contrast": "fast_frequency17 minus slow_frequency1 expected interval score, path paired",
+      "cases": "2 distributions * 2 templates * 2 spans =8; all retained",
+      "bootstrap_replicates": 16000,
+      "bootstrap_unit": "whole independent innovation path, same sampled indices for all cases",
+      "intervals": [
+        0.95,
+        0.99375
+      ],
+      "simultaneous_note": "99.375% individual percentile intervals provide nominal Bonferroni8 familywise95% approximation; bootstrap is Monte Carlo approximation, not arbitrary-distribution coverage theorem",
+      "neural_bridge_gate": {
+        "minimum_correct_directions": 6,
+        "minimum_correct_directions_with_simultaneous_interval_excluding_zero": 6,
+        "minimum_supported_directions_per_distribution": 3,
+        "minimum_supported_directions_per_span": 3,
+        "predicted_absolute_contrast_indeterminate_below": 1e-10,
+        "maximum_median_relative_contrast_error": 0.5,
+        "relative_error_denominator_floor": 0.001,
+        "median_scope": "all8 primary cells, including failures and indeterminate directions; denominator floor is a fixed numerical stability convention",
+        "interpretation": "predefined feasibility thresholds for a small neural bridge, not proof of novelty or universal accuracy; all implementation and numerical checks must pass"
+      }
+    },
+    "endogenous_boundary": {
+      "amplitude": 0.2,
+      "definition": "delta[t]=.2*sign(abs(innovation[t-1])-median_abs_innovation); at t0 delta=0; uses strictly past observation",
+      "comparison": "actual contiguous scores vs independent innovation redraw with the entire issued delta path and current scale held fixed; path-paired conditional expected metrics",
+      "spans": [
+        32,
+        128
+      ],
+      "rule": "randomized",
+      "interpretation": "counterfactual score-bank decoupling, not a deployable calibrator or valid conditional law given learned paths; descriptive boundary stress, not a required gate to make exogenous approximation pass"
+    },
+    "controls": [
+      "zero-error finite oracle matches exact rank coverage k/(n+1) within reported Monte Carlo uncertainty",
+      "constant log-scale error cancels pathwise for every interval and rank",
+      "same-amplitude slow/fast native metrics exactly agree",
+      "future perturbations cannot change already-issued contiguous quantiles",
+      "independent sort and partition order-statistic implementations agree on toy input",
+      "quadrature converges at all retained phase metrics; risk never below true oracle beyond floating tolerance"
+    ],
+    "decision": "If primary gate passes, freeze a small new-data/new-seed neural bridge before training. If it fails, preserve failures and investigate the specific finite-sample mismatch before neural training; do not change thresholds or select a successful subset.",
+    "execution": {
+      "local_cpu_only": true,
+      "paid_hpc": false,
+      "report_or_ppt_edits": false,
+      "output": "outputs/finite_mechanism",
+      "overwrite": "refuse",
+      "protocol_and_sources_committed_before_outcomes": true
+    }
+  },
+  "completed_groups": [
+    {
+      "distribution": "gaussian",
+      "span": 32
+    },
+    {
+      "distribution": "gaussian",
+      "span": 128
+    },
+    {
+      "distribution": "t5",
+      "span": 32
+    },
+    {
+      "distribution": "t5",
+      "span": 128
+    }
+  ],
+  "started_at": "2026-10-18T12:55:44.408327+08:00",
+  "versions": {
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "pandas": "3.0.6"
+  },
+  "wall_seconds": 50.31382703781128,
+  "neural_bridge_gate": {
+    "correct_directions": 8,
+    "supported_directions": 8,
+    "supported_by_distribution": {
+      "gaussian": 4,
+      "t5": 4
+    },
+    "supported_by_span": {
+      "32": 4,
+      "128": 4
+    },
+    "median_relative_contrast_error_all8": 0.1632995696078004,
+    "passed": true
+  },
+  "numerical_cases": 200,
+  "maximum_quadrature_metric_change": 2.642311532952135e-05,
+  "maximum_constant_error": 9.769962616701378e-15,
+  "outputs": {
+    "endogenous_boundary.csv": "e58ac47779094b44ce6cdfcc47c60f84cfb3d9f36a0dbcb875acc16f5b5157d4",
+    "oracle_controls.csv": "4e6b08795820d1074fefd5bffbeb4905ec44b6991ee2eb4d10a91e64a1746657",
+    "path_index.csv": "59cf787c937b4010bc068a79de941f00a29c9ae7b7379ac4e302000c33c63b55",
+    "path_metrics.npz": "b511858e6c69dc477f64d4cce18119dd3a64cce74267b5410930e8c9a51da4a3",
+    "population_phases.csv": "e888c52cd9dee5043d32d976d367bb15c7540a13a386e5e805bb04a8fa5f6553",
+    "primary_contrasts.csv": "dfbdf25530876b0434ae82cc653cb91d44d4b44a57a2a94850de959d40a8b966",
+    "quadrature_checks.csv": "13116a7b816eb537f6a7de73425ab35b0dc0984a176565c91d6542686ff92c9a",
+    "summary.csv": "69e0c300cd10814d4191eb0e9a3129611f791a84202fd2920704ac6033113686"
+  }
+}

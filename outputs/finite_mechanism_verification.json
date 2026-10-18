@@ -1,0 +1,99 @@
+{
+  "passed": true,
+  "freeze_commit": "fe846f0b01c43cdcd97fb80fe65b2a4caf875cbd",
+  "source_and_freeze_hash_checks": 3,
+  "artifact_hash_checks": 8,
+  "grid_rows": {
+    "summary": 576,
+    "population_phases": 3072,
+    "quadrature_checks": 200,
+    "primary_contrasts": 8,
+    "endogenous_boundary": 4,
+    "oracle_controls": 8,
+    "path_index": 96
+  },
+  "independent_bootstrap_max_interval_error": 9.769962616701378e-15,
+  "oracle_control_checks": [
+    {
+      "distribution": "gaussian",
+      "span": 32,
+      "rule": "ceiling",
+      "coverage_inside_reported_mc_interval": true,
+      "risk_inside_reported_mc_interval": true,
+      "independent_expected_risk_error": 6.887547154832419e-08
+    },
+    {
+      "distribution": "gaussian",
+      "span": 32,
+      "rule": "randomized",
+      "coverage_inside_reported_mc_interval": true,
+      "risk_inside_reported_mc_interval": true,
+      "independent_expected_risk_error": 4.850013279877885e-08
+    },
+    {
+      "distribution": "gaussian",
+      "span": 128,
+      "rule": "ceiling",
+      "coverage_inside_reported_mc_interval": true,
+      "risk_inside_reported_mc_interval": true,
+      "independent_expected_risk_error": 1.7763568394002505e-15
+    },
+    {
+      "distribution": "gaussian",
+      "span": 128,
+      "rule": "randomized",
+      "coverage_inside_reported_mc_interval": true,
+      "risk_inside_reported_mc_interval": true,
+      "independent_expected_risk_error": 0.0
+    },
+    {
+      "distribution": "t5",
+      "span": 32,
+      "rule": "ceiling",
+      "coverage_inside_reported_mc_interval": true,
+      "risk_inside_reported_mc_interval": true,
+      "independent_expected_risk_error": 4.802020505678684e-07
+    },
+    {
+      "distribution": "t5",
+      "span": 32,
+      "rule": "randomized",
+      "coverage_inside_reported_mc_interval": true,
+      "risk_inside_reported_mc_interval": true,
+      "independent_expected_risk_error": 3.379810600279143e-07
+    },
+    {
+      "distribution": "t5",
+      "span": 128,
+      "rule": "ceiling",
+      "coverage_inside_reported_mc_interval": true,
+      "risk_inside_reported_mc_interval": true,
+      "independent_expected_risk_error": 8.881784197001252e-16
+    },
+    {
+      "distribution": "t5",
+      "span": 128,
+      "rule": "randomized",
+      "coverage_inside_reported_mc_interval": true,
+      "risk_inside_reported_mc_interval": true,
+      "independent_expected_risk_error": 0.0
+    }
+  ],
+  "independently_recomputed_gate": {
+    "correct_directions": 8,
+    "supported_directions": 8,
+    "supported_by_distribution": {
+      "gaussian": 4,
+      "t5": 4
+    },
+    "supported_by_span": {
+      "32": 4,
+      "128": 4
+    },
+    "median_relative_contrast_error_all8": 0.16329956960780728,
+    "passed": true
+  },
+  "scope": "Saved data, formula, bootstrap, and provenance audit; no regeneration or new scientific outcome.",
+  "verification_script_sha256": "d1c7825c6c1fab219690d3433a574db6082c1cd74e67afd34af5eb5658d2794b",
+  "input_manifest_sha256": "b2e0a8856d719bb76f77cecfccf1f14a99acd33bd9cbf678da5aaf4c4fd0b3c9"
+}

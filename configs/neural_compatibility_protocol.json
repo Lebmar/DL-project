@@ -1,0 +1,417 @@
+{
+  "protocol_version": "neural-compatibility-v1",
+  "specified_date": "2026-10-18",
+  "frozen": true,
+  "purpose": "New-data/new-seed diagnostic bridge after the finite temporal-contrast gate passed; not a deployable selection algorithm or publication novelty claim",
+  "finite_mechanism_gate": {
+    "manifest": "outputs/finite_mechanism/manifest.json",
+    "sha256": "b2e0a8856d719bb76f77cecfccf1f14a99acd33bd9cbf678da5aaf4c4fd0b3c9",
+    "verification": "outputs/finite_mechanism_verification.json",
+    "verification_sha256": "8753ae08d8b1ea4297279861c4ef03727ede61d3a0cdf1d446b85cd173ea9d09"
+  },
+  "panels": [
+    {
+      "panel": 1,
+      "training_config": {
+        "architectures": [
+          "gru",
+          "tcn"
+        ],
+        "model_seeds": [
+          5101,
+          5102
+        ],
+        "contexts": [
+          16,
+          64
+        ],
+        "model": {
+          "gru_hidden": 24,
+          "tcn_channels": 12,
+          "tcn_kernels": [
+            4,
+            3,
+            3,
+            3,
+            3
+          ],
+          "tcn_dilations": [
+            1,
+            2,
+            4,
+            8,
+            16
+          ],
+          "tcn_activation": "relu",
+          "log_scale_bounds": [
+            -3.0,
+            3.0
+          ]
+        },
+        "training_data": {
+          "seed": 714159,
+          "paths": 256,
+          "length": 1024
+        },
+        "validation_data": {
+          "seed": 714160,
+          "paths": 64,
+          "length": 1024,
+          "target_pairs": 8192,
+          "pair_seed": 714161
+        },
+        "generator": {
+          "switch_probability": 0.018,
+          "temporary_probability": 0.015,
+          "persistent_scale_min": 0.5,
+          "persistent_scale_max": 3.0,
+          "temporary_multiplier": 3.0
+        },
+        "optimization": {
+          "batch_size": 128,
+          "batches_per_epoch": 32,
+          "max_epochs": 60,
+          "min_epochs": 20,
+          "patience": 8,
+          "min_delta": 0.0001,
+          "learning_rate": 0.002,
+          "gradient_clip_norm": 5.0,
+          "validation_batch_size": 512
+        },
+        "execution": {
+          "device": "cpu",
+          "torch_threads": 4
+        }
+      }
+    },
+    {
+      "panel": 2,
+      "training_config": {
+        "architectures": [
+          "gru",
+          "tcn"
+        ],
+        "model_seeds": [
+          5201,
+          5202
+        ],
+        "contexts": [
+          16,
+          64
+        ],
+        "model": {
+          "gru_hidden": 24,
+          "tcn_channels": 12,
+          "tcn_kernels": [
+            4,
+            3,
+            3,
+            3,
+            3
+          ],
+          "tcn_dilations": [
+            1,
+            2,
+            4,
+            8,
+            16
+          ],
+          "tcn_activation": "relu",
+          "log_scale_bounds": [
+            -3.0,
+            3.0
+          ]
+        },
+        "training_data": {
+          "seed": 715159,
+          "paths": 256,
+          "length": 1024
+        },
+        "validation_data": {
+          "seed": 715160,
+          "paths": 64,
+          "length": 1024,
+          "target_pairs": 8192,
+          "pair_seed": 715161
+        },
+        "generator": {
+          "switch_probability": 0.018,
+          "temporary_probability": 0.015,
+          "persistent_scale_min": 0.5,
+          "persistent_scale_max": 3.0,
+          "temporary_multiplier": 3.0
+        },
+        "optimization": {
+          "batch_size": 128,
+          "batches_per_epoch": 32,
+          "max_epochs": 60,
+          "min_epochs": 20,
+          "patience": 8,
+          "min_delta": 0.0001,
+          "learning_rate": 0.002,
+          "gradient_clip_norm": 5.0,
+          "validation_batch_size": 512
+        },
+        "execution": {
+          "device": "cpu",
+          "torch_threads": 4
+        }
+      }
+    },
+    {
+      "panel": 3,
+      "training_config": {
+        "architectures": [
+          "gru",
+          "tcn"
+        ],
+        "model_seeds": [
+          5301,
+          5302
+        ],
+        "contexts": [
+          16,
+          64
+        ],
+        "model": {
+          "gru_hidden": 24,
+          "tcn_channels": 12,
+          "tcn_kernels": [
+            4,
+            3,
+            3,
+            3,
+            3
+          ],
+          "tcn_dilations": [
+            1,
+            2,
+            4,
+            8,
+            16
+          ],
+          "tcn_activation": "relu",
+          "log_scale_bounds": [
+            -3.0,
+            3.0
+          ]
+        },
+        "training_data": {
+          "seed": 716159,
+          "paths": 256,
+          "length": 1024
+        },
+        "validation_data": {
+          "seed": 716160,
+          "paths": 64,
+          "length": 1024,
+          "target_pairs": 8192,
+          "pair_seed": 716161
+        },
+        "generator": {
+          "switch_probability": 0.018,
+          "temporary_probability": 0.015,
+          "persistent_scale_min": 0.5,
+          "persistent_scale_max": 3.0,
+          "temporary_multiplier": 3.0
+        },
+        "optimization": {
+          "batch_size": 128,
+          "batches_per_epoch": 32,
+          "max_epochs": 60,
+          "min_epochs": 20,
+          "patience": 8,
+          "min_delta": 0.0001,
+          "learning_rate": 0.002,
+          "gradient_clip_norm": 5.0,
+          "validation_batch_size": 512
+        },
+        "execution": {
+          "device": "cpu",
+          "torch_threads": 4
+        }
+      }
+    }
+  ],
+  "sources": {
+    "train_stage2.py": "d93d1ecbb6ce30ccba88c2566be2632d769db6c2968717c3f6c36f24fbc49850",
+    "stage2_models.py": "c93e127dd43a3f9f70fed3fbd4c63bed8fa0c74b261c33dbd0a327889bd10f2e"
+  },
+  "evaluation_sources": {
+    "evaluate_stage2.py": "4642c27329b6556ac1d3eac8cf1cbcc3d07ee0b1efe09e1d85295618ec052558",
+    "evaluate_stage3.py": "f092ca94932453ef726dcd6b72712ee93daa9603b05ea63535e0d2387a5aaff3",
+    "stage2_models.py": "c93e127dd43a3f9f70fed3fbd4c63bed8fa0c74b261c33dbd0a327889bd10f2e",
+    "train_stage2.py": "d93d1ecbb6ce30ccba88c2566be2632d769db6c2968717c3f6c36f24fbc49850",
+    "finite_mechanism_math.py": "7fb31f6e24c87511122e7e90056e629a670f0a7bd8a094550276766b59948ce8"
+  },
+  "evaluation": {
+    "paths": 64,
+    "length": 640,
+    "contexts": [
+      16,
+      64
+    ],
+    "windows": [
+      32,
+      128
+    ],
+    "alpha": 0.1,
+    "rank_rule": "randomized",
+    "times": [
+      192,
+      208,
+      224,
+      240,
+      256,
+      264,
+      272,
+      280,
+      320,
+      336,
+      352,
+      368,
+      384,
+      400,
+      416,
+      432
+    ],
+    "phases": {
+      "pre": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "entry": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "late": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "recovery": [
+        12,
+        13,
+        14,
+        15
+      ]
+    },
+    "onset": 256,
+    "duration": 128,
+    "worlds": [
+      {
+        "name": "gaussian_flat",
+        "distribution": "gaussian",
+        "amplitude": 1.0
+      },
+      {
+        "name": "gaussian_up2",
+        "distribution": "gaussian",
+        "amplitude": 2.0
+      },
+      {
+        "name": "gaussian_down_half",
+        "distribution": "gaussian",
+        "amplitude": 0.5
+      },
+      {
+        "name": "t5_up2",
+        "distribution": "t5",
+        "amplitude": 2.0
+      }
+    ],
+    "seeds": {
+      "gaussian": 2903000,
+      "t5": 2904000,
+      "redraw_gaussian": 2905000,
+      "redraw_t5": 2906000
+    },
+    "redraw_replicas": 64,
+    "true_scale_use": "offline diagnostics only; never supplied to neural model, checkpoint selection or deployed calibrator",
+    "native_multiplier": "correct distribution-specific F_abs_inverse(.9), including t5; separate diagnostic from old Gaussian-native results",
+    "score_bank": "one independent redraw innovation at each historical age; original delta path/current scale held fixed; same redraw replica chronology reused across models/windows/contexts and Gaussian worlds",
+    "metrics": [
+      "coverage",
+      "width_standardized",
+      "interval_score_standardized",
+      "width_raw",
+      "interval_score_raw"
+    ],
+    "methods": [
+      "oracle",
+      "native",
+      "P",
+      "A",
+      "D",
+      "D_first32",
+      "D_last32"
+    ],
+    "P": "exogenous population mixture evaluated at realized issued delta trajectory; diagnostic, not conditional law of actual neural residuals",
+    "A": "actual originally issued contiguous scores; candidate-rank metrics mixed after scoring",
+    "D": "mean across64 independent-redraw contiguous banks, metrics computed before averaging; not IID-mixture resampling of ages or retraining scales",
+    "saved_redraw_precision": "pergroup perreplica4phase mean overpaths; corefullpath/time Dmean and first/last32 means, not allreplica*path*time arrays",
+    "root_cdf_tolerance": 1e-10,
+    "fast_inference_rtol": 1e-06,
+    "fast_inference_atol": 2e-06,
+    "execution": {
+      "device": "cpu",
+      "torch_threads": 4
+    }
+  },
+  "analysis": {
+    "primary_world": "gaussian_up2",
+    "primary_context": 64,
+    "primary_windows": [
+      32,
+      128
+    ],
+    "primary_phases": [
+      "entry",
+      "recovery"
+    ],
+    "target": "perfit/window/phase actual mean standardized conditional expected interval score; first average64paths and4endpoints before absolute error",
+    "primary_gain": "mean over12fits and4cells of abs(mean(P)-mean(A)) minus abs(mean(D)-mean(A)); positive means independent finite bank closer than population approximation",
+    "bootstrap_replicates": 4000,
+    "bootstrap_seed": 2026101807,
+    "mc_bootstrap_seed": 2026101808,
+    "interval_level": 0.95,
+    "bootstrap_unit": "shared original path indices across allfits/worlds/contexts/windows; recompute mean and absolute errors; conditional on saved12fits and64redraws",
+    "training_uncertainty": "no training-population confidence claim from3panels; show everyfit, panel and architecture; nested unique seeds, not shared-seed crossed design",
+    "mc_precision": "redraw-replica bootstrap shared acrossfits/cells, actual and populationmeans heldfixed; evaluate primarygain after averaging64selectedreplicas; displayMCSE and95%range; separate from path interval",
+    "refinement_gate": {
+      "gain_strictly_positive": true,
+      "path_ci_lower_strictly_positive": true,
+      "minimum_relative_MAE_reduction": 0.1,
+      "positive_architectures": 2,
+      "minimum_positive_panels": 2,
+      "maximum_mc_se_fraction_of_gain": 0.1,
+      "maximum_first32_last32_gain_difference_fraction": 0.2,
+      "note": "All gates necessary to say D materially improves mean-risk approximation in this restricted primarysetting; no algorithm/deployment/novelty claim; if insufficient precision do not appendreplicas orchangeprimary"
+    },
+    "relative_MAE_zero_rule": "If population MAE <=1e-12, relative gain undefined and gatefails",
+    "mechanisms": "xi_A=xi_P+eta_A; retain secondmoment identity, cross moment, covariance and productofmeans separately for A and D; do not assume redrawcovariancezero",
+    "local_law": "compare firstorder and secondorderlogwidth approximations toexactP and C*xi^2 toexactexcessrisk; descriptive failureboundaries, no posthocfiltering",
+    "all_other_results": "descriptive predeclared boundarychecks, retain allfits andworlds; no multiple-comparison confirmationclaim"
+  },
+  "limitations": [
+    "Only3newtrainingpanels and2nestedseedpairs perpanel;12fits not12independenttrainingdatasets.",
+    "Evaluationuses16preselectedendpoints,notentirephase means.",
+    "Knownsigma and trueinnovationlawonlyforofflinemechanismdiagnostics.",
+    "Populationmixturegivenwholelearneddelta is notactualneural conditional residualdistribution.",
+    "Dredrawcounterfactual fixesissuedscales; notonline deployable and notzero covariance by construction.",
+    "Path andreplicabootstraps are separateconditional sensitivity summaries,notjointfulltraining uncertainty.",
+    "Oldtrainerinternal historicaldate remainscompatibilitymetadata; wrapperactualtimestamp controlsnewrun.",
+    "Allfailures retained; noreport/PPT changes, nochargeableHPC orprivateWeBankdata."
+  ],
+  "evaluation_dependencies": {
+    "scripts/finite_mechanism_math.py": "7fb31f6e24c87511122e7e90056e629a670f0a7bd8a094550276766b59948ce8",
+    "scripts/evaluate_stage3.py": "f092ca94932453ef726dcd6b72712ee93daa9603b05ea63535e0d2387a5aaff3",
+    "scripts/evaluate_stage2.py": "4642c27329b6556ac1d3eac8cf1cbcc3d07ee0b1efe09e1d85295618ec052558",
+    "scripts/stage2_baselines.py": "f82fbbe82e5b75e17514a47ebde0dc636332da365aae42c09d00901a90e29eb0"
+  }
+}
