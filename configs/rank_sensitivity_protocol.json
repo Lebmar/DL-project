@@ -1,0 +1,146 @@
+{
+  "protocol_version": "rank-sensitivity-v1",
+  "specified_date": "2026-10-18",
+  "frozen": true,
+  "design_status": "post-hoc sensitivity on already-viewed Stage3 paths",
+  "question": "Do previously reported current/archive interactions materially depend on integer-ceiling quantile ranks rather than a common ideal rank level?",
+  "new_blind_test": false,
+  "training_or_checkpoint_selection": "none",
+  "original_stage3_primary_analysis_replaced": false,
+  "models": {
+    "panels": [
+      1,
+      2,
+      3
+    ],
+    "seeds": [
+      4101,
+      4102,
+      4103,
+      4104,
+      4105
+    ],
+    "architectures": [
+      "gru",
+      "tcn"
+    ],
+    "count": 30,
+    "exclusions": "none"
+  },
+  "rules": [
+    "ceiling",
+    "randomized90"
+  ],
+  "rank_rules": {
+    "ceiling": "k=ceil((W+1)*.9), original Stage3 convention",
+    "randomized90": "lower=floor((W+1)*.9), upper=ceil((W+1)*.9); choose upper with probability (W+1)*.9-lower; integrate candidate metric values exactly",
+    "window32": {
+      "lower": 29,
+      "upper": 30,
+      "upper_probability": 0.7
+    },
+    "window128": {
+      "lower": 116,
+      "upper": 117,
+      "upper_probability": 0.1
+    },
+    "metric_order": "Compute each candidate interval metric, take rank expectation, then phase/path averages; never score averaged width",
+    "randomization_scope": "Expected randomized procedure, not a realized random interval stream; no Monte Carlo coin draws"
+  },
+  "test": {
+    "path_seed": 1902000,
+    "paths": 128,
+    "length": 1024,
+    "onset": 384,
+    "families": [
+      "gaussian",
+      "student_t5"
+    ],
+    "duration": 128,
+    "amplitude": 3.0,
+    "student_t_df": 5,
+    "contexts": [
+      16,
+      64
+    ],
+    "windows": [
+      32,
+      128
+    ],
+    "alpha": 0.1,
+    "phases": [
+      "entry",
+      "recovery64"
+    ],
+    "entry_bounds": [
+      384,
+      416
+    ],
+    "recovery64_bounds": [
+      512,
+      576
+    ],
+    "same_stage3_observations": true
+  },
+  "analysis": {
+    "bootstrap_replicates": 4000,
+    "bootstrap_seed": 2026101801,
+    "reference_interval_level": 0.975,
+    "descriptive_interval_level": 0.95,
+    "reference": "Gaussian D128 A3 interval-score totalJ GRU-minus-TCN at entry and recovery64; original rule, randomized rule, paired rule change",
+    "all_outputs": "both families, both phases, all five metrics, both architectures and paired architecture contrast, six components, both rules and paired rule change",
+    "fixed_fit_path": "Average all 3 panels x5 paired seeds before common path resampling",
+    "crossed_sensitivity": "Resample3 panels,5 shared seed indices,128 common paths; same seed draw broadcast to every sampled panel, all architectures/rules share draws",
+    "pairing": "Compute all architecture and rule changes within the same bootstrap replicate",
+    "multiplicity": "97.5% reference intervals are a two-phase approximation within each rule/change series, not joint protection across rank rules or all analyses; all nonreference95% descriptive intervals unadjusted; exercise entirely post-hoc",
+    "no_new_threshold": "No claim based on a selected sign, significance threshold, percentage attenuation, or winning configuration; report all changes and failures"
+  },
+  "execution": {
+    "device": "cpu",
+    "torch_threads": 4,
+    "new_fits": 0,
+    "expected_local_wall_minutes": [
+      10,
+      30
+    ],
+    "output": "outputs/rank_sensitivity",
+    "analysis_output": "outputs/rank_sensitivity_analysis",
+    "overwrite": "refuse if output directory already exists"
+  },
+  "checks": [
+    "Pure synthetic scalar adjacent-order-statistic comparison",
+    "Exchangeable rank coverage exact enumeration",
+    "Current/future score exclusion",
+    "Nonlinear scoring counterexample proves score of expected width is wrong",
+    "Every ceiling rank and all five reference metrics reproduce original Stage3",
+    "All current/archive/window cells and both decomposition routes retained",
+    "All candidate per-path phase metrics saved",
+    "Finite-memory agreement checked for lower and upper candidate ranks",
+    "Bootstrap compared to independent scalar toy loops",
+    "Exact row grids reject missing duplicate and off-grid identities",
+    "Frozen dependencies and all model hashes verified before and after"
+  ],
+  "limitations": [
+    "Same observed Stage3 paths; post-hoc sensitivity, not independent confirmatory evidence",
+    "Common90% ideal rank level is an exchangeable continuous-score benchmark, not coverage guarantee for dependent nonstationary neural scores",
+    "Randomized90 lowers both original finite-rank levels; it is sensitivity to the rank rule, not unique causal correction or explained-effect percentage",
+    "Window changes still alter score count, history span, and empirical-quantile variability",
+    "Only3 training panels and5 shared seeds; crossed bootstrap remains descriptive sensitivity",
+    "Both route components correlated and order-dependent; no causal mediation fractions",
+    "Signed J is not absolute performance or model quality ranking",
+    "Coverage deficit averages the positive oracle deficit of each candidate; not positive part after averaging",
+    "Exact integration targets expected metrics and omits variability from realizing rank coins",
+    "No new financial deployment or trading claims"
+  ],
+  "frozen_dependencies": {
+    "configs/stage3_replication_protocol.json": "f57018b06e92688ccc92905d84adfb9fedc07ee7a238e4df9622ccb21f3280d6",
+    "outputs/stage3_training/manifest.json": "bfc3c80c60d7ef3d7f48508c37615a1acf8531db94f85e1560664ef280d5ed05",
+    "outputs/stage3_evaluation/manifest.json": "a97a2ec80c232e3064b310dfef976d2e2a8b929156a81f75432344c9b8e9bfd2",
+    "scripts/train_stage3_repeats.py": "3898736b30610a49006f915c9e978e73db7dd9ae4f3de97162505eb28aadc34e",
+    "scripts/train_stage2.py": "d93d1ecbb6ce30ccba88c2566be2632d769db6c2968717c3f6c36f24fbc49850",
+    "scripts/stage2_models.py": "c93e127dd43a3f9f70fed3fbd4c63bed8fa0c74b261c33dbd0a327889bd10f2e",
+    "scripts/evaluate_stage2.py": "4642c27329b6556ac1d3eac8cf1cbcc3d07ee0b1efe09e1d85295618ec052558",
+    "scripts/stage2_baselines.py": "f82fbbe82e5b75e17514a47ebde0dc636332da365aae42c09d00901a90e29eb0",
+    "scripts/evaluate_stage3.py": "f092ca94932453ef726dcd6b72712ee93daa9603b05ea63535e0d2387a5aaff3"
+  }
+}
