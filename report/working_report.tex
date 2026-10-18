@@ -7,8 +7,9 @@
 \usepackage{hyperref}
 \hypersetup{hidelinks}
 \input{readout}
+\input{extension_readout}
 \title{Separating Neural Scale Response and Score Memory\\in Online Interval Calibration}
-\author{Chengxuan\\DSAA 2012, HKUST(GZ)\\Working draft for student review, 11 October 2026}
+\author{Chengxuan YUAN (50025581)\\DSAA 2012, HKUST(GZ)\\Working draft for student review, 18 October 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -24,9 +25,11 @@ training-randomness sensitivity still includes zero; the recovery contrast
 does not replicate reliably. In the reference Gaussian entry comparison,
 TCN has greater current-channel seed variability than GRU, while archive
 variability can dominate within a dataset.
-These phase-specific findings do not establish a general architecture ranking
-or coverage guarantee. Validation probes and independent audits accompany
-the complete results.
+A post-hoc common-rank-level check retains the negative mean Gaussian entry contrast while
+revealing sensitivity in smaller effects. A separate public-FX extension
+compares absolute interval quality and descriptive pathway differences.
+These findings do not establish a general architecture ranking or a
+coverage guarantee; all fitted models and failed replication outcomes remain.
 \end{abstract}
 
 \section{Research question and contribution scope}
@@ -88,8 +91,8 @@ fractions. Correlated component interval endpoints cannot be added.
 $C$ and $A$ are channel-by-window interaction components, not channel main effects.
 
 \paragraph{Training and tests.}
-The GRU has 2041 parameters; the causal dilated TCN has 1897 and receptive
-field 64. Both use features $(y/3,\log(1+|y|))$, Gaussian scale loss, two
+The GRU \citep{gru} has 2041 parameters; the causal dilated TCN
+\citep{tcn} has 1897 and receptive field 64. Both use features $(y/3,\log(1+|y|))$, Gaussian scale loss, two
 contexts, data and paired sampler prefixes. Each target resets state.
 Adam and validation early stopping are fixed; total optimization steps may
 differ between architectures. Context length is not effective learned memory.
@@ -159,87 +162,86 @@ Current circles denote $C_{b64}$ and archive crosses $A_{a16}$.
 Point spread describes training variability, not causal variance attribution.}
 \end{figure}
 
-\begin{center}
-\ComponentReadout
-\end{center}
-\noindent The table uses $C_{b64}+A_{a16}$. TCN entry current seed standard
-deviation exceeds GRU's in all six panel-by-route comparisons, but exceeds
-its own archive spread in only $\VariabilityCount/\VariabilityComparisons$.
-Panel 1 has larger archive spread in both routes, limiting claims of
-current dominance. These comparisons are correlated and descriptive;
-all routes, conditions, individual effects and absolute metrics are saved.
+\noindent TCN entry current seed standard deviation exceeds GRU's in all six
+panel-by-route comparisons, but exceeds its own archive spread in only
+$\VariabilityCount/\VariabilityComparisons$. Panel 1 has larger archive
+spread in both routes. These correlated comparisons are descriptive;
+Appendix A retains the component means and absolute interval costs.
+
+\paragraph{Interpretation requires the score as well as the response.}
+A small total can conceal opposing components. At recovery, GRU's
+$C_{b64}=+0.0504$ and $A_{a16}=-0.0830$ partly cancel; TCN's are
+$+0.0210$ and $-0.0606$. Moreover, the mixed derivative of expected Gaussian
+interval score for $h=sq$ changes sign (Appendix A). Thus signed $J$ combines
+scale response, archive quantiles and score curvature; it cannot label
+memory as beneficial or harmful. Neither the algebraic decomposition nor
+the finite input-dependency bound is presented as a novel theorem.
 
 \clearpage
-\section{Diagnostics, limitations, and remaining work}
-\paragraph{Implementation checks are separate from discoveries.}
-The new evaluation verifies 480 diagonal cells and 960 crossed finite-memory
-controls. If event/control observations agree from exit $e$, a fixed
-current context $a$, archive context $b$ and window $W$ give identical
-half-widths from $e+\max(a,b+W)$. This follows directly from input dependency;
-it is an implementation check, not a new theorem or a claim that real
-markets recover within 192 days. Persistent online controller states need
-not obey this bound. Full-sequence TCN64 execution is checked against the
-original reset-window predictor on validation before test access;
-canonical pulse horizons preserve numerically identical entry prefixes.
+\section{Sensitivity, financial extension, and boundaries}
+\paragraph{Finite-rank sensitivity on the same saved paths.}
+We freeze a post-hoc check using all 30 Stage3 models and the already-viewed
+Gaussian/t5 D128/A3 paths. A randomized rule uses ranks 29/30 with
+probabilities .30/.70 at W32, and 116/117 with .90/.10 at W128. Both have
+ideal exchangeable-score rank level .90. We integrate each candidate
+interval's \emph{metric}, not its width before scoring. This lowers both
+original ideal rank levels. Within either rule, comparing W32 with W128
+still changes score count and history span. This is rule sensitivity,
+not causal removal of a discretization effect.
 
-Independent audits reproduce all 30 selected validation losses, sampling
-digests, stopping decisions and response features. These checks establish
-implementation consistency, not scientific novelty.
-
-\paragraph{A score interaction is not a memory-quality label.}
-For Gaussian $Y\sim N(0,\tau^2)$, expected interval score is
-\[
- R(h;\tau)=2h+\frac{4}{\alpha}
- \{\tau\phi(h/\tau)-h\,\overline\Phi(h/\tau)\}.
-\]
-Its mixed derivative for $h=sq$ is
-$R_h+hR_{hh}=2-(4/\alpha)\{\overline\Phi(z)-z\phi(z)\}$,
-which changes sign. A fixed-archive scale-by-quantile contrast is its
-oriented rectangle integral. Consequently, signed $J$ combines response,
-archive quantiles and scoring nonlinearity; it cannot by itself diagnose
-harmful memory. These are standard calculus explanations, not a novel
-scoring rule. In the already-seen seed 4101 Gaussian/t5 reference,
-integrating current innovations preserves the main interaction directions,
-but does not resolve initialization variability.
-
-\paragraph{Absolute costs accompany interaction effects.}
-The saved Gaussian D128/A3 recovery64 means below use context 64 and all
-15 fits per architecture. W128 has higher coverage and width than W32,
-but also higher score; these descriptive means are not another primary test.
 \begin{center}
-\AbsoluteReadout
+\RankReadout
 \end{center}
+\noindent Entries are GRU-minus-TCN $J$ for Gaussian; the change uses paired
+rules on common bootstrap draws. Fixed-fit 97.5\% change intervals are
+$[-0.0124,+0.0210]$ at entry and $[-0.0103,+0.0048]$ at recovery.
+Crossed sensitivity intervals still contain zero; recovery panel directions
+remain mixed. TCN's own near-zero entry mean changes sign. For t5 recovery,
+the GRU-minus-TCN contrast changes by $+0.00936$ with fixed-fit 95\% interval
+$[+0.00230,+0.01661]$, but crossed $[-0.00322,+0.02139]$.
+Rank choice therefore matters for some smaller quantities. This check
+cannot repair the failed independent recovery replication.
 
-\paragraph{Validation-response probes are exploratory.}
-Each new training panel uses its first 256 saved validation targets for
-raw-input gradients and older-block permutation, plus 64 separate
-Gaussian validation pulses for log-scale response.
-All 30 fitted models are retained in NLL/gradient/pulse-response scatterplots.
-Validation distributions differ across panels, so plots separate panels.
-No equivalence test, regression, predictive meta-model or model selection
-has been performed. Gradients are local, permutation may create
-out-of-distribution contexts, and controlled pulses are stress probes,
-not online knowledge of a market event.
+\paragraph{Public FX: absolute quality and a descriptive contrast.}
+We use the same frozen ECB \citep{ecb} USD/JPY/GBP/CHF-per-EUR archive through
+9 October 2026. Training and per-asset standardization use data through
+2018; checkpoint selection and calibrator-scale preparation use 2019.
+Each currency replays its own 2020 history before scoring the already-viewed
+2021--2026 period. Ten new pooled GRU/TCN fits retain all five paired seeds.
+Training-only constant, EWMA16/64 and GARCH scales provide classical controls.
+Native, rolling32/128, ACI \citep{aci}, author SF-OGD and SAOCP comparisons are retained
+(Appendix B); no test-based winner or event subset is selected.
 
-\paragraph{Financial application and boundaries.}
-An earlier public ECB pilot uses USD/JPY/GBP/CHF reference rates per EUR:
-training through 2018, validation 2019--2020 and exploratory 2021--2026
-evaluation. It does not clearly establish GRU over EWMA, and the four
-currencies share a denominator and dates. This already-viewed period is
-not an untouched financial holdout. The main result remains a synthetic,
-zero-center scale study with small neural models, one training generator
-and one optimization procedure. No private competition data are used.
+\begin{center}
+\FXMainReadout
+\end{center}
+\noindent Context64 neural results average seeds, then currencies; IS is
+in training-standard-deviation units. Columns were chosen before the new
+run; Appendix B includes all six calibrators. Both neural models have lower native mean IS than GARCH. Under every
+online calibrator, their pooled mean IS is higher than GARCH's; uncertainty
+varies by comparison. This reversal motivates evaluating predictor--calibrator
+combinations rather than declaring a general neural advantage.
 
-The present probes do not yet justify a predictive response model:
-within-architecture patterns vary across datasets. A future prediction
-test would need a common diagnostic dataset, architecture-plus-NLL
-controls, and entirely new training datasets held out. We first consolidate
-the mechanism evidence and its failures. New adaptation methods would
-require validation selection, direct prior-method comparisons and another
-fresh test. This is a working draft for student review.
+For FX, $D_{\rm FX}(a,b)$ is the observed mean score difference W128-minus-W32,
+and $J_{\rm FX}=D_{\rm FX}(64,64)-D_{\rm FX}(16,16)$, with both decomposition
+orders retained. There is \emph{no matched control or known shock/recovery}
+on this history. Joint date-block intervals preserve shared currency dates
+and are conditional on the saved fits; four correlated currencies and five
+seeds are not independent market histories.
+
+\paragraph{Scope.}
+Evidence is specific to small zero-center neural scale models, a fixed
+training procedure, the simulated generator and one viewed FX archive.
+The study supports a reproducible separation of computational pathways and
+identifies where apparent contrasts fail to generalize across fits or
+settings. It establishes neither deployable coverage nor trading gains.
+Training-randomness uncertainty and the recovery failure remain central,
+regardless of additional sensitivity checks.
 
 \clearpage
-\begin{thebibliography}{9}
+\begingroup
+\raggedright
+\begin{thebibliography}{99}
 \bibitem[D'Amour et~al.(2022)]{damour}
 A. D'Amour et al. Underspecification Presents Challenges for Credibility in
 Modern Machine Learning. \emph{JMLR}, 23(226):1--61, 2022.
@@ -268,18 +270,158 @@ Conformal PID Control for Time Series Prediction. \emph{NeurIPS}, 2023.
 T. Gneiting and A. E. Raftery. Strictly Proper Scoring Rules, Prediction,
 and Estimation. \emph{JASA}, 102(477):359--378, 2007.
 \url{https://doi.org/10.1198/016214506000001437}
+\bibitem[Cho et~al.(2014)]{gru}
+K. Cho et al. Learning Phrase Representations using RNN Encoder-Decoder
+for Statistical Machine Translation. \emph{EMNLP}, 2014. arXiv:1406.1078.
+\bibitem[Bai et~al.(2018)]{tcn}
+S. Bai, J. Z. Kolter, and V. Koltun. An Empirical Evaluation of Generic
+Convolutional and Recurrent Networks for Sequence Modeling.
+arXiv:1803.01271, 2018.
+\bibitem[Gibbs and Cand\`es(2021)]{aci}
+I. Gibbs and E. J. Cand\`es. Adaptive Conformal Inference Under
+Distribution Shift. arXiv:2106.00170, 2021.
+\bibitem[European Central Bank(2026)]{ecb}
+European Central Bank. Euro foreign exchange reference rates.
+Frozen historical archive ending 9 October 2026.
+\url{https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.zip}
 \end{thebibliography}
+\endgroup
+
 
 \section*{Reproducibility and draft status}
-Frozen protocols, complete metrics, checkpoints, source/input hashes,
-independent audits and all unsuccessful conditions are available at
-\url{https://github.com/Lebmar/DL-project/tree/codex/stage2-memory-study}.
-Detailed runbooks distinguish existing-output verification from a new run;
-writers refuse silent overwriting. The report's numbers and compact figure
-are rendered from the saved Stage3 analysis without re-fitting or
-re-bootstrap. Main text ends on page 4; references and this note are extra.
-AI tools assisted implementation, checking and draft preparation with
-course permission. The student must understand, revise and take
-responsibility for the work and replace the author line with the required
-official name before submission.
+Frozen protocols, checkpoints, complete metrics and source/input hashes are
+available at \url{https://github.com/Lebmar/DL-project/tree/codex/stage2-memory-study}.
+Writers refuse silent overwriting. Stage3 statistics remain unchanged;
+new sensitivity and FX displays are read from their separately saved outputs.
+Main text ends on page 4; references and appendices are extra.
+AI tools assisted implementation, checking and drafting with course permission.
+This is a working report for the student's interpretation and revision;
+it has not been submitted by the assistant.
+
+\clearpage
+\appendix
+\section{Synthetic design and interpretation details}
+\paragraph{Fixed training procedure.}
+All synthetic models use GRU hidden size 24 or TCN 12 channels with kernels
+$(4,3,3,3,3)$ and dilations $(1,2,4,8,16)$, clipped log-scale $[-3,3]$,
+Adam learning rate .002, gradient norm clipping at 5, batch size 128 and
+32 balanced-context batches per epoch. Validation chooses the absolute
+minimum NLL; patience 8 uses tolerance $10^{-4}$ after at least 20 epochs,
+with maximum 60. Shared sampler prefixes do not imply equal stopping times.
+The three Stage3 training seeds are 314259/314359/314459, with separate
+validation seeds and target-pair seeds; each panel reuses fit seeds
+4101--4105. Protocols identify all generator and evaluation seeds.
+
+\paragraph{Implementation checks.}
+Stage3 verifies 480 diagonal cells and 960 crossed finite-memory controls.
+If event/control observations agree from exit $e$, a fixed current context
+$a$, archive context $b$ and window $W$ give identical half-widths from
+$e+\max(a,b+W)$. This is an input-dependency check; persistent adaptive
+controller states need not obey it. It does not assert market recovery
+within 192 days. TCN64 full-sequence inference is checked against reset
+windows before test access. Canonical pulse horizons preserve identical
+entry prefixes across durations. Saved-output audits reproduce validation
+losses, sampling digests, stopping decisions and response features.
+
+\paragraph{Component means and absolute interval quality.}
+The first table uses Gaussian D128/A3 and all 15 fits per architecture,
+with route $C_{b64}+A_{a16}$; the second uses context64 recovery64 event
+paths. Higher coverage can accompany wider intervals and a worse score.
+\begin{center}
+\ComponentReadout
+\end{center}
+\begin{center}
+\AbsoluteReadout
+\end{center}
+
+\paragraph{Standard score geometry.}
+For Gaussian $Y\sim N(0,\tau^2)$, expected interval score is
+\[
+ R(h;\tau)=2h+\frac{4}{\alpha}
+ \{\tau\phi(h/\tau)-h\,\overline\Phi(h/\tau)\}.
+\]
+With $h=sq$ and $z=h/\tau$, the mixed derivative
+$R_h+hR_{hh}=2-(4/\alpha)\{\overline\Phi(z)-z\phi(z)\}$ changes sign.
+A fixed-archive scale-by-quantile contrast is its oriented rectangle
+integral. These calculus facts explain why a signed interaction need not
+rank memory quality. An earlier seed4101 Gaussian/t5 innovation-integration
+check preserves its interaction directions but says nothing decisive
+about initialization variability.
+
+\paragraph{Validation probes and rank checks.}
+All 30 models retain raw-input gradients and older-block permutations on
+256 saved validation targets, plus 64 separate validation pulse paths.
+Panel-specific scatterplots are exploratory: no equivalence test,
+meta-regression or predictive model selection was performed.
+For rank sensitivity, all 92,160 original per-path components and 1,920
+crossed cell means reproduce Stage3 within $1.8\times10^{-15}$; 960
+candidate-rank negative controls pass. Randomization is integrated after
+each nonlinear metric, including positive-part oracle deficits. New common
+bootstrap draws support paired rule changes, so original-rule bootstrap
+endpoints differ slightly from the historical Stage3 table while point
+estimates and raw outputs remain unchanged. The 97.5\% intervals adjust
+for two phases separately within each rule/change series, not jointly
+across rules. Secondary 95\% intervals are unadjusted; all rank analyses
+remain post hoc.
+
+\clearpage
+\section{Financial extension and complete comparisons}
+\paragraph{Data and chronology.}
+Each currency's percentage log return $100\log(P_t/P_{t-1})$ is divided,
+without demeaning, by its training standard deviation (ddof1). The archive
+contains informational reference prices, not point-in-time vintages or
+executable prices. Ten pooled neural fits use Appendix A's models and
+optimizer, uniform currency sampling and seeds 4301--4305 on local CPU.
+Both contexts select one common checkpoint by 2019 NLL. Classical scales
+recurse continuously across boundaries; calibrators have separate states
+for each currency and forecast stream.
+
+ACI uses $\gamma=.02$ and window128 with clipped error rate. Author
+SF-OGD/SAOCP use $\sqrt3\max_{2019}|y|/s$ as the fixed scale heuristic,
+without clipping scores; 29 of 56 distinct streams exceed it during replay.
+SAOCP lifetime is 8. Observed 2020 outcomes update
+calibration but are excluded from reported metrics; 2021 begins without
+resets. Strong controllers use all ten context64 fits. Native/rolling/ACI
+retain both contexts, including all eight rolling crossed cells.
+
+\paragraph{Complete context64 absolute-score table.}
+\begin{center}
+\FXFullReadout
+\end{center}
+
+\noindent Entries are means of per-date IS in per-currency training-standard-
+deviation units, averaging neural seeds before equal currency weights.
+All corresponding coverage, width, per-currency, annual and individual-fit
+results remain in the saved tables; 2026 is partial through 9 October. EWMA16's native mean IS (3.168) is close to the neural means. With SF-OGD
+and SAOCP, a constant base scale plus adaptive calibration has lower mean IS than
+the other listed combinations, with coverage 90.01\% and 90.75\%. These descriptive means
+do not establish a deployment winner. For GBP, both neural native mean
+scores are instead higher than GARCH; pooled ordering is not universal.
+
+\paragraph{Dependence and uncertainty.}
+Paired circular date-block bootstrap uses 2000 draws, seed 2026101802,
+block128 as the main analysis and 20/60/256 as sensitivity. The same date
+draws apply to every asset, fit, method and crossed cell. Models are fixed;
+these exploratory unadjusted 95\% intervals do not measure retraining
+uncertainty or guarantee future performance under arbitrary distribution
+shift. The predeclared context64 contrasts are GRU-minus-GARCH,
+TCN-minus-GARCH and GRU-minus-TCN under each identical calibrator.
+The GRU-native/GARCH difference is $-0.0623$ with block128 interval
+$[-0.1212,-0.0007]$, but its block256 interval includes zero. TCN/GARCH
+rolling128 and ACI intervals include zero at all four block lengths.
+
+\paragraph{Financial pathway contrast.}
+\begin{center}
+\FXMechanismReadout
+\end{center}
+
+\noindent At block128, total 95\% intervals are $[-0.0145,+0.0024]$ for GRU
+and $[-0.0008,+0.0366]$ for TCN; the paired architecture difference is
+$-0.0232$, interval $[-0.0408,-0.0059]$. These conditional exploratory
+intervals do not establish a training-population difference.
+Both routes sum to $J_{\rm FX}$, with order-dependent components:
+TCN archive means are $-0.0004$ and $+0.0085$, both with intervals including zero. Unlike synthetic $J$, it contains no
+counterfactual subtraction, known volatility scale or labelled recovery.
+It cannot establish that a real market shock caused a pathway effect.
+
 \end{document}

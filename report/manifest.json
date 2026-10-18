@@ -1,27 +1,67 @@
 {
   "status": "working draft; student review required",
-  "date": "2026-10-11",
+  "date": "2026-10-18",
+  "author": "Chengxuan YUAN",
+  "student_id": "50025581",
   "main_pages": 4,
-  "total_pages": 5,
+  "total_pages": 7,
   "references_begin_on_page": 5,
+  "appendix_pages": [
+    6,
+    7
+  ],
   "official_style_unchanged_from_proposal": true,
-  "compilation": "pdfLaTeX TeX Live 2026; two passes",
+  "compilation": "pdfLaTeX TeX Live 2026; two final successful passes",
   "layout_or_citation_warnings": [],
   "all_pages_rendered_and_visually_reviewed": true,
   "render_resolution_dpi": 125,
-  "analysis_manifest_sha256": "e0f1cc2a65c1df385070e7a79c46879543b074988e3479e30893c6c3d29b0221",
+  "analysis_manifests": {
+    "outputs/stage3_analysis/manifest.json": "e0f1cc2a65c1df385070e7a79c46879543b074988e3479e30893c6c3d29b0221",
+    "outputs/rank_sensitivity_analysis/manifest.json": "8723e9a21fe9f58c99381ac5e230e24661d89e157a8ff83259070f5e336201b6",
+    "outputs/fx_extension_analysis/manifest.json": "c47fcc1137f2a95f27a759f84a13b4bf04032fa54639a0ec7a6db169e4c8bbc2"
+  },
   "artifact_sha256": {
-    "report/working_report.tex": "e636cb825a6bfa44effd78f6bc2038032cd86189940accfe6032f7bfc94ac206",
+    "report/working_report.tex": "e8e5791b76e5f525086b9f2631936069c3c58d85e1f972b6a92681eabd5dbf08",
     "report/neurips_2026.sty": "c3fc2894e83d2517ca18b66741d6c595986d97957dc08ec08bb2125a7ec4555a",
     "report/readout.tex": "ab65ad9d0abd8da407f9b06490c7657283c750bc25417519ca09bc85d731fe8c",
     "report/stage3_components.png": "e04abe1ef60909218e7e6382ae1c98e9003c310c39d45489ece62650396e2818",
     "report/readout_manifest.json": "378ea96efaff41b1eeaa9726cb54818f36bd87e35912c6999f43cd32a3987a57",
     "scripts/render_report_readout.py": "0a4045578cebeb6e6abe85749447b4718fd9896cadbc806fbd70d4ca076fe7cf",
-    "output/pdf/working_report.pdf": "b9293c47b33f1ae1ebff7e871fa10cecfe6639df7e162dfc3e659c4ea795885e"
+    "report/extension_readout.tex": "3e5482ad2b78610644d6cabee1fbaaf1316bc6a963857a57c9df8243bff0236a",
+    "report/extension_readout_manifest.json": "81fc57d8de7773095c0de42b72f82fa949e8d626d06007ee705e6386b6a27f5f",
+    "scripts/render_report_extensions.py": "105f264644b118c56d120917b52c3d0ba37c3332e1ed6135df29b2206ad8dc37",
+    "output/pdf/working_report.pdf": "330e560c1f55f9f7a89615d56763de173ab4872bc69e0ee993bb951eddc45b50"
   },
-  "scope": "Presentation of completed frozen experiments only; no training or statistical recomputation; original seed indices shared across new training datasets",
+  "scope": "Saved Stage3 results plus separately frozen post-hoc rank sensitivity and exploratory FX extension; report renderer does not fit or bootstrap",
+  "previous_version": {
+    "date": "2026-10-11",
+    "pdf_sha256": "b9293c47b33f1ae1ebff7e871fa10cecfe6639df7e162dfc3e659c4ea795885e",
+    "source_sha256": "e636cb825a6bfa44effd78f6bc2038032cd86189940accfe6032f7bfc94ac206",
+    "total_pages": 5,
+    "preservation": "Available unchanged in Git history; original scientific outputs and proposal PDFs remain unchanged"
+  },
+  "rendered_page_sha256": {
+    "page-1.png": "a156827b1f68ed36e139b41413292b96c414cb0b9c46a4ef95cf40249389d4fd",
+    "page-2.png": "5c8ed6e5949c98f879724d3707a4dce19e0ee71b9a5631a818e8541a2a093ef4",
+    "page-3.png": "6465c91feea21bdc206892510ba7f7a498d8a5b961fb2511b5e779d2e341715d",
+    "page-4.png": "dfdb20241ec864acbeb47eb2ba7f52f88794f974a2769d850e5e5e681e9f77b3",
+    "page-5.png": "f1554efd9934390204928e24d5dc2f4645aae740c84d245767d5c2f7d9e8e7c5",
+    "page-6.png": "006066cbf12d55457af21aadfa3dfb1ee5882bae4f5d9d90bf911a5d94bcd24d",
+    "page-7.png": "506e480f1f702bed80e8a3eec4b71b0a6035baf884927165c4e2aa376d19b6cc"
+  },
+  "review": {
+    "independent_numerical_review": "All new FX tables matched saved CSVs; original Stage3 and rank claims checked; bootstrap/asset counterexamples retained",
+    "limits_preserved": [
+      "Recovery replication failure",
+      "Crossed training sensitivity includes zero",
+      "Post-hoc rank analysis and exploratory previously viewed FX period",
+      "No matched counterfactual for J_FX",
+      "No general neural advantage or coverage guarantee",
+      "29/56 distinct FX score streams exceed their validation heuristic bound; no score clipping"
+    ]
+  },
   "known_submission_edits": [
-    "Required official full author name",
     "Student interpretation, contribution review and final revision before submission"
-  ]
+  ],
+  "submission": "Not submitted by assistant; no Canvas action"
 }

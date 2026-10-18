@@ -1,0 +1,18 @@
+{
+  "operation": "Presentation only; no new bootstrap, fitting, or selection",
+  "source_sha256": "105f264644b118c56d120917b52c3d0ba37c3332e1ed6135df29b2206ad8dc37",
+  "inputs": {
+    "outputs/rank_sensitivity_analysis/reference_architecture_contrasts.csv": "e2f135ab0cd306c3b89d9b9a02c2513b7e598fdbd46548954a04d0bb101d232d",
+    "outputs/fx_extension_analysis/report_core_table.csv": "53bb105ad21d90a6d9dc2a21d1e47df88c154d0e0d25b889dae8a374addd1445",
+    "outputs/fx_extension_analysis/report_calibration_matrix.csv": "d2ba1708a6e4218297a43eeca1b358559cf492bb64dd7a74de2693a0c92569c6",
+    "outputs/fx_extension_analysis/mechanism_summary.csv": "a37ace74162100d1771a7fba7bea8f52bfa28937d5e17a5d226737c968c8bf96"
+  },
+  "analysis_manifests": {
+    "outputs/rank_sensitivity_analysis/manifest.json": "8723e9a21fe9f58c99381ac5e230e24661d89e157a8ff83259070f5e336201b6",
+    "outputs/fx_extension_analysis/manifest.json": "c47fcc1137f2a95f27a759f84a13b4bf04032fa54639a0ec7a6db169e4c8bbc2"
+  },
+  "artifacts": {
+    "report/extension_readout.tex": "3e5482ad2b78610644d6cabee1fbaaf1316bc6a963857a57c9df8243bff0236a"
+  },
+  "scope": "Rank reference and FX report displays frozen in original extension protocols; full all-method tables retained"
+}

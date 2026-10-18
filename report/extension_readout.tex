@@ -1,0 +1,48 @@
+% Display only. Complete rank and FX outcomes remain in saved CSVs.
+
+\newcommand{\RankReadout}{%
+\begin{tabular}{lrrr}
+\toprule
+Phase & Original rank & Randomized rank & Change \\
+\midrule
+Entry & -0.1986 & -0.1946 & +0.0040 \\
+Recovery64 & +0.0069 & +0.0043 & -0.0027 \\
+\bottomrule
+\end{tabular}}
+
+\newcommand{\FXMainReadout}{%
+\begin{tabular}{lrrrr}
+\toprule
+& \multicolumn{2}{c}{Native} & \multicolumn{2}{c}{Rolling128} \\
+Model & Coverage & IS & Coverage & IS \\
+\midrule
+GRU & 90.05\% & 3.178 & 90.70\% & 3.219 \\
+TCN & 91.01\% & 3.166 & 90.68\% & 3.204 \\
+GARCH & 92.78\% & 3.240 & 90.45\% & 3.192 \\
+\bottomrule
+\end{tabular}}
+
+\newcommand{\FXFullReadout}{%
+\begin{tabular}{lrrrrrr}
+\toprule
+Model & Native & W32 & W128 & ACI128 & SF-OGD & SAOCP \\
+\midrule
+Constant & 3.740 & 3.226 & 3.244 & 3.222 & 3.232 & 3.298 \\
+EWMA16 & 3.168 & 3.373 & 3.222 & 3.287 & 3.373 & 3.545 \\
+EWMA64 & 3.195 & 3.277 & 3.218 & 3.267 & 3.288 & 3.395 \\
+GARCH & 3.240 & 3.288 & 3.192 & 3.249 & 3.292 & 3.427 \\
+GRU64 & 3.178 & 3.374 & 3.219 & 3.284 & 3.355 & 3.495 \\
+TCN64 & 3.166 & 3.342 & 3.204 & 3.261 & 3.319 & 3.450 \\
+\bottomrule
+\end{tabular}}
+
+\newcommand{\FXMechanismReadout}{%
+\begin{tabular}{lrrr}
+\toprule
+Model & $J_{\rm FX}$ & $C_{b64}$ & $A_{a16}$ \\
+\midrule
+GRU & -0.0061 & +0.0145 & -0.0206 \\
+TCN & +0.0171 & +0.0175 & -0.0004 \\
+GRU$-$TCN & -0.0232 & -0.0030 & -0.0202 \\
+\bottomrule
+\end{tabular}}
