@@ -1,0 +1,49 @@
+{
+  "version": "fx-static-scale-v1",
+  "specified_date": "2026-10-18",
+  "status": "exploratory diagnostic specified after viewing the original FX comparisons; freeze before computing these new controls",
+  "question": "Does native-versus-rolling model ordering also change after a single past-only constant width adjustment?",
+  "inputs": {
+    "outputs/fx_extension/issued_forecasts.npz": "6ee358c8b133b0bf398ac40d27b38d308d32b17a01e7287ffd5ebe1b071ee981",
+    "outputs/fx_extension/forecast_index.csv": "47597d922250529cfd2123f3756786bd21e5694dea970683ee3ee3ec771805ea",
+    "outputs/fx_extension/calibration_streams.npz": "19851b46dabf67d46fd4c78fd372d0aabeaa77a506d2b67303ce11206537e9fa",
+    "outputs/fx_extension/interval_index.csv": "02ca53ef2bd6c4e5e802425b69b07082a34ccada2538c0aa9c10d654703c2e77",
+    "outputs/fx_extension/manifest.json": "878dcc60c18137bef25eb3e648432356859363babf2e91b1d962cfef65b9ed66",
+    "outputs/fx_extension_analysis/method_summary.csv": "6c95c178fb79ccbc871987b383a6b81884469d525bf11c789ee8d9090e46f98e"
+  },
+  "alpha": 0.1,
+  "streams": "all 96 saved streams: both contexts, all neural seeds and all classical predictors, each asset separately",
+  "fit_years": [2019, 2020],
+  "evaluation_start": "2021-01-01",
+  "evaluation_dates": 1479,
+  "rules": ["native", "frozen_quantile_2019", "frozen_is_2019", "frozen_quantile_2020", "frozen_is_2020", "rolling32", "rolling128"],
+  "frozen_quantile": "q is order statistic ceil((n+1)*0.9) of abs(y_i)/s_i from the specified year; h_t=s_t*q without later updates",
+  "frozen_is": "q minimizes mean interval score in specified year: smallest score r_i=abs(y_i)/s_i whose cumulative s_i weight reaches 0.9 of total s_i weight; no finite-rank correction, no coverage guarantee",
+  "objective_note": "The ordinary score quantile and scale-weighted IS minimizer solve different objectives; neither is selected using evaluation outcomes.",
+  "analysis": {
+    "metrics": ["coverage", "width", "interval_score"],
+    "units": "width and IS divided by each asset's original training-only standard deviation",
+    "aggregation": "first average all five fixed neural fits within asset, then equal-weight four assets; classical streams have one fit per asset",
+    "comparisons": ["gru64_minus_garch11", "tcn64_minus_garch11", "gru64_minus_tcn64"],
+    "bootstrap_replicates": 2000,
+    "bootstrap_seed": 2026101803,
+    "block_lengths": [128, 20, 60, 256],
+    "interval_level": 0.95,
+    "uncertainty": "paired circular date blocks, shared across all rules/models/assets; fixed-fit, exploratory, unadjusted, not independent asset/seed evidence",
+    "reporting": "retain every rule, context, fit, asset and calendar year; no event selection, best-rule selection, causal explained fraction, or new confirmation claim"
+  },
+  "decision": {
+    "if_static_controls_change_order": "native-versus-rolling rank reversal alone does not identify temporal-memory dynamics; demand evidence beyond a fixed multiplier",
+    "if_static_controls_do_not_change_order": "temporal explanation remains a candidate, not established; frozen versus rolling also changes age, sample count and drift exposure",
+    "next_gate": "only develop a new method after a specific mechanism predicts new controlled outcomes and survives simple controls and fresh evaluation"
+  },
+  "limitations": [
+    "The same historical evaluation was already viewed; no new blind holdout.",
+    "2019 also selected neural checkpoints, so it is a reused diagnostic sample; 2020 was not used for checkpoint selection.",
+    "Both calibration years precede evaluation, but the year choice and controls were specified after original results were known.",
+    "A frozen multiplier still multiplies a time-varying predictor; this is not a fixed-width interval.",
+    "Different calibration years and rolling windows are not an intervention isolating only dynamics.",
+    "Constant scale cancellation and calibration-aware optimization have prior literature; this is a confound check, not a new algorithm."
+  ],
+  "execution": {"device": "local_cpu", "training": false, "downloads": false, "paid_hpc": false, "output": "outputs/fx_static_scale", "overwrite": "refuse"}
+}
