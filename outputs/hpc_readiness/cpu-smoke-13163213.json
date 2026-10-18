@@ -1,0 +1,216 @@
+{
+  "schema": "hpc_synthetic_runtime_smoke_v1",
+  "status": "passed",
+  "created_at_utc": "2026-10-18T02:44:27.393128+00:00",
+  "requested_device": "cpu",
+  "scope": "Synthetic runtime smoke only; not a benchmark or scientific result",
+  "project_data_or_checkpoints_read": false,
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.5.4",
+    "torch": "2.14.1+cu126",
+    "torch_compiled_cuda": "12.6",
+    "cudnn": 91002
+  },
+  "platform": {
+    "system": "Linux",
+    "release": "5.4.0-162-generic",
+    "machine": "x86_64"
+  },
+  "slurm": {
+    "SLURM_JOB_ID": "13163213",
+    "SLURM_JOB_PARTITION": "debug",
+    "SLURM_CPUS_PER_TASK": "4",
+    "SLURM_NTASKS": "1",
+    "SLURM_NNODES": "1",
+    "SLURM_NODEID": "0",
+    "SLURM_PROCID": "0",
+    "SLURM_LOCALID": "0"
+  },
+  "runtime": {
+    "threads": 4,
+    "interop_threads": 1,
+    "float_dtype": "float32",
+    "deterministic_algorithms": true,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "matmul_tf32": false,
+    "cudnn_tf32": false,
+    "float32_matmul_precision": "highest",
+    "cublas_workspace_config_process_only": ":4096:8"
+  },
+  "frozen_model_module": {
+    "path": "scripts/stage2_models.py",
+    "sha256": "c93e127dd43a3f9f70fed3fbd4c63bed8fa0c74b261c33dbd0a327889bd10f2e",
+    "last_committed_change": "54e5a91c921a282b58e3453be6045bef49d556b1"
+  },
+  "nvidia_smi": {
+    "available": true,
+    "status": "query_failed",
+    "return_code": 6,
+    "query_fields": [
+      "name",
+      "driver_version",
+      "memory.total"
+    ]
+  },
+  "checks": [
+    {
+      "architecture": "gru",
+      "seed": 674023135,
+      "losses_without_gaussian_constant": [
+        0.40332090854644775,
+        0.4741969704627991,
+        0.510429859161377,
+        0.11879280209541321,
+        0.23665067553520203
+      ],
+      "max_abs_gradient_by_step": [
+        0.14832744002342224,
+        0.28849947452545166,
+        0.31872111558914185,
+        0.4691580533981323,
+        0.244169220328331
+      ],
+      "parameter_count": 2041,
+      "context": 16,
+      "steps": 5,
+      "batch_size": 8,
+      "all_forward_losses_gradients_parameters_finite": true,
+      "same_device_replay_exact": true,
+      "final_parameter_sha256": "28e2f4f67e2065ae80908dd11ea1c12c8db57f2ffb07465a25818dd64b009b42",
+      "cpu_causal_prefix_audit": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 0.0,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 2041,
+        "structural_receptive_field": null
+      },
+      "cpu_cuda_same_weight_comparison": {
+        "performed": false,
+        "reason": "CPU-only smoke requested"
+      },
+      "elapsed_seconds_not_benchmark": 0.09825128712691367
+    },
+    {
+      "architecture": "gru",
+      "seed": 674023183,
+      "losses_without_gaussian_constant": [
+        0.698110818862915,
+        0.6831434965133667,
+        0.3930180072784424,
+        0.5471088886260986,
+        0.7313300371170044
+      ],
+      "max_abs_gradient_by_step": [
+        0.32459771633148193,
+        0.2836381196975708,
+        0.3374108672142029,
+        0.020772360265254974,
+        0.33624354004859924
+      ],
+      "parameter_count": 2041,
+      "context": 64,
+      "steps": 5,
+      "batch_size": 8,
+      "all_forward_losses_gradients_parameters_finite": true,
+      "same_device_replay_exact": true,
+      "final_parameter_sha256": "1e88106eacdd744e4b5b6f7dae8fd43fcc283e9f95410b53d419bbcd38a5f1dd",
+      "cpu_causal_prefix_audit": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 0.0,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 2041,
+        "structural_receptive_field": null
+      },
+      "cpu_cuda_same_weight_comparison": {
+        "performed": false,
+        "reason": "CPU-only smoke requested"
+      },
+      "elapsed_seconds_not_benchmark": 0.12905686581507325
+    },
+    {
+      "architecture": "tcn",
+      "seed": 674024135,
+      "losses_without_gaussian_constant": [
+        0.5137774348258972,
+        0.6665066480636597,
+        0.28647398948669434,
+        0.7209596037864685,
+        0.26324018836021423
+      ],
+      "max_abs_gradient_by_step": [
+        0.22421199083328247,
+        0.0875130444765091,
+        0.6707495450973511,
+        0.20254066586494446,
+        0.710199236869812
+      ],
+      "parameter_count": 1897,
+      "context": 16,
+      "steps": 5,
+      "batch_size": 8,
+      "all_forward_losses_gradients_parameters_finite": true,
+      "same_device_replay_exact": true,
+      "final_parameter_sha256": "94998ba4ab7c32531bb0fc4125cc9d805749504fc01143d990949fa8297558be",
+      "cpu_causal_prefix_audit": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 0.0,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 1897,
+        "structural_receptive_field": 64
+      },
+      "cpu_cuda_same_weight_comparison": {
+        "performed": false,
+        "reason": "CPU-only smoke requested"
+      },
+      "elapsed_seconds_not_benchmark": 0.1287887222133577
+    },
+    {
+      "architecture": "tcn",
+      "seed": 674024183,
+      "losses_without_gaussian_constant": [
+        0.5918794274330139,
+        0.468296617269516,
+        0.26412928104400635,
+        0.434343159198761,
+        1.3255126476287842
+      ],
+      "max_abs_gradient_by_step": [
+        0.19382822513580322,
+        0.05885036289691925,
+        0.4717836380004883,
+        0.1266237497329712,
+        1.6604022979736328
+      ],
+      "parameter_count": 1897,
+      "context": 64,
+      "steps": 5,
+      "batch_size": 8,
+      "all_forward_losses_gradients_parameters_finite": true,
+      "same_device_replay_exact": true,
+      "final_parameter_sha256": "16024b9380e498911eb81f903aa28dd8d2079bdf079c7f375eed0a210b6b5aa1",
+      "cpu_causal_prefix_audit": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 0.0,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 1897,
+        "structural_receptive_field": 64
+      },
+      "cpu_cuda_same_weight_comparison": {
+        "performed": false,
+        "reason": "CPU-only smoke requested"
+      },
+      "elapsed_seconds_not_benchmark": 0.04975481703877449
+    }
+  ],
+  "elapsed_seconds_not_benchmark": 0.4070163688156754
+}

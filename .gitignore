@@ -2,6 +2,7 @@
 __pycache__/
 *.pyc
 tmp/
+logs/
 .DS_Store
 output/pdf/*.aux
 output/pdf/*.log

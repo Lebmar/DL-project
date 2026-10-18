@@ -1,0 +1,287 @@
+{
+  "schema": "hpc_synthetic_runtime_smoke_v1",
+  "status": "passed",
+  "created_at_utc": "2026-10-18T02:44:19.387621+00:00",
+  "requested_device": "cuda",
+  "scope": "Synthetic runtime smoke only; not a benchmark or scientific result",
+  "project_data_or_checkpoints_read": false,
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.5.4",
+    "torch": "2.14.1+cu126",
+    "torch_compiled_cuda": "12.6",
+    "cudnn": 91002
+  },
+  "platform": {
+    "system": "Linux",
+    "release": "5.4.0-162-generic",
+    "machine": "x86_64"
+  },
+  "slurm": {
+    "SLURM_JOB_ID": "13163212",
+    "SLURM_JOB_PARTITION": "debug",
+    "SLURM_CPUS_PER_TASK": "4",
+    "SLURM_NTASKS": "1",
+    "SLURM_NNODES": "1",
+    "SLURM_NODEID": "0",
+    "SLURM_PROCID": "0",
+    "SLURM_LOCALID": "0",
+    "SLURM_GPUS_ON_NODE": "1"
+  },
+  "runtime": {
+    "threads": 4,
+    "interop_threads": 1,
+    "float_dtype": "float32",
+    "deterministic_algorithms": true,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "matmul_tf32": false,
+    "cudnn_tf32": false,
+    "float32_matmul_precision": "highest",
+    "cublas_workspace_config_process_only": ":4096:8"
+  },
+  "frozen_model_module": {
+    "path": "scripts/stage2_models.py",
+    "sha256": "c93e127dd43a3f9f70fed3fbd4c63bed8fa0c74b261c33dbd0a327889bd10f2e",
+    "last_committed_change": "54e5a91c921a282b58e3453be6045bef49d556b1"
+  },
+  "nvidia_smi": {
+    "available": true,
+    "status": "ok",
+    "query_fields": [
+      "name",
+      "driver_version",
+      "memory.total"
+    ],
+    "memory_unit": "MiB",
+    "visible_to_nvidia_smi": [
+      {
+        "name": "NVIDIA A40",
+        "driver_version": "575.57.08",
+        "memory.total": "49140"
+      }
+    ],
+    "note": "Inventory may include GPUs outside the process CUDA allocation."
+  },
+  "checks": [
+    {
+      "architecture": "gru",
+      "seed": 674023135,
+      "losses_without_gaussian_constant": [
+        0.40332090854644775,
+        0.47419679164886475,
+        0.5104299783706665,
+        0.1187928169965744,
+        0.23665064573287964
+      ],
+      "max_abs_gradient_by_step": [
+        0.14832735061645508,
+        0.288499116897583,
+        0.3187214732170105,
+        0.4691580533981323,
+        0.2441692054271698
+      ],
+      "parameter_count": 2041,
+      "context": 16,
+      "steps": 5,
+      "batch_size": 8,
+      "all_forward_losses_gradients_parameters_finite": true,
+      "same_device_replay_exact": true,
+      "final_parameter_sha256": "778cf3fd641141b20e913c7a4fe5290027da3c7edcc16ac1ddd35ad56564d7c5",
+      "cpu_causal_prefix_audit": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 0.0,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 2041,
+        "structural_receptive_field": null
+      },
+      "cpu_cuda_same_weight_comparison": {
+        "performed": true,
+        "same_weights": true,
+        "rtol": 0.0002,
+        "atol": 2e-05,
+        "outputs": {
+          "log_scale": {
+            "max_abs_error": 2.682209014892578e-07,
+            "passed": true
+          },
+          "scale": {
+            "max_abs_error": 2.384185791015625e-07,
+            "passed": true
+          }
+        },
+        "note": "Prediction agreement only; CPU/CUDA training need not be bitwise equal."
+      },
+      "elapsed_seconds_not_benchmark": 2.3891658091451973
+    },
+    {
+      "architecture": "gru",
+      "seed": 674023183,
+      "losses_without_gaussian_constant": [
+        0.698110818862915,
+        0.6831434965133667,
+        0.3930180072784424,
+        0.5471088290214539,
+        0.7313300371170044
+      ],
+      "max_abs_gradient_by_step": [
+        0.32459765672683716,
+        0.2836383581161499,
+        0.33741095662117004,
+        0.02077275514602661,
+        0.33624356985092163
+      ],
+      "parameter_count": 2041,
+      "context": 64,
+      "steps": 5,
+      "batch_size": 8,
+      "all_forward_losses_gradients_parameters_finite": true,
+      "same_device_replay_exact": true,
+      "final_parameter_sha256": "b4ec50a3f709a9d60b1473f265013337e333b9f1b4db2dc9ca97cb180408d183",
+      "cpu_causal_prefix_audit": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 0.0,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 2041,
+        "structural_receptive_field": null
+      },
+      "cpu_cuda_same_weight_comparison": {
+        "performed": true,
+        "same_weights": true,
+        "rtol": 0.0002,
+        "atol": 2e-05,
+        "outputs": {
+          "log_scale": {
+            "max_abs_error": 3.203749656677246e-07,
+            "passed": true
+          },
+          "scale": {
+            "max_abs_error": 3.5762786865234375e-07,
+            "passed": true
+          }
+        },
+        "note": "Prediction agreement only; CPU/CUDA training need not be bitwise equal."
+      },
+      "elapsed_seconds_not_benchmark": 0.0709076370112598
+    },
+    {
+      "architecture": "tcn",
+      "seed": 674024135,
+      "losses_without_gaussian_constant": [
+        0.5137774348258972,
+        0.6665067076683044,
+        0.28647398948669434,
+        0.7209596633911133,
+        0.26324015855789185
+      ],
+      "max_abs_gradient_by_step": [
+        0.22421199083328247,
+        0.08751305937767029,
+        0.6707495450973511,
+        0.20254066586494446,
+        0.7101991772651672
+      ],
+      "parameter_count": 1897,
+      "context": 16,
+      "steps": 5,
+      "batch_size": 8,
+      "all_forward_losses_gradients_parameters_finite": true,
+      "same_device_replay_exact": true,
+      "final_parameter_sha256": "c04e94af52dcad08b30d0af74d04c97462503c324ed51c4b92225bedb12c3b4b",
+      "cpu_causal_prefix_audit": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 0.0,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 1897,
+        "structural_receptive_field": 64
+      },
+      "cpu_cuda_same_weight_comparison": {
+        "performed": true,
+        "same_weights": true,
+        "rtol": 0.0002,
+        "atol": 2e-05,
+        "outputs": {
+          "log_scale": {
+            "max_abs_error": 7.450580596923828e-09,
+            "passed": true
+          },
+          "scale": {
+            "max_abs_error": 0.0,
+            "passed": true
+          }
+        },
+        "note": "Prediction agreement only; CPU/CUDA training need not be bitwise equal."
+      },
+      "elapsed_seconds_not_benchmark": 1.3134013360831887
+    },
+    {
+      "architecture": "tcn",
+      "seed": 674024183,
+      "losses_without_gaussian_constant": [
+        0.5918794274330139,
+        0.468296617269516,
+        0.26412931084632874,
+        0.434343159198761,
+        1.3255126476287842
+      ],
+      "max_abs_gradient_by_step": [
+        0.19382819533348083,
+        0.05885027348995209,
+        0.4717836380004883,
+        0.1266237497329712,
+        1.6604022979736328
+      ],
+      "parameter_count": 1897,
+      "context": 64,
+      "steps": 5,
+      "batch_size": 8,
+      "all_forward_losses_gradients_parameters_finite": true,
+      "same_device_replay_exact": true,
+      "final_parameter_sha256": "674819fec66f7ebf427cb42d54eaf4a537163994be078e86119350957f877cde",
+      "cpu_causal_prefix_audit": {
+        "suffix_intervention_max_abs_error": 0.0,
+        "prefix_endpoint_max_abs_error": 0.0,
+        "passed": true,
+        "cut": 37,
+        "length": 96,
+        "parameters": 1897,
+        "structural_receptive_field": 64
+      },
+      "cpu_cuda_same_weight_comparison": {
+        "performed": true,
+        "same_weights": true,
+        "rtol": 0.0002,
+        "atol": 2e-05,
+        "outputs": {
+          "log_scale": {
+            "max_abs_error": 7.450580596923828e-09,
+            "passed": true
+          },
+          "scale": {
+            "max_abs_error": 0.0,
+            "passed": true
+          }
+        },
+        "note": "Prediction agreement only; CPU/CUDA training need not be bitwise equal."
+      },
+      "elapsed_seconds_not_benchmark": 0.08196744695305824
+    }
+  ],
+  "cuda_device": {
+    "name": "NVIDIA A40",
+    "capability": [
+      8,
+      6
+    ],
+    "total_memory_bytes": 50899648512,
+    "process_device_index": 0,
+    "process_visible_device_count": 1
+  },
+  "elapsed_seconds_not_benchmark": 4.006157270167023
+}

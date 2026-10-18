@@ -1,0 +1,91 @@
+{
+  "status": "passed",
+  "date": "2026-10-18",
+  "recorded_at_utc": "2026-10-18T02:47:19.753742+00:00",
+  "scope": "HPC runtime readiness and previously saved output audits; not a new scientific experiment",
+  "connection": "HKUST(GZ) HPC II via official hpc2login hostname; dedicated local SSH alias",
+  "secrets_in_repository": false,
+  "remote_project_commit": "e3037a0e31b5a1803fa1a5485ab9aaadcaec9259",
+  "environment": {
+    "python": "3.12.14",
+    "torch": "2.14.1+cu126",
+    "cuda_build": "12.6",
+    "gpu": "NVIDIA A40",
+    "gpu_memory_MiB": 49140,
+    "driver": "575.57.08",
+    "installed_versions": "hpc/requirements-linux-cu126.txt",
+    "versions_export": "pip list --format=freeze; avoids nonportable conda build paths in pip freeze"
+  },
+  "jobs": [
+    {
+      "id": 13162894,
+      "purpose": "Initial CUDA matrix runtime probe",
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed_seconds": 3,
+      "partition": "debug"
+    },
+    {
+      "id": 13163212,
+      "purpose": "Dedicated-project GRU/TCN CUDA smoke",
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed_seconds": 40,
+      "partition": "debug"
+    },
+    {
+      "id": 13163213,
+      "purpose": "Dedicated-project CPU smoke and 441 saved-artifact checks",
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed_seconds": 14,
+      "partition": "debug"
+    }
+  ],
+  "checks": {
+    "gru_tcn_context16_64_gpu_forward_backward_adam": true,
+    "same_device_seeded_replay_exact": true,
+    "same_weight_cpu_gpu_scale_max_absolute_error": 3.5762786865234375e-07,
+    "cpu_gpu_rtol": 0.0002,
+    "cpu_gpu_atol": 2e-05,
+    "saved_output_checks_by_stage": [
+      52,
+      130,
+      259
+    ],
+    "saved_output_total": 441,
+    "pip_check": "No broken requirements found"
+  },
+  "billing": {
+    "paid_compute_submitted": false,
+    "all_jobs_free_debug": true,
+    "personal_student_payment_general_rule": "Current official policy: students do not pay directly; supervising faculty settle via PBMS",
+    "course_budget_or_quota_verified": false,
+    "future_paid_training": "Not launched; FX extension remains local CPU",
+    "slurm_billing_field": "Scheduling TRES weight, not a currency receipt",
+    "sources": [
+      "https://docs.hpc.hkust-gz.edu.cn/docs/charges/billing-payment/",
+      "https://docs.hpc.hkust-gz.edu.cn/docs/application/account-application/",
+      "https://docs.hpc.hkust-gz.edu.cn/docs/charges/prices-phaseI%26II/",
+      "https://docs.hpc.hkust-gz.edu.cn/docs/hpc12/slurm/queue/"
+    ]
+  },
+  "limits": [
+    "CUDA runtime agreement is not bitwise CPU/GPU retraining equivalence",
+    "Original scientific outputs and frozen protocols remain unchanged",
+    "No password, private key, account name or identity-bearing home paths in these records"
+  ],
+  "artifacts": {
+    "outputs/hpc_readiness/cpu-smoke-13163213.json": "6b07be60a230d9db2f289f8c4f13922971462a33ea7ee0580ffeecc3a761bb9e",
+    "outputs/hpc_readiness/gpu-smoke-13163212.json": "5690ac89577194b59adc77ffadb565bfb947470c0046f9ed81fc6454ac60d9f6",
+    "outputs/hpc_readiness/saved_artifact_audit.json": "a7ef07f42740572a4191a63eb04f74928fe8d903da0bcfbb0ed8b34a2ea0ccbd",
+    "outputs/hpc_readiness/slurm_jobs.psv": "2c2df3940088eb233fd8962b68f40a7bac3ad89588f320b5aeba4d4a89fc1768"
+  },
+  "source_sha256": {
+    "scripts/hpc_smoke.py": "2173280608d2f85bd5de8db45b920245ea726cb0e112d8dc7a029e00d1fea43d",
+    "hpc/smoke_gpu.sbatch": "3144b2b3c351aaeffb8f450b76fc7c3b915d9f7b076e302459a409b3a104324e",
+    "hpc/verify_saved.sbatch": "75dd86598d447d3e79f55097cb1c9dc1468e26aab88ca9e59a602529dc2f2264",
+    "hpc/bootstrap_env.sh": "db3b15656db1f4d3b9c132d48916709008e9aea3004b2663c4c782297835600c",
+    "hpc/requirements-linux-cu126.txt": "babb7535e3a608d1bdcffd3cd44ab511ade9de24c303d48fbb459b38c8daf11e"
+  }
+}
