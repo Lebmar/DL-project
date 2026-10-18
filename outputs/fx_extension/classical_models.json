@@ -1,0 +1,622 @@
+{
+  "USD": {
+    "constant": {
+      "name": "constant",
+      "variance_init": 0.3891738462598623,
+      "parameters": {},
+      "metadata": {
+        "mean_forecast": 0.0,
+        "train_shape": [
+          1,
+          5119
+        ],
+        "train_array_sha256": "0e5e2c57b4ff28302bb77634eccbbdb4449784fd9546bd147e25d688416e6168",
+        "variance_initialization": "pooled training mean(y**2), independently reset per path",
+        "initial_variance": 0.3891738462598623,
+        "inputs": "observed past y only; no true volatility/regime inputs",
+        "kind": "constant train RMS"
+      }
+    },
+    "ewma16": {
+      "name": "ewma16",
+      "variance_init": 0.3891738462598623,
+      "parameters": {
+        "weight": 0.0625
+      },
+      "metadata": {
+        "mean_forecast": 0.0,
+        "train_shape": [
+          1,
+          5119
+        ],
+        "train_array_sha256": "0e5e2c57b4ff28302bb77634eccbbdb4449784fd9546bd147e25d688416e6168",
+        "variance_initialization": "pooled training mean(y**2), independently reset per path",
+        "initial_variance": 0.3891738462598623,
+        "inputs": "observed past y only; no true volatility/regime inputs",
+        "kind": "fixed EWMA squared-return recursion",
+        "memory": 16,
+        "weight": 0.0625,
+        "fitted_GARCH": false
+      }
+    },
+    "ewma64": {
+      "name": "ewma64",
+      "variance_init": 0.3891738462598623,
+      "parameters": {
+        "weight": 0.015625
+      },
+      "metadata": {
+        "mean_forecast": 0.0,
+        "train_shape": [
+          1,
+          5119
+        ],
+        "train_array_sha256": "0e5e2c57b4ff28302bb77634eccbbdb4449784fd9546bd147e25d688416e6168",
+        "variance_initialization": "pooled training mean(y**2), independently reset per path",
+        "initial_variance": 0.3891738462598623,
+        "inputs": "observed past y only; no true volatility/regime inputs",
+        "kind": "fixed EWMA squared-return recursion",
+        "memory": 64,
+        "weight": 0.015625,
+        "fitted_GARCH": false
+      }
+    },
+    "garch11": {
+      "name": "garch11",
+      "variance_init": 0.3891738462598623,
+      "parameters": {
+        "omega": 0.001243823599901646,
+        "alpha": 0.026582059598632395,
+        "beta": 0.970356799485559
+      },
+      "metadata": {
+        "mean_forecast": 0.0,
+        "train_shape": [
+          1,
+          5119
+        ],
+        "train_array_sha256": "0e5e2c57b4ff28302bb77634eccbbdb4449784fd9546bd147e25d688416e6168",
+        "variance_initialization": "pooled training mean(y**2), independently reset per path",
+        "initial_variance": 0.3891738462598623,
+        "inputs": "observed past y only; no true volatility/regime inputs",
+        "kind": "fitted Gaussian GARCH(1,1)",
+        "parameters": {
+          "omega": 0.001243823599901646,
+          "alpha": 0.026582059598632395,
+          "beta": 0.970356799485559
+        },
+        "fit": {
+          "objective": "segmented zero-mean Gaussian conditional NLL",
+          "selection": "minimum training NLL among converged feasible multistart fits",
+          "train_gaussian_nll": 0.8898554514437592,
+          "attempts": [
+            {
+              "start_alpha": 0.05,
+              "start_beta": 0.9,
+              "success": true,
+              "feasible": true,
+              "message": "Optimization terminated successfully",
+              "iterations": 16,
+              "train_gaussian_nll": 0.8898554514437592,
+              "omega_in_train_variance_units": 0.003196061636349299,
+              "alpha": 0.026582059598632395,
+              "beta": 0.970356799485559
+            },
+            {
+              "start_alpha": 0.15,
+              "start_beta": 0.7,
+              "success": true,
+              "feasible": true,
+              "message": "Optimization terminated successfully",
+              "iterations": 18,
+              "train_gaussian_nll": 0.889855451443982,
+              "omega_in_train_variance_units": 0.0031960991903118236,
+              "alpha": 0.026581718795928133,
+              "beta": 0.9703570203970312
+            },
+            {
+              "start_alpha": 0.2,
+              "start_beta": 0.3,
+              "success": true,
+              "feasible": true,
+              "message": "Optimization terminated successfully",
+              "iterations": 31,
+              "train_gaussian_nll": 0.88985545145213,
+              "omega_in_train_variance_units": 0.0031959962060599634,
+              "alpha": 0.026581794197394162,
+              "beta": 0.9703572548355018
+            },
+            {
+              "start_alpha": 0.001,
+              "start_beta": 0.95,
+              "success": true,
+              "feasible": true,
+              "message": "Optimization terminated successfully",
+              "iterations": 23,
+              "train_gaussian_nll": 0.8898554514497091,
+              "omega_in_train_variance_units": 0.003196286340081999,
+              "alpha": 0.02658237534311454,
+              "beta": 0.9703563086396327
+            }
+          ],
+          "converged": true,
+          "alpha_plus_beta": 0.9969388590841913,
+          "stationary_variance_implied_by_parameters": 0.40632680236253094,
+          "near_boundary": {
+            "omega_unit_at_floor": false,
+            "alpha_near_zero": false,
+            "beta_near_zero": false,
+            "persistence_near_cap": false
+          },
+          "training_path_count": 1,
+          "training_path_length": 5119
+        }
+      }
+    }
+  },
+  "JPY": {
+    "constant": {
+      "name": "constant",
+      "variance_init": 0.5776076126212027,
+      "parameters": {},
+      "metadata": {
+        "mean_forecast": 0.0,
+        "train_shape": [
+          1,
+          5119
+        ],
+        "train_array_sha256": "68fd70fa798242b0c39e3ae192a7b1a77c4de41c0580c222cd51dcd455d26b2e",
+        "variance_initialization": "pooled training mean(y**2), independently reset per path",
+        "initial_variance": 0.5776076126212027,
+        "inputs": "observed past y only; no true volatility/regime inputs",
+        "kind": "constant train RMS"
+      }
+    },
+    "ewma16": {
+      "name": "ewma16",
+      "variance_init": 0.5776076126212027,
+      "parameters": {
+        "weight": 0.0625
+      },
+      "metadata": {
+        "mean_forecast": 0.0,
+        "train_shape": [
+          1,
+          5119
+        ],
+        "train_array_sha256": "68fd70fa798242b0c39e3ae192a7b1a77c4de41c0580c222cd51dcd455d26b2e",
+        "variance_initialization": "pooled training mean(y**2), independently reset per path",
+        "initial_variance": 0.5776076126212027,
+        "inputs": "observed past y only; no true volatility/regime inputs",
+        "kind": "fixed EWMA squared-return recursion",
+        "memory": 16,
+        "weight": 0.0625,
+        "fitted_GARCH": false
+      }
+    },
+    "ewma64": {
+      "name": "ewma64",
+      "variance_init": 0.5776076126212027,
+      "parameters": {
+        "weight": 0.015625
+      },
+      "metadata": {
+        "mean_forecast": 0.0,
+        "train_shape": [
+          1,
+          5119
+        ],
+        "train_array_sha256": "68fd70fa798242b0c39e3ae192a7b1a77c4de41c0580c222cd51dcd455d26b2e",
+        "variance_initialization": "pooled training mean(y**2), independently reset per path",
+        "initial_variance": 0.5776076126212027,
+        "inputs": "observed past y only; no true volatility/regime inputs",
+        "kind": "fixed EWMA squared-return recursion",
+        "memory": 64,
+        "weight": 0.015625,
+        "fitted_GARCH": false
+      }
+    },
+    "garch11": {
+      "name": "garch11",
+      "variance_init": 0.5776076126212027,
+      "parameters": {
+        "omega": 0.003242369292547624,
+        "alpha": 0.056722049090289,
+        "beta": 0.9388484755787863
+      },
+      "metadata": {
+        "mean_forecast": 0.0,
+        "train_shape": [
+          1,
+          5119
+        ],
+        "train_array_sha256": "68fd70fa798242b0c39e3ae192a7b1a77c4de41c0580c222cd51dcd455d26b2e",
+        "variance_initialization": "pooled training mean(y**2), independently reset per path",
+        "initial_variance": 0.5776076126212027,
+        "inputs": "observed past y only; no true volatility/regime inputs",
+        "kind": "fitted Gaussian GARCH(1,1)",
+        "parameters": {
+          "omega": 0.003242369292547624,
+          "alpha": 0.056722049090289,
+          "beta": 0.9388484755787863
+        },
+        "fit": {
+          "objective": "segmented zero-mean Gaussian conditional NLL",
+          "selection": "minimum training NLL among converged feasible multistart fits",
+          "train_gaussian_nll": 1.0348438867637273,
+          "attempts": [
+            {
+              "start_alpha": 0.05,
+              "start_beta": 0.9,
+              "success": true,
+              "feasible": true,
+              "message": "Optimization terminated successfully",
+              "iterations": 12,
+              "train_gaussian_nll": 1.0348438867638,
+              "omega_in_train_variance_units": 0.005613444498896684,
+              "alpha": 0.05672203268226308,
+              "beta": 0.9388485230573029
+            },
+            {
+              "start_alpha": 0.15,
+              "start_beta": 0.7,
+              "success": true,
+              "feasible": true,
+              "message": "Optimization terminated successfully",
+              "iterations": 15,
+              "train_gaussian_nll": 1.0348438867641132,
+              "omega_in_train_variance_units": 0.005613446619642399,
+              "alpha": 0.05672229018916235,
+              "beta": 0.9388483199728731
+            },
+            {
+              "start_alpha": 0.2,
+              "start_beta": 0.3,
+              "success": true,
+              "feasible": true,
+              "message": "Optimization terminated successfully",
+              "iterations": 15,
+              "train_gaussian_nll": 1.0348438868094783,
+              "omega_in_train_variance_units": 0.0056141906704638,
+              "alpha": 0.056723810149665016,
+              "beta": 0.9388454077074874
+            },
+            {
+              "start_alpha": 0.001,
+              "start_beta": 0.95,
+              "success": true,
+              "feasible": true,
+              "message": "Optimization terminated successfully",
+              "iterations": 17,
+              "train_gaussian_nll": 1.0348438867637273,
+              "omega_in_train_variance_units": 0.005613446259535333,
+              "alpha": 0.056722049090289,
+              "beta": 0.9388484755787863
+            }
+          ],
+          "converged": true,
+          "alpha_plus_beta": 0.9955705246690753,
+          "stationary_variance_implied_by_parameters": 0.7319984987636695,
+          "near_boundary": {
+            "omega_unit_at_floor": false,
+            "alpha_near_zero": false,
+            "beta_near_zero": false,
+            "persistence_near_cap": false
+          },
+          "training_path_count": 1,
+          "training_path_length": 5119
+        }
+      }
+    }
+  },
+  "GBP": {
+    "constant": {
+      "name": "constant",
+      "variance_init": 0.2597716652145481,
+      "parameters": {},
+      "metadata": {
+        "mean_forecast": 0.0,
+        "train_shape": [
+          1,
+          5119
+        ],
+        "train_array_sha256": "b8ae75c3710076b710e6d92617287ac0a2331b359205bf9b1f215e3588b80b04",
+        "variance_initialization": "pooled training mean(y**2), independently reset per path",
+        "initial_variance": 0.2597716652145481,
+        "inputs": "observed past y only; no true volatility/regime inputs",
+        "kind": "constant train RMS"
+      }
+    },
+    "ewma16": {
+      "name": "ewma16",
+      "variance_init": 0.2597716652145481,
+      "parameters": {
+        "weight": 0.0625
+      },
+      "metadata": {
+        "mean_forecast": 0.0,
+        "train_shape": [
+          1,
+          5119
+        ],
+        "train_array_sha256": "b8ae75c3710076b710e6d92617287ac0a2331b359205bf9b1f215e3588b80b04",
+        "variance_initialization": "pooled training mean(y**2), independently reset per path",
+        "initial_variance": 0.2597716652145481,
+        "inputs": "observed past y only; no true volatility/regime inputs",
+        "kind": "fixed EWMA squared-return recursion",
+        "memory": 16,
+        "weight": 0.0625,
+        "fitted_GARCH": false
+      }
+    },
+    "ewma64": {
+      "name": "ewma64",
+      "variance_init": 0.2597716652145481,
+      "parameters": {
+        "weight": 0.015625
+      },
+      "metadata": {
+        "mean_forecast": 0.0,
+        "train_shape": [
+          1,
+          5119
+        ],
+        "train_array_sha256": "b8ae75c3710076b710e6d92617287ac0a2331b359205bf9b1f215e3588b80b04",
+        "variance_initialization": "pooled training mean(y**2), independently reset per path",
+        "initial_variance": 0.2597716652145481,
+        "inputs": "observed past y only; no true volatility/regime inputs",
+        "kind": "fixed EWMA squared-return recursion",
+        "memory": 64,
+        "weight": 0.015625,
+        "fitted_GARCH": false
+      }
+    },
+    "garch11": {
+      "name": "garch11",
+      "variance_init": 0.2597716652145481,
+      "parameters": {
+        "omega": 0.0016393853425214682,
+        "alpha": 0.053319833123083867,
+        "beta": 0.9415671269670434
+      },
+      "metadata": {
+        "mean_forecast": 0.0,
+        "train_shape": [
+          1,
+          5119
+        ],
+        "train_array_sha256": "b8ae75c3710076b710e6d92617287ac0a2331b359205bf9b1f215e3588b80b04",
+        "variance_initialization": "pooled training mean(y**2), independently reset per path",
+        "initial_variance": 0.2597716652145481,
+        "inputs": "observed past y only; no true volatility/regime inputs",
+        "kind": "fitted Gaussian GARCH(1,1)",
+        "parameters": {
+          "omega": 0.0016393853425214682,
+          "alpha": 0.053319833123083867,
+          "beta": 0.9415671269670434
+        },
+        "fit": {
+          "objective": "segmented zero-mean Gaussian conditional NLL",
+          "selection": "minimum training NLL among converged feasible multistart fits",
+          "train_gaussian_nll": 0.6473828733041518,
+          "attempts": [
+            {
+              "start_alpha": 0.05,
+              "start_beta": 0.9,
+              "success": true,
+              "feasible": true,
+              "message": "Optimization terminated successfully",
+              "iterations": 12,
+              "train_gaussian_nll": 0.6473828733240882,
+              "omega_in_train_variance_units": 0.006310149504559763,
+              "alpha": 0.053319095094585954,
+              "beta": 0.941568978453432
+            },
+            {
+              "start_alpha": 0.15,
+              "start_beta": 0.7,
+              "success": true,
+              "feasible": true,
+              "message": "Optimization terminated successfully",
+              "iterations": 15,
+              "train_gaussian_nll": 0.6473828733041518,
+              "omega_in_train_variance_units": 0.006310870514563176,
+              "alpha": 0.053319833123083867,
+              "beta": 0.9415671269670434
+            },
+            {
+              "start_alpha": 0.2,
+              "start_beta": 0.3,
+              "success": true,
+              "feasible": true,
+              "message": "Optimization terminated successfully",
+              "iterations": 21,
+              "train_gaussian_nll": 0.647382873305468,
+              "omega_in_train_variance_units": 0.0063110049753631456,
+              "alpha": 0.05331982130990117,
+              "beta": 0.941567037471975
+            },
+            {
+              "start_alpha": 0.001,
+              "start_beta": 0.95,
+              "success": true,
+              "feasible": true,
+              "message": "Optimization terminated successfully",
+              "iterations": 12,
+              "train_gaussian_nll": 0.6473828733326434,
+              "omega_in_train_variance_units": 0.006311062730870335,
+              "alpha": 0.05332165149499564,
+              "beta": 0.9415658057161156
+            }
+          ],
+          "converged": true,
+          "alpha_plus_beta": 0.9948869600901272,
+          "stationary_variance_implied_by_parameters": 0.3206283094634128,
+          "near_boundary": {
+            "omega_unit_at_floor": false,
+            "alpha_near_zero": false,
+            "beta_near_zero": false,
+            "persistence_near_cap": false
+          },
+          "training_path_count": 1,
+          "training_path_length": 5119
+        }
+      }
+    }
+  },
+  "CHF": {
+    "constant": {
+      "name": "constant",
+      "variance_init": 0.17966041633232338,
+      "parameters": {},
+      "metadata": {
+        "mean_forecast": 0.0,
+        "train_shape": [
+          1,
+          5119
+        ],
+        "train_array_sha256": "cd0cf41437cb2f782f760519bccbd8c9bbf19ec4fb9c9c640f783e2d82061dac",
+        "variance_initialization": "pooled training mean(y**2), independently reset per path",
+        "initial_variance": 0.17966041633232338,
+        "inputs": "observed past y only; no true volatility/regime inputs",
+        "kind": "constant train RMS"
+      }
+    },
+    "ewma16": {
+      "name": "ewma16",
+      "variance_init": 0.17966041633232338,
+      "parameters": {
+        "weight": 0.0625
+      },
+      "metadata": {
+        "mean_forecast": 0.0,
+        "train_shape": [
+          1,
+          5119
+        ],
+        "train_array_sha256": "cd0cf41437cb2f782f760519bccbd8c9bbf19ec4fb9c9c640f783e2d82061dac",
+        "variance_initialization": "pooled training mean(y**2), independently reset per path",
+        "initial_variance": 0.17966041633232338,
+        "inputs": "observed past y only; no true volatility/regime inputs",
+        "kind": "fixed EWMA squared-return recursion",
+        "memory": 16,
+        "weight": 0.0625,
+        "fitted_GARCH": false
+      }
+    },
+    "ewma64": {
+      "name": "ewma64",
+      "variance_init": 0.17966041633232338,
+      "parameters": {
+        "weight": 0.015625
+      },
+      "metadata": {
+        "mean_forecast": 0.0,
+        "train_shape": [
+          1,
+          5119
+        ],
+        "train_array_sha256": "cd0cf41437cb2f782f760519bccbd8c9bbf19ec4fb9c9c640f783e2d82061dac",
+        "variance_initialization": "pooled training mean(y**2), independently reset per path",
+        "initial_variance": 0.17966041633232338,
+        "inputs": "observed past y only; no true volatility/regime inputs",
+        "kind": "fixed EWMA squared-return recursion",
+        "memory": 64,
+        "weight": 0.015625,
+        "fitted_GARCH": false
+      }
+    },
+    "garch11": {
+      "name": "garch11",
+      "variance_init": 0.17966041633232338,
+      "parameters": {
+        "omega": 0.019381544310443845,
+        "alpha": 0.062420264579137824,
+        "beta": 0.8286253964231165
+      },
+      "metadata": {
+        "mean_forecast": 0.0,
+        "train_shape": [
+          1,
+          5119
+        ],
+        "train_array_sha256": "cd0cf41437cb2f782f760519bccbd8c9bbf19ec4fb9c9c640f783e2d82061dac",
+        "variance_initialization": "pooled training mean(y**2), independently reset per path",
+        "initial_variance": 0.17966041633232338,
+        "inputs": "observed past y only; no true volatility/regime inputs",
+        "kind": "fitted Gaussian GARCH(1,1)",
+        "parameters": {
+          "omega": 0.019381544310443845,
+          "alpha": 0.062420264579137824,
+          "beta": 0.8286253964231165
+        },
+        "fit": {
+          "objective": "segmented zero-mean Gaussian conditional NLL",
+          "selection": "minimum training NLL among converged feasible multistart fits",
+          "train_gaussian_nll": 0.463936276346427,
+          "attempts": [
+            {
+              "start_alpha": 0.05,
+              "start_beta": 0.9,
+              "success": true,
+              "feasible": true,
+              "message": "Optimization terminated successfully",
+              "iterations": 13,
+              "train_gaussian_nll": 0.46393627634789847,
+              "omega_in_train_variance_units": 0.1078791503937397,
+              "alpha": 0.06242131872497034,
+              "beta": 0.8286235894420594
+            },
+            {
+              "start_alpha": 0.15,
+              "start_beta": 0.7,
+              "success": true,
+              "feasible": true,
+              "message": "Optimization terminated successfully",
+              "iterations": 12,
+              "train_gaussian_nll": 0.46393627635564344,
+              "omega_in_train_variance_units": 0.10787986521011343,
+              "alpha": 0.06242123501653085,
+              "beta": 0.8286220990386661
+            },
+            {
+              "start_alpha": 0.2,
+              "start_beta": 0.3,
+              "success": true,
+              "feasible": true,
+              "message": "Optimization terminated successfully",
+              "iterations": 18,
+              "train_gaussian_nll": 0.463936276346427,
+              "omega_in_train_variance_units": 0.1078787676557156,
+              "alpha": 0.062420264579137824,
+              "beta": 0.8286253964231165
+            },
+            {
+              "start_alpha": 0.001,
+              "start_beta": 0.95,
+              "success": true,
+              "feasible": true,
+              "message": "Optimization terminated successfully",
+              "iterations": 19,
+              "train_gaussian_nll": 0.4639362763503224,
+              "omega_in_train_variance_units": 0.10787679124567828,
+              "alpha": 0.062419206796636824,
+              "beta": 0.8286274810862061
+            }
+          ],
+          "converged": true,
+          "alpha_plus_beta": 0.8910456610022544,
+          "stationary_variance_implied_by_parameters": 0.17788685139785818,
+          "near_boundary": {
+            "omega_unit_at_floor": false,
+            "alpha_near_zero": false,
+            "beta_near_zero": false,
+            "persistence_near_cap": false
+          },
+          "training_path_count": 1,
+          "training_path_length": 5119
+        }
+      }
+    }
+  }
+}

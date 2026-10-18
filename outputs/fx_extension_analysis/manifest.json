@@ -1,0 +1,87 @@
+{
+  "status": "complete",
+  "design_status": "exploratory historical evaluation on already-viewed 2021-2026 ECB data",
+  "new_blind_test": false,
+  "protocol_sha256": "035e59887d8dae31f91b8a4a6a1fad5bbcce0bd4419fbc0b9d803584189dd98b",
+  "new_sources": {
+    "configs/fx_extension_protocol.json": "035e59887d8dae31f91b8a4a6a1fad5bbcce0bd4419fbc0b9d803584189dd98b",
+    "scripts/run_fx_extension.py": "92899a4e8dc3bc59c6bcb8918deff77c00154fff86dfa46ed8c186e2a98510f8",
+    "scripts/analyze_fx_extension.py": "94cb70486df02f5cfbf89a9d814f8f2126eb6b65aa36365358fc3fc9079106cb",
+    "research/fx_extension_protocol.md": "940e0dc4f8804e5918dabf16a3f36cb9ba6a2bb30251f90a4faccad2941ed36b"
+  },
+  "evaluation_manifest_sha256": "878dcc60c18137bef25eb3e648432356859363babf2e91b1d962cfef65b9ed66",
+  "self_check": {
+    "passed": true,
+    "synthetic_only": true,
+    "scalar_block_bootstrap_max_error": 3.3306690738754696e-16,
+    "shared_date_pairing": true,
+    "missing_duplicate_offgrid_rejected": true,
+    "seed_before_asset_averaging": true,
+    "independent_scalar_fx_decomposition": true
+  },
+  "checks": {
+    "independent_native_rolling_aci_streams": 384,
+    "maximum_absolute_q_error": 0.0,
+    "strong_source_commit_and_scale_specs_checked": true,
+    "crossed_all_cell_metric_reconstruction_error": 0.0,
+    "diagonal_performance_reconstruction_error": 0.0,
+    "exact_indices": true
+  },
+  "analysis": {
+    "bootstrap_replicates": 2000,
+    "bootstrap_seed": 2026101802,
+    "block_lengths": [
+      128,
+      20,
+      60,
+      256
+    ],
+    "main_block_length": 128,
+    "interval_level": 0.95,
+    "resampling": "paired circular date blocks; all assets, fits, methods and mechanism cells share date draws; average five fitted seeds before equal asset averaging",
+    "multiplicity": "all intervals exploratory and unadjusted; conditional on saved fits, not training-population uncertainty",
+    "metrics": [
+      "coverage",
+      "width",
+      "interval_score"
+    ],
+    "units": "coverage is unchanged; width/IS reported raw per asset and divided by that asset's train-only standard deviation for pooled comparisons",
+    "predeclared_comparisons": "context64 GRU-minus-GARCH, TCN-minus-GARCH, GRU-minus-TCN for each identical calibrator native/rolling32/rolling128/aci128/sfogd/saocp",
+    "mechanism": "J_FX=D(64,64)-D(16,16); D(a,b)=IS(a,b,128)-IS(a,b,32) on the actual historical sequence, without event-minus-control subtraction; retain both routes and third-order term",
+    "reporting": "all methods, all assets, all five seeds; calendar-year summaries explicitly label partial2026; no event/regime selection",
+    "predeclared_display": {
+      "core_table": "context64 GRU/TCN and GARCH; native and rolling128; coverage and normalized interval score, all fits",
+      "appendix_matrix": "constant/EWMA16/EWMA64/GARCH/GRU64/TCN64 by native/rolling32/rolling128/aci128/sfogd/saocp; normalized interval score",
+      "selection": "fixed before any new FX result; all coverage/width/asset/year/seed data retained in full CSVs"
+    }
+  },
+  "rows": {
+    "method_summary": 528,
+    "paired_method_comparisons": 216,
+    "mechanism_summary": 216,
+    "per_asset_summary": 176,
+    "individual_fit_asset_summary": 496,
+    "calendar_year_summary": 1320,
+    "mechanism_individual_fit_asset_summary": 240,
+    "method_index": 44,
+    "report_core_table": 6,
+    "report_calibration_matrix": 6
+  },
+  "elapsed_seconds": 2.121164083480835,
+  "artifacts": {
+    "calendar_year_summary.csv": "7fdaa9f919e80e97838cdcb4bd42e8a707141458f1f63baa5749505811aaface",
+    "daily_method_metrics.npz": "0c02129a8804faf334b5809791e3781ac75527a561416fe3d93a9c1eb7b14b7a",
+    "fx_method_comparisons.png": "62ca79cd9645c8c560fc6437ad106787ee425efa5043453f94f08ab3badabf70",
+    "fx_pathway_components.png": "9bf03a51560773a79cbd6fbed740e3300745a4c08e5a5adbfaeff482c4978cda",
+    "individual_fit_asset_summary.csv": "3f3b49eabe76f247eba32db954a361883051c725f6af1c8244eeb7228ff09dda",
+    "mechanism_individual_fit_asset_summary.csv": "b91d871ac37d60effbe079dbcf5f98554a30ff416cfeeca6bae715383c1b0efa",
+    "mechanism_summary.csv": "a37ace74162100d1771a7fba7bea8f52bfa28937d5e17a5d226737c968c8bf96",
+    "method_index.csv": "219e3bbc1e185746a5cb829aaa8d5d82216534de51debb199ffeb1504e95d45b",
+    "method_summary.csv": "6c95c178fb79ccbc871987b383a6b81884469d525bf11c789ee8d9090e46f98e",
+    "paired_method_comparisons.csv": "9b871e0670cbf25c2aa0059ff4299b8bd19031c6b8fe917e9993309d023298a1",
+    "per_asset_summary.csv": "0cf7bf7ee628cff954f1aa4e5901d4d7bbee831f08b5ad169b6be5bbf2a070f2",
+    "report_calibration_matrix.csv": "d2ba1708a6e4218297a43eeca1b358559cf492bb64dd7a74de2693a0c92569c6",
+    "report_core_table.csv": "53bb105ad21d90a6d9dc2a21d1e47df88c154d0e0d25b889dae8a374addd1445",
+    "summary.md": "9f8026a54e20d676619a2342e96617a512575eb0a8b93ee3d8942344c6163c90"
+  }
+}
