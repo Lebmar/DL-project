@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-19",
+  "new_study_data_generated": false,
+  "scope": "Tiny synthetic non-study-seed implementation checks only; production HPC pipeline reruns all selfchecks before new observations.",
+  "evaluator": {
+    "passed": true,
+    "independent_scalar_pair_sort_error": 0.0,
+    "future_perturbation_error": 0.0
+  },
+  "analyzer": {
+    "self_check": "passed",
+    "toy_pools": 3,
+    "toy_fits": 2,
+    "pool_draws": 19,
+    "mc_draws": 131
+  },
+  "verifier": {
+    "passed": true,
+    "maximum_errors": {
+      "risk_vs_quadrature": 1.5987211554602254e-14,
+      "risk_derivative": 3.134404402693747e-10,
+      "scalar_sorted_risk": 0.0,
+      "unequal_pair_axes": 3.469446951953614e-17,
+      "deterministic_pair_control": 1.0658141036401502e-15,
+      "count_matrix": 4.440892098500626e-16,
+      "statistics_from_counts": 3.3306690738754696e-16,
+      "cancellation_identity": 5.551115123125783e-17,
+      "replica_pool_axes": 8.326672684688674e-17
+    },
+    "study_data_accessed": false
+  },
+  "independent_evaluator_verifier_toy_comparison_max_error": 2.55351295663786e-15,
+  "statistical_design_unchanged": true,
+  "sources": {
+    "scripts/evaluate_long_window_validation.py": "b66b6a9c635612d659d422cdfba8289095c83e674aa28d8e0ffe57afb7c10585",
+    "scripts/analyze_long_window_validation.py": "3bf7f26383f477ee46b3d92c1d8d1167e4f83b241ed253ea283369b2dd844a4c",
+    "scripts/verify_long_window_validation.py": "ff99d1038b9315dcbe4eadaa127b953536172f9f7cc2910f882282c3bd83ddf9"
+  }
+}

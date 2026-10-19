@@ -20,3 +20,6 @@ outputs/public_fx/predictions.csv
 outputs/strong_calibration/predictions.csv
 outputs/strong_calibration/validation_diagnostics.csv
 outputs/strong_calibration/reconstructed_validation_forecasts.csv
+# Fresh validation bulk arrays are retained on HPC; manifests and summaries tracked.
+outputs/long_window_validation/pools/
+outputs/long_window_validation/groups/
