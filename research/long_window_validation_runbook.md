@@ -28,3 +28,11 @@ mkdir -p logs
 状态依次写入`logs/long-validation-JOBID.status`：SELF_CHECKS、EVALUATION、ANALYSIS、INDEPENDENT_VERIFICATION、COMPLETE/FAILED。stdout/stderr在同名`.out/.err`，只查询简短状态及必要的错误尾部；不持续读取长日志。任务完成后保存`sacct`状态、退出码、实际资源/用时，并核验输出再解释结果。
 
 本文件初次创建时尚未提交作业；实际提交与完成记录以之后的运行记录和输出manifest为准。
+
+## 首次提交的环境兼容性修复（首次新测试数据之前）
+
+作业13212595使用冻结提交e3f0222，在41秒后因旧验证数据的字节哈希检查失败退出；未创建新验证输出目录。诊断作业13212706在debug计算节点比较三个训练panel：Linux重新生成的float64验证值与原Mac值最大相差7.11×10⁻¹⁵，三个panel转为模型输入float32后均逐位相同。这是环境数值复现边界，不能把不同的字节哈希称为完全一致。
+
+修复采用严格输入保留：在原平台重建三份小型旧验证数组，每份均与原训练manifest的数组SHA256精确相等，然后保存至`outputs/neural_validation_reference/`并传输到HPC。新加载器读取这些保存值，并逐项核验文件哈希、训练manifest与原数组哈希。旧训练器、checkpoint、旧评估器和旧结果均未改动；没有放宽哈希断言，没有训练或模型选择，也未生成新测试数据。协议仅增加参考文件manifest和执行修订说明，统计部分保持原样。
+
+完整诊断：[portability.json](../outputs/hpc_long_window_validation/portability.json)。失败日志保留HPC，后续正式作业另记编号。

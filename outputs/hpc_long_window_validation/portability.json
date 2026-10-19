@@ -1,0 +1,48 @@
+{
+  "purpose": "Platform portability diagnosis only; no new study data",
+  "slurm_job_id": "13212706",
+  "python": "3.12.14",
+  "numpy": "2.5.4",
+  "platform": "Linux-5.4.0-162-generic-x86_64-with-glibc2.31",
+  "panels": [
+    {
+      "panel": 1,
+      "shape": [
+        64,
+        1024
+      ],
+      "original_array_sha256": "54ffb937a5178168564ed2557e67c3762b4a4675ec3e3824871324c1775076eb",
+      "linux_regenerated_sha256": "dbb6708805156e7788181236793b6faa94bab51579ce05d9d3f9304f9ab01b16",
+      "different_float64_values": 14116,
+      "maximum_absolute_error": 7.105427357601002e-15,
+      "maximum_relative_error": 4.653805724180033e-16,
+      "model_float32_inputs_identical": true
+    },
+    {
+      "panel": 2,
+      "shape": [
+        64,
+        1024
+      ],
+      "original_array_sha256": "10bcccc579becefce90545df83f47adf8939f973385424d12ba8d039f9e0832c",
+      "linux_regenerated_sha256": "499cc379222d108b53f84b31b6773f668aabd86c6a099d8072010fe3245c233f",
+      "different_float64_values": 13646,
+      "maximum_absolute_error": 7.105427357601002e-15,
+      "maximum_relative_error": 4.865336116818501e-16,
+      "model_float32_inputs_identical": true
+    },
+    {
+      "panel": 3,
+      "shape": [
+        64,
+        1024
+      ],
+      "original_array_sha256": "74256c1648d6495032dd17ab09f26ce4dfffaa93ff49e053408b61fb8855d262",
+      "linux_regenerated_sha256": "9cfdbc0ae0339b916e77ac1872fe14998ba58b3f2a1251e06181449a753cbb9a",
+      "different_float64_values": 14274,
+      "maximum_absolute_error": 3.552713678800501e-15,
+      "maximum_relative_error": 5.420774099974823e-16,
+      "model_float32_inputs_identical": true
+    }
+  ]
+}

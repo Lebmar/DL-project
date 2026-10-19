@@ -22,6 +22,7 @@ import finite_mechanism_math as fm
 import evaluate_neural_compatibility as bridge
 from evaluate_stage3 import issued_scales, FAST_ATOL, FAST_RTOL
 from stage2_models import make_model
+from load_frozen_neural_models import verified_inputs as verified_models
 
 ROOT = Path(__file__).resolve().parents[1]
 PROTOCOL = ROOT/'configs/long_window_validation_protocol.json'
@@ -29,7 +30,7 @@ METHODS = ['P','A','D','X','D_first32','D_last32']
 METRICS = ['risk','half','coverage','tangent','convex','eta','eta2','cdf_deficit','recent_deficit','event_deficit']
 SOURCES = ['scripts/evaluate_long_window_validation.py', 'scripts/analyze_long_window_validation.py',
            'scripts/verify_long_window_validation.py', 'scripts/evaluate_neural_compatibility.py',
-           'scripts/train_neural_compatibility.py', 'hpc/long_window_validation.sbatch']
+           'scripts/train_neural_compatibility.py', 'scripts/load_frozen_neural_models.py', 'hpc/long_window_validation.sbatch']
 
 
 def sha(path):
@@ -173,7 +174,7 @@ def run(out):
     assert e['phases']=={name:list(range(i*4,i*4+4)) for i,name in enumerate(['pre','entry','late','recovery'])}
     assert len(e['seeds'])==16 and len({v for row in e['seeds'] for k,v in row.items() if k!='pool'})==64
     old=json.loads(bridge.PROTOCOL.read_text())
-    training,models,fast_checks,training_hashes=bridge.verified_inputs(old)
+    training,models,fast_checks,training_hashes=verified_models(old)
     checks=self_check()
     out.mkdir(parents=True); (out/'groups').mkdir();(out/'pools').mkdir()
     m={'status':'running','started_at':datetime.now(timezone.utc).isoformat(),'protocol_sha256':sha(PROTOCOL),

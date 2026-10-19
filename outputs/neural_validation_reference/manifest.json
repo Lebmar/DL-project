@@ -1,0 +1,32 @@
+{
+  "purpose": "Exact original-platform validation-only arrays reconstructed and matched to all three frozen training data hashes; no training or fresh test data. Avoid cross-platform transcendental-library byte drift.",
+  "python": "3.12.14",
+  "numpy": "2.5.4",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "panels": [
+    {
+      "panel": 1,
+      "file": "outputs/neural_validation_reference/panel1.npz",
+      "file_sha256": "8f6a798b2396b1dc88606de3681256737ec7ec99dad46e15b462d93052b697f7",
+      "array_sha256": "54ffb937a5178168564ed2557e67c3762b4a4675ec3e3824871324c1775076eb",
+      "training_manifest": "outputs/neural_compatibility_training/panel1/manifest.json",
+      "training_manifest_sha256": "f3788f7f8e506f5624af3c4aab80d907fb1a7c43ee1c3c30ca16238e48696c14"
+    },
+    {
+      "panel": 2,
+      "file": "outputs/neural_validation_reference/panel2.npz",
+      "file_sha256": "8209466ca0a003b0bfb57fe8bc0ce481f3597a6e21bdb4ad56dc426f9a9bc11d",
+      "array_sha256": "10bcccc579becefce90545df83f47adf8939f973385424d12ba8d039f9e0832c",
+      "training_manifest": "outputs/neural_compatibility_training/panel2/manifest.json",
+      "training_manifest_sha256": "257eb291977b4e06f11a14056e18c8b074430c1e178aa00f02f056d922c8aef7"
+    },
+    {
+      "panel": 3,
+      "file": "outputs/neural_validation_reference/panel3.npz",
+      "file_sha256": "80716e98435fc32073ad588552d49b4f40e177ea3b840e806ef1123f1665ff6c",
+      "array_sha256": "74256c1648d6495032dd17ab09f26ce4dfffaa93ff49e053408b61fb8855d262",
+      "training_manifest": "outputs/neural_compatibility_training/panel3/manifest.json",
+      "training_manifest_sha256": "9bad2f9faffe24a9c27f59d6d5312af65b8d3c539b5362eb1eafe54112d26906"
+    }
+  ]
+}

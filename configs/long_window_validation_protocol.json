@@ -21,7 +21,8 @@
     "scripts/verify_long_window.py": "1ca8fca3dc1b470330744ec7b1ebf98ab9ff3b2586b3e6bbbb93f2378d084573",
     "scripts/analyze_long_window_aggregation.py": "823df0dd66bdab4395dfeb2cfc0c737c36fba705fa8dac789522431c0bb937e3",
     "scripts/verify_long_window_aggregation.py": "0db84eb01514fe885d505a3bba0231e8b6f81bb523b841ff1a3c2662f8039fa6",
-    "outputs/long_window_aggregation_verification.json": "7c97f1ef962d26126143797154001e671867235a2b29d81022a5b94d6c63e7a9"
+    "outputs/long_window_aggregation_verification.json": "7c97f1ef962d26126143797154001e671867235a2b29d81022a5b94d6c63e7a9",
+    "outputs/neural_validation_reference/manifest.json": "d4b2823e7fb949dffe0cb1762cea96ab56e87bcbb7286295d2f0feab990b0931"
   },
   "models": {
     "source": "outputs/neural_compatibility_training/manifest.json",
@@ -352,6 +353,11 @@
       "date": "2026-10-19",
       "reason": "User requests HPC-first execution and accepts queue delays to reduce local work and interaction overhead.",
       "scope": "Execution location and logging only. CPU, four threads, fixed models, seeds, data counts, metrics and statistical decision rules unchanged. No validation data generated."
+    },
+    {
+      "date": "2026-10-19",
+      "reason": "First HPC job stopped before new-test generation because Linux regeneration of old validation data failed the original macOS float64 byte hash. Preserve exact original inputs rather than relax checksum.",
+      "scope": "Use serialized old validation-only arrays reconstructed on the original platform and matched exactly to all three frozen training data hashes. No training, model selection, fresh-test seeds, counts or statistical rules changed. Original evaluation/training sources unchanged."
     }
   ]
 }

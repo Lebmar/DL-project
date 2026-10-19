@@ -32,8 +32,10 @@
   "independent_evaluator_verifier_toy_comparison_max_error": 2.55351295663786e-15,
   "statistical_design_unchanged": true,
   "sources": {
-    "scripts/evaluate_long_window_validation.py": "b66b6a9c635612d659d422cdfba8289095c83e674aa28d8e0ffe57afb7c10585",
+    "scripts/evaluate_long_window_validation.py": "eff9a34ac886755e545ee1eb2906223061b8f84908a64eb9d35e5477a46dedf4",
     "scripts/analyze_long_window_validation.py": "3bf7f26383f477ee46b3d92c1d8d1167e4f83b241ed253ea283369b2dd844a4c",
-    "scripts/verify_long_window_validation.py": "ff99d1038b9315dcbe4eadaa127b953536172f9f7cc2910f882282c3bd83ddf9"
-  }
+    "scripts/verify_long_window_validation.py": "ff99d1038b9315dcbe4eadaa127b953536172f9f7cc2910f882282c3bd83ddf9",
+    "scripts/load_frozen_neural_models.py": "f63e6e163de4f9bf18851e0a9ecd65cac7d1f8399696a8446907142dbb439fa7"
+  },
+  "portability_fix": "Use exact original validation-only input bytes; evaluator tiny self-check rerun passed; old training/evaluation sources unchanged."
 }

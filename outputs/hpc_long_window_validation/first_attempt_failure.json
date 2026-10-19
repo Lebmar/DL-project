@@ -1,0 +1,13 @@
+{
+  "job_id": "13212595",
+  "source_freeze_commit": "e3f0222",
+  "state": "FAILED",
+  "exit_code": "1:0",
+  "elapsed_seconds": 41,
+  "max_rss_KB": 469560,
+  "failure": "Exact regenerated old validation array SHA did not match original macOS training-manifest SHA",
+  "new_test_directory_created": false,
+  "new_test_data_generated": false,
+  "diagnostic_job_id": "13212706",
+  "resolution": "Serialize validation-only arrays that exactly match original hashes, pin reference manifest, freeze revised loader before first new tests."
+}
