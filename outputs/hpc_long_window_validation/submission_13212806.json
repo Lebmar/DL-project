@@ -1,0 +1,21 @@
+{
+  "job_id": "13212806",
+  "submission_recorded_at_utc": "2026-10-19T10:06:18.264029+00:00",
+  "source_freeze_commit": "377cd64b4f3a8603166de7578e0bb9cd69f3fa85",
+  "host_alias": "dsaa2012-hpc",
+  "remote_project": "$HOME/projects/DL-project",
+  "partition": "i64m512u",
+  "qos": "i64m512u",
+  "cpus": 4,
+  "memory_GB": 16,
+  "wall_limit": "03:00:00",
+  "stages": [
+    "self_checks",
+    "evaluate",
+    "analyze",
+    "independent_verify"
+  ],
+  "new_training": false,
+  "course_balance_verified": false,
+  "replaces_pretest_failed_job": "13212595"
+}

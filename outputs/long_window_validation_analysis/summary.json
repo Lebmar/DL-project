@@ -1,0 +1,155 @@
+{
+  "status": "complete",
+  "protocol_version": "long-window-validation-v1",
+  "protocol_sha256": "3849c0f4608740a18ea75311531bbddd7e4d1c2641ba50f8dafc20ddaa8fcee0",
+  "primary": {
+    "H1_phase_failure": {
+      "statistic": "G_phase",
+      "predicted_direction": "negative",
+      "estimate": 0.005553437198411078,
+      "bootstrap_interval": [
+        -0.008528046952492867,
+        0.015484391181023193
+      ],
+      "architecture_estimates": {
+        "gru": 0.012786677977008462,
+        "tcn": -0.001679803580186305
+      },
+      "interval_direction_pass": false,
+      "architecture_direction_pass": false,
+      "mc_precision": {
+        "standard_error": 0.0002370698888319681,
+        "denominator": 0.005553437198411078,
+        "se_fraction": 0.042688857434058564,
+        "first32_estimate": 0.005454290188469731,
+        "last32_estimate": 0.0056525842083520175,
+        "first32_last32_difference": 0.0001982940198822867,
+        "difference_fraction": 0.03570653863503158,
+        "se_pass": true,
+        "split_pass": true,
+        "passed": true
+      },
+      "supported": false,
+      "status": "unsupported"
+    },
+    "H2_endpoint_improvement": {
+      "statistic": "G_endpoint",
+      "predicted_direction": "positive",
+      "estimate": 0.024407584416821317,
+      "bootstrap_interval": [
+        0.019941551476240802,
+        0.025854817243059342
+      ],
+      "architecture_estimates": {
+        "gru": 0.027556842169226305,
+        "tcn": 0.02125832666441633
+      },
+      "interval_direction_pass": true,
+      "architecture_direction_pass": true,
+      "mc_precision": {
+        "standard_error": 0.0003915148623300318,
+        "denominator": 0.024407584416821317,
+        "se_fraction": 0.016040705038398065,
+        "first32_estimate": 0.023887885220806794,
+        "last32_estimate": 0.024887887906386,
+        "first32_last32_difference": 0.0010000026855792044,
+        "difference_fraction": 0.040970981335212285,
+        "se_pass": true,
+        "split_pass": true,
+        "passed": true
+      },
+      "supported": true,
+      "status": "supported"
+    },
+    "H3_same_pool_pairing": {
+      "statistic": "C",
+      "predicted_direction": "negative",
+      "estimate": -0.001740202337086827,
+      "bootstrap_interval": [
+        -0.010117232054568685,
+        0.006302939765436884
+      ],
+      "architecture_estimates": {
+        "gru": 0.0013514573594060053,
+        "tcn": -0.004831862033579659
+      },
+      "interval_direction_pass": false,
+      "architecture_direction_pass": false,
+      "student_t": {
+        "df": 15,
+        "confidence": 0.9833333333333333,
+        "standard_error": 0.0036443480201416105,
+        "critical_value": 2.6937393191964882,
+        "interval": [
+          -0.01155712589177834,
+          0.008076721217604322
+        ],
+        "upper_negative": false
+      },
+      "supported": false,
+      "status": "unsupported"
+    }
+  },
+  "point": {
+    "G_phase": 0.005553437198411078,
+    "G_endpoint": 0.024407584416821317,
+    "C": -0.001740202337086827,
+    "cancellation_P": 0.029839552382075252,
+    "cancellation_D": 0.010985405163665012
+  },
+  "bootstrap": {
+    "unit": "whole independent pool",
+    "replicates": 12000,
+    "seed": 2026101811,
+    "quantiles": [
+      0.008333333333333333,
+      0.9916666666666667
+    ],
+    "confidence": 0.9833333333333333,
+    "shared_across_fits_methods_conditions_endpoints": true,
+    "absolute_values_after_pool_averaging": true
+  },
+  "mc": {
+    "replicates": 4000,
+    "seed": 2026101812,
+    "independent_resampling_per_pool": true,
+    "shared_across_fits_conditions_within_pool": true,
+    "fixed_original_paths_P_A": true
+  },
+  "input_checks": {
+    "groups": 1920,
+    "maximum_identity_error": 7.359919425690071e-15,
+    "maximum_replica_error": 1.2434497875801753e-14,
+    "maximum_pair_error": 2.6645352591003757e-15
+  },
+  "secondary_table_rows": {
+    "phase_grid.csv": 1280,
+    "phase_metrics.csv": 7680,
+    "entry_targets.csv": 1600,
+    "decompositions.csv": 6400,
+    "event_minus_flat.csv": 768
+  },
+  "scope": {
+    "independent_pools": 16,
+    "paths_per_pool": 64,
+    "fixed_fits": 12,
+    "training_panels": 3,
+    "new_training": false
+  },
+  "interpretation": {
+    "aggregation_specific_reversal_supported": false,
+    "pairing_gap_supported": false,
+    "qualification": "Bonferroni-adjusted percentilebootstrap approximations, not exact finite-sample guarantees;16pools andabsnondifferentiability remain limitations.",
+    "fit_uncertainty": "Conditional on12existingfits; do not claim retraining-population validity. Report all3trainingpanels/all12fits descriptively.",
+    "secondary_results": "Descriptive; no additional confirmatory family claim.",
+    "pairing": "Own-path coupling improves risk relative to cross-path pairing in this diagnostic; not an identified operational intervention or proof of a unique causal component",
+    "cancellation": "The cancellation identity is algebra, not empirical confirmation.",
+    "precision": "Any failed H1/H2 MC gate is precision-inconclusive; do not append replicas.",
+    "stop_and_decide": [
+      "H1unsupported:do notclaimstablelongwindow failure or addnetworkfix; retainoriginalresultasfinite-sample/target-sensitive observation",
+      "H1negativeandH2positive:supportaggregation-specificreversal, notuniversalharmfromfinitecorrection",
+      "H3unsupported:do notattributeoriginalgapuniquelytoneuralendogeneity; maintainempiricalinnovationcompositionexplanation",
+      "Anyhypothesisunsupported orprecisionfail:noadaptivepools,replicas,windows,metrics orseedselection; newideasrequireseparateprotocol"
+    ]
+  }
+}

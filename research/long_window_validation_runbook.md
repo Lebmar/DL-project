@@ -36,3 +36,7 @@ mkdir -p logs
 修复采用严格输入保留：在原平台重建三份小型旧验证数组，每份均与原训练manifest的数组SHA256精确相等，然后保存至`outputs/neural_validation_reference/`并传输到HPC。新加载器读取这些保存值，并逐项核验文件哈希、训练manifest与原数组哈希。旧训练器、checkpoint、旧评估器和旧结果均未改动；没有放宽哈希断言，没有训练或模型选择，也未生成新测试数据。协议仅增加参考文件manifest和执行修订说明，统计部分保持原样。
 
 完整诊断：[portability.json](../outputs/hpc_long_window_validation/portability.json)。失败日志保留HPC，后续正式作业另记编号。
+
+## 完成记录
+
+修复后冻结提交377cd64，正式作业13212806为COMPLETED/0:0，用时34分29秒，4 CPU、16GB内存上限，batch最大RSS约647MiB。1920组评估、12000次批次bootstrap、4000次replica重抽及独立核验全部完成。原始数组约1.9GB留HPC，汇总/索引/哈希及核验结果同步仓库。完整[sacct记录](../outputs/hpc_long_window_validation/slurm_jobs.psv)与[科学结果](long_window_validation_results.md)已保存。统计设计没有因失败或新结果而调整。

@@ -1,6 +1,6 @@
 # 长窗口失败是否可重复：下一轮独立验证方案
 
-日期：2026-10-18。**设计已冻结；2026-10-19执行器已实现并通过小样例检查，等待首次HPC运行。** 机器可读设定、全部新seed和来源哈希见[配置](../configs/long_window_validation_protocol.json)。实现完成后，必须先验证并提交源码，再首次生成这些新数据。
+日期：2026-10-18。**设计已冻结；2026-10-19已完成全部HPC评估与独立核验，见[实际结果](long_window_validation_results.md)。** 机器可读设定、全部新seed和来源哈希见[配置](../configs/long_window_validation_protocol.json)。实现完成后，必须先验证并提交源码，再首次生成这些新数据。
 
 ## 为什么先换测试路径
 

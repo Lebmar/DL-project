@@ -23,3 +23,7 @@ outputs/strong_calibration/reconstructed_validation_forecasts.csv
 # Fresh validation bulk arrays are retained on HPC; manifests and summaries tracked.
 outputs/long_window_validation/pools/
 outputs/long_window_validation/groups/
+# Original analysis manifest contains the private absolute HPC home path.
+# Public copy with the original SHA and a redacted path lives in hpc_long_window_validation/.
+outputs/long_window_validation_analysis/manifest.json
+outputs/population_matched_baseline/path_metrics.npz

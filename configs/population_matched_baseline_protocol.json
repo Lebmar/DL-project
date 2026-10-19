@@ -1,0 +1,62 @@
+{
+  "version": "population-matched-finite-baseline-v1",
+  "date": "2026-10-19",
+  "status": "exploratory_design_before_baseline_computation",
+  "frozen": true,
+  "scope": "Result-inspired exploratory control on all already-observed 16-pool validation paths; no fresh data or confirmatory claim.",
+  "inputs": {
+    "outputs/long_window_validation/manifest.json": "c37849dcfbd3835e6a3b635734f73921f7af3e9657b5bff77ad46f933ec84a6e",
+    "outputs/long_window_validation_analysis/manifest.json": "6cf91640ca2a4d287a8c981437ab3071ef7261b7961d7f7105eac958f48b7785",
+    "outputs/long_window_validation_verification.json": "2b6b3e68829c4dba1a49ddee674fffa5c82c7748a2e1157484376467f036780b",
+    "scripts/finite_mechanism_math.py": "7fb31f6e24c87511122e7e90056e629a670f0a7bd8a094550276766b59948ce8",
+    "scripts/verify_long_window_validation.py": "ff99d1038b9315dcbe4eadaa127b953536172f9f7cc2910f882282c3bd83ddf9"
+  },
+  "question": "Does retaining archive-scale heterogeneity improve risk approximation beyond a simple population-quantile-matched homogeneous finite-rank baseline?",
+  "baseline": "For each population standardized halfwidth aP, B= sum randomized-rank weights E[R(aP*G_abs_inverse(U_k)/z)], U_k~Beta(k,W+1-k), z=G_abs_inverse(.9). Score each candidate before mixing. Exact expected-risk calculation for a homogeneous iid-score surrogate with matching population90% halfwidth; not exact for the actual neural archive.",
+  "retained": [
+    "all 1920 groups",
+    "all16 pools and12 fits",
+    "all5 worlds and2 windows",
+    "all16 endpoints and4 phases"
+  ],
+  "quadrature": {
+    "main_nodes": 128,
+    "check_nodes": 64,
+    "maximum_absolute_risk_discrepancy": 1e-05,
+    "failure_action": "Preserve values but mark numerical-inconclusive; do not silently change nodes."
+  },
+  "readout": {
+    "G_B_vs_D": "MAE(B-A)-MAE(D-A); positive means D explains A more accurately",
+    "G_P_vs_B": "MAE(P-A)-MAE(B-A); positive means B improves on P",
+    "aggregation": "Average paths then all pools perfit/time before absolute values; separately phase andendpoint targets",
+    "interval": "Exploratory95% paired whole-pool percentile bootstrap for Gaussian_up2,W128,entry G_B_vs_D, using existing12000pool multiplicity draws; no confirmatory significance or equivalence claim",
+    "secondary": "All40world/window/phase cells and allfits/panels/pools descriptive; show all signs"
+  },
+  "controls": [
+    "Homogeneous-archive surrogate formula derived before calculation",
+    "At aP=z, weighted expected coverage exactly0.9",
+    "Independent SciPy adaptivequad overBeta law for Gaussian/t5,W32/128 andfixedhalfwidthgrid0.4,1,1.6448536269514722,3,6",
+    "Risk lower bound trueconditionaloracle",
+    "All128vs64node discrepancies saved",
+    "Also independently integrate at observed minimum andmaximum population halfwidth for eachfamily/window; report all discrepancies andmark numerical-inconclusive if abovefixed1e-5riskthreshold."
+  ],
+  "decisions": [
+    "If B approaches D, distinguish finite-rank noise from extra value of archive heterogeneity; do not claim empirical equivalence from lack of significance.",
+    "If D has material extra benefit, formulate its heterogeneity-dependent conditions and preregister future validation; current paths remain exploratory.",
+    "No networkfix for unsupported long-window failure; no newtraining, report/PPT or private financialdata."
+  ],
+  "execution": {
+    "platform": "HPC Slurm CPU",
+    "threads": 4,
+    "time_limit": "00:30:00",
+    "new_training": false,
+    "new_test_paths": false
+  },
+  "mc_precision": {
+    "source": "Existing4000D replica-bootstrap draws, shifted by fixed P-minus-B MAE gain; B has deterministic numerical integration.",
+    "se_fraction_limit": 0.1,
+    "split_difference_fraction_limit": 0.2,
+    "denominator_floor": 1e-12,
+    "failure_action": "Mark incremental B-vs-D comparison precision-inconclusive; no appendreplicas."
+  }
+}

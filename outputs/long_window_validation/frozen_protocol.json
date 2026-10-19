@@ -1,0 +1,363 @@
+{
+  "version": "long-window-validation-v1",
+  "specified_date": "2026-10-18",
+  "frozen": true,
+  "status": "implementation_frozen_before_first_hpc_run",
+  "purpose": "Fresh independent test-pool validation of phase aggregation reversal and same-sample cross-path pairing gap; retain fixed12fits, no training",
+  "inspiration": "Exploratory long-window diagnosis and aggregation analysis on already-viewed64paths. All3future hypotheses are newlyspecified, not retroactive confirmation.",
+  "inputs": {
+    "outputs/neural_compatibility_training/manifest.json": "4f936d4f8a92dcedef720840c1ab2903315bbda4be2bf865d01f842eec11acc0",
+    "configs/neural_compatibility_protocol.json": "f75b73aaaf3d2f4cc4d684a1a15f807a042812c45c744c1a892b3f5d10f8feb1",
+    "scripts/train_stage2.py": "d93d1ecbb6ce30ccba88c2566be2632d769db6c2968717c3f6c36f24fbc49850",
+    "scripts/stage2_models.py": "c93e127dd43a3f9f70fed3fbd4c63bed8fa0c74b261c33dbd0a327889bd10f2e",
+    "scripts/evaluate_stage2.py": "4642c27329b6556ac1d3eac8cf1cbcc3d07ee0b1efe09e1d85295618ec052558",
+    "scripts/evaluate_stage3.py": "f092ca94932453ef726dcd6b72712ee93daa9603b05ea63535e0d2387a5aaff3",
+    "scripts/finite_mechanism_math.py": "7fb31f6e24c87511122e7e90056e629a670f0a7bd8a094550276766b59948ce8",
+    "outputs/long_window_diagnostic/manifest.json": "7c5d0f6bc2b92eccd76629975525365f2d53e04353799265d488fde0d126073b",
+    "outputs/long_window_verification.json": "2a53bc08deae621365a2d8ea5a5650e81a9eb88f9a644fd0366a83f1ebd91a1d",
+    "outputs/long_window_aggregation/manifest.json": "b51ac07ddd978e7914d306bdadc2fd3ac3a392ce3ac3f59948856386fb1a4177",
+    "scripts/stage2_baselines.py": "f82fbbe82e5b75e17514a47ebde0dc636332da365aae42c09d00901a90e29eb0",
+    "scripts/diagnose_long_window.py": "ff46abbacdb604cc31304a43efebdb285c7ffd24955fc926356a650d5ce020e3",
+    "scripts/verify_long_window.py": "1ca8fca3dc1b470330744ec7b1ebf98ab9ff3b2586b3e6bbbb93f2378d084573",
+    "scripts/analyze_long_window_aggregation.py": "823df0dd66bdab4395dfeb2cfc0c737c36fba705fa8dac789522431c0bb937e3",
+    "scripts/verify_long_window_aggregation.py": "0db84eb01514fe885d505a3bba0231e8b6f81bb523b841ff1a3c2662f8039fa6",
+    "outputs/long_window_aggregation_verification.json": "7c97f1ef962d26126143797154001e671867235a2b29d81022a5b94d6c63e7a9",
+    "outputs/neural_validation_reference/manifest.json": "d4b2823e7fb949dffe0cb1762cea96ab56e87bcbb7286295d2f0feab990b0931"
+  },
+  "models": {
+    "source": "outputs/neural_compatibility_training/manifest.json",
+    "count": 12,
+    "training_panels": 3,
+    "reuse_all": true,
+    "contexts": [
+      64
+    ],
+    "checkpoint_selection": "none; previously frozen checkpoints",
+    "new_training": false
+  },
+  "evaluation": {
+    "independent_pools": 16,
+    "paths_per_pool": 64,
+    "length": 640,
+    "rng": "numpy.default_rng PCG64",
+    "seeds": [
+      {
+        "pool": 1,
+        "gaussian": 41010000,
+        "t5": 42010000,
+        "redraw_gaussian": 43010000,
+        "redraw_t5": 44010000
+      },
+      {
+        "pool": 2,
+        "gaussian": 41020000,
+        "t5": 42020000,
+        "redraw_gaussian": 43020000,
+        "redraw_t5": 44020000
+      },
+      {
+        "pool": 3,
+        "gaussian": 41030000,
+        "t5": 42030000,
+        "redraw_gaussian": 43030000,
+        "redraw_t5": 44030000
+      },
+      {
+        "pool": 4,
+        "gaussian": 41040000,
+        "t5": 42040000,
+        "redraw_gaussian": 43040000,
+        "redraw_t5": 44040000
+      },
+      {
+        "pool": 5,
+        "gaussian": 41050000,
+        "t5": 42050000,
+        "redraw_gaussian": 43050000,
+        "redraw_t5": 44050000
+      },
+      {
+        "pool": 6,
+        "gaussian": 41060000,
+        "t5": 42060000,
+        "redraw_gaussian": 43060000,
+        "redraw_t5": 44060000
+      },
+      {
+        "pool": 7,
+        "gaussian": 41070000,
+        "t5": 42070000,
+        "redraw_gaussian": 43070000,
+        "redraw_t5": 44070000
+      },
+      {
+        "pool": 8,
+        "gaussian": 41080000,
+        "t5": 42080000,
+        "redraw_gaussian": 43080000,
+        "redraw_t5": 44080000
+      },
+      {
+        "pool": 9,
+        "gaussian": 41090000,
+        "t5": 42090000,
+        "redraw_gaussian": 43090000,
+        "redraw_t5": 44090000
+      },
+      {
+        "pool": 10,
+        "gaussian": 41100000,
+        "t5": 42100000,
+        "redraw_gaussian": 43100000,
+        "redraw_t5": 44100000
+      },
+      {
+        "pool": 11,
+        "gaussian": 41110000,
+        "t5": 42110000,
+        "redraw_gaussian": 43110000,
+        "redraw_t5": 44110000
+      },
+      {
+        "pool": 12,
+        "gaussian": 41120000,
+        "t5": 42120000,
+        "redraw_gaussian": 43120000,
+        "redraw_t5": 44120000
+      },
+      {
+        "pool": 13,
+        "gaussian": 41130000,
+        "t5": 42130000,
+        "redraw_gaussian": 43130000,
+        "redraw_t5": 44130000
+      },
+      {
+        "pool": 14,
+        "gaussian": 41140000,
+        "t5": 42140000,
+        "redraw_gaussian": 43140000,
+        "redraw_t5": 44140000
+      },
+      {
+        "pool": 15,
+        "gaussian": 41150000,
+        "t5": 42150000,
+        "redraw_gaussian": 43150000,
+        "redraw_t5": 44150000
+      },
+      {
+        "pool": 16,
+        "gaussian": 41160000,
+        "t5": 42160000,
+        "redraw_gaussian": 43160000,
+        "redraw_t5": 44160000
+      }
+    ],
+    "worlds": [
+      {
+        "name": "gaussian_flat",
+        "distribution": "gaussian",
+        "amplitude": 1.0
+      },
+      {
+        "name": "gaussian_up1p5",
+        "distribution": "gaussian",
+        "amplitude": 1.5
+      },
+      {
+        "name": "gaussian_up2",
+        "distribution": "gaussian",
+        "amplitude": 2.0
+      },
+      {
+        "name": "gaussian_up3",
+        "distribution": "gaussian",
+        "amplitude": 3.0
+      },
+      {
+        "name": "t5_up2",
+        "distribution": "t5",
+        "amplitude": 2.0
+      }
+    ],
+    "onset": 256,
+    "duration": 128,
+    "times": [
+      192,
+      208,
+      224,
+      240,
+      256,
+      264,
+      272,
+      280,
+      320,
+      336,
+      352,
+      368,
+      384,
+      400,
+      416,
+      432
+    ],
+    "phases": {
+      "pre": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "entry": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "late": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "recovery": [
+        12,
+        13,
+        14,
+        15
+      ]
+    },
+    "windows": [
+      32,
+      128
+    ],
+    "alpha": 0.1,
+    "rank_rule": "randomized_adjacent_candidates_scored_before_mixing",
+    "shared_randomness": "Each pool has independent original and redraw innovations. All fits/windows/Gaussian worlds share innovations within a pool. Same replica ids align across fits and worlds within pool; no randomness shared across pools.",
+    "methods": [
+      "P",
+      "A",
+      "D",
+      "X",
+      "D_first32",
+      "D_last32"
+    ],
+    "D_replicas": 64,
+    "P": "Population mixture from realized delta, not actual conditional law",
+    "A": "Originally issued actual history, no rescaling archive with future predictions",
+    "D": "Independent innovation bank at each fixedhistoricalage; keep originalcurrent/archivescales;64replicas, no retraining",
+    "X": "Exhaustive63other observed innovation pathdonors within the SAMEpool, fixed anchorcurrent/archive delta. Original diagonal retained forchecks but excluded from X. No crosspooldonors.",
+    "metrics": [
+      "conditional_expected_interval_score_standardized",
+      "expected_halfwidth_standardized",
+      "coverage",
+      "exact_tangent_at_P",
+      "nonnegative_convex_remainder"
+    ],
+    "current_innovation": "Analytically integrated; sigma and family used offline only, never as forecasting inputs",
+    "neural_groups": 1920
+  },
+  "primary": {
+    "world": "gaussian_up2",
+    "context": 64,
+    "window": 128,
+    "phase": "entry",
+    "target_average": "Equalfitweight12; firstaverage64paths within eachpool and then16pools (1024paths) for eachfit/time. Pool bootstrap repeats this operation before absolute values.",
+    "hypotheses": [
+      {
+        "name": "H1_phase_failure",
+        "statistic": "G_phase = mean_fit(abs(mean_time(mean_poolpath(P-A)))) - mean_fit(abs(mean_time(mean_poolpath(D-A))))",
+        "predicted_direction": "negative",
+        "interpretation": "Original average-entry-risk approximation failure repeats"
+      },
+      {
+        "name": "H2_endpoint_improvement",
+        "statistic": "G_endpoint = mean_fit,time(abs(mean_poolpath(P-A))) - mean_fit,time(abs(mean_poolpath(D-A)))",
+        "predicted_direction": "positive",
+        "interpretation": "Reversal is specific to temporal averaging; endpoint target differs and does not replace H1"
+      },
+      {
+        "name": "H3_same_pool_pairing",
+        "statistic": "C = mean_pool,fit,time(A-X)",
+        "predicted_direction": "negative",
+        "interpretation": "Own-path coupling improves risk relative to cross-path pairing in this diagnostic; not an identified operational intervention or proof of a unique causal component"
+      }
+    ],
+    "inference": {
+      "bootstrap_unit": "Whole independently generated testpool; sharedpoolindices across allfits/methods/worlds/windows/endpoints. Never treat fits as independent testdatasets.",
+      "replicates": 12000,
+      "seed": 2026101811,
+      "family_hypotheses": 3,
+      "family_nominal_alpha": 0.05,
+      "individual_two_sided_confidence": 0.9833333333333333,
+      "quantiles": [
+        0.008333333333333333,
+        0.9916666666666667
+      ],
+      "qualification": "Bonferroni-adjusted percentilebootstrap approximations, not exact finite-sample guarantees;16pools andabsnondifferentiability remain limitations.",
+      "architecture_check": "Predicted point-estimate direction must hold separately for both GRU and TCN to call a hypothesis supported.",
+      "linear_C_sensitivity": "Also report Student-t df15 interval at same confidence using16pool Cmeans; H3 support requires its upper bound <0 as well.",
+      "fit_uncertainty": "Conditional on12existingfits; do not claim retraining-population validity. Report all3trainingpanels/all12fits descriptively.",
+      "leave_one_pool_out": "Report each of16leave-one-pool-out pointestimates for all3hypotheses; no posthoc removal."
+    }
+  },
+  "mc_precision": {
+    "bootstrap_replicates": 4000,
+    "seed": 2026101812,
+    "unit": "Independent replica resampling perpool, sharedwithinpool acrossfits/conditions; original P/A andoriginalpaths fixed. RecomputeG_phase andG_endpoint after averaging selectedreplicas.",
+    "maximum_se_fraction": 0.1,
+    "maximum_first32_last32_difference_fraction": 0.2,
+    "denominator_floor": 1e-12,
+    "failure_action": "If either precision checkfails for an asserted H1/H2 effect, label itprecision-inconclusive. No appendreplicas orpick newpoolseeds. H3 usesexhaustiveX anddoes notdepend on D MC."
+  },
+  "predeclared_secondary": [
+    "All5worlds/windows32and128/phases,retainall12fits",
+    "Original4entryendpoints separately andaveragepost-onset3; do notreplaceprimary4endpointtarget",
+    "Cancellation_P = mean_fit,time|eP_ft| - mean_fit|mean_time eP_ft|, sameforD. VerifyG_phase=G_endpoint-(cancellation_P-cancellation_D). This identityitself isnotempiricalconfirmation.",
+    "Pairinggap event-minus-flat onmatchedinnovations; no additionalconfirmatoryfamilyclaim",
+    "Exact A-P,D-P,X-P andA-D,A-X tangent/convex decompositions, meanproduct andcovariance separately; no causalpercentage",
+    "Signedriskgap at firstentryendpoint vsother3, withoutconfusing itwithG_MAE",
+    "OriginalDvsX andeta/CDF diagnostic differences, retainfiniteoriginalsampleuncertainty"
+  ],
+  "negative_controls": [
+    "At onset, rawissued halfwidths agree acrossallGaussianworlds withidenticalpast, forP/A/D/X beforeanyshockedobservationentershistory",
+    "Path-independent fixeds=1 andtrue-scale s=sigma diagnostic controls: averageA-X=0 to floatingpoint for everypool/world/window/endpoint; do notclaimA-D mustzero",
+    "Samepathdonor diagonal exactlyreplaysA",
+    "Current/futurey perturbations do notchange issuedscales/currentinterval",
+    "Everyconvex remainder >=-1e-10 andallmetrics >=trueconditionaloracle risk",
+    "Evaluation sourcehash/checkpoint/dataset provenance checkbeforetestgeneration; freezeimplementationbefore running"
+  ],
+  "stop_and_decide": [
+    "H1unsupported:do notclaimstablelongwindow failure or addnetworkfix; retainoriginalresultasfinite-sample/target-sensitive observation",
+    "H1negativeandH2positive:supportaggregation-specificreversal, notuniversalharmfromfinitecorrection",
+    "H3unsupported:do notattributeoriginalgapuniquelytoneuralendogeneity; maintainempiricalinnovationcompositionexplanation",
+    "Anyhypothesisunsupported orprecisionfail:noadaptivepools,replicas,windows,metrics orseedselection; newideasrequireseparateprotocol"
+  ],
+  "outputs": {
+    "retain": "Frozenprotocol,all12checkpointhashes,alloriginalinnovations+true-sigma schedule,issuedscales or verified deterministic cache,perpathphase metrics,perendpointpool means,all64Dreplicaphase means,exactriskcomponents,poolsummary,bootstrapdraws,negativecontrols,source/outputhashes",
+    "pair_matrices": "Fullordered-pairriskbyphase forGaussianflat/up2primarywindow128; otherconditions retainexactrowmeans plusdiagonal andchecks to permitreplayfromsavedinputs",
+    "no_reports": "No report/PPT/proposal changes"
+  },
+  "execution": {
+    "device": "cpu",
+    "torch_threads": 4,
+    "training_runs": 0,
+    "run_timing": "Evaluate, analyze and independently verify in one bounded Slurm CPU job, only after committing implementation and toy checks. Actual execution status is recorded in output manifests.",
+    "platform": "HPC Slurm compute nodes",
+    "local_policy": "Editing and lightweight checks only; training, batch evaluation and full replay audits run on HPC. Do not fall back to local bulk compute because of queue delay.",
+    "billing_policy": "Use authorized course allocation; record selected partition, QoS and resource limits at submission. Course balance not yet verified; do not label normal queues free.",
+    "logging": "Persist full logs on HPC; return compact completion/failure summaries, avoid epoch streaming and frequent polling."
+  },
+  "execution_amendments": [
+    {
+      "date": "2026-10-19",
+      "reason": "User requests HPC-first execution and accepts queue delays to reduce local work and interaction overhead.",
+      "scope": "Execution location and logging only. CPU, four threads, fixed models, seeds, data counts, metrics and statistical decision rules unchanged. No validation data generated."
+    },
+    {
+      "date": "2026-10-19",
+      "reason": "First HPC job stopped before new-test generation because Linux regeneration of old validation data failed the original macOS float64 byte hash. Preserve exact original inputs rather than relax checksum.",
+      "scope": "Use serialized old validation-only arrays reconstructed on the original platform and matched exactly to all three frozen training data hashes. No training, model selection, fresh-test seeds, counts or statistical rules changed. Original evaluation/training sources unchanged."
+    }
+  ]
+}

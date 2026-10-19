@@ -1,3 +1,5 @@
 # Preserve original external sources byte-for-byte, including their whitespace.
 proposal/neurips_2026.sty -whitespace
 outputs/strong_calibration/vendor/** -whitespace
+# Preserve audited csv.DictWriter CRLF bytes and their recorded checksums.
+outputs/long_window_validation_analysis/*.csv -text whitespace=cr-at-eol

@@ -1,0 +1,128 @@
+{
+  "status": "complete",
+  "passed": true,
+  "completed_at": "2026-10-19T10:40:13.691914+00:00",
+  "script_sha256": "ff99d1038b9315dcbe4eadaa127b953536172f9f7cc2910f882282c3bd83ddf9",
+  "protocol_sha256": "3849c0f4608740a18ea75311531bbddd7e4d1c2641ba50f8dafc20ddaa8fcee0",
+  "evaluation_manifest_sha256": "c37849dcfbd3835e6a3b635734f73921f7af3e9657b5bff77ad46f933ec84a6e",
+  "analysis_manifest_sha256": "6cf91640ca2a4d287a8c981437ab3071ef7261b7961d7f7105eac958f48b7785",
+  "verified_hashes": 3188,
+  "verified_groups": 1920,
+  "counts": {
+    "A_P_path_endpoints": 1966080,
+    "D_anchor_replica_endpoints": 19660800,
+    "D_exhaustive_groups": 192,
+    "X_anchor_donor_endpoints": 31457280,
+    "X_exhaustive_groups": 384,
+    "sampled_issued_scales": 46080,
+    "seed_arrays": 64,
+    "deterministic_control_endpoints": 5120
+  },
+  "maximum_errors": {
+    "deterministic_control_gap": 4.6351811278100286e-15,
+    "sampled_scale_replay": 0.0,
+    "future_perturbation": 0.0,
+    "onset_scale_replay": 0.0,
+    "population_root": 1.2212453270876722e-15,
+    "population_metrics": 8.881784197001252e-16,
+    "population_slope": 1.7763568394002505e-14,
+    "tangent_identity": 3.019806626980426e-14,
+    "convex_identity": 7.327471962526033e-15,
+    "actual_full_sort": 2.9176639403105664e-14,
+    "D_full_sort": 3.552713678800501e-15,
+    "D_first_full_sort": 3.774758283725532e-15,
+    "D_last_full_sort": 7.105427357601002e-15,
+    "D_replica_mean": 1.2434497875801753e-14,
+    "D_replica_phase": 0.0,
+    "D_split_identity": 0.0,
+    "same_path_diagonal": 2.0067281170099704e-14,
+    "X_full_sort": 2.3869795029440866e-15,
+    "pair_phase_matrices": 0.0,
+    "onset_raw_halfwidth": 1.3322676295501878e-15,
+    "primary_D_replica_endpoint_full_sort": 6.661338147750939e-16,
+    "analysis_endpoints": 0.0,
+    "analysis_slopes": 1.4988010832439613e-14,
+    "primary_inputs": 0.0,
+    "primary_replica_inputs": 0.0,
+    "primary_point": 0.0,
+    "architecture_point": 0.0,
+    "leave_one_pool_out": 6.106226635438361e-16,
+    "leave_one_pool_out_table": 6.487865800153259e-16,
+    "split_points": 0.0,
+    "bootstrap_draws": 0.0,
+    "bootstrap_cancellation_identity": 4.336808689942018e-18,
+    "replica_bootstrap_draws": 0.0,
+    "pool_C": 0.0,
+    "summary_point": 0.0,
+    "hypothesis_estimate": 0.0,
+    "hypothesis_interval": 0.0,
+    "hypothesis_architecture": 0.0,
+    "mc_precision_summary": 0.0,
+    "student_t_summary": 0.0,
+    "secondary_tables": 1.7850304567801345e-15
+  },
+  "independent_inference": {
+    "hypotheses": {
+      "H1_phase_failure": {
+        "estimate": 0.005553437198411078,
+        "supported": false,
+        "status": "unsupported"
+      },
+      "H2_endpoint_improvement": {
+        "estimate": 0.024407584416821317,
+        "supported": true,
+        "status": "supported"
+      },
+      "H3_same_pool_pairing": {
+        "estimate": -0.001740202337086827,
+        "supported": false,
+        "status": "unsupported"
+      }
+    },
+    "pool_bootstrap_replicates": 12000,
+    "replica_bootstrap_replicates": 4000,
+    "student_t_interval": [
+      -0.01155712589177834,
+      0.008076721217604322
+    ],
+    "secondary_table_rows": {
+      "phase_grid.csv": 1280,
+      "phase_metrics.csv": 7680,
+      "entry_targets.csv": 1600,
+      "decompositions.csv": 6400,
+      "event_minus_flat.csv": 768
+    },
+    "leave_one_pool_out_points": 16
+  },
+  "scope": {
+    "A_P": "All 1920 groups, all 64 paths and 16 endpoints",
+    "D": "All 64 replicas/paths/endpoints in 192 primary groups; all replicas at anchors 0,21,42,63 in 1728 secondary groups",
+    "X": "All 64 donors/anchors/endpoints in 384 flat/up2 W128 groups; all donors at anchors 0,21,42,63 in 1536 secondary groups",
+    "scales": "Independent reset-context predictions for paths 0 and 63 at all evaluation endpoints plus fixed boundary targets, every pool/fit/world",
+    "inference": "All pool/replica bootstrap draws and support gates; fixed existing fits only"
+  },
+  "notes": [
+    "Oracle lower bound applies to the risk metric; coverage/width and signed diagnostics have other units.",
+    "MC precision fractions divide by max(abs(full G point estimate), 1e-12).",
+    "Seed regeneration reproduces and compares existing frozen arrays; no new study pools or fits are created.",
+    "Secondary D/X full-sort replay is a declared deterministic subset; saved aggregate identities are checked everywhere."
+  ],
+  "self_check": {
+    "passed": true,
+    "maximum_errors": {
+      "risk_vs_quadrature": 1.5987211554602254e-14,
+      "risk_derivative": 2.690315192843684e-10,
+      "scalar_sorted_risk": 0.0,
+      "unequal_pair_axes": 2.7755575615628914e-17,
+      "deterministic_pair_control": 1.0658141036401502e-15,
+      "count_matrix": 4.440892098500626e-16,
+      "statistics_from_counts": 3.3306690738754696e-16,
+      "cancellation_identity": 5.551115123125783e-17,
+      "replica_pool_axes": 8.326672684688674e-17
+    },
+    "study_data_accessed": false
+  },
+  "new_study_data_generated": false,
+  "slurm_job_id": "13212806",
+  "wall_seconds": 367.10837960243225
+}
