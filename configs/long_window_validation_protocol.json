@@ -340,8 +340,18 @@
   "execution": {
     "device": "cpu",
     "torch_threads": 4,
-    "paid_HPC": false,
     "training_runs": 0,
-    "run_timing": "Notrunthisturn; implementationwillbefrozenbefore anynewvalidationobservations. No unattendedautomationcreated."
-  }
+    "run_timing": "Executor implementation and checks must be committed before new validation observations; no job submitted by this execution-policy amendment.",
+    "platform": "HPC Slurm compute nodes",
+    "local_policy": "Editing and lightweight checks only; training, batch evaluation and full replay audits run on HPC. Do not fall back to local bulk compute because of queue delay.",
+    "billing_policy": "Use authorized course allocation; record selected partition, QoS and resource limits at submission. Course balance not yet verified; do not label normal queues free.",
+    "logging": "Persist full logs on HPC; return compact completion/failure summaries, avoid epoch streaming and frequent polling."
+  },
+  "execution_amendments": [
+    {
+      "date": "2026-10-19",
+      "reason": "User requests HPC-first execution and accepts queue delays to reduce local work and interaction overhead.",
+      "scope": "Execution location and logging only. CPU, four threads, fixed models, seeds, data counts, metrics and statistical decision rules unchanged. No validation data generated."
+    }
+  ]
 }
